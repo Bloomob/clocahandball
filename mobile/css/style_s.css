@@ -1,0 +1,39 @@
+body { position:relative; background: #0a67a9; margin:0; -webkit-text-size-adjust:none; -webkit-touch-callout:none; min-height:416px; font-family: helvetica neue, helvetica, arial, verdana, sans-serif; }
+
+header { position: fixed; text-indent: 0px; display: block; color: #FFF; width: 100%; height: 30px; left: 0px; top: 0px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#AAB8C9), to(#6E84A2), color-stop(.5,#6E84A2)); background: -moz-linear-gradient(0% 65% 90deg,#6E84A2, #AAB8C9, #AAB8C9 100%); text-align: center; font-size: 14pt; text-shadow: 0px 1px 0px black; padding: 5px 0; z-index: 1000; }
+header a.menu-bouton { float: right; text-indent: -2000px; background: url(../../images/liste_iphone.png) center center no-repeat; width: 16px; height: 17px; display: block; padding: 5px; margin-right: 5px;}
+header a.prev-bouton { float: left; text-indent: -2000px; background: url(../../images/prev.png) center center no-repeat; width: 16px; height: 17px; display: none; padding: 5px; margin-left: 5px;}
+
+a{ color: #106AA9; text-decoration: none; outline: none; font-weight: none; }
+
+#content {  z-index: 10; position: static; width: auto; height: auto; }
+#content ul { background-color: white; font-weight: bold; font-size: 12pt; overflow: hidden; margin: 0; padding: 0; position: relative; display: block; height: auto; width: auto; list-style: none; }
+#content li { position: relative; display: block; height: 43px; overflow: hidden; border-top: 1px solid #0a67a9; width: auto; }
+#content li:first-child { border-top: 0; }
+#content ul li span{ display: block; color: #106AA9; line-height: 40px; }
+#content ul li span span{ background: url(../../images/arrow.png) 98% 100% no-repeat; padding: 0 0.450em 0 0.450em; height: 43px; }
+
+/* Début : ajax_breves.php */
+
+#liste_breves { display: block; z-index: 50; }
+#liste_breves li { position: relative; display: inline; width: auto; height: 43px; overflow: auto; font-weight: normal; font-size: 9pt; border: 1px solid red; }
+#liste_breves ul li span{ display: block; line-height: 20px; }
+#liste_breves ul li div{ display: block; float: left; height: 43px; line-height: 40px; width: 50px; color: #aaa; text-align: center; margin: 0;}
+#liste_breves ul li span span strong{ font-size: 10pt; }
+
+#une_breve{ display: none; height: auto; width: auto; position: relative; z-index: 0; font-weight: normal; padding: 10px 0; }
+#une_breve h3{  font-size: 15pt; color: #106AA9; margin: 0 5px; }
+#une_breve .auteur_date { font-size: 9pt; color: #aaa; border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; margin: 5px; }
+#une_breve .categorie { font-size: 12pt; color: #ff7d3f; margin: 5px 10px; }
+#une_breve .contenu { font-size: 11pt; color: #555; margin: 0 10px; }
+#une_breve div { display: block; }
+
+/* Fin : ajax_breves.php */
+
+#corps { background-color: white; border: #969696 solid 1px; font-weight: bold; font-size: 12pt; overflow: hidden; padding: 0; position: relative; display: block; height: auto; width: auto; margin: 40px 0 20px 0; }
+#corps .sous-menu { display: none;}
+
+footer { position: fixed; text-indent: 0px; display: block; float:none; color: #FFF; width: 100%; height: 40px; left: 0px; bottom: 0px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#AAB8C9), to(#6E84A2), color-stop(.5,#6E84A2)); background: -moz-linear-gradient(0% 65% 90deg,#6E84A2, #AAB8C9, #AAB8C9 100%); text-align: center; font-size: 14pt; text-shadow: 0px 1px 0px black; z-index: 1000;}
+footer ul {  font-size: 12pt; overflow: hidden; padding: 0; position: relative; display: block; height: auto; width: auto; margin: 0px; list-style: none; }
+footer li { float: left; position: relative; display: block; line-height: 40px; height: 43px; overflow: hidden; width: auto; border-left: #6E84A2 solid 1px; color: #FFF;  text-shadow: 0px 1px 0px black; padding: 0 12px; }
+footer li.active { background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ff7d3f), to(#EF6417), color-stop(.5,#EF6417)); background: -moz-linear-gradient(0% 65% 90deg,#EF6417, #ff7d3f, #ff7d3f 100%); color: #FFF; }

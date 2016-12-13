@@ -1,0 +1,635 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tex",
+				"text-transform"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"sc",
+				"score_ext"
+			],
+			[
+				"margin-",
+				"margin-top"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"chart",
+				"chartdiv2"
+			],
+			[
+				"li",
+				"liste_stats"
+			],
+			[
+				"s",
+				"show"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"cl",
+				"classement_final"
+			],
+			[
+				"arra",
+				"array"
+			],
+			[
+				"opt",
+				"option	Tag"
+			],
+			[
+				"chan",
+				"changeSelect"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/javascript/script.js",
+			"settings":
+			{
+				"buffer_size": 6909,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/equipes.php",
+			"settings":
+			{
+				"buffer_size": 21180,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/resultats_classements.php",
+			"settings":
+			{
+				"buffer_size": 19265,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/prochainsMatchs.php",
+			"settings":
+			{
+				"buffer_size": 3080,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/fonctions.php",
+			"settings":
+			{
+				"buffer_size": 118454,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/script.php",
+			"settings":
+			{
+				"buffer_size": 1580,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 81075,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc"
+	],
+	"file_history":
+	[
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/index.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/script.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/footer.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/staff.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/match.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/resultats_classements.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/mon_profil.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/evenements.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/equipes.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/entrainements.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/dossiers.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/contact.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/boutique.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/admin.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/adhesion.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/css/style.css",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/actualites.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/prochainsMatchs.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/javascript/admin2.js",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/classes/Actualite.class.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/admin/actualites.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/header_admin.php",
+		"/C/Users/Benji/Downloads/clocahan (1).sql",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/fil_ariane.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/classes/Menu_managerManager.class.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/header.php",
+		"/C/Users/Benji/Downloads/index.html",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/css/style_m.css",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/head.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/gestion_calendrier.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/fonctions.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/index.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/avancement.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/design.css",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/menu.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/championnat.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax6.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax4.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajax/valider_match.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax9.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/resultats.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/profil.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajax_lesClassements.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/fonctions.js",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax5.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax3.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax2.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax1.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/pronostiques.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/gestion_tempsforts.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/temps_forts.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/statistiques.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax8.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/match.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/forum.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/equipes.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajout_de_match.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/buteurs.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/gestion_buteurs.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/reponseAjax7.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajax/liste_buteurs.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajax/ajout_buteur.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajax/ajout_joueur.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajout_joueur.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/ajax/fabrique_calendrier.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/bdd.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/includes/data.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/fifa/V4/header.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/ajax/new_match.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/admin/calendrier.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/ajax/match.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/ajax/liste_clubs.autocomplete.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/ajax/actualite.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/ajax/liste_joueurs.autocomplete.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/constantes.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/ajax/new_actualite.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/slider_actualites.php",
+		"/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/date.php",
+		"/C/Users/Benji/Downloads/clocahan.sql",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/Hand/_V3/inc/connexion_bdd_pdo.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/Hand/_V3/inc/connexion.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/Hand/_V3/index.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/Hand/_V3/inc/header.php",
+		"/C/Program Files/EasyPHP-5.3.6.0/www/Hand/_V3/inc/connexion_bdd.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"C:\\Program Files\\EasyPHP-5.3.6.0\\www\\fifa\\V4",
+			"C:\\Program Files\\EasyPHP-DevServer-14.1VC9\\data\\localweb\\projects\\_V3",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"cinq_dernier_match",
+			"bilan",
+			"chartdiv1",
+			".infos",
+			"infos",
+			"series",
+			"jqplot",
+			"endif",
+			"display: none;",
+			"display",
+			"110px",
+			"112px",
+			"112",
+			"content2",
+			"tab4",
+			"admin_panel",
+			"admin_panelm",
+			"tab4",
+			"admin_panel",
+			"admin_menu",
+			"admin",
+			"tab_content2",
+			"admin_panel",
+			"col1",
+			"col",
+			"id_j2",
+			"id_j1",
+			"\n	function existeDelayages($num_saison) {\n		$liste = array();\n		$req = \"SELECT COUNT(1) FROM matchs WHERE saison = \". $num_saison .\" AND poule != 0\";\n		$q = mysql_query($req) or die(mysql_error());\n		$d = mysql_fetch_array($q);\n		if($d[0]>0)\n			return true;\n		else\n			return false;\n	}",
+			"console",
+			"xbox",
+			"id_match",
+			"INSERT INTO buteurs",
+			"tousB",
+			"tous_buteurs",
+			"tousButeurs",
+			"tousB",
+			"buteurs",
+			"$_SESSION['console'], ",
+			"console",
+			"'xbox', ",
+			"console",
+			"'xbox', ",
+			"$_SESSION['console'], ",
+			"xbox",
+			"id_match",
+			"id_j2",
+			"id_j1",
+			"id_j2",
+			"id_j1",
+			"calculClassement",
+			"id_match",
+			"'xbox', ",
+			"toutcale",
+			"$console, ",
+			">\n",
+			"toutCa",
+			"_saison1",
+			"Insert",
+			"saison1",
+			"xbox_",
+			"else",
+			"autoc",
+			"auto",
+			"autocom",
+			"autocomp",
+			"unNiv",
+			"addDate",
+			"Categorie",
+			"annee_actuelle",
+			"$annee_actuelle",
+			"\");\n",
+			"$rang",
+			"$page",
+			"'];\n"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/javascript/script.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6909,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/equipes.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9785,
+								9788
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3820.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/resultats_classements.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19265,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8220,
+								8220
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 310.0,
+						"translation.y": 3635.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/prochainsMatchs.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3080,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2368,
+								2368
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 244.0,
+						"translation.y": 243.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/fonctions.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 118454,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								35974,
+								35974
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 21917.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Program Files/EasyPHP-DevServer-14.1VC9/data/localweb/projects/_V3/inc/script.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1580,
+								1580
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 81075,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								23111,
+								23111
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5239.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "style.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 210.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

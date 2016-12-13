@@ -1,0 +1,22 @@
+@media (max-width: 1024px) {
+	#entete {
+	  width: 100%;
+	}
+	#main {
+	  width: 100%;
+	}
+	.col1 { width: 276px; }
+	.col2 { width: 700px; }
+	.col3 { width: 345px; }
+	.col4 { width: 750px; }
+
+	.gallery1 dt .legende_actualite {
+	    width: 390px;
+	}
+	.gallery1 dt a img {
+	    width: 410px;
+	}
+	.gallery1 dd ul {
+	    width: 260px;
+	}
+}

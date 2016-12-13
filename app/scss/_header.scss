@@ -1,0 +1,257 @@
+header#entete { 
+	background-color: $bleu-fonce;
+	width: 100%;
+	overflow: hidden;
+	
+	&.top {
+		position: fixed;
+		z-index: 10;
+		overflow: visible;
+
+		#entete {
+			display: none;
+		}
+		& + #main {
+			padding-top: 163px;
+		}
+		.right {
+			width: 350px;
+		}
+	}
+    h1 {
+        padding-top: 10px;
+        
+        .logo {
+            background: url(../img/logo.png) no-repeat;
+            background-size: cover;
+            display: block;
+            float:left;
+            width: 65px;
+            height: 64px;
+            text-indent: -5000px;
+
+            img {
+                display: none;
+                float: left;
+                margin-left:10px;
+                height: 20px;
+                width: 15px;
+                cursor: pointer;
+            }
+        }
+        .slogan {
+            padding-top: 20px;
+            padding-left: 95px;
+            color: $blanc;
+            font-size: 24px;
+            font-weight: bold;
+            display: block;
+        }
+    }
+    #top_nav {
+        float: right;
+        padding: 19px 19px 0 0;
+        margin: 0;
+        
+        li {
+            float: left;
+            padding-left: 16px;
+            
+            a {
+                font-size: 11px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $blanc;
+            }
+        }
+    }
+    .degrade {
+        position: static;
+        overflow: hidden;
+        @include background-degrade2($bleu-fonce, $bleu-clair);
+    }
+	nav#navbar {
+        .menu {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            margin: 0 auto;
+            width: 100%;
+            
+            li {
+                float: left;
+                
+                .active {
+                    color: $orange;
+                    
+                    &:hover {
+                        color: $orange;
+                    }
+                    span {
+                        display: block;
+                        color: $orange;
+                        
+                        span {
+                            padding: 0 1em 0 1em;
+                            color: $orange;
+                        }
+                    }
+                }
+                a {
+                    display: block;
+                    font-size: 1.050em;
+                    text-transform: uppercase;
+                    color: $blanc;
+                    line-height: 45px;
+                    font-weight: bold;
+                    text-decoration: none;
+                    
+                    &:hover {
+                        color: $orange;
+                    }
+                    span {
+                        display: block;
+                        
+                        span {
+                            padding: 0 1em 0 1em;
+                            
+                            img {
+                                margin-top: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+		.sous_menu {
+			position: absolute;
+			width: 22%;
+			display: none;
+			overflow: hidden;
+			z-index: 100;
+			background: #626DA7;
+			margin: 0;
+
+			box-shadow: 0px 3px 6px #999;
+			-moz-box-shadow: 0px 3px 6px #999;
+			-webkit-box-shadow: 0px 3px 6px #999;
+
+			ul.col{
+				float: left;
+				width: 100%;
+				border: none;
+				background: none;
+				border-radius: 0px;
+				box-shadow: none;
+
+				li {
+					position:relative;
+					float: left;
+					width: 100%;
+					background: none;
+					
+					a {
+						display: block;
+						font-size: 1.000em;
+						text-transform: uppercase;
+						color: #FFF;
+						line-height: 25px;
+						font-weight: bold;
+						padding: 5px;
+
+						&:hover {
+							color: #ef6417;
+						}
+						img {
+							vertical-align: middle;
+						}
+					}
+					ul {
+						display: none;
+						position: absolute;
+						left: 30px;
+
+						li {
+							padding-left: 30px;
+
+							a {
+								float: left;
+								width: 100%;
+								padding-left: 6px;
+								font-size: 0.950em;
+								font-weight: normal;
+								color: #333;
+								background: url("skin-common/chevron.png") no-repeat 0 9px;
+
+								&:hover {
+									text-decoration: underline;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+    nav.nav-home li {
+        background: url(../images/fleche-bouton.png) 13px 50% no-repeat;
+        color: $blanc;
+        padding: 3px 5px;
+        border-right: 1px solid #F0F0F0;
+        
+        &:hover {
+            background-color: $noir;
+            
+            a {
+                color: $blanc;
+            }
+        }
+        a {
+            display: block;
+            padding: 0px 10px 0px 23px;
+        }
+    }
+}
+
+/* Fil Ariane */
+nav.fil-ariane {
+    overflow: hidden;
+    
+    li {
+        float: left;
+        color: #ef6417;
+        font-weight: bold;
+        text-transform: uppercase; 
+        
+        > span{
+            border-right: 1px solid #CCC;
+            padding-right: 10px;
+            padding: 6px 10px 6px 10px;
+            display: block;
+            
+            &.select {
+                text-decoration: underline;
+            }
+        }
+        &.nav {
+            padding-right: 15px;
+        }
+    }
+}
+nav li.nav { padding-right: 15px; }
+nav li.navhome { background: url(../images/nav0.png) center right no-repeat #ef6417; }
+nav li.navtit { background: url(../images/nav.png) center right no-repeat #f7b048; }
+nav li.navtit2 { background: url(../images/nav.png) center right no-repeat; }
+nav li.navcat { background: url(../images/nav2.png) center right no-repeat; }
+nav li.nav > span { color: #fff; border-right: 0;}
+nav li.navhome > span { padding: 6px 5px 6px 15px; background: #ef1724; }
+nav li.navhome > a { background: #ef1724; line-height: 19px; display: block; color: #FFF; }
+nav li.navtit > span, nav li.navtit2 > span { background: #ef6417; line-height: 19px; display: block; }
+nav li.navtit > a, nav li.navtit2 > a { background: #ef6417; line-height: 19px; display: block; color: #FFF; }
+nav li.navhome + li.navtit > span, nav li.navhome + li.navtit2 > span { padding-left: 5px; }
+nav li.navcat > span { background: #f7b048; line-height: 19px; display: block; }
+nav li.navcat > a { background: #f7b048; line-height: 19px; display: block; color: #FFF; }
+nav li.nav > span > span { color: rgb(250, 250, 120);}
+nav li:last-child > span { border-right: 0; padding-right: 0px;}
+nav li a { font-size: 12px; color: #ef6417; text-transform: uppercase; font-weight: bold; }
+nav li > a { color: #ef6417; padding: 6px 5px 6px 15px; display: block; line-height: 19px; }

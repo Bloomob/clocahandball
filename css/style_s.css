@@ -1,0 +1,41 @@
+body { position:relative; background: url(../images/background_iphone.png); margin:0; -webkit-text-size-adjust:none; -webkit-touch-callout:none; min-height:416px; font-family: helvetica neue, helvetica, arial, verdana, sans-serif; }
+
+body div:last-child{display: none;}
+
+header { background: none; }
+
+footer { display: none; }
+
+#main { position:relative; left:0; top:0; -webkit-border-top-left-radius: 25px 25px; -webkit-border-top-right-radius:25px 25px; -moz-border-radius-topleft: 25px 25px; -moz-border-radius-topright: 25px 25px; border-radius-top-left: 25px 25px; border-radius-top-right:25px 25px; border: none; min-height: 416px; width:auto; margin: 0px; }
+
+#entete .right { display: none; }
+#logo { position: fixed; text-indent: 0px; display: block; float:none; color: #FFF; width: 100%; height: 30px; left: 0px; top: 0px; background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#AAB8C9), to(#6E84A2), color-stop(.5,#6E84A2)); background: -moz-linear-gradient(0% 65% 90deg,#6E84A2, #AAB8C9, #AAB8C9 100%); z-index: 1000; text-align: center; padding-top: 10px; font-size: 14pt; text-shadow: 0px 1px 0px black; }
+#slogan { display: none; }
+
+#menu{ background-color: white; border: #969696 solid 1px; font-weight: bold; font-size: 12pt; overflow: hidden; padding: 0; position: relative; display: block; height: auto; width: auto; margin: 0px; margin-top: 8px; list-style: none; }
+#menu li{	float: none; position: relative; display: block; height: 43px; overflow: hidden; border-top: 1px solid #878787; width: auto; }
+#menu li .active{ background: none; color: #000; }
+#menu li .active span{ color: #000; background: none;  display: block;}
+#menu li .active span span{ padding: 0 0.450em 0 0.450em; color: #000; background: url(../images/arrow.png) 98% 100% no-repeat; }
+#menu li a{ display: block; font-size: 1.050em; text-transform: none; color: #213341; line-height: 40px; background: none; font-weight: bold; }
+#menu li a span{ background: none; display: block; }
+#menu li a span span{ background: url(../images/arrow.png) 98% 100% no-repeat; }
+
+header nav .sous_menu{ position: relative; height: auto; width: auto; overflow: hidden; font-weight: bold; font-size: 12pt; background-color: white; margin: 0; padding: 0; }
+header nav .sous_menu ul.col{ float: none; width: auto; border: none; background: none; }
+header nav .sous_menu ul.col li { border: #969696 solid 1px; float: none; width: auto; background: none; padding: 0; }
+header nav .sous_menu ul.col li a{ display: block; color: #213341; line-height: 43px; font-weight: bold; text-transform: none; }
+header nav .sous_menu ul.col li  ul li { border: #969696 solid 1px; padding: 0; }
+header nav .sous_menu ul.col li  ul li a{ float: none; width: auto; color: #333; background: none; padding: 0; }
+header nav .sous_menu li a  img{ display: none; }
+
+#content { display: none; }
+
+#nextPage { display: none; }
+
+#nextPage ul{ background-color: white; border: #969696 solid 1px; font-weight: bold; font-size: 12pt; overflow: hidden; padding: 0; position: relative; display: block; height: auto; width: auto; margin: 0px; margin-top: 8px; list-style: none; }
+
+#nextPage ul li{ position: relative; display: block; height: 43px; overflow: hidden; border-top: 1px solid #878787; width: auto; }
+
+#nextPage ul li span{ display: block; color: #213341; line-height: 40px; }
+#nextPage ul li span span{  background: url(../images/arrow.png) 98% 100% no-repeat; padding: 0 0.450em 0 0.450em; height: 43px; }

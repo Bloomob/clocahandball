@@ -1,0 +1,61 @@
+section.home {
+    margin-bottom: 30px;
+    
+    .wrapper {
+        background-color: $blanc;
+        min-height: 200px;
+        margin-top: 30px;
+        
+        h3 {
+            background-color: $bleu-fonce;
+            color: $blanc;
+            padding: 15px 30px;
+            text-transform: uppercase;
+            
+            .fa {
+                @include border-radius(50%);
+                background-color: $bleu-clair;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                margin-right: 15px;
+            }
+        }
+        .contenu {
+            padding: 30px;
+            
+            &.tableau-bord {
+                color: $gris;
+                
+                .row {
+                    .date {
+                        color: $blanc;
+                        text-align: center;
+                        
+                        .jour {
+                            background: #AC6E21;
+                            font-size: 18px;
+                            padding: 2px 5px;
+                            @include border-radius(5px 5px 0 0);
+                        }
+                        .mois {
+                            background: #725807;
+                            padding: 2px 5px;
+                            @include border-radius(0 0 5px 5px);
+                        }
+                    }
+                    .compet {
+                        height: 100%;
+                        color: $blanc;
+                    }
+                    .dom, .ext {
+                        text-align: left;
+                        text-transform: uppercase;
+                        margin: 5px 10px;
+                    }
+                }
+            }
+        }
+    }
+}
