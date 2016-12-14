@@ -12,19 +12,19 @@ $i = 2; ?>
         if(!empty($listeMatchs)):
             foreach($listeMatchs as $unMatch): ?>
                 <div class="row">
-                    <div class="col-sm-1 date">
+                    <div class="col-sm-2 col-lg-1 date">
                         <div class="jour"><?=$unMatch->getJour();?></div>
                         <div class="mois"><?=$mois_de_lannee_min[$unMatch->getMois()-1];?></div>
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-2 col-lg-1">
                         <div class="compet competition_<?=$unMatch->getCompetition();?>_<?=$unMatch->getNiveau();?>">
-                            <?=($unMatch->getJournee()!=0)?'J'.$unMatch->getJournee():$unMatch->getTour();?>
+                            <span><?=($unMatch->getJournee()!=0)?'J'.$unMatch->getJournee():$unMatch->getTour();?></span>
                         </div>
                     </div><?php
                     $options2 = array('where' => 'id = '. $unMatch->getCategorie());
                     $uneCategorie = $CategorieManager->retourne($options2);
                     if($unMatch->getLieu() == 0):?>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 col-lg-8">
                             <div class="dom puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
                             <div class="ext"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
@@ -38,7 +38,7 @@ $i = 2; ?>
                             </div>
                         </div><?php
                     else: ?>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6 col-lg-8">
                             <div class="dom"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
                                 if(is_array($tab)):
@@ -53,13 +53,16 @@ $i = 2; ?>
                         </div><?php
                     endif; ?>
                     <div class="col-sm-2 heure"><span><?=$unMatch->remplace_heure()?></span></div>
+                    <!-- <div class="col-sm-2">
+                        <span><a href="#"><i class="fa fa-flag" aria-hidden="true"></i></a></span>
+                    </div> -->
                 </div><?php
                 $i++;
             endforeach;
         else: ?>
             <p>Pas de match pr&eacute;vu pour le moment</p><?php
         endif; ?>
-        <ul class="link clearfix">
+        <ul class="link hidden clearfix">
             <li><a href="resultats_classements.php?onglet=resultats_week-end">R&eacute;sultats du week-end</a></li>
             <li class="bg_none"><a href="resultats_classements.php?onglet=calendrier">Calendrier complet</a></li>
         </ul>

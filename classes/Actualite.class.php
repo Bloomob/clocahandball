@@ -125,13 +125,31 @@ class Actualite {
 	**					 				  **
 	***************************************/
 
-	public function dateTypeNews() {
+	public function dateTypeCreationNews() {
 		$today = date('Ymd');
 		
 		if($this->getDate_creation() == $today)
 			return $this->remplace_heure($this->getHeure_creation());
 		else
 			return $this->remplace_date($this->getDate_creation());
+	}
+
+	/***************************************************
+	**								   			      **
+	**   Affichage de la date publication type news   **
+	** 					 							  **
+	** Entrée : (Void)	  			 				  **
+	** Sortie : (String)	 						  **
+	**					 				  			  **
+	***************************************************/
+
+	public function dateTypePublicationNews() {
+		$today = date('Ymd');
+		
+		if($this->getDate_publication() == $today)
+			return $this->remplace_heure($this->getHeure_publication());
+		else
+			return $this->remplace_date($this->getDate_publication());
 	}
 
 	/*************************************************

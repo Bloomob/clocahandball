@@ -46,13 +46,111 @@ section.home {
                         }
                     }
                     .compet {
-                        height: 100%;
+                        height: 45px;
                         color: $blanc;
+                        font-size: 18px;
+                        text-align: center;
+                        position: relative;
+
+                        span {
+                            position: absolute;
+                            top: 50%;
+                            @include transform-translate(-50%, -50%);
+                        }
                     }
                     .dom, .ext {
                         text-align: left;
                         text-transform: uppercase;
-                        margin: 5px 10px;
+                        line-height: 18px;
+                        padding-left: 20px;
+
+                        &.puce {
+                            padding-left: 0px;
+
+                            [class*="cat_"] {
+                                width: 15px;
+                                height: 15px;
+                                display: inline-block;
+                                border-radius: 8px;
+                                margin-right: 5px;
+                                position: relative;
+                                top: 3px;
+                            }
+                        }
+                    }
+                    .heure {
+                        height: 45px;
+                        text-align: center;
+                        position: relative;
+
+                        span {
+                            display: inline-block;
+                            color: $blanc;
+                            background: $violet;
+                            padding: 5px;
+                            border-radius: 10px;
+                            font-size: 14px;
+                            position: absolute;
+                            top: 50%;
+                            @include transform-translate(-50%, -50%);
+                        }
+                    }
+                }
+            }
+            &.infos {
+                ul {
+                    margin-top: -4px;
+                    margin-bottom: -4px;
+                    list-style: none;
+
+                    li {
+                        padding: 4px 0 5px;
+                        margin-bottom: 5px;
+                        overflow: hidden;
+                        -o-text-overflow: ellipsis;
+                        text-overflow: ellipsis;
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                        a {
+                            color: $bleu-clair;
+                            font-size: 13px;
+
+                            &:hover {
+                                color: darken($bleu-clair, 20%);
+                                text-decoration: none;
+
+                                .date-info {
+                                    background-color: darken($orange, 10%);
+
+                                    &:after {
+                                        border-top-color: darken($orange, 10%);
+                                        border-left-color: darken($orange, 10%);
+                                    }
+                                }
+                            }
+                            .date-info {
+                                background-color: $orange;
+                                color: $blanc;
+                                font-size: 13px;
+                                padding: 5px;
+                                position: relative;
+                                margin-right: 15px;
+
+                                &:after {
+                                    content: "";
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 100%;
+                                    border-bottom: 0px solid transparent;
+                                    border-right: 10px solid transparent;
+                                    border-top: 25px solid $orange;
+                                    border-left: 0px solid $orange;
+                                }
+                            }
+                        }
                     }
                 }
             }

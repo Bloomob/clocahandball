@@ -50,10 +50,10 @@
 				<div class="modules-home">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-8">
+                            <div class="col-sm-6 col-lg-8">
                                 <?php include_once('inc/modules/tableau-bord-home.php'); ?>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6 col-lg-4">
                                 <?php include_once('inc/modules/infos-home.php'); ?>
                             </div>
                             <div class="col-sm-4">

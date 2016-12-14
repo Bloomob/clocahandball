@@ -66,39 +66,35 @@ footer { background: #04365C; padding: 5px 0; color: white; }
 /* ************************ Liste des classes  **************************** */
 
 
-.competition_5_4 {
-    background-color: $violet;
-}
-.competition_5_3 {
-    background-color: $violet;
-}
-.competition_4_4 {
-    background-color: $jaune;
-}
-.competition_4_3 {
-    background-color: $orange;
-}
-.competition_4_2 {
-    background-color: $orange2;
-}
-.competition_3_3 {
-    background-color: $rouge;
-}
-.competition_3_2 {
-    background-color: $rouge;
-}
-.competition_3_1 {
-    background-color: $rouge;
-}
-.competition_2_3 {
-    background-color: $vert;
-}
-.competition_1_2 {
-    background-color: $bleu-fonce2;
-}
-.competition_1_3 {
-    background-color: $bleu-clair2;
-}
+.competition_5_4 { background-color: $violet; }
+.competition_5_3 { background-color: $violet; }
+.competition_4_4 { background-color: $jaune; }
+.competition_4_3 { background-color: $orange; }
+.competition_4_2 { background-color: $orange2; }
+.competition_3_3 { background-color: $rouge; }
+.competition_3_2 { background-color: $rouge; }
+.competition_3_1 { background-color: $rouge; }
+.competition_2_3 { background-color: $vert; }
+.competition_1_2 { background-color: $bleu-fonce2; }
+.competition_1_3 { background-color: $bleu-clair2; }
+
+.cat_sg1 { background: $vert-clair; }
+.cat_sg2 { background: $vert2; }
+.cat_sg3 { background: $vert3; }
+.cat_sf1 { background: $rouge; }
+.cat_m20g1 { background: $bleu-clair3; }
+.cat_m17g1, .cat_m17g2 { background: $bleu-clair4; }
+.cat_m17f1, .cat_m17f2 { background: $fushia; }
+.cat_m15g1, .cat_m15g2{ background: #3366ff; }
+.cat_m15f1, .cat_m15f2 { background: #ff99cc; }
+.cat_m13g1, .cat_m13g2 { background: #8263FD;}
+.cat_m13g2.cat_m13g1{ background: #8263FD; }
+.cat_m13f1, .cat_m13f2 { background: #ff6600; }
+.cat_m11m1, .cat_m11m2{ background: #B89365; }
+.cat_m9m1, .cat_m9m2 { background: #DFBA27; }
+.cat_bm1{ background: #B49412; }
+.cat_lois{ background: #973c00; }
+.cat_gard{ background: #c7ac00; }
 
 .right { float: right; }
 .left { float: left; }
