@@ -26,7 +26,6 @@
 		<?php include_once('inc/head.php'); ?>
 	</head>
 	<body>
-		<div id="fb-root"></div>
 		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>

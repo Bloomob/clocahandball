@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper plus">
 	<h3><i class="fa fa-camera" aria-hidden="true"></i>Photothèque</h3>
 	<div class="contenu"><?php /*
 		$table_fichier = array();
@@ -26,6 +26,14 @@
 				<a href="<?=$value;?>" data-lightbox="photos"><img src="<?=$value;?>" alt="<?=$value;?>" /></a>
 			</div><?php
 		endforeach;
-        */?>
+        */?><?php
+        if(false):?>
+            <img src="" alt="" /><?php
+        else:?>
+            <p>Pas de photo pour le moment.</p><?php
+        endif;?>
 	</div>
+    <nav>
+        <a href="#" class="voir-plus">Voir plus<i class="fa fa-plus" aria-hidden="true"></i></a>
+    </nav>
 </div>

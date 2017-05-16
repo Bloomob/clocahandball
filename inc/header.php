@@ -18,7 +18,7 @@
                         <li><a href='deconnexion.php' id="se_deconnecter">Se d&eacute;connecter</a></li>
                         <li><a href='mon_profil.php' id="profil">Mon profil</a></li><?php
                     } else { ?>
-                        <li><a href='#' id="se_connecter">Se connecter</a></li>
+                        <li><a href='#' data-toggle="modal" data-target="#connexionModal">Se connecter</a></li>
                         <!--<li><a href='#' id="s_inscrire">S'inscrire</a></li>--><?php
                     }
                     if(isset($_SESSION['rang']) && $_SESSION['rang']) {?>
@@ -40,22 +40,29 @@
         </div>
     </div>
 </div>
-
-<div id="connexion" class="hidden">
-    <img src="images/icon/png_black/remove.png" id="fermer"/>
-    <div class="c_contenu">
-        <form method="post" action="">
-            <div class="login">
-                <label for="login">Login</label><br/>
-                <input type="text" id="login" name="login"/>
+<div class="modal fade" id="connexionModal" tabindex="-1" role="dialog" aria-labelledby="connexionLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Connexion</h4>
             </div>
-            <div class="mot_de_passe">
-                <label for="mot_de_passe">Mot de passe</label><br />
-                <input type="password" id="mot_de_passe" name="mot_de_passe"/>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="login">Identifiant</label><br>
+                        <input type="text" id="login" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label><br>
+                        <input type="password" id="password" class="form-control">
+                    </div>
+                </form>
             </div>
-            <div class="boutons-actions">
-                <input type="submit" id="bouton_connexion" class="btn btn-play" name="bouton_connexion" value="SE CONNECTER"/>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-success" id="btnConnexion">Se connecter</button>
             </div>
-        </form>
+        </div>
     </div>
 </div>

@@ -12,52 +12,6 @@
 .marg-right2 { margin-right: 20px; }
 
 /**
-/** Page actualites
-**/
-
-.listeActus { padding: 10px 0; border-bottom: 1px solid #C5C5C5; }
-.listeActus:last-child { border-bottom: none; }
-.listeActus h2 { text-transform: uppercase; font-size: 20px; margin-left: 330px; margin-bottom: 0px; padding-bottom: 0px; border-bottom: none; }
-.listeActus h2 a { color: #000;  }
-.listeActus .image { position: relative; float: left; border: 1px solid rgb(239, 239, 239); width: 50%; }
-.listeActus .image:hover a::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); -moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.5); -webkit-box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5); z-index: 1; }
-.listeActus .image a img { width: 100%; }
-.listeActus .image .theme_actualite { position: absolute; color: white; background: rgb(239, 100, 23); padding: 3px 6px; text-transform: uppercase; font-size: 18px; z-index: 2; }
-.listeActus .image .theme_actualite.sportif { background: rgb(23, 179, 239); }
-.listeActus .image .theme_actualite.adminstratif { background: rgb(239, 100, 23); }
-.listeActus .image .theme_actualite.debriefs { background: rgb(122, 215, 81); }
-.listeActus .image .theme_actualite.interviews { background: rgb(179, 65, 188); }
-.listeActus .contenu { font-size: 16px; margin-left: 330px; padding: 10px 0px !important; }
-.listeActus .contenu a { color: #777; }
-
-.listeActus.imp3 h2 { text-transform: uppercase; font-size: 20px; margin-left: 280px; margin-bottom: 0px; }
-.listeActus.imp3 .image { position: relative; float: left; border: 1px solid rgb(239, 239, 239); width: 33%; }
-.listeActus.imp3 .contenu { font-size: 16px; margin-left: 280px; }
-
-.listeActus.imp2 h2 { text-transform: uppercase; font-size: 20px; margin-left: 415px; margin-bottom: 0px; }
-.listeActus.imp2 .image { position: relative; float: left; border: 1px solid rgb(239, 239, 239); width: 50%; }
-.listeActus.imp2 .contenu { font-size: 16px; margin-left: 415px; }
-
-.listeActus.imp1 h2 { text-transform: uppercase; font-size: 20px; margin-left: 0px; margin-bottom: 10px; }
-.listeActus.imp1 .image { position: relative; float: none; border: 1px solid rgb(239, 239, 239); width: 100%; text-align: center; }
-.listeActus.imp1 .image a img { max-height: 300px; }
-.listeActus.imp1 .contenu { font-size: 16px; margin-left: 0px; padding: 0px !important; }
-
-
-.uneActu .contenu { font-size: 13px; }
-.uneActu .contenu p { margin-bottom: 10px; }
-.uneActu .contenu img { width: 100%; }
-
-.navigation { display: table; width:100%; }
-.navigation .col-gauche, .navigation .col-droite { display: table-cell; width:50%; }
-.navigation .col-gauche { text-align: left; }
-.navigation .col-droite { text-align: right; }
-.navigation .col-gauche > a > div { background: url(../images/icon/png_black/arrow-left.png) 2% center no-repeat; padding-left: 42px; }
-.navigation .col-droite > a > div { background: url(../images/icon/png_black/arrow-right.png) 98% center no-repeat; padding-right: 42px; }
-.navigation span { font-size: 10px; }
-.navigation h4 { margin: 5px 0; }
-
-/**
 /** Page dossiers
 **/
 

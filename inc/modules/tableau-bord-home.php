@@ -6,17 +6,18 @@ $listeMatchs = $MatchManager->retourneListe($options);
 // debug($listeMatchs);
 $i = 2; ?>
 
-<div class="wrapper">
+<div class="wrapper plus">
 	<h3><i class="fa fa-tachometer" aria-hidden="true"></i>Tableau de bord</h3>
 	<div class="contenu tableau-bord"><?php
+        // var_dump($listeMatchs);
         if(!empty($listeMatchs)):
             foreach($listeMatchs as $unMatch): ?>
                 <div class="row">
-                    <div class="col-sm-2 col-lg-1 date">
+                    <div class="col-sm-2 col-lg-2 date">
                         <div class="jour"><?=$unMatch->getJour();?></div>
                         <div class="mois"><?=$mois_de_lannee_min[$unMatch->getMois()-1];?></div>
                     </div>
-                    <div class="col-sm-2 col-lg-1">
+                    <div class="col-sm-2">
                         <div class="compet competition_<?=$unMatch->getCompetition();?>_<?=$unMatch->getNiveau();?>">
                             <span><?=($unMatch->getJournee()!=0)?'J'.$unMatch->getJournee():$unMatch->getTour();?></span>
                         </div>
@@ -24,7 +25,7 @@ $i = 2; ?>
                     $options2 = array('where' => 'id = '. $unMatch->getCategorie());
                     $uneCategorie = $CategorieManager->retourne($options2);
                     if($unMatch->getLieu() == 0):?>
-                        <div class="col-sm-6 col-lg-8">
+                        <div class="col-sm-6 col-lg-6">
                             <div class="dom puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
                             <div class="ext"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
@@ -38,7 +39,7 @@ $i = 2; ?>
                             </div>
                         </div><?php
                     else: ?>
-                        <div class="col-sm-6 col-lg-8">
+                        <div class="col-sm-6 col-lg-6">
                             <div class="dom"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
                                 if(is_array($tab)):
@@ -67,4 +68,7 @@ $i = 2; ?>
             <li class="bg_none"><a href="resultats_classements.php?onglet=calendrier">Calendrier complet</a></li>
         </ul>
 	</div>
+    <nav>
+        <a href="#" class="voir-plus">Voir plus<i class="fa fa-plus" aria-hidden="true"></i></a>
+    </nav>
 </div>

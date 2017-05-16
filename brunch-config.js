@@ -23,5 +23,10 @@ exports.config = {
     },
     watcher: {
         awaitWriteFinish: true
+    },
+    modules: {
+        autoRequire: {
+          'js/app.js': ['js/script']
+        }
     }
 };
