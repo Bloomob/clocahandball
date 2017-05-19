@@ -215,7 +215,50 @@ class UtilisateurManager {
 			return true;
 		else
 			return false;
+	}
 
+	/*****************************************
+	**							   			**
+	**	   Ajout d'utilisateur en ligne 	**
+	** 							   			**
+	**   Entrée : (Utilisateur)	   			**
+	**   Sortie : (Array) || (Bool)  		**
+	**							   			**
+	*****************************************/
+
+	function ajoutUserOnline($id, $ip, $page) {
+
+		$req = $this->_db->prepare('
+			INSERT INTO
+				users_online 
+			VALUES
+				(:id, :timer, :ip, :page) 
+			ON DUPLICATE KEY UPDATE
+				time = :timer, id = :id, page = :page
+		');
+		$req->bindValue(':id', $id);
+		$req->bindValue(':timer', time());
+		$req->bindValue(':ip', $ip);
+		$req->bindValue(':page', $page);
+		$req->execute();
+		
+
+		$time_max = time() - (60 * 5);
+		$req = $this->_db->prepare('
+			DELETE FROM users_online WHERE time < :time_max
+		');
+		$req->bindValue(':time_max', $time_max);
+		$req->execute();
+
+		// Ajout de l'utlisateur
+		/*$maReq = '	INSERT INTO users_online VALUES('. $id .', '. time() .','. $ip .',"'. $page .'") 
+					ON DUPLICATE KEY UPDATE time = '. time() .' , id = '. $id .', page = "'. $page.'"';
+		mysql_query($maReq) or die(mysql_error());
+		
+		// Suppression des anciens
+		$time_max = time() - (60 * 5);
+		$maReq2 = 'DELETE FROM users_online WHERE time < '. $time_max;
+		mysql_query($maReq2) or die(mysql_error());*/
 	}
 
 	/********************************

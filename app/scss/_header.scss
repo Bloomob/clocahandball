@@ -216,6 +216,7 @@ header#entete {
 /* Fil Ariane */
 nav.fil-ariane {
     overflow: hidden;
+    margin: 20px 0 10px;
     
     li {
         float: left;
@@ -255,6 +256,9 @@ nav.fil-ariane {
                 > span {
                     color: rgb(250, 250, 120);
                 }
+            }
+            > a {
+                color: $blanc;
             }
         }
         &.navhome {

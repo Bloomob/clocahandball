@@ -1,4 +1,5 @@
 <?php
+	$UtilisateurManager = new UtilisateurManager($connexion);
 	// header("Location: /en_travaux/index.html");
 	
 	if(isset($_POST['bouton_connexion'])) {
@@ -47,6 +48,5 @@
 	else 
 		$id = 0;
 		
-	ajoutUserOnline($id, ip2long($_SERVER['REMOTE_ADDR']), $page);
-	
+	$UtilisateurManager->ajoutUserOnline($id, ip2long($_SERVER['REMOTE_ADDR']), $page);
 ?>

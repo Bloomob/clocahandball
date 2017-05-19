@@ -55,7 +55,7 @@
 	<head>
 		<?php include_once('inc/head.php'); ?>
 	</head>
-	<body id="page1">
+	<body>
 		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>
@@ -138,7 +138,7 @@
                                 </div><?php							
                             }
                             elseif(is_array($listeActualites) && !empty($listeActualites)) { ?>
-                                <div class="listeActus>"><?php
+                                <div class="listeActus"><?php
                                     foreach($listeActualites as $key => $uneActu):?>
                                         <div class="row">
                                             <!-- <div class="auteur_date"><span><?=$uneActu->getTags();?></span></div> -->
@@ -165,14 +165,15 @@
                                                 <?php endif; ?>
                                             <?php else: ?>
                                                 <div class="col-sm-12">
-                                                    <div class="theme_actualite <?=$uneActu->getTheme();?>"><?=$uneActu->getTheme();?></div>
-                                                    <h2><a href="?id=<?=$uneActu->getId();?>"><?=html_entity_decode(stripslashes($uneActu->getTitre()));?></a></h2>
+                                                    <h2>
+	                                                    <div class="theme_actualite <?=$uneActu->getTheme();?>"><?=$uneActu->getTheme();?></div>
+	                                                    <a href="?id=<?=$uneActu->getId();?>"><?=html_entity_decode(stripslashes($uneActu->getTitre()));?></a>
+                                                    </h2>
                                                     <div class="contenu">
                                                         <a href="?id=<?=$uneActu->getId();?>"><?=html_entity_decode(stripslashes($uneActu->getSous_titre()));?></a>
                                                     </div>
                                                 </div>
                                             <?php endif; ?>
-                                            
                                         </div><?php
                                     endforeach; ?>
                                 </div><?php
@@ -186,14 +187,14 @@
                                 </div><?php
                             }?>
                         </article>
-                        <article class="col-sm-4">
+                        <article class="col-sm-4 modules">
                             <article>
                                 <?php include_once('inc/modules/infos-home.php'); ?>
                             </article>
-                            <article class="marginT">
+                            <article>
                                 <?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
                             </article>
-                            <article class="marginT">
+                            <article>
                                 <?php include_once('inc/partenaires.php'); ?>
                             </article>
                         </article>

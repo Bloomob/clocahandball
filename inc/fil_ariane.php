@@ -13,6 +13,11 @@
                 endif;
             else :?>
                 <li class="nav navtit2"><a href="<?=$filAriane[1];?>.php"><?=$filAriane[1];?></a></li><?php
+            endif;
+            if(!empty($pages)):
+                foreach($pages as $page):?>
+                    <li class="nav"><a href="<?=$page['url']?>"><?=$page['libelle']?></a></li><?php
+                endforeach;
             endif;?>
         </ul>
     </nav>

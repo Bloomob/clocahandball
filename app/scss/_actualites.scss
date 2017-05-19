@@ -4,19 +4,18 @@
 
 .listeActus {
     background-color: $blanc2;
-    /*padding: 10px 0;
-    border-bottom: 1px solid #C5C5C5;*/
+    padding: 0 10px;
+    // border-bottom: 1px solid #C5C5C5;
     
     h2 {
         text-transform: uppercase;
         font-size: 20px;
-        margin-left: 330px;
         margin-bottom: 0px;
         padding-bottom: 0px;
         border-bottom: none;
         
         a {
-            color: #000;
+            color: $bleu-marine;
         }
     }
     .image {
@@ -41,14 +40,38 @@
             width: 100%;
         }
     }
-    .theme_actualite { position: absolute; color: white; background: rgb(239, 100, 23); padding: 3px 6px; text-transform: uppercase; font-size: 18px; z-index: 2; }
+    .theme_actualite {
+        // position: absolute;
+        display: inline-block;
+        color: white;
+        background: rgb(239, 100, 23);
+        padding: 3px 6px;
+        text-transform: uppercase;
+        font-size: 18px;
+        z-index: 2;
+        
+        &.sportif {
+            background: rgb(23, 179, 239);
+        }
+        &.adminstratif {
+            background: rgb(239, 100, 23);
+        }
+        &.debriefs {
+            background: rgb(122, 215, 81);
+        }
+        &.interviews {
+            background: rgb(179, 65, 188);
+        }    
+    }
+    .contenu {
+        font-size: 16px;
+        padding: 10px 0px !important;
+
+        a {
+            color: $bleu-fonce;
+        }
+    }
 }
-.listeActus .image .theme_actualite.sportif { background: rgb(23, 179, 239); }
-.listeActus .image .theme_actualite.adminstratif { background: rgb(239, 100, 23); }
-.listeActus .image .theme_actualite.debriefs { background: rgb(122, 215, 81); }
-.listeActus .image .theme_actualite.interviews { background: rgb(179, 65, 188); }
-.listeActus .contenu { font-size: 16px; margin-left: 330px; padding: 10px 0px !important; }
-.listeActus .contenu a { color: #777; }
 
 .listeActus.imp3 h2 { text-transform: uppercase; font-size: 20px; margin-left: 280px; margin-bottom: 0px; }
 .listeActus.imp3 .image { position: relative; float: left; border: 1px solid rgb(239, 239, 239); width: 33%; }
