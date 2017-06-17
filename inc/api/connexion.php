@@ -1,5 +1,4 @@
 <?php
-    echo 'connexion.php';
 	// On enregistre notre autoload.
 	function chargerClasse($classname)
 	{
@@ -8,12 +7,12 @@
 	spl_autoload_register('chargerClasse');
 
 	// On inclue la page de connexion à la BDD
-	include_once("../../inc/connexion_bdd_pdo.php");
-	include_once("../../inc/date.php");
+	include_once("../connexion_bdd_pdo.php");
+	include_once("../date.php");
 
 	$UtilisateurManager = new UtilisateurManager($connexion);
 
-	if(isset($_POST['login']) && isset($_POST['password']) {
+	if(isset($_POST['login']) && isset($_POST['password'])) {
 		$utilisateur = new Utilisateur(array());
         
 		foreach ($_POST as $key => $value) {
@@ -24,8 +23,22 @@
 			}
 		}
 		
-		$UtilisateurManager->testConnexion($utilisateur);
+		$userExiste = $UtilisateurManager->testConnexion($utilisateur);
 
-		echo 'OK';
+		if($userExiste) {
+			// $userExiste = $UtilisateurManager->retourne($utilisateur);
+			$_SESSION['id'] =  $tab_connexion['id'];
+			$_SESSION['nom'] = $tab_connexion['nom'];
+			$_SESSION['prenom'] = $tab_connexion['prenom'];
+			$_SESSION['rang'] = $tab_connexion['rang'];
+			
+			if($_SESSION['rang']==1) {
+				header("Location: admin.php");
+				exit;
+			}
+			
+			header("Location: mon_profil.php");
+			exit;
+		}
 	}
 ?>

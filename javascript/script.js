@@ -4,7 +4,7 @@ $(function(){
 	$('#btnConnexion').on('click touch', function(e) {
 	  e.preventDefault();
 	  $.post('../inc/connexion.php', function(data) {
-      console.log('data');
+      console.log(data);
 	  });
 	};
 

@@ -1,5 +1,4 @@
 $(function(){
-    
 	function connexion() {
         $('#btnConnexion').click(function(e){
             e.preventDefault();
@@ -7,8 +6,7 @@ $(function(){
             let password = $('#password').val();
             console.log(login, password);
             $.post(
-                // '../../inc/api/connexion.php',
-                '/',
+                './inc/api/connexion.php',
                 {
                     'login': login,
                     'password': password
