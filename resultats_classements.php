@@ -14,7 +14,7 @@
 	$titre = 'Les r&eacute;sultats & classements';
 	$filAriane = array('home', $titre_page);
 
-	// On inclue la page de connexion à la BDD
+	// On inclue la page de connexion Ã  la BDD
 	include_once("inc/connexion_bdd_pdo.php");
 	require_once("inc/connexion_bdd.php");
 	include_once("inc/fonctions.php");
@@ -30,19 +30,19 @@
 	$annee = retourne_annee();	
 	
 	if(isset($_GET['onglet']))
-		$onglet = $_GET['onglet']; // On récupère la catégorie de staff choisi
+		$onglet = $_GET['onglet']; // On rÃ©cupÃ¨re la catÃ©gorie de staff choisi
 	else
-		$onglet = 'calendrier'; // Par défaut
+		$onglet = 'calendrier'; // Par dÃ©faut
 	
 	$pages = array(
 		array(
 			'url' => 'resultats_classements.php?onglet=matchs_a_venir',
-			'libelle' => 'Matchs à venir',
+			'libelle' => 'Matchs Ã  venir',
 			'grp' => 1
 		),
 		array(
 			'url' => 'resultats_classements.php?onglet=resultats_week-end',
-			'libelle' => 'Résultats de la semaine',
+			'libelle' => 'RÃ©sultats de la semaine',
 			'grp' => 1
 		),
 		array(
@@ -74,10 +74,10 @@
 	
 	switch($onglet) {
 		case 'matchs_a_venir':
-			$titre = 'Les matchs à venir';
+			$titre = 'Les matchs Ã  venir';
 		break;
 		case 'resultats_week-end':
-			$titre = 'Les résultats de la semaine';
+			$titre = 'Les rÃ©sultats de la semaine';
 		break;
 		case 'classements':
 			$titre = 'Les classements';
@@ -93,7 +93,7 @@
 		// break;
 		case 'calendrier':
 		default:
-			$titre = 'Le calendrier général';
+			$titre = 'Le calendrier gÃ©nÃ©ral';
 		break;
 	}
 	
@@ -124,7 +124,7 @@
 											$listeMatchs = $MatchManager->retourneListe($options);
 											// echo '<pre>'; var_dump($listeMatchs); echo '</pre>';?>
 											<div class="legende">
-												La liste des matchs prévus dans les 7 jours à venir
+												La liste des matchs prÃ©vus dans les 7 jours Ã  venir
 											</div><?php
 											if(isset($_SESSION['rang'])):
 												if($_SESSION['rang']==1):?>
@@ -173,7 +173,7 @@
 													endforeach;
 												else: ?>
 													<tr>
-														<td colspan='8'>Pas de matchs à venir prochainement</td>
+														<td colspan='8'>Pas de matchs Ã  venir prochainement</td>
 													</tr><?php
 												endif;?>
 											</table><?php
@@ -183,7 +183,7 @@
 											$options = array('where' => 'date <= '. $now .' AND date > '. date_moins_7J($now) .' AND joue = 1', 'orderby' => 'date, heure');
 											$listeMatchs = $MatchManager->retourneListe($options);
 											// echo '<pre>'; var_dump($listeMatchs); echo '</pre>';?>
-											<div class="legende">La liste des matchs qui se sont déroulés lors des 7 derniers jours.</div>
+											<div class="legende">La liste des matchs qui se sont dÃ©roulÃ©s lors des 7 derniers jours.</div>
 											<table id="tab_result"><?php
 												if(!empty($listeMatchs)):
 													$i=2;
@@ -278,13 +278,13 @@
 													endforeach;
 												else :?>
 													<tr>
-														<td colspan='8'>Pas de résultats enregistrés pour cette saison.</td>
+														<td colspan='8'>Pas de rÃ©sultats enregistrÃ©s pour cette saison.</td>
 													</tr><?php
 												endif;?>
 											</table><?php
 										break;
 										case 'classements':?>
-											<div class="legende">La liste des classements de toutes nos équipes engagées.</div>
+											<div class="legende">La liste des classements de toutes nos Ã©quipes engagÃ©es.</div>
 											<div class="wrapper pad_bot1"><?php
 												$lesClassements = retourne_tous_classements($annee);
 												if(!is_array($lesClassements)) {?>
@@ -296,7 +296,7 @@
 															<div class="table">
 																<div class="row">
 																	<div class="cell cell-1-3"><?=$unClassement['categorie']?></div>
-																	<div class="cell cell-1-3">mise à jour : <?=$unClassement['newDate']?></div>
+																	<div class="cell cell-1-3">mise Ã  jour : <?=$unClassement['newDate']?></div>
 																	<div class="cell cell-1-3"><a href="<?=$unClassement['classement']?>" target="_blank">Lien vers le classement</a></div>
 																</div>
 															</div>
@@ -381,7 +381,7 @@
 										case 'coupe_yvelines':
 											$options = array('where' => 'date >= '. $annee_actuelle .'0701 AND date < '. $annee_suiv .'0701 AND competition = 2', 'orderby' => 'categorie');
 											$listeMatchs = $MatchManager->retourneListe($options);?>
-											<div class="legende">Les résultats en coupe des Yvelines de nos équipes.</div>
+											<div class="legende">Les rÃ©sultats en coupe des Yvelines de nos Ã©quipes.</div>
 											<table id="tab_result"><?php
 												if(is_array($listeMatchs)) {
 													$i=2;
@@ -411,7 +411,7 @@
 												}
 												else {?>
 													<tr>
-														<td colspan='4'>Pas de résultats enregistrés pour cette saison.</td>
+														<td colspan='4'>Pas de rÃ©sultats enregistrÃ©s pour cette saison.</td>
 													</tr><?php
 												}?>
 											</table>
@@ -420,7 +420,7 @@
 										case 'coupe_france':
 											$options = array('where' => 'date >= '. $annee_actuelle .'0701 AND date < '. $annee_suiv .'0701 AND competition = 3', 'orderby' => 'categorie');
 											$listeMatchs = $MatchManager->retourneListe($options);?>
-											<div class="legende">Les résultats en coupe des Yvelines de nos équipes.</div>
+											<div class="legende">Les rÃ©sultats en coupe des Yvelines de nos Ã©quipes.</div>
 											<table id="tab_result"><?php
 												if(is_array($listeMatchs)) {
 													$i=2;
@@ -450,14 +450,14 @@
 												}
 												else {?>
 													<tr>
-														<td colspan='8'>Pas de résultats enregistrés pour cette saison.</td>
+														<td colspan='8'>Pas de rÃ©sultats enregistrÃ©s pour cette saison.</td>
 													</tr><?php
 												}?>
 											</table>
 											<?php
 										break;
 										default:
-											echo "<div>Pas de données disponibles pour le moment.</div>";
+											echo "<div>Pas de donnÃ©es disponibles pour le moment.</div>";
 										break;
 									} ?>
 								</div>

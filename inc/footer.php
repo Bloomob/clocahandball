@@ -62,19 +62,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
-                <a href="//www.facebook.com/clocahandball?fref=ts" class="facebook"><span></span>Facebook</a>
-                <a href="#" class="newsletter"><span></span>Newsletter</a>
-                <a href="#" class="mobile"><span></span>Mobile</a>
-                <a href="#" class="plan_du_site"><span></span>Plan du site</a>
-                <a href="#" class="mentions_legales"><span></span>Mentions légales</a>
-                <a href="contact.php" class="contact"><span></span>Contact</a>
-            </div>
-            <p class="clear_b padding10">
-                &copy; <a href="mailto:contact@clocahandball.fr">C.L.O.C.A. Handball</a> - <?=date('Y');?>
-                &nbsp;&nbsp;Tous droits réservés
-                &nbsp;&nbsp;<a href="#">Version <?// =derniereVersion(); ?></a>
-            </p>
+        <div class="col-sm-12 icones hidden">
+            <a href="//www.facebook.com/clocahandball?fref=ts" class="facebook"><span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>Facebook</a>
+            <a href="#" class="newsletter"><i class="fa fa-envelope" aria-hidden="true"></i>Newsletter</a>
+            <a href="#" class="mobile"><i class="fa fa-mobile" aria-hidden="true"></i>Mobile</a>
+            <a href="#" class="plan_du_site"><i class="fa fa-map-signs" aria-hidden="true"></i>Plan du site</a>
+            <a href="contact.php" class="contact"><i class="fa fa-explication-circle" aria-hidden="true"></i>Contact</a>
         </div>
+        <p class="col-sm-12 padding10 text-center">
+            &copy; <a href="mailto:contact@clocahandball.fr">C.L.O.C.A. Handball</a> - <?=date('Y');?>
+            &nbsp;&nbsp;Tous droits réservés
+            &nbsp;&nbsp;<a href="#">Version <?// =derniereVersion(); ?></a>
+        </p>
     </div>
 </div>
