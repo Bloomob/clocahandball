@@ -1,0 +1,61 @@
+/* ************************ Le footer ************************ */
+footer {
+    background: rgb(22, 37, 60);
+    color: white;
+    
+    nav {
+        float: left;
+        width: 25%;
+        
+        ul {
+            margin: 0 10px 10px 10px;
+            
+            li {
+                background: url(../images/footer_line.gif) right 4px no-repeat;
+                
+                h4 {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    margin: 10px 0;
+                    
+                    a {
+                        color: rgb(221, 221, 255);
+                    }
+                }
+            }
+        }
+    }
+    .icones {
+        background: rgb(4, 54, 92);
+        
+        a {
+            width: 157px;
+            color: $blanc;
+            border-right: 1px solid #04365C;
+            float: left;
+            height: 83px;
+            
+            &:last-child {
+                width: 162px;
+                border: none;
+            }
+            &:hover {
+                background: rgb(9, 22, 49);
+                opacity: 1;
+            }
+            span {
+                height: 32px;
+                width: 32px;
+                display: block;
+                margin: 20px auto 10px;
+                opacity: 0.7;
+            }
+        }
+    }
+    p {
+        color: rgb(221, 221, 255);
+    }
+    a {
+        color: rgb(148, 188, 255);
+    }
+}

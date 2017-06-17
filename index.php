@@ -50,25 +50,21 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-6 col-lg-8">
+                                <?php include_once('inc/modules/favoris-home.php'); ?>
                                 <?php include_once('inc/modules/tableau-bord-home.php'); ?>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <?php include_once('inc/modules/phototheque-home.php'); ?>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <?php include_once('inc/modules/videotheque-home.php'); ?>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-6 col-lg-4">
                                 <?php include_once('inc/modules/infos-home.php'); ?>
-                            </div>
-                            <div class="col-sm-4">
-                                <?php include_once('inc/modules/phototheque-home.php'); ?>
-                            </div>
-							<div class="col-sm-4">
-                                <?php include_once('inc/modules/videotheque-home.php'); ?>
-                            </div>
-                            <div class="col-sm-4">
-                                <?php include_once('inc/modules/liens-utiles-home.php'); ?>
-                            </div>
-							<div class="col-sm-4">
-                                <?php include_once('inc/modules/fil-twitter-home.php'); ?>
-                            </div>
-							<div class="col-sm-4">
                                 <?php include_once('inc/modules/facebook-home.php'); ?>
+                                <?php include_once('inc/modules/liens-utiles-home.php'); ?>
                             </div>
 						</div>
 					</div>
