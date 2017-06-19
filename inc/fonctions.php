@@ -14,6 +14,24 @@
 		print_r($tab);
 		echo '</pre>';
 	}
+
+    /*****************************************************
+	**
+	** Test si l'accès est autorisé
+	** 
+	** Entrée : (Int) Rang
+	** Sortie : (Bool)
+	**
+	*****************************************************/
+	
+	function accesAutorise($rang){
+		$rangAutorise = array(1, 2);
+
+		if(in_array($rang, $rangAutorise))
+			return true;
+		else
+			return false;
+	}
 	
 	/******************************
 	**

@@ -1,0 +1,202 @@
+/**
+/** Page admin
+**/
+
+.admin {
+    .admin-panel {
+        h3 {
+            font-size: 16px;
+            color: white;
+            border: none;
+            padding-bottom: 0px;
+            margin: 10px;
+            background: rgb(119, 183, 208);
+            padding: 5px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .bloc-admin {
+            .ligne-admin {
+                padding: 0 10px;
+                
+                a {
+                    width: 104px;
+                    height: 104px;
+                    display: inline-block;
+                    overflow: hidden;
+                    text-align: center;
+                    padding-top: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    margin-right: 8px;
+                    margin-bottom: 8px;
+                    color: $noir;
+                    text-decoration: none;
+                    
+                    .fa {
+                        display: block;
+                        font-size: 48px;
+                        padding-bottom: 10px;
+                    }
+                    &:hover {
+                        background-color: rgb(119, 183, 208);
+                    }
+                }
+            }
+        }
+        .menu {
+            padding: 0 10px;
+            
+            .tab-content {
+                background-color: $blanc;
+                padding: 10px;
+                border-left: 1px solid #ddd;
+                border-right: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
+            }
+        }
+        label {
+            font-size: 14px;
+            width: 100%;
+            font-family: Verdana,Arial,sans-serif;
+            font-style: italic;
+            display: inline-block;
+            text-align: right;
+        }
+        input[type=text], input[type=password] { 
+            padding: 0 2px;
+            font-size: 13px;
+            width: 99%;
+            font-family: Verdana,Arial,sans-serif;
+            line-height: 22px;
+            box-sizing: border-box;
+            border: 1px solid #DDD;
+        }
+        input.min_input {
+            width: 15%;
+        }
+    }
+}
+/*
+#content .admin-panel .form .cell { padding: 0 5px; }
+#content .admin-panel .form .tabAdversaires .liste span { display: inline-block; margin-right: 3px; padding: 3px 6px; background: #1C4EEB; color: #FFF; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+#content .admin-panel .form .tabAdversaires .liste span a { margin-left: 10px; }
+#content .admin-panel .form .tabAdversaires .uneEquipe { height: 26px; line-height: 26px; text-transform: uppercase; }
+#content .admin-panel .form .tabAdversaires .uneEquipe:nth-child(n+1) { margin-bottom: 5px; }
+#content .admin-panel .form .tabAdversaires .uneEquipe input[type=text] { width: 80%; }
+#content .admin-panel .form .tabAdversaires .unScore { height: 26px; line-height: 26px; }
+#content .admin-panel .form .tabAdversaires .unScore:nth-child(n+1) { margin-bottom: 5px; }
+#content .admin-panel .form .tabAdversaires .unScore input[type=text] { width: 15%; }
+
+
+#filtres { position: absolute; right: 0px; box-sizing: border-box; overflow-y: auto; height: 100%; min-height: 401px; z-index: 2; background-color: white; width: auto; min-width: 220px; border: 1px solid #ccc; padding: 10px; }
+#filtres .cell-1-1 { padding-bottom: 5px; }
+#filtres .cell-1-1 h4 { cursor: pointer; margin: 0; padding: 0px 0 10px 4px; font-size: 15px; }
+#filtres .cell-1-1 h4 .icon { margin-right: 10px; width: 12px; text-align: center; display: inline-block; }
+
+.form .content { background: #EEE; font-size: 14px; border: 1px solid #DDD; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.form .content h4 { margin: 0px; padding: 8px 12px; border-bottom: 1px solid #DDD; background-color: #DDD; }
+.form .content select { width: auto; border: none; background: none; }
+.form .content textarea { width: 100%; height: 150px; }
+.form .content .listeSelect { display: inline-block; }
+.form .content .listeSelect input[type=button].select { background: #BBB; border: 1px solid #CCC; margin-right: -5px; padding: 6px 12px; font-size: 12px; box-shadow: initial; cursor: pointer; }
+.form .content .listeSelect input[type=button].select.actif { box-shadow: inset #999 3px 3px 6px; background-color: #DDD; cursor: auto; }
+.form .content .listeSelect input[type=button].select:first-child { -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px; }
+.form .content .listeSelect input[type=button].select:last-child { -moz-border-radius: 0 5px 5px 0; -webkit-border-radius: 0 5px 5px 0; border-radius: 0 5px 5px 0; }
+.form .content .date { display: inline-block; line-height: 32px; }
+.form .content .tags { position: relative; z-index: 0; }
+.form .content .tags > div { margin-bottom: 5px; }
+.form .content .tags .tag { margin-right: 3px; padding: 3px 6px; background: #1C4EEB; color: #FFF; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.form .content .tags .tag span { margin-right: 5px; }
+.form .content .tags .tag a { position: relative; z-index: 2; color: #FFF; }
+
+#tab_admin { position: relative; width: auto; margin-top: 10px; }
+#tab_admin.filtre:after { content: " "; background-color: rgba(0, 0, 0, 0.5); display: block; width: 100%; height: 100%; min-height: 401px; position: absolute; top: 0; z-index: 1; }
+#tab_admin table { border-collapse: collapse; width: 100%; }
+#tab_admin tr.odd { background: #eee; }
+#tab_admin tr.odd:hover, #tab_admin tr:hover { background: #e0e0e0; }
+#tab_admin tr:hover td.boutons-actions a { display: inline-block; }
+#tab_admin tr.infos { background: #f4f4f4; }
+#tab_admin tr:last-child td:first-child { -moz-border-radius: 0px 0px 0px 5px; -webkit-border-radius: 0px 0px 0px 5px; border-radius: 0px 0px 0px 5px; }
+#tab_admin tr:last-child td:last-child { -moz-border-radius: 0px 0px 5px 0px; -webkit-border-radius: 0px 0px 5px 0px; border-radius: 0px 0px 5px 0px; }
+#tab_admin tr.infos td { cursor: pointer; }
+#tab_admin tr.inactif td { color: #aaa; }
+#tab_admin th { height: 46px; padding: 5px 15px; background: #A8C1D5; font-size: 16px; }
+#tab_admin th.w_70 { width: 70%; }
+#tab_admin th.w_15 { width: 15%; }
+#tab_admin th h4 { font-size: 18px; margin: 0; }
+#tab_admin td { height: 26px; padding: 10px 15px; vertical-align: middle; text-align: center; font-size: 14px; border-bottom: 1px solid #ddd; }
+#tab_admin td.boutons-actions a.hidden { display: none; }
+#tab_admin td.align_left { text-align: left; }
+#tab_admin .score-team2 span { padding: 0px 5px; border-radius: 8px; color: white; }
+#tab_admin .competition { width: 15%; text-align: left; }
+#tab_admin .competition div{ padding-left: 10px; }
+#tab_admin .commentaire { width: 25%; }
+#tab_admin .statut { display: inline-block; line-height: 18px; padding: 3px 6px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+#tab_admin .boutons { width: 75px; }
+#tab_admin .boutons a { width: 25px; height: 25px; float: right; display: block; text-indent: -9999px; overflow: hidden; text-align: left; }
+#tab_admin .boutons a.suppr { background: url(../images/icon/png_black/circle-remove.png) no-repeat top left; background-size: 25px; }
+#tab_admin .boutons a.modif { background: url(../images/icon/png_black/hand-right.png) no-repeat top left; background-size: 25px; }
+#tab_admin .boutons a.voir { background: url(../images/icon/png_black/eye-open.png) no-repeat top left; background-size: 25px; }
+#tab_admin .modif-fast .content { text-align: left; }
+#tab_admin .modif-fast .content select { width: auto; }
+#tab_admin .modif-fast .content textarea { width: 100%; height: 150px; font-size: 13px; }
+#tab_admin .modif-fast .content .tags { position: relative; z-index: 0; }
+#tab_admin .modif-fast .content .tags > div { margin-bottom: 5px; }
+#tab_admin .modif-fast .content .tags .tag { margin-right: 3px; padding: 3px 6px; background: #1C4EEB; color: #FFF; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+#tab_admin .modif-fast .content .tags .tag span { margin-right: 5px; }
+#tab_admin .modif-fast .content .tags .tag a { position: relative; z-index: 2; color: #FFF; }
+#tab_admin .modif-fast .content .date { line-height: 32px; }
+#a_supprimer { background: #EF6417; color: #FFF; }
+
+#content .tab_container .images .uneImage { position: relative; width: 30%; height: 290px; padding: 5px 10px; float: left; }
+#content .tab_container .images .uneImage:hover { background: #efefef; }
+#content .tab_container .images .uneImage .croix { display: none; position: absolute; top: 5px ; right: 10px; width: 32px; height: 32px; background: url(../images/icon/png_black/circle-remove.png) 0 0 no-repeat white; }
+#content .tab_container .images .uneImage .croix:hover { cursor: pointer; }
+
+#content .tab_container .pagination { margin: 15px 0 0; }
+#content .tab_container .pagination span { font-weight: bold; }
+
+#content .galerie .albums .liste { margin: 5px 0; }
+#content .galerie .albums .liste a { width: 135px; height: 135px; float: left; display: block; overflow: hidden; text-align: center; border: 1px solid #ccc; border-radius: 10px; margin-right: 8px; margin-bottom: 8px; color: black; }
+#content .galerie .albums .liste a img { width: 135px; height: 135px; float: left; display: block; overflow: hidden; text-align: center; border: 1px solid #ccc; border-radius: 10px; margin-right: 8px; margin-bottom: 8px; color: black; }
+#content .galerie .albums .liste a.nav { background: url(../images/icon/png_black/folder@2x.png) no-repeat 50% 25px transparent; width: 135px; height: 30px; padding-top: 105px; }
+#content .galerie .albums .liste a.retour { background: url(../images/icon/png_black/previous@2x.png) no-repeat 50% 25px transparent; }
+#content .galerie .albums .liste a.dir_plus { background: url(../images/icon/png_black/folder-open@2x.png) no-repeat 50% 25px transparent; }
+#content .galerie .albums .liste a.dir_upload { background: url(../images/icon/png_black/folder-plus@2x.png) no-repeat 50% 25px transparent; }
+#content .galerie .albums .liste a.picture_plus { background: url(../images/icon/png_black/picture@2x.png) no-repeat 50% 25px transparent; }
+#content .galerie .albums .liste a.picture_upload { background: url(../images/icon/png_black/circle-up2@2x.png) no-repeat 50% 25px transparent; }
+#content .galerie .albums .liste a.picture_upload .picture_ajout { 
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  border: none;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 5px;
+  text-decoration: none;
+}
+#content .galerie .albums .liste a.picture_upload .picture_ajout:hover { 
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+#content .galerie.choix .albums .liste a { width: 80px; height: 69px; float: left; display: block; overflow: hidden; text-align: center; background-position: 50% 5px; background-size: 50%; }
+#content .galerie.choix .albums .liste a.nav { height: 45px; padding-top: 45px; }
+#content .galerie.choix .albums .liste a img { width: 79px; height: 68px; float: left; display: block; overflow: hidden; text-align: center; border-radius: 10px; margin-right: 8px; margin-bottom: 8px; color: black; }
+#content .galerie.choix .albums .liste a div.selection { position: absolute; border: 3px solid green; border-radius: 10px; }
+#content .galerie.choix .albums .liste a div.selection img { width: 34px; height: 34px; position: relative; top: 25%; left: 25%; border: none; }
+*/

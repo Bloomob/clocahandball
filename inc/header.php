@@ -1,5 +1,6 @@
 <?php
 	$MenuManager = new MenuManager($connexion);
+	$MenuManagerManager = new Menu_ManagerManager($connexion);
 	$EquipeManager = new EquipeManager($connexion);
 	$CategorieManager = new CategorieManager($connexion);
 ?>
@@ -15,11 +16,11 @@
             <nav>
                 <ul id="top_nav"><?php 
                     if(isset($_SESSION['prenom']) && isset($_SESSION['nom'])) { ?>
-                        <li><a href='deconnexion.php' id="se_deconnecter">Se d&eacute;connecter</a></li>
-                        <li><a href='mon_profil.php' id="profil">Mon profil</a></li><?php
+                        <li><a href='deconnexion.php' id="se_deconnecter"><i class="fa fa-sign-out" aria-hidden="true"></i> Se d&eacute;connecter</a></li>
+                        <li><a href='mon_profil.php' id="profil"><i class="fa fa-user" aria-hidden="true"></i> Mon profil</a></li><?php
                     } else { ?>
-                        <li><a href='#' data-toggle="modal" data-target="#connexionModal">Se connecter</a></li>
-                        <!--<li><a href='#' id="s_inscrire">S'inscrire</a></li>--><?php
+                        <li><a href='#' data-toggle="modal" data-target="#connexionModal"><i class="fa fa-sign-in" aria-hidden="true"></i> Se connecter</a></li>
+                        <li><a href='#' id="s_inscrire">S'inscrire</a></li><?php
                     }
                     if(isset($_SESSION['rang']) && $_SESSION['rang']) {?>
                         <li><a href='admin.php'>Admin</a></li><?php
@@ -35,7 +36,12 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <?php include_once('inc/modules/menu-header.php'); ?>
+                <?php
+                if ($page === 'admin'):
+                    include_once('inc/modules/menu-header-admin.php');
+                else:
+                    include_once('inc/modules/menu-header.php');
+                endif;?>
             </div>
         </div>
     </div>
@@ -50,7 +56,7 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="login">Identifiant</label><br>
+                        <label for="login">Numéro de licencié</label><br>
                         <input type="text" id="login" class="form-control">
                     </div>
                     <div class="form-group">
@@ -58,6 +64,7 @@
                         <input type="password" id="password" class="form-control">
                     </div>
                 </form>
+                <p class="alert alert-danger hidden">Le numéro de licencié ou/et le mot de passe sont erronés. Merci de recommencer. <a href="#">Mot de passe oublié ?</a></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

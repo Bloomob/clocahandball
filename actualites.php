@@ -204,7 +204,6 @@
 			<footer>
 				<?php include_once('inc/footer.php'); ?>
 			</footer>
-			<div id="fond" class="fond_transparent"></div>
 		</div>
 		<?php include_once('inc/script.php'); ?>
 	</body>

@@ -200,7 +200,7 @@ class UtilisateurManager {
 	public function testConnexion(Utilisateur $util) {
 		$req = $this->_db->prepare('
 			SELECT 
-				COUNT(id) AS nbr_id, id, nom, prenom, rang
+				id
 			FROM 
 				utilisateurs
 			WHERE 
@@ -209,10 +209,10 @@ class UtilisateurManager {
 				AND actif = 1
 		');
 		$req->bindValue(':pseudo', $util->getPseudo());
-		$req->bindValue(':mot_de_passe', $util->getMot_de_passe());
+		$req->bindValue(':mot_de_passe', md5($util->getMot_de_passe()));
 		$req->execute();
 		if($req->rowCount()>0)
-			return true;
+			return $req->fetch(PDO::FETCH_ASSOC);
 		else
 			return false;
 	}

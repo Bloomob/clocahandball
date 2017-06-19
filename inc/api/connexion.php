@@ -1,4 +1,5 @@
 <?php
+    session_start();
 	// On enregistre notre autoload.
 	function chargerClasse($classname)
 	{
@@ -12,7 +13,7 @@
 
 	$UtilisateurManager = new UtilisateurManager($connexion);
 
-	if(isset($_POST['login']) && isset($_POST['password'])) {
+	if(isset($_POST['pseudo']) && isset($_POST['mot_de_passe'])) {
 		$utilisateur = new Utilisateur(array());
         
 		foreach ($_POST as $key => $value) {
@@ -23,22 +24,24 @@
 			}
 		}
 		
-		$userExiste = $UtilisateurManager->testConnexion($utilisateur);
-
-		if($userExiste) {
-			// $userExiste = $UtilisateurManager->retourne($utilisateur);
-			$_SESSION['id'] =  $tab_connexion['id'];
-			$_SESSION['nom'] = $tab_connexion['nom'];
-			$_SESSION['prenom'] = $tab_connexion['prenom'];
-			$_SESSION['rang'] = $tab_connexion['rang'];
+		$userId = $UtilisateurManager->testConnexion($utilisateur);
+        
+		if(is_array($userId)) {
+            $utilisateur = $UtilisateurManager->retourneById($userId['id']);
+			$_SESSION['id'] =  $utilisateur->getId();
+			$_SESSION['nom'] = $utilisateur->getNom();
+			$_SESSION['prenom'] = $utilisateur->getPrenom();
+			$_SESSION['rang'] = $utilisateur->getRang();
 			
 			if($_SESSION['rang']==1) {
-				header("Location: admin.php");
+				header("Location: ./../../admin.php");
 				exit;
 			}
 			
-			header("Location: mon_profil.php");
+			header("Location: ./../../mon_profil.php");
 			exit;
 		}
+        echo false;
+        exit;
 	}
 ?>

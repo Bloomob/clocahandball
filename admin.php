@@ -10,15 +10,17 @@
 
 	// On définit les variables
 	$page = 'admin';
-	$titre_page = 'administration';
+	$titre_page = 'admin';
+	$titre = 'Administration';
+    $filAriane = array('home', $titre_page);
 
 	// On inclue la page de connexion à la BDD
-	require_once("inc/connexion_bdd_pdo.php");
+	include_once("inc/connexion_bdd_pdo.php");
 	require_once("inc/connexion_bdd.php");
-	require_once("inc/fonctions.php");
+	include_once("inc/fonctions.php");
 	require_once("inc/date.php");
-	require_once("inc/constantes.php");
-	require_once("inc/connexion.php");
+	include_once("inc/constantes.php");
+	// include_once("inc/connexion.php");
 
 	$annee = retourne_annee();
 
@@ -79,43 +81,38 @@
 	<head>
 		<?php include_once('inc/head.php'); ?>
 	</head>
-	<body id="page1" class="admin">
-		<header>
-			<?php include_once('inc/header_admin.php'); ?>
+	<body>
+		<header id="entete">
+			<?php include_once('inc/header.php'); ?>
 		</header>
 		<div id='main'>
-			<section id="content">
-				<nav>
-					<ul>
-						<li class="nav navhome"><a href="index.php">Home</a></li>
-						<li class="nav navtit2"><a href="admin.php">Administration</a></li></li>
-						<li><a href="#"><?=$tab;?></a></li>
-					</ul>
-				</nav>
-				<div class="bg1 pad">
-					<article class="col0 admin_panel"><?php
-						$liens = array();
-						$options = array('where' => 'actif = 1 && parent > 0');
-						$listeTousMenuManager = $MenuManagerManager->retourneListe($options);
-						
-						foreach ($listeTousMenuManager as $unMenuManager) {
-							if($unMenuManager->getLien() != "")
-								$liens[] = $unMenuManager->getLien();
-						}
-						if(in_array($tab, $liens))
-							include_once('inc/admin/'.$tab.'.php');
-						else {
-							include_once('inc/admin/default.php');
-						}?>
+			<section id="content" class="<?=$page;?>">
+				<?php include_once('inc/fil_ariane.php'); ?>
+				<div class="container">
+					<article class="admin-panel">
+                        <div class="contenu">
+                            <h2><i class="fa fa-bank" aria-hidden="true"></i><?=$titre?></h2><?php
+                            $liens = array();
+                            $options = array('where' => 'actif = 1 && parent > 0');
+                            $listeTousMenuManager = $MenuManagerManager->retourneListe($options);
+
+                            foreach ($listeTousMenuManager as $unMenuManager) {
+                                if($unMenuManager->getLien() != "")
+                                    $liens[] = $unMenuManager->getLien();
+                            }
+                            if(in_array($tab, $liens))
+                                include_once('inc/admin/'.$tab.'.php');
+                            else {
+                                include_once('inc/admin/default.php');
+                            }?>
+                        </div>
 					</article>
 				</div>
 			</section>
 			<footer>
 				<?php include_once('inc/footer.php'); ?>
 			</footer>
-			<div id="fond" class="fond_transparent"></div>
 		</div>
-		<div id="maDiv"></div>
 		<?php include('inc/script.php'); ?>
 		<script src="javascript/admin2.js"></script>
 	</body>
