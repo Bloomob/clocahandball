@@ -12,8 +12,8 @@
 	<div class="col-xs-12">
         <h3>Menus</h3>
     </div>
-    <div class="col-xs-12 text-right boutons-actions menus-action">
-       <a href="#" class="btn btn-save">Sauvegarder tout le menu</a>
+    <div class="col-xs-12 text-right">
+       <button class="btn btn-warning save-all"><i class="fa fa-floppy-o" aria-hidden="true"></i> Sauvegarder le menu</a>
     </div>
 	<div class="col-xs-12">
         <div class="menu">
@@ -32,27 +32,38 @@
             foreach($listeMenus as $unMenu): ?>
                 <div role="tabpanel" class="tab-pane <?=($i===0)?'active':'';?>" id="tab-<?=$unMenu->getId();?>">
                     <div class="row">
-                        <div class="col-xs-3">
-                            <label for="menu-nom">Nom du menu</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="menu-nom">Nom du menu</label>
+                                </div>
+                                <div class="col-sm-7 form-group">
+                                    <input id="menu-nom" type="text" value="<?=$unMenu->getNom();?>" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label for="menu-url">URL du menu</label>
+                                </div>
+                                <div class="col-sm-7 form-group">
+                                    <input id="menu-url" type="text" value="<?=$unMenu->getURL();?>" class="form-control" />                                </div>
+                            </div>
                         </div>
-                        <div class="col-xs-3">
-                            <input id="menu-nom" type="text" value="<?=$unMenu->getNom();?>" />
-                        </div>
-                        <div class="col-xs-3">
-                            <label for="menu-url">URL du menu</label><br/>
-                        </div>
-                        <div class="col-xs-3">
-                            <input id="menu-url" type="text" value="<?=$unMenu->getURL();?>" />
-                        </div>
-                    </div>
-                    <div class="row boutons-actions menu-action">
-                        <div class="col-xs-6">
-                            <a href="#" class="btn btn-suppr">Supprimer le menu</a><?php
-                            if($unMenu->getActif()):?>
-                                <a href="#" class="btn btn-visiblity btn-invisible">Masquer le menu</a><?php
-                            else:?>
-                                <a href="#" class="btn btn-visiblity btn-visible">Afficher le menu</a><?php
-                            endif;?>
+                        <div class="col-sm-4">
+                            <div class="form-group"><?php
+                                if($unMenu->getActif()):?>
+                                    <button href="#" class="btn btn-primary" title="Masquer le menu">
+                                    <i class="fa fa-eye-slash" aria-hidden="true"></i> Masquer
+                                </button><?php
+                                else:?>
+                                    <button href="#" class="btn btn-primary" title="Afficher le menu">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> Afficher
+                                </button><?php
+                                endif;?>
+                                <button href="#" class="btn btn-danger" title="Supprimer le menu">
+                                    <i class="fa fa-trash" aria-hidden="true"></i> Supprimer
+                                </button>
+                            </div>
                         </div>
                     </div><?php
                     $options = array('where' => 'parent = '.$unMenu->getId(), 'orderby' => 'ordre');
@@ -89,9 +100,9 @@
                             <p>Pour cr&eacute;er un sous-menu, cliquer sur le bouton.</p>
                         </div><?php
                     endif;?>
-                    <div class="row boutons-actions sous-menus-action">
+                    <div class="row">
                         <div class="col-xs-6">
-                            <a href="#" class="btn btn-ajout">Ajouter un sous-menu</a>
+                            <a href="#" class="btn btn-success add-menu"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter un sous-menu</a>
                         </div>
                     </div>
                 </div><?php

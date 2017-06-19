@@ -23,6 +23,7 @@ body, h1, h2, h3, h4, h5, ul, p, input, select, textarea, button {
 
 body {
     background: url(../img/background.png) center 120px no-repeat $bleu;
+    background-size: cover;
     font: 12px Trebuchet MS, Arial, Helvetica, sans-serif;
     position: relative;
     margin: 0px;
