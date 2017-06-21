@@ -36,9 +36,9 @@
 						echo $jours[$unHoraire->getJour()].' de '.$unHoraire->remplace_heure($unHoraire->getHeure_debut()).' &agrave; '.$unHoraire->remplace_heure($unHoraire->getHeure_fin());
 					endif; ?>
 				</td>
-				<td class="boutons-actions">
-					<a href="#<?=$uneEquipe->getId();?>" class="btn btn-modif btn-slim" title="Modifier l'équipe">Modifier l'équipe</a>
-					<a href="#<?=$uneEquipe->getId();?>" class="btn btn-suppr btn-slim" title="Supprimer l'équipe">Supprimer l'équipe</a>
+				<td>
+					<button class="btn btn-warning edit-team" data-id="<?=$uneEquipe->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+					<button class="btn btn-danger delete-team" data-id="<?=$uneEquipe->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
 				</td>
 			</tr><?php
 			$i++;

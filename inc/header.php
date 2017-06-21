@@ -6,20 +6,20 @@
 ?>
 <div class="container">
 	<div class="row">
-		<div class="col-sm-9">
+		<div class="col-sm-8">
 			<h1>
                 <a href="#" class="logo"><img src="images/prev.png" alt="Prev" />C.L.O.C.A. HANDBALL</a>
                 <span class="slogan">Le site officiel du Handball Ach&egrave;rois</span>
             </h1>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <nav>
                 <ul id="top_nav"><?php 
                     if(isset($_SESSION['prenom']) && isset($_SESSION['nom'])) { ?>
-                        <li><a href='deconnexion.php' id="se_deconnecter"><i class="fa fa-sign-out" aria-hidden="true"></i> Se d&eacute;connecter</a></li>
-                        <li><a href='mon_profil.php' id="profil"><i class="fa fa-user" aria-hidden="true"></i> Mon profil</a></li><?php
+                        <li><a href='deconnexion.php' id="se_deconnecter"><!-- <i class="fa fa-sign-out" aria-hidden="true"></i>  -->Se d&eacute;connecter</a></li>
+                        <li><a href='mon_profil.php' id="profil"><!-- <i class="fa fa-user" aria-hidden="true"></i>  -->Mon profil</a></li><?php
                     } else { ?>
-                        <li><a href='#' data-toggle="modal" data-target="#connexionModal"><i class="fa fa-sign-in" aria-hidden="true"></i> Se connecter</a></li>
+                        <li><a href='#' data-toggle="modal" data-target="#connexionModal"><!-- <i class="fa fa-sign-in" aria-hidden="true"></i>  -->Se connecter</a></li>
                         <li><a href='#' id="s_inscrire">S'inscrire</a></li><?php
                     }
                     if(isset($_SESSION['rang']) && $_SESSION['rang']) {?>
@@ -56,7 +56,7 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="login">Numéro de licencié</label><br>
+                        <label for="login">Pseudo</label><br>
                         <input type="text" id="login" class="form-control">
                     </div>
                     <div class="form-group">
@@ -64,7 +64,7 @@
                         <input type="password" id="password" class="form-control">
                     </div>
                 </form>
-                <p class="alert alert-danger hidden">Le numéro de licencié ou/et le mot de passe sont erronés. Merci de recommencer. <a href="#">Mot de passe oublié ?</a></p>
+                <p class="alert alert-danger hidden">Le pseudo ou/et le mot de passe sont erronés. Merci de recommencer. <a href="#">Mot de passe oublié ?</a></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

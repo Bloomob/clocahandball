@@ -1,11 +1,3 @@
-    
-
-/* ************************ Liste des Id  **************************** */
-
-.admin #main { width: 100%; }
-.admin #entete{ width: 100%; }
-.admin #menu{ width: 100%;}
-
 /**
 /** Page dossiers
 **/
@@ -27,15 +19,6 @@
 .commentaires { display: none; border: 1px solid #CCC; }
 .commentaires h3 { margin: 0 0 10px 0; color: rgb(241, 87, 106);; }
 
-/**
-/** Page projet
-**/
-
-#projet .intro { font-weight: bold; }
-#projet h3 { background: none; color: #3092C9; margin: 10px 0 10px 0; }
-#projet h4 { color: #555; padding: 0 5px; margin: 0 0 10px 20px; }
-#projet ul { list-style: square outside none; }
-#projet li { list-style-type: square; margin-left: 40px; }
 
 /**
 /** Page staff
@@ -196,7 +179,6 @@
 **/
 #content .auteur_date { border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; padding: 5px 10px; }
 #content .auteur_date  span {  color: #0F64A5;  }
-#content .contenu p { color: #333; }
 
 /**
 /** Page contact

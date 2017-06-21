@@ -148,4 +148,51 @@
 		
 		return $new_date;
 	}
+
+	/*********************************
+	**
+	** Remplace les heures
+	** 
+	** Entrée : (String) $date
+	** Sortie : (String) Date formatée
+	**
+	**********************************/
+
+	function remplace_heure($heure) {
+		$longueur = strlen($heure);
+		switch($longueur) {
+			
+			case 1:
+				$minute = substr($heure, 0, 1);
+				$newHeure = '00h0'.$minute;
+				break;
+			case 2:
+				$minute = substr($heure, 0, 2);
+				$newHeure = '00h'.$minute;
+				break;
+			case 3:
+				$heureH = substr($heure, 0, 1);
+				$minute = substr($heure, -2);
+				if($minute=='00')
+					$minute = '';
+				$newHeure = $heureH.'h'.$minute;
+				break;
+			case 4:
+				$heureH = substr($heure, 0, 2);
+				$minute = substr($heure, -2);
+				if($minute=='00')
+					$minute = '';
+				$newHeure = $heureH.'h'.$minute;
+				break;
+			case 0:
+			default:
+				$minute = substr($heure, -2);
+				$heureH = substr($heure, 0, 2);
+				if($minute=='00')
+					$minute = '';
+				$newHeure = $heureH.'h'.$minute;
+				break;
+		}
+		return $newHeure;
+	}
 ?>

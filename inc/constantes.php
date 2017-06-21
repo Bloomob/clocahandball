@@ -10,7 +10,7 @@
 	
 	$jours = array(0 => "-", 1 => "Lundi", 2 => "Mardi", 3 => "Mercredi", 4 => "Jeudi", 5 => "Vendredi", 6 => "Samedi", 7 => "Dimanche");
 
-	$gymnases = array("PdC" => "Pierre de Coubertin", "PA" => "Petite Arche", "C" => "COSEC");
+	$gymnases = array("PdC" => "Pierre de Coubertin", "PA" => "Petite Arche", "C" => "COSEC", "A" => "Autre");
 
 	$rang = array('Membre', 'Admin', 'R&eacute;dacteur', 'Entraineur');
 

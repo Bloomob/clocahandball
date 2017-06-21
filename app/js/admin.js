@@ -1,5 +1,100 @@
 $(function(){
 
+	/***************************
+	******* Utilisateurs *******
+	***************************/
+
+	var utilisateurs = $('.admin .utilisateurs');
+	if(utilisateurs.length > 0) {
+		var addUserModal = $('.admin .utilisateurs #addUserModal');
+		var addUserData = {
+	    	'nom': '',
+	    	'prenom': '',
+	    	'email': '',
+	    	'num_licence': 0,
+	    	'mot_de_passe': '',
+	    	'confirm_mot_de_passe': '',
+	    	'rang': 0
+	  }
+	  var notValid = true;
+
+  	$(addUserModal).find('#nom').keyup(function(){
+  		addUserData['nom'] = $(this).val();
+
+			if(addUserData['nom'].length < 1) {
+				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+				notValid = true;
+			} else {
+				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+				notValid = false;
+			}
+  	});
+
+  	$(addUserModal).find('#prenom').keyup(function(){
+  		addUserData['prenom'] = $(this).val();
+
+			if(addUserData['prenom'].length < 1) {
+				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+				notValid = true;
+			} else {
+				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+				notValid = false;
+			}
+  	});
+
+  	$(addUserModal).find('#mot_de_passe').keyup(function(){
+  		addUserData['mot_de_passe'] = $(this).val();
+
+			if(addUserData['mot_de_passe'].length < 5) {
+				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+				addUserModal.find('.alert-danger.taille-mot-de-passe').removeClass('hidden');
+				notValid = true;
+			} else {
+				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+				addUserModal.find('.alert-danger.taille-mot-de-passe').addClass('hidden');
+				notValid = false;
+			}
+  	});
+
+		$(addUserModal).find('#confirm_mot_de_passe').keyup(function(){
+  		addUserData['confirm_mot_de_passe'] = $(this).val();
+
+  		if (addUserData['mot_de_passe'] !== addUserData['confirm_mot_de_passe']) {
+  			$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+				addUserModal.find('.alert-danger.diff-mot-de-passe').removeClass('hidden');
+				notValid = true;
+			} else {
+				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+				addUserModal.find('.alert-danger.diff-mot-de-passe').addClass('hidden');
+				notValid = false;
+  		}
+  	});
+		
+		addUserModal.find('.add-user').click(function(e){
+	    e.preventDefault();
+	    
+			for(ch in addUserData) {
+				addUserData[ch] = $(addUserModal).find('#'+ ch).val();
+			}
+	    console.log(addUserData);
+	    if (!notValid) {
+	      $.post(
+	          './inc/api/admin/add-user.php',
+	          {
+	              'data': addUserData
+	          },
+	          function (data) {
+	              console.log(data);
+	              /*if(!data)
+	                  $('#connexionModal .alert-danger').removeClass('hidden');
+	              else
+	                  window.location.href = 'index.php';
+	*/          }
+			      );
+			    }
+			});
+		}
+
   /********************
 	******* Menus *******
 	********************/
@@ -50,123 +145,92 @@ $(function(){
 					location.href = window.location.href;
 				}
 			});
-		});
 		}
+	}
 
-    /*var tabs = $( "#onglets" ).tabs();
-    tabs.find( ".ui-tabs-nav" ).sortable({
-			axis: "x",
-			items: '> li:not(.locked)',
-			stop: function() {
-				tabs.tabs( "refresh" );
-			}
-    });
-		var count_tabs = tabs.find('.liste-tabs').length;*/
-		
-		// Lock last tab
-		/*$('.liste-tabs ul > li:last').addClass('locked').mousedown(function(event){
-			event.stopPropagation();
-		});*/
-		
-		/*$( ".sortable" ).sortable({
-			placeholder: "ui-state-highlight"
-		});
-		$( ".sortable" ).disableSelection();*/
+	/***************************
+	******* Utilisateurs *******
+	***************************/
 
-		/* Ajout d'un menu */
-		tabs.on('click', '.menu-action .btn-ajout', function(event) {
-			event.preventDefault();
-			if($('#nv_menu_nom').val() != '' && $('#nv_menu_url').val() != '') {
-				var nv_nom = $('#nv_menu_nom').val();
-				var nv_url = $('#nv_menu_url').val();
-				var contenu = '<div class="paddingTB10 table"><div class="cell cell-1-2"><label for="menu-nom">Nom du menu</label><br/><input id="menu-nom" type="text" value="'+ nv_nom +'" /></div><div class="cell cell-1-2"><label for="menu-url">URL du menu</label><br/><input id="menu-url" type="text" value="'+ nv_url +'" /></div></div>';
-				contenu += '<div class="boutons-actions menu-action"><div class="left"><a href="#" class="btn btn-suppr">Supprimer</a></div><div class="right"><a href="#" class="btn btn-visiblity btn-invisible">Masquer le menu</a></div><div class="clear_b"></div></div>';
-				contenu += '<div class="liste-menus"><p>Pour cr&eacute;er un sous-menu, cliquer sur le bouton.</p></div><div class="boutons-actions sous-menus-action"><div class="right"><a href="#" class="btn btn-ajout">Ajouter un sous-menu</a></div><div class="clear_b"></div></div>';
-				tabs.find(' ul li').eq( -1 ).before('<li><a href="#tabs-'+ count_tabs +'">'+ nv_nom +'</a></li>');
-				tabs.find('.liste-tabs').eq( -1 ).before('<div id="tabs-'+ count_tabs +'" class="liste-tabs">'+ contenu +'</div>');
-				$('#nv_menu_nom').val('');
-				$('#nv_menu_url').val('');
-				tabs.tabs("refresh");
-				tabs.tabs("option", "active", tabs.find('.liste-tabs').length-2);
-				count_tabs++;
+	var equipes = $('.admin .equipes');
+	if(equipes.length > 0) {
+
+		/* Ajout d'une équipe */
+		var addTeamModal = $('.admin .equipes #addTeamModal');
+		var addTeamData = {
+	    	'categorie': '',
+	    	'niveau': '',
+	    	'championnat': '',
+	    	'annee': 0,
+	    	'entraineurs': [],
+	    	'entrainements': [{
+			    	'jour_1': 0,
+			    	'heure_debut_1': 0,
+			    	'heure_fin_1': 0,
+			    	'gymnase_1': 0
+			    }, {
+			    	'jour_2': 0,
+			    	'heure_debut_2': 0,
+			    	'heure_fin_2': 0,
+			    	'gymnase_2': 0
+			    }, {
+			    	'heure_debut_3': 0,
+			    	'jour_3': 0,
+			    	'heure_fin_3': 0,
+			    	'gymnase_3': 0
+			    }
+		    ]
+	  }
+	  var notValid = false;
+
+		addTeamModal.find('.add-team').click(function(e){
+	    e.preventDefault();
+	    
+			for(ch in addTeamData) {
+				if(ch == 'entrainements') {
+					for(i in addTeamData[ch]) {
+						for(ent in addTeamData[ch][i]) {
+							addTeamData[ch][i][ent] = $(addTeamModal).find('#'+ ent).val();
+						}
+					}
+				} else {
+					addTeamData[ch] = $(addTeamModal).find('#'+ ch).val();
+					if(addTeamData[ch] == '') {
+						notValid = true;
+					}
+				}
 			}
-			return false;
-		})
-		/* Suppression d'un menu */
-		.on('click', '.menu-action .btn-suppr', function(event) {
-			event.preventDefault();
-			var tab = tabs.tabs("option", "active");
-			tabs.find('ul li').eq(tab).remove();
-			tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls')-1).remove();
-			tabs.tabs("refresh");
-			tabs.tabs("option", "active", 0);
-			return false;
-		})
-		/* MAsquer/Afficher un menu */
-		.on('click', '.menu-action .btn-visiblity', function(event) {
-			event.preventDefault();
-			var tab = tabs.tabs("option", "active");
-			var texte = $(this).text();
-			$(this).toggleClass('btn-invisible btn-visible');
-			tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls') +' .liste-menus').toggleClass('invisible');
-			if(texte == 'Afficher le menu') {
-				$(this).text('Masquer le menu');
-				tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls') +' .sous-menus-action').show();
-				tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls') +' .liste-menus > .masque').remove();
-				tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls') +' .liste-menus').sortable( { disabled: false } );
-			}
-			else {
-				$(this).text('Afficher le menu');
-				tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls') +' .sous-menus-action').hide();
-				tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls') +' .liste-menus').append('<div class="masque"></div>');
-				tabs.find('#'+ tabs.find('ul li').eq(tab).attr('aria-controls') +' .liste-menus').sortable( { disabled: true } );
-			}
-			return false;
-		})
-		/* Ajout d'un sous menu */
-		.on('click', '.sous-menus-action .btn-ajout', function(event) {
-			event.preventDefault();
-			closeAllSousMenus();
-			var tab = tabs.tabs("option", "active");
-			if(tabs.find('#tabs-'+ tab +' .liste-menus > p'))
-				tabs.find('#tabs-'+ tab +' .liste-menus > p').remove();
-			var count_div = tabs.find('#tabs-'+ tab +' .liste-menus > div').length;
-			var contenu = '<div class="paddingTB10 table"><div class="cell cell-1-2"><label for="sous-menu-'+ count_div +'-nom">Nom du menu</label><br/><input type="text" id="sous-menu-'+ count_div +'-nom" class="sous-menu-nom" value=""/></div><div class="cell cell-1-2"><label for="sous-menu-'+ count_div +'-url">URL de la page</label><br/><input type="text" id="sous-menu-'+ count_div +'-url" class="sous-menu-url" value=""/></div></div>';
-			var boutons = '<div class="boutons-actions sous-menus-action"><div class="left"><a href="#" class="btn btn-suppr">Supprimer</a></div><div class="clear_b"></div></div>';
-			tabs.find('#tabs-'+ tab +' .liste-menus').append('<div class="sous-menu-'+ count_div +'"><h4>Nouveau menu<a href="'+ count_div +'" class="arrow-up right">D&eacute;tails</a></h4><div>'+ contenu + boutons +'</div></div>');
-			return false;
-		})
-		/* Suppression d'un sous menu */
-		.on('click', '.sous-menus-action .btn-suppr', function(event) {
-			event.preventDefault();
-			$(this).closest('.liste-menus > div').remove();
-			return false;
-		})
-		/* Menu déroulant des sous menus */
-		.on('click', '.liste-menus .arrow-up', function(event) {
-			event.preventDefault();
-			var id_menu = $(this).attr('href');
-			$(this).toggleClass('arrow-up arrow-down');
-			$('.sous-menu-'+id_menu).find('> div').hide();
-			return false;
-		})
-		.on('click', '.liste-menus .arrow-down', function(event) {
-			event.preventDefault();
-			closeAllSousMenus();
-			var id_menu = $(this).attr('href');
-			$(this).toggleClass('arrow-down arrow-up');
-			$('.sous-menu-'+id_menu).find('> div').show();
-			return false;
+	    console.log(addTeamData);
+	    if (!notValid) {
+	      $.post(
+          './inc/api/admin/add-team.php',
+          {
+              'data': addTeamData
+          },
+          function (data) {
+            console.log(data);
+          }
+		    );
+		  }
 		});
 
-		function closeAllSousMenus() {
-			$('.liste-menus > div > div').hide();
-			$('.liste-menus > div > h4 > a').each(function() {
-				if($(this).hasClass('arrow-up'))
-					$(this).toggleClass('arrow-down arrow-up');
-			});
-		}
-		/* Sauvegarde du menu */
-		
+		/* Suppression d'une équipe */
+		equipes.find('.delete-team').click(function(e){
+			e.preventDefault();
+			var supprId = $(this).data('id');
+
+			$.post(
+        './inc/api/admin/delete-team.php',
+        {
+            'id': supprId
+        },
+        function (data) {
+          console.log(data);
+          if(data) {
+          	window.location.href = location.href;
+          }
+        }
+	    );
+		});
 	}
 });

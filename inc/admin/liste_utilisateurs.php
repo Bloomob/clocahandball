@@ -1,19 +1,21 @@
 <?php
 if(is_array($listeUtilisateurs)):
+	// debug($listeUtilisateurs);
 	foreach($listeUtilisateurs as $unUtilisateur):?>
 		<tr>
-			<td><span class="utilisateurs_nom"><?=$unUtilisateur->getNom();?></span></td>
-			<td><span class="utilisateurs_prenom"><?=$unUtilisateur->getPrenom();?></span></td>
-			<td><span class="utilisateurs_mail"><?=$rang[$unUtilisateur->getRang()];?></span></td>
-			<td><span class="utilisateurs_actif"><?=$unUtilisateur->getActif();?></span></td>
-			<td class="boutons-actions">
-				<a href="<?=$unUtilisateur->getId();?>" class="btn btn-modif btn-slim" title="Modifier">Modifier l'utilisateur</a>
-				<a href="<?=$unUtilisateur->getId();?>" class="btn btn-suppr btn-slim" title="Supprimer">Supprimer l'utilisateur</a>
+			<td><?=$unUtilisateur->getNom();?></td>
+			<td><?=$unUtilisateur->getPrenom();?></td>
+			<td><?=$unUtilisateur->getMail();?></td>
+			<td><?=$rang[$unUtilisateur->getRang()];?></td>
+			<td><?=$unUtilisateur->getActif();?></td>
+			<td>
+				<button class="btn btn-warning edit-user"><i class="fa fa-edit" aria-hidden="true"></i></button>
+				<button class="btn btn-danger delete-user"><i class="fa fa-trash" aria-hidden="true"></i></button>
 			</td>
 		</tr><?php
 	endforeach;
 else:?>
 	<tr>
-		<td colspan="5">Aucun utilisateur enregistré</td>
+		<td colspan="6">Aucun utilisateur enregistré</td>
 	</tr><?php
 endif;?>

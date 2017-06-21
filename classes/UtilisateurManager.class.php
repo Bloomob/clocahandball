@@ -51,7 +51,13 @@ class UtilisateurManager {
 		$req->bindValue(':src_photo', $util->getSrc_photo());
 		$req->bindValue(':actif', $util->getActif(), PDO::PARAM_INT);
 
-		$req->execute();
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return;
+		}
 	}
 
 	/**********************************
