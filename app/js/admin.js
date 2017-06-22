@@ -16,7 +16,7 @@ $(function(){
 	    	'confirm_mot_de_passe': '',
 	    	'rang': 0
 	  }
-	  var notValid = true;
+	  var notValid = false;
 
   	$(addUserModal).find('#nom').keyup(function(){
   		addUserData['nom'] = $(this).val();
@@ -180,11 +180,27 @@ $(function(){
 			    	'gymnase_3': 0
 			    }
 		    ]
-	  }
-	  var notValid = false;
+        }
+        var notValid = false;
+        
+        addTeamModal.find('.add-training').on('click', function(e){
+            e.preventDefault();
+            
+            if($(this).hasClass('add-training')) {
+                var select = $(this).closest('.row').find('.selectpicker');
+                select.prop('disabled', false);
+                select.selectpicker('refresh');
+                $(this).toggleClass('add-training remove-training btn-success btn-danger');
+            } else {
+                var select = $(this).closest('.row').find('.selectpicker');
+                select.prop('disabled', true);
+                select.selectpicker('refresh');
+                $(this).toggleClass('add-training remove-training btn-success btn-danger');
+            }
+        });
 
-		addTeamModal.find('.add-team').click(function(e){
-	    e.preventDefault();
+        addTeamModal.find('.add-team').click(function(e){
+            e.preventDefault();
 	    
 			for(ch in addTeamData) {
 				if(ch == 'entrainements') {
@@ -200,18 +216,19 @@ $(function(){
 					}
 				}
 			}
-	    console.log(addTeamData);
-	    if (!notValid) {
-	      $.post(
-          './inc/api/admin/add-team.php',
-          {
-              'data': addTeamData
-          },
-          function (data) {
-            console.log(data);
-          }
-		    );
-		  }
+	       // console.log(addTeamData);
+            
+	       if (!notValid) {
+              $.post(
+                  './inc/api/admin/add-team.php',
+                  {
+                      'data': addTeamData
+                  },
+                  function (data) {
+                    console.log(data);
+                  }
+		      );
+            }
 		});
 
 		/* Suppression d'une équipe */
@@ -220,17 +237,17 @@ $(function(){
 			var supprId = $(this).data('id');
 
 			$.post(
-        './inc/api/admin/delete-team.php',
-        {
-            'id': supprId
-        },
-        function (data) {
-          console.log(data);
-          if(data) {
-          	window.location.href = location.href;
-          }
-        }
-	    );
+                './inc/api/admin/delete-team.php',
+                {
+                    'id': supprId
+                },
+                function (data) {
+                    console.log(data);
+                    if(data) {
+                        window.location.href = location.href;
+                    }
+                }
+	       );
 		});
 	}
 });

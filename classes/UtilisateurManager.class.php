@@ -39,6 +39,7 @@ class UtilisateurManager {
 				rang = :rang,
 				tel_port = :tel_port,
 				src_photo = :src_photo,
+				num_licence = :num_licence,
 				actif = :actif
 		');
 		$req->bindValue(':nom', $util->getNom());
@@ -49,6 +50,7 @@ class UtilisateurManager {
 		$req->bindValue(':rang', $util->getRang(), PDO::PARAM_INT);
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
 		$req->bindValue(':src_photo', $util->getSrc_photo());
+		$req->bindValue(':num_licence', $util->getNum_licence());
 		$req->bindValue(':actif', $util->getActif(), PDO::PARAM_INT);
 
 		if($req->execute()){
@@ -82,6 +84,7 @@ class UtilisateurManager {
 				rang = :rang,
 				tel_port = :tel_port,
 				src_photo = :src_photo,
+				num_licence = :num_licence,
 				actif = :actif
 			WHERE
 				id = :id
@@ -95,6 +98,7 @@ class UtilisateurManager {
 		$req->bindValue(':rang', $util->getRang(), PDO::PARAM_INT);
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
 		$req->bindValue(':src_photo', $util->getSrc_photo());
+		$req->bindValue(':num_licence', $util->getNum_licence());
 		$req->bindValue(':actif', $util->getActif(), PDO::PARAM_INT);
 		
 		$req->execute();
@@ -203,18 +207,18 @@ class UtilisateurManager {
 	**							   **
 	********************************/
 	
-	public function testConnexion(Utilisateur $util) {
+	public function connexion(Utilisateur $util) {
 		$req = $this->_db->prepare('
 			SELECT 
 				id
 			FROM 
 				utilisateurs
 			WHERE 
-					pseudo = :pseudo
+					mail = :mail
 				AND mot_de_passe = :mot_de_passe
 				AND actif = 1
 		');
-		$req->bindValue(':pseudo', $util->getPseudo());
+		$req->bindValue(':mail', $util->getMail());
 		$req->bindValue(':mot_de_passe', md5($util->getMot_de_passe()));
 		$req->execute();
 		if($req->rowCount()>0)

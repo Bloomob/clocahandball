@@ -32,7 +32,7 @@
 					<th>Prénom</th>
 					<th>Email</th>
 					<th>Rang</th>
-					<th>Compte ?</th>
+					<th>Actif ?</th>
 					<th></th>
 				</tr>
 				<?php include('liste_utilisateurs.php'); ?>
@@ -90,13 +90,13 @@
 	                	<div class="row">
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
-			                        <label for="nom">Nom *</label><br>
+			                        <label for="nom">Nom <span class="text-danger">*</span></label><br>
 			                        <input type="text" id="nom" class="form-control">
 			                    </div>
 			                </div>
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
-			                        <label for="prenom">Prénom *</label><br>
+			                        <label for="prenom">Prénom <span class="text-danger">*</span></label><br>
 			                        <input type="text" id="prenom" class="form-control">
 			                    </div>
 		                    </div>
@@ -118,14 +118,14 @@
 	                	<div class="row">
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
-			                        <label for="mot_de_passe">Mot de passe *</label><br>
+			                        <label for="mot_de_passe">Mot de passe</label><br>
 			                        <input type="password" id="mot_de_passe" class="form-control">
 			                    </div>
                 				<p class="alert alert-danger taille-mot-de-passe hidden">Le mot de passe doit faire plus de 5 caractères</p>
 		                    </div>
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
-			                        <label for="confirm_mot_de_passe">Confirmer le mot de passe *</label><br>
+			                        <label for="confirm_mot_de_passe">Confirmer le mot de passe</label><br>
 			                        <input type="password" id="confirm_mot_de_passe" class="form-control">
 			                    </div>
 			                    <p class="alert alert-danger diff-mot-de-passe hidden">Les deux mots de passes sont différents</p>
@@ -143,6 +143,11 @@
 			                        	<option value="4">Coach</option>
 			                        </select>
 			                    </div>
+		                    </div>
+	                    </div>
+	                	<div class="row">
+		                	<div class="col-sm-12">
+			                    <p class="text-danger">* Champs obligatoires</p>
 		                    </div>
 	                    </div>
 	                </form>

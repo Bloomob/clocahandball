@@ -153,7 +153,7 @@
                                     </div>
                                     <div class="row marginB">
                                         <div class="col-sm-1">
-                                            <button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                            <button class="btn btn-success add-training"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                         </div>
                                         <div class="col-sm-2">
                                             <select id="jour_2" class="form-control selectpicker" disabled><?php
@@ -198,7 +198,7 @@
                                     </div>
                                     <div class="row marginB">
                                         <div class="col-sm-1">
-                                            <button class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                            <button class="btn btn-success add-training"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                         </div>
                                         <div class="col-sm-2">
                                             <select id="jour_3" class="form-control selectpicker" disabled>

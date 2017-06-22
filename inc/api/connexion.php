@@ -13,7 +13,7 @@
 
 	$UtilisateurManager = new UtilisateurManager($connexion);
 
-	if(isset($_POST['pseudo']) && isset($_POST['mot_de_passe'])) {
+	if(isset($_POST['mail']) && isset($_POST['mot_de_passe'])) {
 		$utilisateur = new Utilisateur(array());
         
 		foreach ($_POST as $key => $value) {
@@ -24,7 +24,7 @@
 			}
 		}
 		
-		$userId = $UtilisateurManager->testConnexion($utilisateur);
+		$userId = $UtilisateurManager->connexion($utilisateur);
         
 		if(is_array($userId)) {
             $utilisateur = $UtilisateurManager->retourneById($userId['id']);

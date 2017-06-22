@@ -9,6 +9,7 @@ class Utilisateur {
 			$_rang,
 			$_tel_port,
 			$_src_photo,
+			$_num_licence,
 			$_actif;
 
 
@@ -107,6 +108,10 @@ class Utilisateur {
 		$this->_src_photo = $src_photo;
 	}
 
+	public function setNum_licence($num_licence) {
+		$this->_num_licence = $num_licence;
+	}
+
 	public function setActif($actif) {
 		$this->_actif = $actif;
 	}
@@ -151,6 +156,10 @@ class Utilisateur {
 
 	public function getSrc_photo() {
 		return $this->_src_photo;
+	}
+    
+	public function getNum_licence() {
+		return $this->_num_licence;
 	}
 
 	public function getActif() {
