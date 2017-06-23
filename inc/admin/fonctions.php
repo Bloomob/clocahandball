@@ -10,8 +10,56 @@
 	// var_dump($listeRoles);
 	// echo '</pre>';
 ?>
-<div class="tab_content2 fonctions">
-	<h3>Fonctions</h3>
+<div class="wrap fonctions">
+    <div class="row">
+    	<div class="col-xs-12">
+            <h3>Liste des fonctions</h3>
+        </div>
+        <div class="col-xs-12 text-right marginB">
+           <button class="btn btn-primary" data-toggle="modal" data-target="#filtresModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
+           <button class="btn btn-success" data-toggle="modal" data-target="#addFunctionModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter une fonction</button>
+        </div>
+        <div class="col-xs-12">
+            <table class="table">
+			<tr class="thead-inverse">
+				<th>Pr√©nom</th>
+				<th>Nom</th>
+				<th>R√¥le</th>
+				<th>Ann√©e de fonction</th>
+				<th></th>
+			</div><?php
+			if(!empty($listeFonctions)):
+				foreach($listeFonctions as $uneFonction):?>
+					<tr class="<?=($uneFonction->getAnnee_fin()!=0)?'inactif':''; ?>"><?php
+						$options = array('where' => 'id = '. $uneFonction->getId_utilisateur());
+						$unUtilisateur = $UtilisateurManager->retourne($options);?>
+						<td><?=$unUtilisateur->getPrenom();?></td>
+						<td><?=$unUtilisateur->getNom();?></td>
+						<?php
+						if($uneFonction->getType()==4):
+							$options = array('where' => 'id = '. $uneFonction->getRole());
+							$uneCategorie = $CategorieManager->retourne($options);?>
+							<td><?=$uneCategorie->getCategorieAll();?></td><?php
+						else:
+							$options = array('where' => 'id = '. $uneFonction->getRole());
+							$unRole = $RoleManager->retourne($options);?>
+							<td><?=$unRole->getNom();?></td><?php
+						endif;
+						?>
+						<td><?=$uneFonction->getAnnee_debut();?> √† <?=$uneFonction->getAnnee_fin();?></td>
+						<td>
+							<button class="btn btn-warning edit-function" data-id="<?=$uneFonction->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+							<button class="btn btn-danger delete-function" data-id="<?=$uneFonction->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
+						</td>
+					</tr><?php
+				endforeach;
+			else:?>
+				<tr>
+					<td colspan="6">Aucune fonction enregistr√©e</td>
+				</tr><?php
+			endif;?>
+		</table>
+	</div>
 	<div id="filtres" style="display: none;">
 		<div class="table">
 				<div class="row boutons-actions">
@@ -19,7 +67,7 @@
 						<div class="btn btn-valide"> Valider</div>
 					</div>
 					<div class="cell cell-1-2 align_right">
-						<div class="btn btn-reset btn-picto"> RÈinitialisÈ</div>
+						<div class="btn btn-reset btn-picto"> R√©initialis√©</div>
 					</div>
 				</div>
 			</div>
@@ -40,9 +88,9 @@
 				endif;?>
 			</select><br/>
 			<br/>
-			<label for="tri_par_role">Tri par rÙle</label><br/>
+			<label for="tri_par_role">Tri par r√¥le</label><br/>
 			<select id="tri_par_role">
-				<option value="-">Tous les rÙles</option><?php
+				<option value="-">Tous les r√¥les</option><?php
 				$options = array('where' => 'parent != 0', 'orderby' => 'parent, ordre');
 				$listeRoles = $RoleManager->retourneListe($options);
 				if(!empty($listeRoles)):
@@ -73,69 +121,5 @@
 			Actif : <input type="checkbox" name="filtre_actif" checked>
 		</div>
 		<div class="clear_b"></div>
-	</div>
-	<div id="zone-ajout">
-		<div class="boutons-actions action-ajout">
-			<div class="left">
-				<a href="#" class="btn btn-ajout">Ajouter une fonction</a>
-			</div>
-			<div class="clear_b"></div>
-		</div>
-	</div>
-	<div id="tab_admin">
-		<table>
-			<tr class="titres">
-				<th></th>
-				<th class="boutons-actions">
-					<h4>PrÈnom / Nom</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th class="boutons-actions">
-					<h4>Fonction</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th class="cell"></th>
-			</div><?php
-			$i=0;
-			if(!empty($listeFonctions)):
-				foreach($listeFonctions as $uneFonction):?>
-					<tr id="id_<?=$uneFonction->getId();?>" class="infos<?php if($i%2==1) echo ' odd'; ?><?php if($uneFonction->getAnnee_fin()!=0) echo ' inactif'; ?>">
-						<td><input type="checkbox" name="id_<?=$uneFonction->getId();?>"/></td>
-						<?php
-							$options = array('where' => 'id = '. $uneFonction->getId_utilisateur());
-							$unUtilisateur = $UtilisateurManager->retourne($options);
-						?>
-						<td><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></td>
-						<?php
-						if($uneFonction->getType()==4):
-							$options = array('where' => 'id = '. $uneFonction->getRole());
-							$uneCategorie = $CategorieManager->retourne($options);?>
-							<td><?=$uneCategorie->getCategorieAll();?></td><?php
-						else:
-							$options = array('where' => 'id = '. $uneFonction->getRole());
-							$unRole = $RoleManager->retourne($options);?>
-							<td><?=$unRole->getNom();?></td><?php
-						endif;
-						?>
-						
-						<td class="boutons-actions">
-							<a href="#<?=$uneFonction->getId();?>" class="btn btn-modif btn-slim" title="Modifier la fonction">Modifier la fonction</a>
-							<a href="#<?=$uneFonction->getId();?>" class="btn btn-suppr btn-slim" title="Supprimer la fonction">Supprimer la fonction</a>
-						</td>
-					</tr><?php
-					$i++;
-				endforeach;
-			else:?>
-				<tr>
-					<td colspan="6">Aucune fonction enregistrÈe</td>
-				</tr><?php
-			endif;?>
-		</table>
 	</div>
 </div>

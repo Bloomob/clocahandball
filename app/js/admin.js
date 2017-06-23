@@ -1,3 +1,4 @@
+
 $(function(){
 
 	/***************************
@@ -8,76 +9,118 @@ $(function(){
 	if(utilisateurs.length > 0) {
 		var addUserModal = $('.admin .utilisateurs #addUserModal');
 		var addUserData = {
-	    	'nom': '',
-	    	'prenom': '',
-	    	'email': '',
-	    	'num_licence': 0,
-	    	'mot_de_passe': '',
-	    	'confirm_mot_de_passe': '',
-	    	'rang': 0
-	  }
-	  var notValid = false;
+	    nom: {
+	    	value: '',
+	    	valid: false
+	    },
+	    prenom: {
+	    	value: '',
+	    	valid: false
+	    },
+	    mail: {
+	    	value: '',
+	    	valid: false
+	    },
+	    num_licence: {
+	    	value: 0,
+	    	valid: false
+	    },
+	    mot_de_passe: {
+	    	value: '',
+	    	valid: false
+	    },
+	    confirm_mot_de_passe: {
+	    	value: '',
+	    	valid: false
+	    },
+	    rang: {
+	    	value: 0,
+	    	valid: false
+	    },
+	    actif: {
+	    	value: 0,
+	    	valid: false
+	    }
+	  };
 
   	$(addUserModal).find('#nom').keyup(function(){
-  		addUserData['nom'] = $(this).val();
+  		addUserData['nom']['value'] = $(this).val();
 
-			if(addUserData['nom'].length < 1) {
+			if(addUserData['nom']['value'].length < 1) {
+				$(this).popover('show');
 				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				notValid = true;
+				addUserData['nom']['valid'] = false;
 			} else {
+				$(this).popover('hide');
 				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				notValid = false;
+				addUserData['nom']['valid'] = true;
 			}
   	});
 
   	$(addUserModal).find('#prenom').keyup(function(){
-  		addUserData['prenom'] = $(this).val();
+  		addUserData['prenom']['value'] = $(this).val();
 
-			if(addUserData['prenom'].length < 1) {
+			if(addUserData['prenom']['value'].length < 1) {
+				$(this).popover('show');
 				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				notValid = true;
+				addUserData['prenom']['valid'] = false;
 			} else {
+				$(this).popover('hide');
 				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				notValid = false;
+				addUserData['prenom']['valid'] = true;
 			}
   	});
 
   	$(addUserModal).find('#mot_de_passe').keyup(function(){
-  		addUserData['mot_de_passe'] = $(this).val();
+  		addUserData['mot_de_passe']['value'] = $(this).val();
 
-			if(addUserData['mot_de_passe'].length < 5) {
+			if(addUserData['mot_de_passe']['value'].length < 5) {
+				$(this).popover('show');
 				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				addUserModal.find('.alert-danger.taille-mot-de-passe').removeClass('hidden');
-				notValid = true;
+				addUserData['mot_de_passe']['valid'] = false;
 			} else {
+				$(this).popover('hide');
 				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				addUserModal.find('.alert-danger.taille-mot-de-passe').addClass('hidden');
-				notValid = false;
+				addUserData['mot_de_passe']['valid'] = true;
 			}
   	});
 
 		$(addUserModal).find('#confirm_mot_de_passe').keyup(function(){
-  		addUserData['confirm_mot_de_passe'] = $(this).val();
+  		addUserData['confirm_mot_de_passe']['value'] = $(this).val();
 
-  		if (addUserData['mot_de_passe'] !== addUserData['confirm_mot_de_passe']) {
-  			$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				addUserModal.find('.alert-danger.diff-mot-de-passe').removeClass('hidden');
-				notValid = true;
+  		if (addUserData['mot_de_passe']['value'] !== addUserData['confirm_mot_de_passe']['value']) {
+  			$(this).popover('show');
+				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+				addUserData['confirm_mot_de_passe']['valid'] = false;
 			} else {
+				$(this).popover('hide');
 				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				addUserModal.find('.alert-danger.diff-mot-de-passe').addClass('hidden');
-				notValid = false;
+				addUserData['confirm_mot_de_passe']['valid'] = true;
   		}
   	});
 		
 		addUserModal.find('.add-user').click(function(e){
 	    e.preventDefault();
+	    var formValid = true;
+
+	    addUserModal.find('.form-errors').addClass('hidden');
 	    
 			for(ch in addUserData) {
-				addUserData[ch] = $(addUserModal).find('#'+ ch).val();
+				if(ch.value == 'actif') {
+					addUserData[ch]['value'] = ($(addUserModal).find('#actif_oui').prop('checked'))?1:0;
+				} else {
+					addUserData[ch]['value'] = $(addUserModal).find('#'+ ch).val();
+				}
+				if(!addUserData[ch]['valid']) {
+					if(formValid) {
+						formValid = false;
+					}
+					$('#'+ ch).popover('show');
+					$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+				}
 			}
 	    console.log(addUserData);
-	    if (!notValid) {
+	    if (formValid) {
 	      $.post(
 	          './inc/api/admin/add-user.php',
 	          {
@@ -91,6 +134,8 @@ $(function(){
 	                  window.location.href = 'index.php';
 	*/          }
 			      );
+			    } else {
+			    	addUserModal.find('.form-errors').removeClass('hidden');
 			    }
 			});
 		}

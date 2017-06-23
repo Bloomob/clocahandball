@@ -6,17 +6,16 @@ if(!empty($listeMatchs)):
 		$uneCategorie = $CategorieManager->retourne($options); ?>
 
 		<tr class="cat_<?=$unMatch->getCategorie();?>">
-			<td><input type="checkbox" id="match_<?=$unMatch->getId();?>"/></td>
-			<td>
-				<?php if($unMatch->getJoue()) {
-					echo '<span class="boutons-actions"><span class="btn btn-play btn-slim btn-unclickable">'.$unMatch->remplace_date(1).'</span></span>';
-				} else {
-					echo '<span class="boutons-actions"><span class="btn btn-pause btn-slim btn-unclickable">'.$unMatch->remplace_date(1).'</span></span>'; 
-				} ?>
+			<td><?php
+				if($unMatch->getJoue()):?>
+					<button class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></button><?php
+				else:?>
+					<button class="btn btn-danger"><i class="fa fa-pause" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></button><?php 
+				endif;?>
 			</td>
 			<td class="competition">
 				<div class="competition_<?=$unMatch->getCompetition();?>_<?=$unMatch->getNiveau();?>">
-					<?=retourneCompetitionById($unMatch->getCompetition());?> 
+					<?=$listeCompetition[$unMatch->getCompetition()];?> 
 					<br/><?=($unMatch->getJournee()!=0)?'Journ&eacute;e '.$unMatch->getJournee():$unMatch->getTour();?>
 				</div>
 			</td>
@@ -85,13 +84,13 @@ if(!empty($listeMatchs)):
 							echo "<span class=".$color.">".$score_dom." - ".$score_ext.'</span><br/>';
 						endif;
 					endif;
-				else:
-					echo "<span class='violet'>". $unMatch->remplace_heure() ."</span>";
+				else:?>
+					<span class='violet'><?=$unMatch->remplace_heure();?></span><?php
 				endif; ?>
 			</td>
-			<td class="boutons-actions">
-				<a href="<?=$unMatch->getId();?>" class="btn btn-modif btn-slim" title="Modifier le match">Modifier le match</a>
-				<a href="<?=$unMatch->getId();?>" class="btn btn-suppr btn-slim" title="Supprimer le match">Supprimer le match</a>
+			<td>
+				<button class="btn btn-warning edit-match" data-id="<?=$unMatch->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+				<button class="btn btn-danger delete-match" data-id="<?=$unMatch->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
 			</td>
 		</tr><?php
 	endforeach;

@@ -14,6 +14,8 @@
 	$UtilisateurManager = new UtilisateurManager($connexion);
 
 	if(isset($_POST['data'])) {
+
+		// Ajout de l'utilisateur
 		$utilisateur = new Utilisateur(array());
 
 		foreach ($_POST['data'] as $key => $value) {

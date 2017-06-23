@@ -4,7 +4,6 @@ class Utilisateur {
 			$_nom,
 			$_prenom,
 			$_mail,
-			$_pseudo,
 			$_mot_de_passe,
 			$_rang,
 			$_tel_port,
@@ -88,10 +87,6 @@ class Utilisateur {
 		$this->_mail = $mail;
 	}
 
-	public function setPseudo($pseudo) {
-		$this->_pseudo = $pseudo;
-	}
-
 	public function setMot_de_passe($mot_de_passe) {
 		$this->_mot_de_passe = $mot_de_passe;
 	}
@@ -136,10 +131,6 @@ class Utilisateur {
 
 	public function getMail() {
 		return $this->_mail;
-	}
-
-	public function getPseudo() {
-		return $this->_pseudo;
 	}
 
 	public function getMot_de_passe() {

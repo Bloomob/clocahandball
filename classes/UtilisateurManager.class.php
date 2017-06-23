@@ -34,7 +34,6 @@ class UtilisateurManager {
 				nom = :nom,
 				prenom = :prenom,
 				mail = :mail,
-				pseudo = :pseudo,
 				mot_de_passe = :mot_de_passe,
 				rang = :rang,
 				tel_port = :tel_port,
@@ -45,7 +44,6 @@ class UtilisateurManager {
 		$req->bindValue(':nom', $util->getNom());
 		$req->bindValue(':prenom', $util->getPrenom());
 		$req->bindValue(':mail', $util->getMail());
-		$req->bindValue(':pseudo', $util->getPseudo());
 		$req->bindValue(':mot_de_passe', $util->getMot_de_passe());
 		$req->bindValue(':rang', $util->getRang(), PDO::PARAM_INT);
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
@@ -79,7 +77,6 @@ class UtilisateurManager {
 				nom = :nom,
 				prenom = :prenom,
 				mail = :mail,
-				pseudo = :pseudo,
 				mot_de_passe = :mot_de_passe,
 				rang = :rang,
 				tel_port = :tel_port,
@@ -93,7 +90,6 @@ class UtilisateurManager {
 		$req->bindValue(':nom', $util->getNom());
 		$req->bindValue(':prenom', $util->getPrenom());
 		$req->bindValue(':mail', $util->getMail());
-		$req->bindValue(':pseudo', $util->getPseudo());
 		$req->bindValue(':mot_de_passe', $util->getMot_de_passe());
 		$req->bindValue(':rang', $util->getRang(), PDO::PARAM_INT);
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
