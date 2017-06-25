@@ -50,7 +50,7 @@ class HoraireManager {
 		}
 		else {
 			var_dump($req->errorInfo());
-			return;
+			return false;
 		}
 	}
 
@@ -85,8 +85,13 @@ class HoraireManager {
 		$req->bindValue(':gymnase', $horaire->getGymnase());
 		$req->bindValue(':annee', $horaire->getAnnee(), PDO::PARAM_INT);
 		
-		return $req->execute();
-
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/*********************************

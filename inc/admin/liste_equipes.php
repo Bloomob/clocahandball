@@ -23,21 +23,20 @@
 					endif; ?>
 				</td>
 				<td><?php
-					$tab = explode(',', $uneEquipe->getEntrainements());
-					if(is_array($tab)):
+                    // var_dump($uneEquipe->getEntrainements());
+					if($uneEquipe->getEntrainements() != ''):
+                        $tab = explode(',', $uneEquipe->getEntrainements());
 						foreach($tab as $entrainement):
-						$options = array('where' => 'id = '. $entrainement);
-							$unHoraire = $HoraireManager->retourne($options);
-							echo $jours[$unHoraire->getJour()].' de '.$unHoraire->remplace_heure($unHoraire->getHeure_debut()).' &agrave; '.$unHoraire->remplace_heure($unHoraire->getHeure_fin()).'<br/>';
+                            $options = array('where' => 'id = '. $entrainement);
+                            $unHoraire = $HoraireManager->retourne($options);
+                            // var_dump($unHoraire);
+                            $gymnase = (is_int($unHoraire->getGymnase())) ? $gymnases[$unHoraire->getGymnase()] : $unHoraire->getGymnase();
+                            echo $jours[$unHoraire->getJour()] .' de '. $unHoraire->remplace_heure($unHoraire->getHeure_debut()) .' à '. $unHoraire->remplace_heure($unHoraire->getHeure_fin()) .' ('. $gymnase .')<br/>';
 						endforeach;
-					else:
-						$options = array('where' => 'id = '. $tab);
-						$unHoraire = $HoraireManager->retourne($options);
-						echo $jours[$unHoraire->getJour()].' de '.$unHoraire->remplace_heure($unHoraire->getHeure_debut()).' &agrave; '.$unHoraire->remplace_heure($unHoraire->getHeure_fin());
 					endif; ?>
 				</td>
 				<td>
-					<button class="btn btn-warning edit-team" data-id="<?=$uneEquipe->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+					<button class="btn btn-warning" data-toggle="modal" data-target="#teamModal" data-id="<?=$uneEquipe->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
 					<button class="btn btn-danger delete-team" data-id="<?=$uneEquipe->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
 				</td>
 			</tr><?php

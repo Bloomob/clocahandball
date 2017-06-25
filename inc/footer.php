@@ -1,6 +1,3 @@
-<?php
-	$MenuManager = new MenuManager($connexion);
-?>
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -33,10 +30,8 @@
                                     foreach($listeCategories as $uneCategorie):
                                         $options3 = array('where' => 'annee = '. retourne_annee().' AND categorie = '. $uneCategorie->getId() .' AND actif = 1');
                                         $uneEquipe = $EquipeManager->retourne($options3);
-                                        if($uneEquipe->getId()>0):
-                                            $rac = retourneRaccourciById($uneCategorie->getId());
-                                            $cat = retourneCategorieById($uneCategorie->getId());?>
-                                            <li><a href="equipes.php?onglet=<?=$rac?>"> <?=$cat?></a></li><?php
+                                        if($uneEquipe->getId()>0):?>
+                                            <li><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci()?>"> <?=$uneCategorie->getCategorieAll()?></a></li><?php
                                         endif;
                                     endforeach;
                                 endif;

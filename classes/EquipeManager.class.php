@@ -49,13 +49,12 @@ class EquipeManager {
 		$req->bindValue(':id_photo_equipe', $equipe->getId_photo_equipe(), PDO::PARAM_INT);
 		$req->bindValue(':actif', $equipe->getActif(), PDO::PARAM_INT);
 
-		
 		if($req->execute()){
 			return $this->_db->lastInsertID();
 		}
 		else {
 			var_dump($req->errorInfo());
-			return;
+			return false;
 		}
 	}
 
@@ -93,9 +92,14 @@ class EquipeManager {
 		$req->bindValue(':entrainements', $equipe->getEntrainements());
 		$req->bindValue(':id_photo_equipe', $equipe->getId_photo_equipe(), PDO::PARAM_INT);
 		$req->bindValue(':actif', $equipe->getActif(), PDO::PARAM_INT);
-		
-		return $req->execute();
-
+        
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/*********************************

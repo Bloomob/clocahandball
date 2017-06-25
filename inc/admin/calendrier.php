@@ -20,7 +20,7 @@
 	$options = array('orderby' => 'ordre');
 	$listeCategories = $CategorieManager->retourneListe($options);
 ?>
-<div class="wrap calendrier">
+<div class="wrapper calendrier">
     <div class="row">
     	<div class="col-xs-12">
             <h3>Calendrier <?=$annee;?>-<?=$annee+1;?></h3>
@@ -91,7 +91,28 @@
                             <div class="col-sm-9">
                                 <div class="form-group">
                                     <label for="dates">Dates</label><br>
-                                    
+                                    <div class="row">
+                                        <div class='col-md-5'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker6'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-5'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker7'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">

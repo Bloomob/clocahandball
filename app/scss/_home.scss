@@ -3,5 +3,64 @@ section.home {
 
     .slider-home {
     	margin-bottom: 30px;
+        
+        #carousel-home {
+            .carousel-inner {
+                height: 540px;
+                
+                .item {
+                    height: 100%;
+                    
+                    img {
+                        width: 100%;
+                    }
+                    .theme {
+                        position: absolute;
+                        top: 15px;
+                        left: 15px;
+                        padding: 15px;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        z-index: 1;
+                        text-transform: uppercase;
+                        color: $blanc;
+                        
+                        &.sportif {
+                            background: rgb(23, 179, 239);
+                        }
+                        &.administratif {
+                            background: rgb(239, 100, 23);
+                        }
+                        &.debriefs {
+                            background: rgb(122, 215, 81);
+                        }
+                        &.interviews {
+                            background: rgb(179, 65, 188);
+                        } 
+                        &.divers {
+                            background: rgb(165, 165, 55);
+                        } 
+                    }
+                    .carousel-caption {
+                        background-color: rgba(0,0,0,0.5);
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        padding-bottom: 50px;
+                        
+                        .titre {
+                            font-size: 20px;
+                            margin: 0 auto 5px;
+                            width: 60%;
+                        }
+                        .sous_titre {
+                            font-size: 16px;
+                            margin: 0 auto;
+                            width: 60%;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
