@@ -50,7 +50,7 @@ class HoraireManager {
 		}
 		else {
 			var_dump($req->errorInfo());
-			return;
+			return false;
 		}
 	}
 
@@ -85,8 +85,13 @@ class HoraireManager {
 		$req->bindValue(':gymnase', $horaire->getGymnase());
 		$req->bindValue(':annee', $horaire->getAnnee(), PDO::PARAM_INT);
 		
-		return $req->execute();
-
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/*********************************
@@ -211,6 +216,51 @@ class HoraireManager {
 		$req->execute();
 		$donnees = $req->fetch(PDO::FETCH_ASSOC);
  		return $donnees['nbr_gymnase'];
+	}
+    
+    /******************************************
+	**							             **
+	** 	 Retourne le planning horaires		 **
+	** 							             **
+	** Entrée : (Int)	  		             **
+	** Sortie : (Bool | Int)		         **
+	**							             **
+	******************************************/
+    
+    function planningHoraires($annee) {
+		$liste = array();
+		$raccourci = '';
+		$jour = 0;
+		$gymnase = '';
+		$heure_debut = 0;
+		$heure_fin = 0;
+		
+        $req = $this->_db->prepare("
+			SELECT 
+				C.raccourci, H.jour, H.heure_debut, H.heure_fin, H.gymnase 
+			FROM 
+				categories AS C, horaires AS H
+			WHERE 
+				C.id = H.categorie 
+				AND annee = :annee
+			ORDER BY H.jour, H.heure_debut, H.gymnase
+		");
+        $req->bindValue(':annee', $annee, PDO::PARAM_INT);
+		$req->execute();
+        
+ 		if($req->rowCount()>0) {
+            while ($d = $req->fetch(PDO::FETCH_ASSOC)) {
+                if($d['jour'] == $jour && $d['gymnase'] == $gymnase && $d['heure_debut'] == $heure_debut && $d['heure_fin'] == $heure_fin)
+                        $raccourci .= '-'.$d['raccourci'];
+                else
+                    $raccourci = $d['raccourci'];
+                $liste[$d['jour']][$d['gymnase']][$d['heure_debut'].'-'.$d['heure_fin']] = $raccourci;
+                extract($d);
+            }
+            return $liste;
+		} else {
+			return false;
+		}
 	}
 
 	/********************************

@@ -1,146 +1,173 @@
 
 $(function(){
 
+    /*************************
+	******* Calendrier *******
+	*************************/
+
+	var calendrier = $('.admin .calendrier');
+	if(calendrier.length > 0) {
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+                    icons: {
+                        time: "fa fa-clock-o",
+                        date: "fa fa-calendar",
+                        up: "fa fa-arrow-up",
+                        down: "fa fa-arrow-down"
+                    }
+                });
+            $('#datetimepicker7').datetimepicker({
+                useCurrent: false, //Important! See issue #1075
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    }
+    
 	/***************************
 	******* Utilisateurs *******
 	***************************/
 
 	var utilisateurs = $('.admin .utilisateurs');
 	if(utilisateurs.length > 0) {
+        
+        // Ajout d'un utilisateur
 		var addUserModal = $('.admin .utilisateurs #addUserModal');
 		var addUserData = {
-	    nom: {
-	    	value: '',
-	    	valid: false
-	    },
-	    prenom: {
-	    	value: '',
-	    	valid: false
-	    },
-	    mail: {
-	    	value: '',
-	    	valid: false
-	    },
-	    num_licence: {
-	    	value: 0,
-	    	valid: false
-	    },
-	    mot_de_passe: {
-	    	value: '',
-	    	valid: false
-	    },
-	    confirm_mot_de_passe: {
-	    	value: '',
-	    	valid: false
-	    },
-	    rang: {
-	    	value: 0,
-	    	valid: false
-	    },
-	    actif: {
-	    	value: 0,
-	    	valid: false
-	    }
-	  };
+            nom: {
+                value: '',
+                valid: false
+            },
+            prenom: {
+                value: '',
+                valid: false
+            },
+            mail: {
+                value: '',
+                valid: true
+            },
+            num_licence: {
+                value: 0,
+                valid: true
+            },
+            mot_de_passe: {
+                value: '',
+                valid: true
+            },
+            confirm_mot_de_passe: {
+                value: '',
+                valid: true
+            },
+            rang: {
+                value: 0,
+                valid: true
+            }
+        };
 
-  	$(addUserModal).find('#nom').keyup(function(){
-  		addUserData['nom']['value'] = $(this).val();
+        $(addUserModal).find('#nom, #prenom').keyup(function(){
+            var champ = $(this).attr('id');
+            if($(this).val().length < 1) {
+                $(this).popover('show');
+                $(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+                addUserData[champ]['valid'] = false;
+            } else {
+                $(this).popover('hide');
+                $(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+                addUserData[champ]['valid'] = true;
+            }
+        });
 
-			if(addUserData['nom']['value'].length < 1) {
-				$(this).popover('show');
-				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				addUserData['nom']['valid'] = false;
-			} else {
-				$(this).popover('hide');
-				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				addUserData['nom']['valid'] = true;
-			}
-  	});
+        $(addUserModal).find('#mot_de_passe').keyup(function(){
+            if($(this).val().length < 5 && $(this).val().length > 0) {
+                $(this).popover('show');
+                $(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+                addUserData['mot_de_passe']['valid'] = false;
+            } else {
+                $(this).popover('hide');
+                $(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+                addUserData['mot_de_passe']['valid'] = true;
+            }
+        });
 
-  	$(addUserModal).find('#prenom').keyup(function(){
-  		addUserData['prenom']['value'] = $(this).val();
-
-			if(addUserData['prenom']['value'].length < 1) {
-				$(this).popover('show');
-				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				addUserData['prenom']['valid'] = false;
-			} else {
-				$(this).popover('hide');
-				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				addUserData['prenom']['valid'] = true;
-			}
-  	});
-
-  	$(addUserModal).find('#mot_de_passe').keyup(function(){
-  		addUserData['mot_de_passe']['value'] = $(this).val();
-
-			if(addUserData['mot_de_passe']['value'].length < 5) {
-				$(this).popover('show');
-				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				addUserData['mot_de_passe']['valid'] = false;
-			} else {
-				$(this).popover('hide');
-				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				addUserData['mot_de_passe']['valid'] = true;
-			}
-  	});
-
-		$(addUserModal).find('#confirm_mot_de_passe').keyup(function(){
-  		addUserData['confirm_mot_de_passe']['value'] = $(this).val();
-
-  		if (addUserData['mot_de_passe']['value'] !== addUserData['confirm_mot_de_passe']['value']) {
-  			$(this).popover('show');
-				$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				addUserData['confirm_mot_de_passe']['valid'] = false;
-			} else {
-				$(this).popover('hide');
-				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
-				addUserData['confirm_mot_de_passe']['valid'] = true;
-  		}
-  	});
+        $(addUserModal).find('#confirm_mot_de_passe').keyup(function(){
+            if (addUserData['mot_de_passe']['value'] !== $(this).val()) {
+                $(this).popover('show');
+                $(this).closest('.form-group').addClass('has-error').removeClass('has-success');
+                addUserData['confirm_mot_de_passe']['valid'] = false;
+            } else {
+                $(this).popover('hide');
+                $(this).closest('.form-group').removeClass('has-error').addClass('has-success');
+                addUserData['confirm_mot_de_passe']['valid'] = true;
+            }
+        });
 		
 		addUserModal.find('.add-user').click(function(e){
-	    e.preventDefault();
-	    var formValid = true;
+            e.preventDefault();
+            var formValid = true;
 
-	    addUserModal.find('.form-errors').addClass('hidden');
+            addUserModal.find('.form-errors').addClass('hidden');
 	    
 			for(ch in addUserData) {
-				if(ch.value == 'actif') {
-					addUserData[ch]['value'] = ($(addUserModal).find('#actif_oui').prop('checked'))?1:0;
-				} else {
-					addUserData[ch]['value'] = $(addUserModal).find('#'+ ch).val();
-				}
+				addUserData[ch]['value'] = $(addUserModal).find('#'+ ch).val();
 				if(!addUserData[ch]['valid']) {
 					if(formValid) {
 						formValid = false;
 					}
-					$('#'+ ch).popover('show');
-					$(this).closest('.form-group').addClass('has-error').removeClass('has-success');
-				}
-			}
-	    console.log(addUserData);
-	    if (formValid) {
-	      $.post(
-	          './inc/api/admin/add-user.php',
-	          {
-	              'data': addUserData
-	          },
-	          function (data) {
-	              console.log(data);
-	              /*if(!data)
-	                  $('#connexionModal .alert-danger').removeClass('hidden');
-	              else
-	                  window.location.href = 'index.php';
-	*/          }
-			      );
-			    } else {
-			    	addUserModal.find('.form-errors').removeClass('hidden');
-			    }
-			});
-		}
+                    $(addUserModal).find('#'+ ch).popover('show');
+                    $(addUserModal).find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
+                }
+            }
+            // console.log(addUserData, formValid);
+            if (formValid) {
+                $.post(
+                    './inc/api/admin/add-user.php',
+                    {
+                      'data': addUserData
+                    },
+                    function (data) {
+                        console.log(data);
+                        if(!data)
+                            addUserModal.find('.form-errors').removeClass('hidden');
+                        else
+                            window.location.href = location.href;
+                     }
+                );
+            } else {
+                addUserModal.find('.form-errors').removeClass('hidden');
+            }
+        });
+        
+        // Suppression d'un utilisateur
+        utilisateurs.find('.delete-user').click(function(e){
+			e.preventDefault();
+			var supprId = $(this).data('id');
 
-  /********************
+			$.post(
+                './inc/api/admin/delete-user.php',
+                {
+                    'id': supprId
+                },
+                function (data) {
+                    console.log(data);
+                    if(data) {
+                        window.location.href = location.href;
+                    }
+                }
+	       );
+		});
+    }
+
+    /********************
 	******* Menus *******
 	********************/
 
@@ -160,8 +187,7 @@ $(function(){
 
 			tabs.find('.liste-tabs ul li').each(function (index) {
 				var tab = $($(this).find('a').attr('href'));
-				consol
-				e.log(tab);
+				console.log(tab);
 
 				if(tab.find('.btn-visiblity').hasClass('btn-invisible'))
 					var actif = 1;
@@ -193,42 +219,114 @@ $(function(){
 		}
 	}
 
-	/***************************
-	******* Utilisateurs *******
-	***************************/
+	/**********************
+	******* Equipes *******
+	**********************/
 
 	var equipes = $('.admin .equipes');
 	if(equipes.length > 0) {
-
-		/* Ajout d'une équipe */
-		var addTeamModal = $('.admin .equipes #addTeamModal');
-		var addTeamData = {
-	    	'categorie': '',
-	    	'niveau': '',
-	    	'championnat': '',
-	    	'annee': 0,
-	    	'entraineurs': [],
-	    	'entrainements': [{
-			    	'jour_1': 0,
-			    	'heure_debut_1': 0,
-			    	'heure_fin_1': 0,
-			    	'gymnase_1': 0
+		var teamModal = equipes.find('#teamModal');
+		var teamData = {
+            id: 0,
+	    	categorie: '',
+	    	niveau: '',
+	    	championnat: '',
+	    	annee: 0,
+	    	entraineurs: [],
+	    	entrainements: [{
+                    id_1: 0,
+			    	jour_1: 0,
+			    	heure_debut_1: 0,
+			    	heure_fin_1: 0,
+			    	gymnase_1: 0
 			    }, {
-			    	'jour_2': 0,
-			    	'heure_debut_2': 0,
-			    	'heure_fin_2': 0,
-			    	'gymnase_2': 0
+                    id_2: 0,
+			    	jour_2: 0,
+			    	heure_debut_2: 0,
+			        heure_fin_2: 0,
+			    	gymnase_2: 0
 			    }, {
-			    	'heure_debut_3': 0,
-			    	'jour_3': 0,
-			    	'heure_fin_3': 0,
-			    	'gymnase_3': 0
+                    id_3: 0,
+			    	heure_debut_3: 0,
+			    	jour_3: 0,
+			    	heure_fin_3: 0,
+			    	gymnase_3: 0
 			    }
 		    ]
         }
         var notValid = false;
         
-        addTeamModal.find('.add-training').on('click', function(e){
+        // Appel à la modal
+        teamModal.on('shown.bs.modal', function (e) {
+            var button = $(e.relatedTarget);
+            var id = button.data('id');
+            teamModal.find('.modal-title, .edit-team, .add-team').addClass('hidden');
+                        
+            for(ch in teamData) {
+				if(ch == 'entrainements') {
+                    for(i in teamData[ch]) {
+                        if(i > 0) {
+                            for(ent in teamData[ch][i]) {
+                                $(teamModal).find('#'+ ent).selectpicker('val', '');
+                                var select = $(teamModal).find('#'+ ent).closest('.row').find('.selectpicker');
+                                select.prop('disabled', true);
+                                select.selectpicker('refresh');
+                                $(teamModal).find('#'+ ent).closest('.row').find('.add-training, .remove-training').addClass('add-training btn-success');
+                                $(teamModal).find('#'+ ent).closest('.row').find('.add-training').removeClass('remove-training btn-danger');
+                            }
+                        }
+                    }
+                } else {
+                    teamModal.find('#'+ ch).selectpicker('val', '');
+                }
+			}
+            
+            if(id > 0) {
+                teamModal.find('#editTeamLabel, .edit-team').removeClass('hidden');
+                $.getJSON(
+                    './inc/api/admin/team/get-team.php',
+                    {
+                        id: id
+                    },
+                    function (data) {
+                        // console.log(data);
+                        for(ch in data) {
+                            if(ch == 'id') {
+                                teamData[ch] = data[ch];
+                            } else if(ch == 'entrainements') {
+                                if(data[ch].length > 0) {
+                                    for(i in data[ch]) {
+                                        for(ent in data[ch][i]) {
+                                            var j = parseInt(i) + 1;
+                                            if(ent != 'id_' + j) {
+                                                $(teamModal).find('#'+ ent).selectpicker('val', data[ch][i][ent]);
+
+                                                if(data[ch][i][ent] != 0) {
+                                                    var select = $(teamModal).find('#'+ ent).closest('.row').find('.selectpicker');
+                                                    select.prop('disabled', false);
+                                                    select.selectpicker('refresh');
+                                                    $(teamModal).find('#'+ ent).closest('.row').find('.add-training').addClass('remove-training btn-danger');
+                                                    $(teamModal).find('#'+ ent).closest('.row').find('.add-training').removeClass('add-training btn-success');
+                                                }
+                                            } else {
+                                                teamData[ch][i][ent] = data[ch][i][ent];
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                teamModal.find('#'+ ch).selectpicker('val', data[ch]);
+                            }
+                        }
+                    }
+                );
+            } else {
+                teamModal.find('#addTeamLabel, .add-team').removeClass('hidden');
+            }
+        });
+        
+        // Gestion des entrainements
+        teamModal.find('.add-training').on('click', function(e){
             e.preventDefault();
             
             if($(this).hasClass('add-training')) {
@@ -239,50 +337,94 @@ $(function(){
             } else {
                 var select = $(this).closest('.row').find('.selectpicker');
                 select.prop('disabled', true);
+                select.selectpicker('val', '');
                 select.selectpicker('refresh');
                 $(this).toggleClass('add-training remove-training btn-success btn-danger');
             }
         });
-
-        addTeamModal.find('.add-team').click(function(e){
+        
+        // Ajout d'une équipe
+        teamModal.find('.add-team').on('click', function(e){
             e.preventDefault();
-	    
-			for(ch in addTeamData) {
-				if(ch == 'entrainements') {
-					for(i in addTeamData[ch]) {
-						for(ent in addTeamData[ch][i]) {
-							addTeamData[ch][i][ent] = $(addTeamModal).find('#'+ ent).val();
-						}
-					}
-				} else {
-					addTeamData[ch] = $(addTeamModal).find('#'+ ch).val();
-					if(addTeamData[ch] == '') {
-						notValid = true;
-					}
-				}
-			}
-	       // console.log(addTeamData);
             
-	       if (!notValid) {
+            for(ch in teamData) {
+                if(ch == 'entrainements') {
+                    for(i in teamData[ch]) {
+                        for(ent in teamData[ch][i]) {
+                            teamData[ch][i][ent] = $(teamModal).find('#'+ ent).val();
+                        }
+                    }
+                } else {
+                    teamData[ch] = $(teamModal).find('#'+ ch).val();
+                    if(teamData[ch] == '') {
+                        notValid = true;
+                    }
+                }
+            }
+           if (!notValid) {
+                $.post(
+                        './inc/api/admin/team/add-team.php',
+                    {
+                        'data': teamData
+                    },
+                    function (data) {
+                        console.log(data);
+                        if(!data)
+                        addUserModal.find('.form-errors').removeClass('hidden');
+                        else
+                        window.location.href = location.href;
+                    }
+                );
+            }
+        });
+        
+        // Modification d'une équipe
+        teamModal.find('.edit-team').on('click', function(e){
+            e.preventDefault();
+            
+            for(ch in teamData) {
+                if(ch == 'entrainements') {
+                    for(i in teamData[ch]) {
+                        for(ent in teamData[ch][i]) {
+                            var j = parseInt(i) + 1;
+                            if(ent != 'id_' + j) {
+                                teamData[ch][i][ent] = $(teamModal).find('#'+ ent).val();
+                            }
+                        }
+                    }
+                } else if (ch != 'id') {
+                    teamData[ch] = $(teamModal).find('#'+ ch).val();
+                    if(teamData[ch] == '') {
+                        notValid = true;
+                    }
+                }
+            }
+           // console.log(teamData);
+
+           if (!notValid) {               
               $.post(
-                  './inc/api/admin/add-team.php',
+                  './inc/api/admin/team/edit-team.php',
                   {
-                      'data': addTeamData
+                      'data': teamData
                   },
                   function (data) {
                     console.log(data);
+                    if(!data)
+                        addUserModal.find('.form-errors').removeClass('hidden');
+                    else
+                        window.location.href = location.href;
                   }
-		      );
+              );
             }
-		});
+        });
 
-		/* Suppression d'une équipe */
-		equipes.find('.delete-team').click(function(e){
-			e.preventDefault();
+		// Suppression d'une équipe
+		equipes.find('.delete-team').on('click', function(e){
+            e.preventDefault();
 			var supprId = $(this).data('id');
 
 			$.post(
-                './inc/api/admin/delete-team.php',
+                './inc/api/admin/team/delete-team.php',
                 {
                     'id': supprId
                 },

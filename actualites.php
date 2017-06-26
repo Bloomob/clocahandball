@@ -13,7 +13,13 @@
 	$titre_page = 'actualites';
 	$id_actualite = 0;
 	$theme = '';
-	$filAriane = array('home', $titre_page);
+	$filAriane = array(
+        'home', 
+        array(
+            'url' => $page,
+            'libelle' => $titre_page
+        )
+    );
 	
 	// On inclue la page de connexion à la BDD
 	include_once("inc/connexion_bdd_pdo.php");
@@ -21,7 +27,6 @@
 	include_once("inc/fonctions.php");
 	require_once("inc/date.php");
 	include_once("inc/constantes.php");
-	// include_once("inc/connexion.php");
 	
 	// Initialisation des managers
 	$ActuManager = new ActualiteManager($connexion);
@@ -35,19 +40,27 @@
 	if(isset($_GET['onglet']))
 		$theme = $_GET['onglet'];
 
-	if($id_actualite > 0) {
+	if($id_actualite > 0):
 		$options = array('where' => 'id = '. $id_actualite);
 		$listeActualites = $ActuManager->retourne($options);
-		$filAriane[2] = $listeActualites->getTheme();
-	}
-	else {
+		$filAriane[2] = array(
+            'url' => $listeActualites->getTheme(),
+            'libelle' => $listeActualites->getTheme()
+        );
+        $filAriane[3] = '';
+	else:
 		$options = array('orderby' => 'date_publication desc, heure_publication desc', 'limit' => '0, 10');
 		if($theme != '')
 			$options['where'] = 'theme = "'. $theme .'"';
 		$listeActualites = $ActuManager->retourneListe($options);
-	}
-	if($theme != '')
-		$filAriane[2] = $theme;
+	endif;
+	if($theme != ''):
+		$filAriane[2] = array(
+            'url' => $theme,
+            'libelle' => $theme
+        );
+        $filAriane[3] = '';
+    endif;
 ?>
 
 <!DOCTYPE html>

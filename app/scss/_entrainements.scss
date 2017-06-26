@@ -1,0 +1,75 @@
+.entrainements {
+    .contenu {
+        .wrapper {
+            padding: 10px;
+            
+            .planning {
+                border-collapse: collapse;
+
+                .j1 {
+                    background: #FFDDFF;
+                }
+                .j2 {
+                    background: #DDFFFF;
+                }
+                .j3 {
+                    background: #FFFFDD;
+                }
+                .j4 {
+                    background: #DDDDFF;
+                }
+                .j5 {
+                    background: #FFDDDD;
+                }
+                .j6 {
+                    background: #DDFFDD;
+                }
+                .heure {
+                    font-weight: bold;
+                    font-size: 16px;
+                    text-align: center;
+                }
+                .minutes {
+                    td {
+                        width: 2%;
+                        text-indent: -8px;
+                        border-bottom: 2px solid $noir;
+
+                        &.no_minute {
+                            border-bottom: none;
+                        }
+                    }
+                }
+                .minute {
+                    border-left: 2px solid $noir;
+                }
+                .minute_right {
+                    border-left: 4px dashed $noir;
+                }
+                .jour { 
+                    width: 15px;
+
+                    span {
+                        display: block;
+                        white-space: nowrap;
+                        -webkit-transform: rotate(-90deg);
+                        -moz-transform: rotate(-90deg);
+                        transform: rotate(-90deg);
+                        position: relative;
+                    }
+                }
+                .cat {
+                    padding: 3px 6px;
+                    height: 43px;
+                    text-align: center;
+                }
+                .ligne_planning {
+                    padding: 3px 6px;
+                }
+                a {
+                    color: $noir;
+                }
+            }
+        }
+    }
+}

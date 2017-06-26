@@ -18,8 +18,6 @@
         }
         .bloc-admin {
             .ligne-admin {
-                padding: 0 10px;
-                
                 a {
                     width: 104px;
                     height: 104px;
@@ -45,7 +43,7 @@
                 }
             }
         }
-        .wrap {
+        .wrapper {
             padding: 10px;
 
             table {
@@ -60,27 +58,54 @@
                 line-height: 34px;
               }
             }
+            &.calendrier {
+                table {
+                    tr{
+                        &:hover {
+                            background: #e0e0e0;
+                        }
+                        &.inactif td {
+                            color: #aaa;
+                        }
+                    }
+                    th {
+                        /*height: 46px;
+                        padding: 5px 15px;
+                        background: #A8C1D5;
+                        font-size: 16px;*/
+                    }
+                    td {
+                        height: 26px;
+                        padding: 10px 15px;
+                        vertical-align: middle;
+                        text-align: center;
+                        font-size: 14px;
+                        border-bottom: 1px solid #ddd;
+                        
+                        &.score-team2 span {
+                            padding: 5px 10px;
+                            border-radius: 8px;
+                            color: $blanc;
+                        }
+                        &.competition {
+                            width: 15%;
+                            color: $blanc;
+                        }
+                        &.commentaire {
+                            width: 25%;
+                        }
+                        &.statut {
+                            display: inline-block;
+                            line-height: 18px;
+                            padding: 6px 12px;
+                            -moz-border-radius: 5px;
+                            -webkit-border-radius: 5px;
+                            border-radius: 5px;
+                        }
+                    }
+                }
+            }
         }
-        /* label {
-            font-size: 14px;
-            line-height: 34px;
-            width: 100%;
-            font-family: Verdana,Arial,sans-serif;
-            font-style: italic;
-            display: inline-block;
-            text-align: right;
-        }
-        input[type=text], input[type=password] { 
-            padding: 0 2px;
-            font-size: 13px;
-            font-family: Verdana,Arial,sans-serif;
-            line-height: 22px;
-            box-sizing: border-box;
-            border: 1px solid #DDD;
-        }
-        input.min_input {
-            width: 15%;
-        } */
     }
 }
 /*
@@ -116,34 +141,7 @@
 .form .content .tags .tag span { margin-right: 5px; }
 .form .content .tags .tag a { position: relative; z-index: 2; color: #FFF; }
 
-#tab_admin { position: relative; width: auto; margin-top: 10px; }
-#tab_admin.filtre:after { content: " "; background-color: rgba(0, 0, 0, 0.5); display: block; width: 100%; height: 100%; min-height: 401px; position: absolute; top: 0; z-index: 1; }
-#tab_admin table { border-collapse: collapse; width: 100%; }
-#tab_admin tr.odd { background: #eee; }
-#tab_admin tr.odd:hover, #tab_admin tr:hover { background: #e0e0e0; }
-#tab_admin tr:hover td.boutons-actions a { display: inline-block; }
-#tab_admin tr.infos { background: #f4f4f4; }
-#tab_admin tr:last-child td:first-child { -moz-border-radius: 0px 0px 0px 5px; -webkit-border-radius: 0px 0px 0px 5px; border-radius: 0px 0px 0px 5px; }
-#tab_admin tr:last-child td:last-child { -moz-border-radius: 0px 0px 5px 0px; -webkit-border-radius: 0px 0px 5px 0px; border-radius: 0px 0px 5px 0px; }
-#tab_admin tr.infos td { cursor: pointer; }
-#tab_admin tr.inactif td { color: #aaa; }
-#tab_admin th { height: 46px; padding: 5px 15px; background: #A8C1D5; font-size: 16px; }
-#tab_admin th.w_70 { width: 70%; }
-#tab_admin th.w_15 { width: 15%; }
-#tab_admin th h4 { font-size: 18px; margin: 0; }
-#tab_admin td { height: 26px; padding: 10px 15px; vertical-align: middle; text-align: center; font-size: 14px; border-bottom: 1px solid #ddd; }
-#tab_admin td.boutons-actions a.hidden { display: none; }
-#tab_admin td.align_left { text-align: left; }
-#tab_admin .score-team2 span { padding: 0px 5px; border-radius: 8px; color: white; }
-#tab_admin .competition { width: 15%; text-align: left; }
-#tab_admin .competition div{ padding-left: 10px; }
-#tab_admin .commentaire { width: 25%; }
-#tab_admin .statut { display: inline-block; line-height: 18px; padding: 3px 6px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
-#tab_admin .boutons { width: 75px; }
-#tab_admin .boutons a { width: 25px; height: 25px; float: right; display: block; text-indent: -9999px; overflow: hidden; text-align: left; }
-#tab_admin .boutons a.suppr { background: url(../images/icon/png_black/circle-remove.png) no-repeat top left; background-size: 25px; }
-#tab_admin .boutons a.modif { background: url(../images/icon/png_black/hand-right.png) no-repeat top left; background-size: 25px; }
-#tab_admin .boutons a.voir { background: url(../images/icon/png_black/eye-open.png) no-repeat top left; background-size: 25px; }
+
 #tab_admin .modif-fast .content { text-align: left; }
 #tab_admin .modif-fast .content select { width: auto; }
 #tab_admin .modif-fast .content textarea { width: 100%; height: 150px; font-size: 13px; }

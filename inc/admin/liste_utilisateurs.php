@@ -9,8 +9,8 @@ if(is_array($listeUtilisateurs)):
 			<td><?=$rang[$unUtilisateur->getRang()];?></td>
 			<td><?=($unUtilisateur->getActif())?'Oui':'Non';?></td>
 			<td>
-				<button class="btn btn-warning edit-user"><i class="fa fa-edit" aria-hidden="true"></i></button>
-				<button class="btn btn-danger delete-user"><i class="fa fa-trash" aria-hidden="true"></i></button>
+				<button class="btn btn-warning edit-user" data-id="<?=$unUtilisateur->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+				<button class="btn btn-danger delete-user" data-id="<?=$unUtilisateur->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
 			</td>
 		</tr><?php
 	endforeach;

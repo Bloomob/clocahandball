@@ -26,7 +26,7 @@ $(function(){
     if(inscriptionModal.length > 0) {
         var formValid = false;
         
-        $('#nom, #prenom, #mail').on('keyup blur', function(){
+        inscriptionModal.find('#nom, #prenom, #mail').on('keyup blur', function(){
             if($(this).val().length > 0) {
                 $(this).popover('hide');
 				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
@@ -38,7 +38,7 @@ $(function(){
 			}
         });
         
-        $('#mot_de_passe').on('keyup', function(){
+        inscriptionModal.find('#mot_de_passe').on('keyup', function(){
             if($(this).val().length > 5) {
                 $(this).popover('hide');
 				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
@@ -55,7 +55,7 @@ $(function(){
 			}
         });
         
-        $('#confirm_mot_de_passe').on('keyup', function(){
+        inscriptionModal.find('#confirm_mot_de_passe').on('keyup', function(){
             if($(this).val() === $('#mot_de_passe').val()) {
                 $(this).popover('hide');
 				$(this).closest('.form-group').removeClass('has-error').addClass('has-success');
@@ -72,7 +72,7 @@ $(function(){
 			}
         });
         
-        $('#btnInscription').click(function(e){
+        inscriptionModal.find('#btnInscription').click(function(e){
             e.preventDefault();
             $('#connexionModal .alert-danger').addClass('hidden');
 

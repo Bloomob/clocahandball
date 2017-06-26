@@ -16,13 +16,13 @@
 	$options = array();
 	$listeTousUtilisateurs = $UtilManager->retourneListe($options);
 ?>
-<div class="wrap utilisateurs">
+<div class="wrapper utilisateurs">
 	<div class="row">
 		<div class="col-xs-12">
 			<h3>Liste des utilisateurs</h3>
 	    </div>
 	    <div class="col-xs-12 text-right marginB">
-	       <button class="btn btn-primary" data-toggle="modal" data-target="#filterUserModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
+	       <!--<button class="btn btn-primary" data-toggle="modal" data-target="#filterUserModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>-->
 	       <button class="btn btn-success" data-toggle="modal" data-target="#addUserModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un utilisateur</button>
 	    </div>
 		<div class="col-xs-12">
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 	</div>
-    <div class="modal fade" id="filterUserModal" tabindex="-1" role="dialog" aria-labelledby="filterUserLabel">
+    <!--<div class="modal fade" id="filterUserModal" tabindex="-1" role="dialog" aria-labelledby="filterUserLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 	<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserLabel">
 	    <div class="modal-dialog modal-md" role="document">
 	        <div class="modal-content">
@@ -117,13 +117,13 @@
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
 			                        <label for="nom">Nom <span class="text-danger">*</span></label><br>
-			                        <input type="text" id="nom" class="form-control" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Le nom est obligatoire">
+			                        <input type="text" id="nom" class="form-control" data-toggle="popover" data-placement="bottom" data-content="Le nom est obligatoire">
 			                    </div>
 			                </div>
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
 			                        <label for="prenom">Prénom <span class="text-danger">*</span></label><br>
-			                        <input type="text" id="prenom" class="form-control" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Le prénom est obligatoire">
+			                        <input type="text" id="prenom" class="form-control" data-toggle="popover" data-placement="bottom" data-content="Le prénom est obligatoire">
 			                    </div>
 		                    </div>
 		                </div>
@@ -145,38 +145,25 @@
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
 			                        <label for="mot_de_passe">Mot de passe</label><br>
-			                        <input type="password" id="mot_de_passe" class="form-control" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Le mot de passe doit faire plus de 5 caractères">
+			                        <input type="password" id="mot_de_passe" class="form-control" data-toggle="popover" data-placement="bottom" data-content="Le mot de passe doit faire plus de 5 caractères">
 			                    </div>
 		                    </div>
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
 			                        <label for="confirm_mot_de_passe">Confirmer le mot de passe</label><br>
-			                        <input type="password" id="confirm_mot_de_passe" class="form-control" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Les deux mots de passes sont différents">
+			                        <input type="password" id="confirm_mot_de_passe" class="form-control" data-toggle="popover" data-placement="bottom" data-content="Les deux mots de passes sont différents">
 			                    </div>
 		                    </div>
 		                </div>
 	                	<div class="row">
 		                	<div class="col-sm-6">
 			                    <div class="form-group">
-			                        <label for="rang">Rang *</label><br>
+			                        <label for="rang">Rang <span class="text-danger">*</span></label><br>
 			                        <select id="rang" class="form-control selectpicker">
 			                        	<option value="0">Membre</option>
 			                        	<option value="1">Admin</option>
 			                        	<option value="2">Redacteur</option>
 			                        </select>
-			                    </div>
-		                    </div>
-		                	<div class="col-sm-6">
-			                    <div class="form-group">
-			                    	<label>Actif ?</label><br>
-			                        <div class="btn-group" data-toggle="buttons">
-										<label class="btn btn-default">
-											<input type="radio" name="actif" id="actif_oui" autocomplete="off"> Oui
-										</label>
-										<label class="btn btn-default active">
-											<input type="radio" name="actif" id="actif_non" autocomplete="off" checked> Non
-										</label>
-									</div>
 			                    </div>
 		                    </div>
 	                    </div>

@@ -18,14 +18,14 @@
 	$listeHoraires = $HoraireManager->retourneListe($options);
 	// debug($listeHoraires);
 ?>
-<div class="wrap equipes">
+<div class="wrapper equipes">
     <div class="row">
     	<div class="col-xs-12">
             <h3>Liste des équipes</h3>
         </div>
         <div class="col-xs-12 text-right marginB">
            <button class="btn btn-primary" data-toggle="modal" data-target="#filtresModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
-           <button class="btn btn-success" data-toggle="modal" data-target="#addTeamModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter une équipe</button>
+           <button class="btn btn-success" data-toggle="modal" data-target="#teamModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter une équipe</button>
         </div>
         <div class="col-xs-12">
             <table class="table">
@@ -41,19 +41,20 @@
             </table>
         </div>
     </div>
-    <div class="modal fade" id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="addTeamLabel">
+    <div class="modal fade" id="teamModal" tabindex="-1" role="dialog" aria-labelledby="teamLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Ajouter une équipe</h4>
+                    <h4 class="modal-title" id="addTeamLabel">Ajouter une équipe</h4>
+                    <h4 class="modal-title hidden" id="editTeamLabel">Modifier une équipe</h4>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="categorie">Categorie *</label><br><select id="categorie" class="form-control selectpicker" title="Choissisez une catégorie"><?php
+                                    <label for="categorie">Categorie <span class="text-danger">*</span></label><br><select id="categorie" class="form-control selectpicker" title="Choissisez une catégorie"><?php
                                         foreach($listeCategories as $uneCategorie):?>
                                             <option value="<?=$uneCategorie->getId();?>"><?=$uneCategorie->getCategorieAll();?></option><?php
                                         endforeach;?>
@@ -62,7 +63,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="niveau">Niveau *</label><br>
+                                    <label for="niveau">Niveau <span class="text-danger">*</span></label><br>
                                     <select id="niveau" class="form-control selectpicker" title="Choissisez un niveau"><?php
                                         foreach($listeNiveau as $key => $niveau):?>
                                             <option value="<?=$key;?>"><?=$niveau;?></option><?php
@@ -72,7 +73,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="championnat">Championnat *</label><br>
+                                    <label for="championnat">Championnat <span class="text-danger">*</span></label><br>
                                     <select id="championnat" class="form-control selectpicker" title="Choissisez un championnat"><?php
                                         foreach($listeChampionnat as $key => $championnat):?>
                                             <option value="<?=$key;?>"><?=$championnat;?></option><?php
@@ -84,9 +85,9 @@
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="annee">Année *</label><br>
+                                    <label for="annee">Année <span class="text-danger">*</span></label><br>
                                     <select id="annee" class="form-control selectpicker" title="Choissisez une année"><?php
-                                        for($i=2012; $i <= $annee_suiv; $i++):?>
+                                        for($i=$annee_suiv; $i >= 2012; $i--):?>
                                             <option value="<?=$i;?>"><?=$i;?></option><?php
                                         endfor;?>
                                     </select>
@@ -94,7 +95,7 @@
                             </div>
                             <div class="col-sm-9">
                                 <div class="form-group">
-                                    <label for="entraineurs">Entraineur(s) *</label><br>
+                                    <label for="entraineurs">Entraineur(s) <span class="text-danger">*</span></label><br>
                                     <select id="entraineurs" class="form-control selectpicker" multiple data-live-search="true" title="Choissisez les entraineurs"><?php
                                         foreach($listeUtilisateurs as $unUtilisateur):?>
                                             <option value="<?=$unUtilisateur->getId();?>"><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></option><?php
@@ -109,7 +110,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <label for="jour_1">Entrainement(s) *</label>
+                                            <label for="jour_1">Entrainement(s) <span class="text-danger">*</span></label>
                                         </div>
                                     </div>
                                     <div class="row marginB">
@@ -243,14 +244,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="alert alert-danger diff-mot-de-passe hidden">Les deux mots de passes sont différents</p>
                             </div>
                         </div>
+                        <div class="row">
+		                	<div class="col-sm-12">
+			                    <p class="text-danger">* Champs obligatoires</p>
+		                    </div>
+	                    </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                     <button type="button" class="btn btn-success add-team">Ajouter</button>
+                    <button type="button" class="btn btn-warning edit-team hidden">Modifier</button>
                 </div>
             </div>
         </div>
