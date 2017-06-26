@@ -12,7 +12,13 @@
 	$page = 'admin';
 	$titre_page = 'admin';
 	$titre = 'Administration';
-    $filAriane = array('home', $titre_page);
+    $filAriane = array(
+        'home', 
+        array(
+            'url' => $page,
+            'libelle' => $titre_page
+        )
+    );
 
 	// On inclue la page de connexion à la BDD
 	include_once("inc/connexion_bdd_pdo.php");

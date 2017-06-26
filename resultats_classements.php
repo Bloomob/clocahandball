@@ -12,7 +12,39 @@
 	$page = 'resultats_classements';
 	$titre_page = 'resultats & classements';
 	$titre = 'Les r&eacute;sultats & classements';
-	$filAriane = array('home', $titre_page);
+	$filAriane = array(
+        'home',
+        array(
+			'url' => $page,
+			'libelle' => $titre_page
+		),
+        array(
+            array(
+                'url' => 'calendrier',
+                'libelle' => 'Calendrier'
+            ),
+            array(
+                'url' => 'matchs_a_venir',
+                'libelle' => 'Matchs à venir'
+            ),
+            array(
+                'url' => 'resultats_week-end',
+                'libelle' => 'Résultats de la semaine'
+            ),
+            array(
+                'url' => 'classements',
+                'libelle' => 'Classements'
+            ),
+            array(
+                'url' => 'coupe_yvelines',
+                'libelle' => 'CDY'
+            ),
+            array(
+                'url' => 'coupe_france',
+                'libelle' => 'CDF'
+            )
+        )
+    );
 
 	// On inclue la page de connexion à la BDD
 	include_once("inc/connexion_bdd_pdo.php");
@@ -34,44 +66,6 @@
 	else
 		$onglet = 'calendrier'; // Par défaut
 	
-	$pages = array(
-		array(
-			'url' => 'resultats_classements.php?onglet=matchs_a_venir',
-			'libelle' => 'Matchs à venir',
-			'grp' => 1
-		),
-		array(
-			'url' => 'resultats_classements.php?onglet=resultats_week-end',
-			'libelle' => 'Résultats de la semaine',
-			'grp' => 1
-		),
-		array(
-			'url' => 'resultats_classements.php?onglet=classements',
-			'libelle' => 'Classements',
-			'grp' => 1
-		),
-		array(
-			'url' => 'resultats_classements.php?onglet=coupe_yvelines',
-			'libelle' => 'CDY',
-			'grp' => 2
-		),
-		array(
-			'url' => 'resultats_classements.php?onglet=coupe_france',
-			'libelle' => 'CDF',
-			'grp' => 2
-		),
-		// array(
-		// 	'url' => 'resultats_classements.php?onglet=historique',
-		// 	'libelle' => 'Historique',
-		// 	'grp' => 2
-		// ),
-		array(
-			'url' => 'resultats_classements.php?onglet=calendrier',
-			'libelle' => 'Calendrier',
-			'grp' => 1
-		)
-	);
-	
 	switch($onglet) {
 		case 'matchs_a_venir':
 			$titre = 'Les matchs à venir';
@@ -88,9 +82,6 @@
 		case 'coupe_france':
 			$titre = 'La coupe de France';
 		break;
-		// case 'historique':
-		// 	$titre = 'L\'historique';
-		// break;
 		case 'calendrier':
 		default:
 			$titre = 'Le calendrier général';

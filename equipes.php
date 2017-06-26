@@ -11,7 +11,13 @@
 	$page = 'equipes';
 	$titre_page = 'equipes';
 	$titre = 'Les &eacute;quipes';
-	$filAriane = array('home', $titre_page);
+	$filAriane = array(
+        'home',
+        array(
+            'url' => $page,
+            'libelle' => $titre_page
+        )
+    );
 	$bilan = "";
 
 	// On inclue la page de connexion à la BDD
@@ -49,10 +55,10 @@
 		
 		if($detailsEquipe->getActif()) {
 			$filAriane[2] = array(
-				'raccourci' => $onglet,
-				'categorie' => $laCategorie->getCategorie(),
-				'genre' => $laCategorie->getGenre()
+				'url' => $onglet,
+				'libelle' => $laCategorie->getCategorie()
 			);
+            $filAriane[3] = '';
 		}
 	}
 ?>

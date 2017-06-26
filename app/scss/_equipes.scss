@@ -274,7 +274,6 @@
 .blocs .bloc table td.visitor-team { width: 40%; text-align:right; vertical-align: top; }
 .blocs .bloc .avant_match { text-align: right; }
 
-
 div.plan_acces { width: 580px; height: 450px; padding: 6px; border: 1px solid #D9DDDF; background: #fff; margin-top: 15px; }
 .plan_acces img { border: 1px solid #D9DDDF; }
 .new_champ2 { padding: 3px; border-top: 1px solid #D9DDDF; }
@@ -319,24 +318,6 @@ table .competition div {   padding: 5px; color: #FFF; text-align: center; }
 #tab_joueur .maillot {position: absolute; bottom: 2px; right: 2px; width: 50px; }
 #tab_joueur .petit_maillot {position: absolute; top: 10px; left: 0; width: 100%; color: white; text-shadow: 1px 1px 1px black; text-align: center; margin-left: -2px; font-size: 16px; }
 #tab_joueur .result { margin-left: 110px; padding-left: 10px; color: #666;}
-
-#planning { border-collapse: collapse; }
-#planning .j1 { background: #FFDDFF; }
-#planning .j2 { background: #DDFFFF; }
-#planning .j3 { background: #FFFFDD; }
-#planning .j4 { background: #DDDDFF; }
-#planning .j5 { background: #FFDDDD; }
-#planning .j6 { background: #DDFFDD; }
-#planning .heure { font-weight: bold; font-size: 16px; text-align: center;}
-#planning .minutes td { width: 2%; text-indent: -8px; border-bottom: 2px solid black; }
-#planning .minutes td.no_minute { border-bottom: none; }
-#planning .minute { border-left: 2px solid black; }
-#planning .minute_right { border-left: 4px dashed black; }
-#planning .jour { width: 15px; }
-#planning .jour span { display:block; white-space:nowrap; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); position: relative; }
-#planning .cat { padding: 3px 6px; /* border: 1px solid black; height: 43px; text-align: center; }
-#planning .ligne_planning { padding: 3px 6px; }
-#planning a { color: #000; }
 
 .classement { border-collapse: collapse; width: 100%; }
 .classement th{ color: #FFF; background: url(../images/box_bg.jpg) top repeat-x #62CFF8; border-bottom: 2px solid #5ABDE4; padding: 3px; }
