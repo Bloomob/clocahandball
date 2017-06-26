@@ -68,10 +68,8 @@
 				foreach($listeCategories as $uneCategorie):
 					$options = array('where' => 'annee = '. retourne_annee().' AND categorie = '. $uneCategorie->getId() .' AND actif = 1');
 					$uneEquipe = $EquipeManager->retourne($options);
-					if($uneEquipe->getId()>0):
-						$rac = retourneRaccourciById($uneCategorie->getId());
-						$cat = retourneCategorieById($uneCategorie->getId());?>
-						<li><a href="equipes.php?onglet=<?=$rac?>"> <?=$cat?></a></li><?php
+					if($uneEquipe->getId()>0):?>
+						<li><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci()?>"> <?=$uneCategorie->getCategorieAll()?></a></li><?php
 					endif;
 				endforeach;?>
 			</ul>
