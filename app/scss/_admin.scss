@@ -59,51 +59,6 @@
               }
             }
             &.calendrier {
-                table {
-                    tr{
-                        &:hover {
-                            background: #e0e0e0;
-                        }
-                        &.inactif td {
-                            color: #aaa;
-                        }
-                    }
-                    th {
-                        /*height: 46px;
-                        padding: 5px 15px;
-                        background: #A8C1D5;
-                        font-size: 16px;*/
-                    }
-                    td {
-                        height: 26px;
-                        padding: 10px 15px;
-                        vertical-align: middle;
-                        text-align: center;
-                        font-size: 14px;
-                        border-bottom: 1px solid #ddd;
-                        
-                        &.score-team2 span {
-                            padding: 5px 10px;
-                            border-radius: 8px;
-                            color: $blanc;
-                        }
-                        &.competition {
-                            width: 15%;
-                            color: $blanc;
-                        }
-                        &.commentaire {
-                            width: 25%;
-                        }
-                        &.statut {
-                            display: inline-block;
-                            line-height: 18px;
-                            padding: 6px 12px;
-                            -moz-border-radius: 5px;
-                            -webkit-border-radius: 5px;
-                            border-radius: 5px;
-                        }
-                    }
-                }
             }
         }
     }

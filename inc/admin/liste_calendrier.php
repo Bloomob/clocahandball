@@ -8,9 +8,9 @@ if(!empty($listeMatchs)):
 		<tr class="cat_<?=$unMatch->getCategorie();?>">
 			<td><?php
 				if($unMatch->getJoue()):?>
-					<button class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></button><?php
+					<span class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></span><?php
 				else:?>
-					<button class="btn btn-danger"><i class="fa fa-pause" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></button><?php 
+					<span class="btn btn-danger"><i class="fa fa-pause" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></span><?php 
 				endif;?>
 			</td>
 			<td class="competition">

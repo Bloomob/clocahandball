@@ -1,20 +1,72 @@
+
 /**
 /** Page saison
 **/
 
-#tab_result { width: 100%; border-collapse: collapse; }
-#tab_result tr th, #tab_result tr td { line-height: 20px; padding: 5px 0;}
-#tab_result tr th { background: url(../images/box_bg.jpg) top repeat-x #62CFF8; color: #FFF; border-bottom: 2px solid #5ABDE4; }
-#tab_result tr td { border-bottom: 1px solid #D9DDDF; text-align: center;}
-#tab_result .cell1 td { background: #F3F3F3; }
-#tab_result .cell2 td { background: none; }
-#tab_result .competition { width: 25%; text-align: left; }
-#tab_result .competition div{ padding-left: 10px; }
-#tab_result .puce { padding-left: 20px; text-align: left; }
-#tab_result .score-team2 span { padding: 0px 5px; border-radius: 8px; color: white; }
-#tab_result .date  { width: 75px; color: white; padding: 5px 0; font-size: 14px; }
-#tab_result .date .jour { background: #AC6E21; font-size: 18px; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
-#tab_result .date .mois { background: #725807; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; }
+.liste-matchs {
+	tr {
+		th, td {
+			line-height: 20px;
+			padding: 5px 0;
+		}
+		th {
+			background-color: #A8C1D5;
+            font-size: 16px;
+			color: #FFF;
+			text-align: center;
+		}
+		td {
+			height: 26px;
+            padding: 10px 15px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+            
+            &.score-team2 span {
+                padding: 5px 10px;
+                border-radius: 8px;
+                color: $blanc;
+            }
+            &.competition {
+                width: 15%;
+                color: $blanc;
+            }
+            &.commentaire {
+                width: 25%;
+            }
+            &.statut {
+                display: inline-block;
+                line-height: 18px;
+                padding: 6px 12px;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                border-radius: 5px;
+            }
+			&.puce {
+				padding-left: 20px;
+				text-align: left;
+				
+				[class*="cat_"] {
+                    width: 15px;
+                    height: 15px;
+                    display: inline-block;
+                    border-radius: 8px;
+                    margin-right: 5px;
+                    position: relative;
+                    top: 3px;
+                }
+			}
+		}
+	}
+
+}
+/* .liste-matchs .cell1 td { background: #F3F3F3; }
+.liste-matchs .cell2 td { background: none; }
+.liste-matchs .score-team2 span { padding: 0px 5px; border-radius: 8px; color: white; }
+.liste-matchs .date  { width: 75px; color: white; padding: 5px 0; font-size: 14px; }
+.liste-matchs .date .jour { background: #AC6E21; font-size: 18px; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.liste-matchs .date .mois { background: #725807; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; }
 
 .resultats_classement table tr td.categ { width: 50px; }
 .resultats_classement table tr td.categ .td0 { width: 100%; }
@@ -47,4 +99,4 @@ table td .events .extra { background: rgb(200, 120, 200); }
 
 .resultats_classement .legende { background: url(../images/icon/png_black/comment-exclamation.png) 100% 50% no-repeat rgb(255, 239, 221); -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; padding: 10px; text-align: center; }
 
-#export_cal { cursor: pointer; }
+#export_cal { cursor: pointer; } */

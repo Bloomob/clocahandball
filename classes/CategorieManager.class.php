@@ -95,28 +95,6 @@ class CategorieManager {
 		$this->_db->exec('DELETE FROM categories WHERE id = '.$categorie->getId());
 	}
 
-
-	/**********************************
-	**							     **
-	**   Existance d'une categorie	 **
-	** 							     **
-	** Entrée : (Int)	  		     **
-	** Sortie : (Bool)   		     **
-	**							     **
-	**********************************/
-
-	public function existeId($id) {
-		$q = 'SELECT * FROM categories WHERE id = '. $id;
-		$req = $this->_db->prepare($q);
-		$req->execute();
-		if($req->rowCount()>0){
- 			return true;
-		}
-		else {
-			return false;
-		}
-	}
-
 	/**********************************
 	**							     **
 	** 	 Retourne une categorie	     **
@@ -127,9 +105,10 @@ class CategorieManager {
 	**********************************/
 
 	public function retourneById($id) {
-		$q = 'SELECT * FROM categories WHERE id = '.$id.' LIMIT 0, 1';
-
-		$req = $this->_db->prepare($q);
+		$req = $this->_db->prepare(
+			'SELECT * FROM categories WHERE id = :id LIMIT 0, 1'
+		);
+		$req->bindValue(':id', $id, PDO::PARAM_INT);
 		$req->execute();
 		if($req->rowCount()>0){
 			$donnees = $req->fetch(PDO::FETCH_ASSOC);

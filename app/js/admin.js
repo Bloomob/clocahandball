@@ -7,31 +7,32 @@ $(function(){
 
 	var calendrier = $('.admin .calendrier');
 	if(calendrier.length > 0) {
-        $(function () {
-            $('#datetimepicker6').datetimepicker({
-                    icons: {
-                        time: "fa fa-clock-o",
-                        date: "fa fa-calendar",
-                        up: "fa fa-arrow-up",
-                        down: "fa fa-arrow-down"
-                    }
-                });
-            $('#datetimepicker7').datetimepicker({
-                useCurrent: false, //Important! See issue #1075
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            });
-            $("#datetimepicker6").on("dp.change", function (e) {
-                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-            });
-            $("#datetimepicker7").on("dp.change", function (e) {
-                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-            });
-        });
+			/*
+			* INIT
+			*/
+      $('#date_debut').datetimepicker({
+        icons: {
+          time: "fa fa-clock-o",
+          date: "fa fa-calendar",
+          up: "fa fa-arrow-up",
+          down: "fa fa-arrow-down"
+        }
+      });
+      $('#date_fin').datetimepicker({
+        useCurrent: false, //Important! See issue #1075
+        icons: {
+          time: "fa fa-clock-o",
+          date: "fa fa-calendar",
+          up: "fa fa-arrow-up",
+          down: "fa fa-arrow-down"
+        }
+      });
+      $("#date_debut").on("dp.change", function (e) {
+        $('#date_fin').data("DateTimePicker").minDate(e.date);
+      });
+      $("#date_fin").on("dp.change", function (e) {
+        $('#date_debut').data("DateTimePicker").maxDate(e.date);
+      });
     }
     
 	/***************************
