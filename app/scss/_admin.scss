@@ -45,7 +45,10 @@
         }
         .wrapper {
             padding: 10px;
-
+            
+            .has-success .form-control {
+                border-color: #3c763d;
+            }
             table {
               tr {
                 th, td {
@@ -57,8 +60,6 @@
               .text-height {
                 line-height: 34px;
               }
-            }
-            &.calendrier {
             }
         }
     }

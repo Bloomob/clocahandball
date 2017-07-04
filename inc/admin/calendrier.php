@@ -47,6 +47,9 @@
 
 	$options = array('orderby' => 'ordre');
 	$listeCategories = $CategorieManager->retourneListe($options);
+
+	$options = array('orderby' => 'raccourci');
+	$listeClub = $ClubManager->retourneListe($options);
 ?>
 <div class="wrapper calendrier">
     <div class="row">
@@ -181,51 +184,84 @@
                 <div class="modal-body">
                     <form>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="categorie">Categorie</label><br><select id="categorie" class="form-control selectpicker" multiple title="Filtrer par catégorie"><?php
+                                    <label for="categorie">Categorie</label><br><select id="categorie" class="form-control selectpicker" title="Choisissez une catégorie"><?php
                                         foreach($listeCategories as $uneCategorie):?>
                                             <option value="<?=$uneCategorie->getId();?>"><?=$uneCategorie->getCategorieAll();?></option><?php
                                         endforeach;?>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="competition">Compétition</label><br><select id="competition" class="form-control selectpicker" multiple title="Filtrer par compétition"><?php
+                                    <label for="competition">Compétition</label><br><select id="competition" class="form-control selectpicker" title="Choisissez une compétition"><?php
                                         foreach($listeCompetition as $key => $uneCompetition):?>
                                             <option value="<?=$key;?>"><?=$uneCompetition;?></option><?php
                                         endforeach;?>
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="niveau">Niveau</label><br><select id="niveau" class="form-control selectpicker" title="Choisissez un niveau"><?php
+                                        foreach($listeNiveau as $key => $unNiveau):?>
+                                            <option value="<?=$key;?>"><?=$unNiveau;?></option><?php
+                                        endforeach;?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="dates">Dates</label><br>
+                                    <div class='input-group date' id='date'>
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="lieu_dom">Lieu</label><br>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="lieu" id="lieu_dom" autocomplete="off" value="0"> Domicile
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="lieu" id="lieu_ext" autocomplete="off" value="1"> Exterieur
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="lieu" id="lieu_neu" autocomplete="off" value="2"> Neutre
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group journee">
+                                    <label for="journee">Journée</label><br><select id="journee" class="form-control selectpicker" title="Choisissez une journée"><?php
+                                        for($i=1; $i <= 26; $i++):?>
+                                            <option value="<?=$i;?>"><?=$i;?></option><?php
+                                        endfor;?>
+                                    </select>
+                                </div>
+                                <div class="form-group tour hidden">
+                                    <label for="tour">Tour</label><br>
+                                    <input type="text" id="tour" class="form-control" placeholder="Choisissez un tour">
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="form-group">
-                                    <label for="dates">Dates</label><br>
-                                    <div class="row">
-                                        <div class='col-md-5'>
-                                            <div class="form-group">
-                                                <div class='input-group date' id='date_debut'>
-                                                    <input type='text' class="form-control" />
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class='col-md-5'>
-                                            <div class="form-group">
-                                                <div class='input-group date' id='date_fin'>
-                                                    <input type='text' class="form-control" />
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <label for="adversaires">Adversaire</label><br><select id="adversaires" class="form-control selectpicker" multiple data-live-search="true"  title="Choisissez un adversaire"><?php
+                                        foreach($listeClub as $unClub):?>
+                                            <option value="<?=$unClub->getId();?>"><?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?></option><?php
+                                        endforeach;?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -233,13 +269,10 @@
                                     <label for="joue">Match joué ?</label><br>
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default">
-                                            <input type="radio" name="joue" id="joue1" autocomplete="off" value="2"> Les deux
+                                            <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1"> Oui
                                         </label>
                                         <label class="btn btn-default">
-                                            <input type="radio" name="joue" id="joue2" autocomplete="off" value="1"> Oui
-                                        </label>
-                                        <label class="btn btn-default active">
-                                            <input type="radio" name="joue" id="joue3" autocomplete="off" checked value="0"> Non
+                                            <input type="radio" name="joue" id="joue_non" autocomplete="off" value="0"> Non
                                         </label>
                                     </div>
                                 </div>
