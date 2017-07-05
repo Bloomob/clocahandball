@@ -51,14 +51,18 @@
                 th, td {
                   vertical-align: middle;
                 }
+                td {
+                  .statut {
+                    display: inline-block;
+                    padding: 5px 10px;
+                  }
+                }
               }
             }
             &.equipes {
               .text-height {
                 line-height: 34px;
               }
-            }
-            &.calendrier {
             }
         }
     }

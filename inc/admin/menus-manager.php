@@ -1,56 +1,54 @@
-<div class="row">
-	<div class="col-xs-12">
-        <h3>Menu manager</h3>
-    </div>
-    <div class="col-xs-12 text-right">
-        <a href="#" class="add">Ajouter</a>
-    </div>
-	<div class="col-xs-12">
-		<table class="table">
-			<tr>
-				<th></th>
-				<th>Nom</th>
-				<th>Ordre</th>
-				<th>Image</th>
-				<th>Actif</th>
-				<th>Est supprimable ?</th>
-				<th></th>
-				<th></th>
-			</tr><?php
-			// On instancie les variables
-			$i=0;
-			$annee_actuelle = $annee;
-			$options = array();
-			// Si on récupère le param 'parent' dans l'url, on l'ajoute dans l'array $options
-			if(isset($_GET['parent']))
-				$options['where'] = 'parent='. intval($_GET['parent']);
+<?php
+	// MenuManagerManager = new MenuManagerManager($connexion);
 
-            $listeMenuManager = $MenuManagerManager->retourneListe(options);
-			// $listeMenuManager = listeMenuManager($options);
-			if(is_array($listeMenuManager)):
-				foreach($listeMenuManager as $unMenuManager):?>
-					<tr class="<?php if($i%2==1) echo 'odd'; ?>">
-						<td><input type="checkbox" name="id_<?=$unMenuManager->getId();?>"/></td>
-						<td><?=$unMenuManager->getNom();?></td>
-						<td><?=$unMenuManager->getOrdre();?></td>
-						<td><?=$unMenuManager->getImage();?></td>
-						<td><?=$unMenuManager->getActif();?></td>
-						<td><?=$unMenuManager->getEstSupprimable();?></td>
-						<td><a href="?onglet=menus-manager&amp;parent=<?=$unMenuManager->getId();?>"><i class="fa fa-gear" aria-hidden="true"></i></td>
-						<td class="boutons">
-							<a href="<?=$unMenuManager->getId();?>" class="suppr"><i class="fa fa-trash" aria-hidden="true"></i></a>
-							<a href="<?=$unMenuManager->getId();?>" class="modif"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-							<a href="<?=$unMenuManager->getId();?>" class="voir"><i class="fa fa-eye" aria-hidden="true"></i></a>
-						</td>
-					</tr><?php
-					$i++;
-				endforeach;
-			else:?>
+	$options = array();
+	// Si on récupère le param 'parent' dans l'url, on l'ajoute dans l'array $options
+	if(isset($_GET['parent']))
+		$options['where'] = 'parent='. intval($_GET['parent']);
+
+    $listeMenuManager = $MenuManagerManager->retourneListe($options);
+?>
+<div class="wrapper menus-manager">
+    <div class="row">
+    	<div class="col-xs-12">
+            <h3>Menu manager</h3>
+        </div>
+        <div class="col-xs-12 text-right marginB">
+           <button class="btn btn-primary" data-toggle="modal" data-target="#filterMenuManagerModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
+           <button class="btn btn-success" data-toggle="modal" data-target="#menuManagerModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un menu manager</button>
+        </div>
+        <div class="col-xs-12">
+            <table class="table liste-menus-manager">
 				<tr>
-					<td colspan="7">Aucun menu enregistré</td>
+					<th>Nom</th>
+					<th>Ordre</th>
+					<th>Image</th>
+					<th>Actif</th>
+					<th>Est supprimable ?</th>
+					<th></th>
 				</tr><?php
-			endif;
-			?>
-		</table>
+				if(is_array($listeMenuManager)):
+					foreach($listeMenuManager as $unMenuManager):?>
+						<tr>
+							<td><?=$unMenuManager->getNom();?></td>
+							<td><?=$unMenuManager->getOrdre();?></td>
+							<td><?=$unMenuManager->getImage();?></td>
+							<td><?=($unMenuManager->getActif())?'Oui':'Non';?></td>
+							<td><?=($unMenuManager->getEstSupprimable())?'Oui':'Non';?>
+							</td>	
+							<td>
+								<button class="btn btn-warning edit-match" data-id="<?=$unMenuManager->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+								<button class="btn btn-danger delete-match" data-id="<?=$unMenuManager->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							</td>
+						</tr><?php
+					endforeach;
+				else:?>
+					<tr>
+						<td colspan="7">Aucun menu enregistré</td>
+					</tr><?php
+				endif;
+				?>
+			</table>
+		</div>
 	</div>
 </div>

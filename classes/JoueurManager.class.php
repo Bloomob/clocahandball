@@ -212,6 +212,21 @@ class JoueurManager {
 	 	endif;
 	}
 
+	/**********************************
+	**							     **
+	** Compte le nombre de joueur	 **
+	** 							     **
+	** Entrée : (Void)	  		     **
+	** Sortie : (Int) 			     **
+	**							     **
+	**********************************/
+
+	public function compte() {
+		$req = $this->_db->prepare('SELECT id FROM joueurs');
+		$req->execute();
+ 		return $req->rowCount();
+	}
+
 	/********************************
 	**							   **
 	**    Chargement de la BDD 	   **

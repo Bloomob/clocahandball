@@ -13,66 +13,61 @@
 
 	$options = array('orderby' => 'id', 'limit' => $limite_start.', '.$limite_end);
 	$listeJoueurs = $JoueurManager->retourneListe($options);
+
+	$nbrJoueurs = $JoueurManager->compte();
 ?>
-<div class="tab_content2 joueurs">
-	<h3 class="">Liste des joueurs</h3>
-	<div id="zone-ajout">
-		<div class="boutons-actions action-ajout">
-			<div class="left">
-				<a href="#" class="btn btn-ajout">Ajouter un joueur</a>
-			</div>
-			<div class="clear_b"></div>
-		</div>
-	</div>
-	<div>Il y a <?php echo nbr_joueurs();?> joueurs au total</div>
-	<div  id="tab_admin">
-		<table>
-			<tr class="titres">
-				<th></th>
-				<th class="num w_5">N∞</th>
-				<th class="nom align_left w_50">Nom/PrÈnom</th>
-				<th class="age w_5">Age</th>
-				<th class="equipe align_left w_15">Equipe</th>
-				<th class="poste align_left w_5">Poste</th>
-				<th class="actif align_left w_5">Actif</th>
-				<th class="options w_15"></th>
-			</tr><?php
-			$i = 0;
-			$options = array();
-			$listeJoueurs = $JoueurManager->retourneListe($options);
-			if(!empty($listeJoueurs)):
-				foreach($listeJoueurs as $unJoueur):
-					$unUtilisateur = $UtilisateurManager->retourneById($unJoueur->getId_utilisateur());?>
-					<tr <?php if($i%2==1) echo 'class="odd"'; ?>>
-						<td><input type="checkbox" name="joueurs_check" class="joueurs_check"/></td>
-						<td><span class="joueurs_date"><?=$unJoueur->getnumero();?></span></td>
-						<td><span class="joueurs_nom"><?=$unUtilisateur->getNom();?> <span class="joueurs_prenom"><?=$unUtilisateur->getPrenom();?></span></span></td>
-						<td><span class="joueurs_date"><?=$unJoueur->date();?></span></td>
-						<td><span class="joueurs_poste"><?=$postes[$unJoueur->getPoste()];?></span></td>
-						<td><span class="joueurs_actif"><?=retourneTextBool($unJoueur->getActif());?></span></td>
-						<td class="boutons-actions">
-							<a href="<?=$unJoueur->getId_utilisateur();?>" class="btn btn-modif btn-slim" title="Modifier">Modifier le joueur</a>
-							<a href="<?=$unJoueur->getId_utilisateur();?>" class="btn btn-suppr btn-slim" title="Supprimer">Supprimer le joueur</a>
-						</td>
-					</tr><?php
-					$i++;
-				endforeach;
-			else:?>
-				<tr>
-					<td colspan="8">Aucun joueur enregistrÈ</td>
+<div class="wrapper joueurs">
+    <div class="row">
+    	<div class="col-xs-12">
+            <h3>Liste des joueurs</h3>
+        </div>
+        <div class="col-xs-12 text-right marginB">
+           <button class="btn btn-primary" data-toggle="modal" data-target="#filterJoueurModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
+           <button class="btn btn-success" data-toggle="modal" data-target="#joueurModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un joueur</button>
+        </div>
+        <div class="col-xs-12">
+            <table class="table liste-joueurs">
+				<tr class="thead-inverse">
+					<th>Nom/Pr√©nom</th>
+					<th>Age</th>
+					<th>Poste</th>
+					<th>Num√©ro</th>
+					<th>Actif</th>
+					<th></th>
 				</tr><?php
-			endif;?>
-		</table>
-	</div>
-	<div class="pagination">
-		Page : <?php
-			$nbrPage = ceil(nbr_joueurs()/$nb_par_page);
-			for($i=1; $i<=$nbrPage; $i++) {
-				if($num_page == $i)
-					echo '<span>'.$i.'</span> ';
-				else
-					echo '<a href="admin.php?page=joueurs&num_p='.$i.'">'.$i.'</a> ';
-			}
-		?>
+				if(!empty($listeJoueurs)):
+					foreach($listeJoueurs as $unJoueur):
+						$unUtilisateur = $UtilisateurManager->retourneById($unJoueur->getId_utilisateur());?>
+						<tr>
+							<td><?=$unUtilisateur->getNom();?> <?=$unUtilisateur->getPrenom();?></td>
+							<td><?=$unJoueur->getDate_naissance();?></td>
+							<td><?=$postes[$unJoueur->getPoste()];?></td>
+							<td><?=$unJoueur->getNumero();?></td>
+							<td><?=($unJoueur->getActif())?'Oui':'Non';?></td>
+							<td>
+								<button class="btn btn-warning" data-toggle="modal" data-target="#playersModal" data-id="<?=$unJoueur->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+								<button class="btn btn-danger delete-team" data-id="<?=$unJoueur->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							</td>
+						</tr><?php
+					endforeach;
+				else:?>
+					<tr>
+						<td colspan="8">Aucun joueur enregistr√©</td>
+					</tr><?php
+				endif;?>
+			</table>
+		</div>
+		<div class="text-center">
+			<ul class="pagination"><?php
+				$nbrPage = ceil($nbrJoueurs/$nb_par_page);
+				for($i=1; $i<=$nbrPage; $i++):
+					if($num_page == $i):?>
+						<li><a href="#"><?=$i;?></a></li><?php
+					else:?>
+						<li><a href="admin.php?page=joueurs&num_p=<?=$i;?>"><?=$i;?></a></li><?php
+					endif;
+				endfor;?>
+			</ul>
+		</div>
 	</div>
 </div>

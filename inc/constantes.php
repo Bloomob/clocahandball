@@ -14,7 +14,7 @@
 
 	$rang = array('Membre', 'Admin', 'R&eacute;dacteur', 'Entraineur');
 
-	$postes = array('Gardien', 'Ailier gauche', 'Arrière gauche', 'Demi-centre', 'Arrière droit', 'Ailier droit', 'Pivot');
+	$postes = array('','Gardien', 'Demi-centre', 'Arrière gauche', 'Arrière droit', 'Ailier gauche', 'Ailier droit', 'Pivot');
 	
 	define ('INFOS_ACHERES', 1);
 	define ('INFOS_FFH', 2);

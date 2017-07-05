@@ -15,98 +15,59 @@
 	$listeClubs = $ClubManager->retourneListe($options);
 	$nbr_clubs = $ClubManager->compte();
 ?>
-<div class="tab_content2 clubs">
-	<h3>Liste des clubs</h3>
-	<div id="zone-ajout">
-		<div class="boutons-actions action-ajout">
-			<div class="left">
-				<a href="#" class="btn btn-ajout ajout-match">Ajouter un club</a>
-			</div>
-			<div class="clear_b"></div>
-		</div>
-	</div>
-	<div id="tab_admin">
-		<table>
-			<tr class="titres">
-				<th></th>
-				<th class="boutons-actions">
-					<h4>Nom</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th class="boutons-actions">
-					<h4>Raccourci</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th class="boutons-actions">
-					<h4>Num&eacute;ro</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th class="boutons-actions">
-					<h4>Ville</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th class="boutons-actions">
-					<h4>Code Postal</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th class="boutons-actions">
-					<h4>Actif</h4>
-					<div>
-						<a href="#" class="btn btn-tri-down btn-tiny" title="Tri A-Z">Tri down</a>
-						<a href="#" class="btn btn-tri-up btn-tiny marginL2" title="Tri Z-A">Tri up</a>
-					</div>
-				</th>
-				<th>
-					<h4>Options</h4>
-				</th>
-			</tr><?php
-			if(is_array($listeClubs)):
-				foreach($listeClubs as $key => $unClub):?>
-					<tr class="<?php if($key%2==0) echo 'odd'; ?>">
-						<td><input type="checkbox" name="id_<?=$unClub->getId();?>"/></td>
-						<td><?=$unClub->getNom();?></td>
-						<td><?=$unClub->getRaccourci();?></td>
-						<td><?=$unClub->getNumero();?></td>
-						<td><?=$unClub->getVille();?></td>
-						<td><?=$unClub->getCode_postal();?></td>
-						<td><?=$unClub->getActif();?></td>
-						<td class="boutons-actions">
-							<a href="<?=$unClub->getId();?>" class="btn btn-modif btn-slim" title="Modifier le match">Modifier le match</a>
-							<a href="<?=$unClub->getId();?>" class="btn btn-suppr btn-slim" title="Supprimer le match">Supprimer le match</a>
-						</td>
-					</tr><?php
-				endforeach;
-			else:?>
-				<tr>
-					<td colspan="7">Aucun club enregistrée</td>
+<div class="wrapper clubs">
+    <div class="row">
+    	<div class="col-xs-12">
+            <h3>Liste des clubs</h3>
+        </div>
+        <div class="col-xs-12 text-right marginB">
+           <button class="btn btn-primary" data-toggle="modal" data-target="#filterClubModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
+           <button class="btn btn-success" data-toggle="modal" data-target="#clubModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un club</button>
+        </div>
+        <div class="col-xs-12">
+            <table class="table liste-clubs">
+				<tr class="thead-inverse">
+					<th>Nom</th>
+					<th>Raccourci</th>
+					<th>Numéro</th>
+					<th>Ville</th>
+					<th>Code Postal</th>
+					<th>Actif</th>
+					<th>Options</th>
 				</tr><?php
-			endif;?>
-		</table>
-		<div class="pagination">
-			Page : <?php
-				$nbrPage = ceil($nbr_clubs/$nbr_par_page);
-				for($i=1; $i<=$nbrPage; $i++) {
-					if($num_page == $i)
-						echo '<span>'.$i.'</span> ';
-					else
-						echo '<a href="admin.php?page=clubs&amp;num_page='.$i.'">'.$i.'</a> ';
-				}
-			?>
+				if(is_array($listeClubs)):
+					foreach($listeClubs as $key => $unClub):?>
+						<tr>
+							<td><?=stripslashes($unClub->getNom());?></td>
+							<td><?=stripslashes($unClub->getRaccourci());?></td>
+							<td><?=$unClub->getNumero();?></td>
+							<td><?=stripslashes($unClub->getVille());?></td>
+							<td><?=$unClub->getCode_postal();?></td>
+							<td><?=($unClub->getActif())?'Oui':'Non';?></td>
+							<td>
+								<button class="btn btn-warning edit-match" data-id="<?=$unClub->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+								<button class="btn btn-danger delete-match" data-id="<?=$unClub->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
+							</td>
+						</tr><?php
+					endforeach;
+				else:?>
+					<tr>
+						<td colspan="7">Aucun club enregistrée</td>
+					</tr><?php
+				endif;?>
+			</table>
+			<div class="text-center">
+				<ul class="pagination"><?php
+					$nbrPage = ceil($nbr_clubs/$nbr_par_page);
+					for($i=1; $i<=$nbrPage; $i++):
+						if($num_page == $i):?>
+							<li><a href="#"><?=$i;?></a></li><?php
+						else:?>
+							<li><a href="admin.php?page=clubs&amp;num_page=<?=$i;?>"><?=$i;?></a></li><?php
+						endif;
+					endfor;?>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

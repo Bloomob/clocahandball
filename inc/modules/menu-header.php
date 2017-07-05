@@ -9,8 +9,8 @@
 					<a href="<?php echo $unMenu->getUrl();?>.php" <?php echo ($page==$unMenu->getUrl())?'class="active"':''; ?>>
 						<span>
 							<span>
-								<?php echo ($unMenu->getImage() != '') ? $unMenu->getImage() : $unMenu->getNom();?>
-								<!--Accueil <img src="images/home.png" alt="home" height="35px;"/>-->
+								<?=($unMenu->getImage() != '') ? $unMenu->getImage() : $unMenu->getNom();?>
+								<?=($unMenu->getUrl()=='resultats_classements')?$annee_actuelle.'-'.$annee_suiv:'';?>
 							</span>
 						</span>
 					</a>

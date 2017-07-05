@@ -102,4 +102,45 @@ $(function(){
             }
         });
     }
+
+    /*  */
+    
+    // $.jqplot.config.enablePlugins = true;
+    /*
+        $liste_stats = $MatchManager->liste_stats($laCategorie->getId(), $annee_actuelle);
+        if(!empty($liste_stats)) {
+            echo "var data1 = [";
+            echo "['Victoires', ". $liste_stats['nb_vic'] ."],";
+            echo "['Nuls', ". $liste_stats['nb_nul'] ."],";
+            echo "['D&eacute;faites', ". $liste_stats['nb_def'] ."]";
+            echo "];";
+            ?>
+            var nbr_match = <?=$liste_stats['nb_vic'];?> + <?=$liste_stats['nb_nul'];?> + <?=$liste_stats['nb_def'];?>;
+            var plot2 = $.jqplot('chartdiv1', [data1], {
+                seriesColors:['#009933', '#FFA319', '#FF3333'],
+                seriesDefaults: {
+                    // Make this a donut chart.
+                    renderer: $.jqplot.DonutRenderer, 
+                    rendererOptions: {
+                        showDataLabels: true,
+                        startAngle: -90,
+                        dataLabels: 'value',
+                        //dataLabelFormatString: "%d",
+                    }
+                },
+                grid: {
+                    backgroundColor: 'transparent',
+                    borderWidth: 0,
+                    shadow:false,
+                },
+                legend: { 
+                    show: true,
+                    location: 'e',
+                    fontSize: '12px',
+                    border: 'none',
+                },
+                // title: "<span>" + nbr_match + "</span> matchs disput&eacute;s",
+            });<?php
+        }
+    */
 });
