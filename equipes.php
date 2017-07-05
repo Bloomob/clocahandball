@@ -86,18 +86,18 @@
 											<li role="presentation" class="active">
 												<a href="#resume" aria-controls="resume" role="tab" data-toggle="tab"><i class="fa fa-info" aria-hidden="true"></i>Résumé</a>
 											</li>
-											<li role="presentation" class="active">
+											<li role="presentation">
 												<a href="#calendrier" aria-controls="calendrier" role="tab" data-toggle="tab"><i class="fa fa-calendar" aria-hidden="true"></i>Calendrier</a>
 											</li>
-											<li role="presentation" class="active">
+											<li role="presentation">
 												<a href="#joueurs" aria-controls="joueurs" role="tab" data-toggle="tab"><i class="fa fa-male" aria-hidden="true"></i>Effectif</a>
 											</li>
-											<li role="presentation" class="active">
+											<li role="presentation">
 												<a href="#statistiques" aria-controls="statistiques" role="tab" data-toggle="tab"><i class="fa fa-line-chart" aria-hidden="true"></i>Statistiques</a>
 											</li>
 										</ul>
 										<div class="tab-content">
-											<div role="tabpanel" class="tab-panefade in active" id="resume">
+											<div role="tabpanel" class="tab-pane fade in active" id="resume">
 												<h3>Fiche équipe</h3>
 												<div class="row">
 													<div class="col-sm-3">
