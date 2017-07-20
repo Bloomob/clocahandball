@@ -45,8 +45,8 @@
 	$listeMatchs = $MatchManager->retourneListe($options);
 	$nbr_matchs = count($listeMatchs);
 
-	$options = array('orderby' => 'ordre');
-	$listeCategories = $CategorieManager->retourneListe($options);
+    $options = array('where' => 'annee = '. $annee_actuelle, 'orderby' => 'niveau');
+	$listeEquipe = $EquipeManager->retourneListe($options);
 
 	$options = array('orderby' => 'raccourci');
 	$listeClub = $ClubManager->retourneListe($options);
@@ -101,8 +101,10 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="categorie">Categorie</label><br><select id="categorie" class="form-control selectpicker" multiple title="Filtrer par catégorie"><?php
-                                        foreach($listeCategories as $uneCategorie):?>
+                                    <label for="categorie">Categorie</label><br>
+                                    <select id="categorie" class="form-control selectpicker" multiple title="Filtrer par catégorie"><?php
+                                        foreach($listeEquipe as $uneEquipe):
+		                                    $uneCategorie = $CategorieManager->retourneById($uneEquipe->getCategorie());?>
                                             <option value="<?=$uneCategorie->getId();?>"><?=$uneCategorie->getCategorieAll();?></option><?php
                                         endforeach;?>
                                     </select>
@@ -186,8 +188,10 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="categorie">Categorie</label><br><select id="categorie" class="form-control selectpicker" title="Choisissez une catégorie"><?php
-                                        foreach($listeCategories as $uneCategorie):?>
+                                    <label for="categorie">Categorie</label><br>
+                                    <select id="categorie" class="form-control selectpicker" title="Choisissez une catégorie"><?php
+                                        foreach($listeEquipe as $uneEquipe):
+		                                    $uneCategorie = $CategorieManager->retourneById($uneEquipe->getCategorie());?>
                                             <option value="<?=$uneCategorie->getId();?>"><?=$uneCategorie->getCategorieAll();?></option><?php
                                         endforeach;?>
                                     </select>
@@ -228,8 +232,8 @@
                                 <div class="form-group">
                                     <label for="lieu_dom">Lieu</label><br>
                                     <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="lieu" id="lieu_dom" autocomplete="off" value="0"> Domicile
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="lieu" id="lieu_dom" autocomplete="off" value="0" checked> Domicile
                                         </label>
                                         <label class="btn btn-default">
                                             <input type="radio" name="lieu" id="lieu_ext" autocomplete="off" value="1"> Exterieur
@@ -257,9 +261,10 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="form-group">
-                                    <label for="adversaires">Adversaire</label><br><select id="adversaires" class="form-control selectpicker" multiple data-live-search="true"  title="Choisissez un adversaire"><?php
+                                    <label for="adversaires">Adversaire(s)</label><br>
+                                    <select id="adversaires" class="form-control selectpicker" multiple data-live-search="true" data-max-options="4" title="Choisissez un adversaire"><?php
                                         foreach($listeClub as $unClub):?>
-                                            <option value="<?=$unClub->getId();?>"><?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?></option><?php
+                                            <option value="<?=$unClub->getId();?>" data-nom="<?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?>"><?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?></option><?php
                                         endforeach;?>
                                     </select>
                                 </div>
@@ -268,14 +273,49 @@
                                 <div class="form-group">
                                     <label for="joue">Match joué ?</label><br>
                                     <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1"> Oui
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1" checked> Oui
                                         </label>
                                         <label class="btn btn-default">
                                             <input type="radio" name="joue" id="joue_non" autocomplete="off" value="0"> Non
                                         </label>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8 rencontres"><?php
+                                for($i=1; $i<5; $i++):?>
+                                    <div class="row rencontre hidden">
+                                        <div class="col-sm-2 lieu">
+                                            <div class="btn-group" data-toggle="buttons">
+                                                <label class="btn btn-default <?=($i==1)?'active':''?>">
+                                                    <input type="radio" name="isDom" id="isDom_<?=$i?>" autocomplete="off" value="<?=$i?>" <?=($i==1)?'checked':''?>>Reçoit
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 equipe1 text-right">
+                                            <p></p>
+                                        </div>
+                                        <div class="col-sm-2 text-right">
+                                            <select id="score_dom_<?=$i?>" class="form-control selectpicker scores_dom"><?php
+                                                for($j=0; $j <= 60; $j++):?>
+                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
+                                                endfor;?>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <select id="score_ext_<?=$i?>" class="form-control selectpicker scores_ext"><?php
+                                                for($j=0; $j <= 60; $j++):?>
+                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
+                                                endfor;?>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3 equipe2">
+                                            <p></p>
+                                        </div>
+                                    </div><?php
+                                endfor;?>
                             </div>
                         </div>
                     </form>
