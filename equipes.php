@@ -98,14 +98,15 @@
 										</ul>
 										<div class="tab-content">
 											<div role="tabpanel" class="tab-pane fade in active" id="resume">
-												<h3>Fiche équipe</h3>
 												<div class="row">
-													<div class="col-sm-3">
-														<div class="photo_groupe">
-															<img src='images/equipe_lambda.png' alt='Lambda' width='100%' />
-														</div>
+													<div class="col-xs-12"><?php
+                                                        if($detailsEquipe->getId_photo_equipe()):?>
+                                                            <div class="photo_groupe">
+                                                                <img src='images/equipe_lambda.png' alt='Lambda' width='100%' />
+                                                            </div><?php
+                                                        endif;?>
 													</div>
-													<div class="col-sm-9 infos">
+													<div class="col-sm-12 infos marginT">
 														<div class="bloc">
 															<?php  ?>
 															<h4><i class="fa fa-search" aria-hidden="true"></i>L'&eacute;quipe &agrave; la loupe</h4>
@@ -219,7 +220,6 @@
 												if(!empty($listeMatchs)):?>
 													<div class="calendrier">
 														<div class="wrapper">
-															<h3>calendrier & résultats</h3>
 															<table class="table"><?php
 																$k=2;
 																$mois = '';
@@ -364,7 +364,6 @@
 												$listeJoueurs = $JoueurManager->retourneListe($options);
 												if(!empty($listeJoueurs) && false): ?>
 													<div class="wrapper">
-														<h3>joueurs</h3>
 														<div id="tab_joueur"><?php
 															$k=2;
 															$poste = 0;
@@ -405,7 +404,6 @@
 											<div role="tabpanel" class="tab-pane" id="statistiques"><?php
 												$listeStats = $MatchManager->liste_stats($laCategorie->getId(), $annee_actuelle);
 												if(!empty($listeStats)):?>
-													<h3>statistiques</h3>
 													<div class="marginT">
 														<div class="row">
 															<div class="col-sm-6 bilan_matchs">

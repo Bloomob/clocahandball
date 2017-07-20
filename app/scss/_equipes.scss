@@ -6,9 +6,29 @@
     .wrapper {
         padding: 10px;
         
-        h3 {
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        .nav-tabs {
+            li {
+                a {
+                    background-color: $bleu-clair;
+                    border-bottom: 1px solid #ddd;
+                    font-size: 18px;
+                    color: $blanc;
+                    
+                    .fa {
+                        margin-right: 10px;
+                    }
+                }
+                &.active {
+                    a {
+                        background-color: $blanc2;
+                        border-bottom: 1px solid transparent;
+                        color: $bleu-fonce;
+                    }
+                }
+            }
+        }
+        .tab-content {
+            padding-top: 15px;
         }
         .bloc {
             border-radius: 5px;
@@ -33,12 +53,13 @@
                 text-align: center;
                 padding: 5px 10px;
                 font-size: 13px;
+                    color: $bleu-fonce;
             }
             p span {
                 display: inline-block;
                 padding: 5px 10px;
                 border-radius: 5px;
-                color: white;
+                color: $blanc;
             }
             &.sg1 {
                 border: 1px solid #99cc00;
@@ -140,26 +161,21 @@
             color: #666;
             
             .bloc {
-                border-radius: 5px;
-                border: 1px solid #ef6417;
-                background-color: #FFE3A6;
-
+                border: 1px solid $bleu-clair;
+                background-color: rgba($bleu-clair, .5);
+                
                 h4 {
-                    padding: 7px;
-                    margin: 0px;
-                    text-align: center;
-                    color: $blanc;
-                    text-transform: uppercase;
-                    background: #ef6417;
+                    background: $bleu-clair;
                 }
                 .col-sm-4 {
                     text-align: right;
                     text-transform: uppercase;
-                    color: #ef6417;
                     padding: 8px 15px;
+                    color: $bleu-fonce;
                 }
                 .col-sm-8 {
                     padding: 8px 15px;
+                    color: $bleu-fonce;
                     
                     span {
                         display: inline-block;
@@ -170,23 +186,13 @@
                 } 
             }
         }
-        .dernieres_actus {
+        .dernieres_actus, .saison_passee {
             .bloc {
-                border: 1px solid rgb(19, 126, 75);
-                background-color: #B6F2B5;
+                border: 1px solid $bleu-clair;
+                background-color: rgba($bleu-clair, .5);
                 
                 h4 {
-                    background: rgb(19, 126, 75);
-                }
-            }
-        }
-        .saison_passee {
-            .bloc {
-                border: 1px solid rgb(12, 95, 202);
-                background-color: #C7D6FF;
-                
-                h4 {
-                    background: rgb(12, 95, 202);
+                    background: $bleu-clair;
                 }
             }
         }

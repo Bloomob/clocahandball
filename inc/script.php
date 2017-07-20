@@ -4,6 +4,7 @@
 <script>require('js/admin')</script>
 <script>require('js/tarifs')</script>
 <script>require('js/categories')</script>
+<script>require('js/calendrier')</script>
 
 <!--<script src="javascript/jquery-ui-1.11.1/external/jquery/jquery.js"></script>
 <script src="javascript/jquery-ui-1.11.1/jquery-ui.min.js"></script>
