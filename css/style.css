@@ -32,27 +32,6 @@
 #staff .fiche .photo img { border: 1px solid #D9DDDF; position: relative; }
 #staff .fiche .description a { color: #ef6417; }
 
-
-/**
-/** Page adhesion
-**/
-
-#comment_sinscrire { font-size: 13px; }
-#comment_sinscrire .sous_titre { font-size: 14px; margin-bottom: 20px; }
-#comment_sinscrire ol { padding-left: 25px; }
-#comment_sinscrire ol > li { list-style-type: octal; margin-bottom: 10px; }
-#comment_sinscrire .nouveaute { background: #EF6417; margin: 10px 0; padding: 10px; border-radius: 10px; }
-#comment_sinscrire .nouveaute h4 { color: #FFF; margin: 0; padding: 0 0 10px 25px; }
-
-#tarifs { font-size: 13px; }
-#tarifs table { width: 100%; }
-#tarifs td, #tarifs th { text-align: center; padding: 5px 0; line-height: 20px; }
-#tarifs tr.cell1 td { background: #F3F3F3; }
-#tarifs tr.cell2 td { background: none; }
-
-#documents_a_venir img { width: 100%; }
-#documents_a_venir table tr td { padding: 20px; text-align: center; }
-
 /**
 /** Page Evenements
 **/

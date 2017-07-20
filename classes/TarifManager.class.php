@@ -52,7 +52,13 @@ class TarifManager {
 		$req->bindValue(':annee', $tarif->getAnnee(), PDO::PARAM_INT);
 		$req->bindValue(':actif', $tarif->getActif(), PDO::PARAM_INT);
 
-		return $req->execute();
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/**********************************
@@ -92,7 +98,13 @@ class TarifManager {
 		$req->bindValue(':annee', $tarif->getAnnee(), PDO::PARAM_INT);
 		$req->bindValue(':actif', $tarif->getActif(), PDO::PARAM_INT);
 		
-		return $req->execute();
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/*********************************

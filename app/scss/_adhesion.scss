@@ -2,6 +2,52 @@
     .contenu {
         .wrapper {
             padding: 10px;
+			font-size: 14px;
+
+			#comment_sinscrire { 
+				.sous_titre { 
+					margin-bottom: 20px;
+				}
+				ol {
+					list-style: initial;
+					padding-left: 25px;
+
+					> li {
+						list-style-type: upper-roman;
+						margin-bottom: 10px;
+					}
+				}
+				.nouveaute {
+					background: #EF6417;
+					margin: 10px 0;
+					padding: 10px;
+					border-radius: 10px;
+
+					h4 { 
+						color: #FFF; 
+						margin: 0; 
+						padding: 0 0 10px 25px;
+					}
+				}
+			}
+			#tarifs { 
+				td, th {
+					text-align: center; 
+					padding: 5px 0; 
+					line-height: 20px; 
+				}
+			}
+			#reglement {
+				p + h3 {
+					margin-top: 20px;
+				}
+				h3 + h4, h4 + h4, p + h4 {
+					margin-top: 10px;
+				}
+				h4 + p, h3 + p {
+					margin-top: 5px;
+				}
+			}
         }
     }
 }

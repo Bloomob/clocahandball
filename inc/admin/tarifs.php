@@ -2,6 +2,9 @@
 	$TarifManager = new TarifManager($connexion);
 	$CategorieManager = new CategorieManager($connexion);
 
+    $options = array('orderby' => 'ordre');
+    $listeCategories = $CategorieManager->retourneListe($options);
+
 	$options = array('orderby' => 'annee DESC, prix_old DESC', 'limit' => '0,20');
 	$listeTarifs = $TarifManager->retourneListe($options);
 
@@ -15,8 +18,8 @@
             <h3>Liste des tarifs</h3>
         </div>
         <div class="col-xs-12 text-right marginB">
-           <button class="btn btn-primary" data-toggle="modal" data-target="#filterActuModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
-           <button class="btn btn-success" data-toggle="modal" data-target="#actuModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un tarif</button>
+           <button class="btn btn-primary" data-toggle="modal" data-target="#filterPriceModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
+           <button class="btn btn-success" data-toggle="modal" data-target="#priceModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un tarif</button>
         </div>
         <div class="col-xs-12">
             <table class="table liste-tarifs">
@@ -39,16 +42,19 @@
 								<td><?=$unTarif->getDate_naissance();?></td>
 								<?php
 									$laCategorie = '';
+									$lastCategorie = new Categorie(array());
 									$tab = explode(',', $unTarif->getCategorie());
 									if(is_array($tab)):
 										foreach($tab as $key => $club):
 											$options = array('where' => 'id = '. $club);
 											$uneCategorie = $CategorieManager->retourne($options);
-											$laCategorie .= $uneCategorie->getCategorie();
-											$laCategorie .= ($unTarif->getGenre()) ? ' '.$uneCategorie->getGenre() : '';
-											if($key < count($tab)-1):
-												$laCategorie .= ', ';
+											if($lastCategorie->getCategorie() != $uneCategorie->getCategorie() || $unTarif->getGenre()):																																				$laCategorie .= $uneCategorie->getCategorie();
+													$laCategorie .= ($unTarif->getGenre()) ? ' '.$uneCategorie->getGenre() : '';
+												if($key < count($tab)-1):
+													$laCategorie .= ', ';
+											 endif;
 											endif;
+											$lastCategorie = $uneCategorie;
 										endforeach;
 									else:
 										$options = array('where' => 'id = '. $tab);
@@ -73,10 +79,92 @@
 					</tbody><?php
 				else:?>
 					<tr>
-						<td colspan="4">Aucun tarif enregistr&eacute;</td>
+						<td colspan="4">Aucun tarif enregistré</td>
 					</tr><?php
 				endif;?>
 			</table>
 		</div>
 	</div>
+	<div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="priceLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addPriceLabel">Ajouter un tarif</h4>
+                    <h4 class="modal-title hidden" id="editPriceLabel">Modifier un tarif</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="date_naissance">Né(e) en <span class="text-danger">*</span></label><br>
+                                    <input type="text" id="date_naissance" placeholder="Né(e) en" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="categorie">Categorie <span class="text-danger">*</span></label><br><select id="categorie" class="form-control selectpicker" multiple data-live-search="true" title="Choissisez une catégorie"><?php
+                                        foreach($listeCategories as $uneCategorie):?>
+                                            <option value="<?=$uneCategorie->getId();?>"><?=$uneCategorie->getCategorieAll();?></option><?php
+                                        endforeach;?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="prix_old">Prix <span class="text-danger">*</span></label><br>
+                                    <input type="text" id="prix_old" placeholder="100" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="annee">Année <span class="text-danger">*</span></label><br>
+                                    <select id="annee" class="form-control selectpicker" title="Choissisez une année"><?php
+                                        for($i=$annee_suiv; $i >= 2012; $i--):?>
+                                            <option value="<?=$i;?>"><?=$i;?></option><?php
+                                        endfor;?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="condition_old">Condition <span class="text-danger">*</span></label><br>
+                                    <select id="condition_old" class="form-control selectpicker" title="Choissisez une condition">
+                                    	<option value="1">1</option>
+                                    	<option value="2">2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="actif_non">Actif <span class="text-danger">*</span></label><br>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="actif" id="actif_oui" autocomplete="off" value="1"> Oui
+                                        </label>
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="actif" id="actif_non" autocomplete="off" checked value="0"> Non
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+		                	<div class="col-sm-12">
+			                    <p class="text-danger">* Champs obligatoires</p>
+		                    </div>
+	                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success add-tarif">Ajouter</button>
+                    <button type="button" class="btn btn-warning edit-tarif hidden">Modifier</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
