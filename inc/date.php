@@ -78,9 +78,7 @@
 		if(6 == $w || 7 == $w)
 			$liste[] = "week_end";
 		
-		// $vacances = array ("27/10/12/11", "22/12/7/1", "2/3/18/3", "27/4/13/5");
-		// $vacances = array ("19/10/4/11", "21/12/6/1", "15/2/3/3", "12/4/28/4");
-		$vacances = array ("18/10/3/11", "20/12/5/1", "14/2/2/3", "18/4/4/5");
+		$vacances = array ("21/10/6/11", "23/12/8/1", "17/2/5/3", "14/4/30/4");
 		foreach($vacances as $k=>$periode) {
 			$vacs = explode("/", $periode);
 			if($vacs[1]==$vacs[3]) {

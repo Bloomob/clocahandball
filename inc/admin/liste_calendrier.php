@@ -89,7 +89,7 @@ if(!empty($listeMatchs)):
 				endif; ?>
 			</td>
 			<td>
-				<button class="btn btn-warning edit-match" data-id="<?=$unMatch->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+				<button class="btn btn-warning edit-match" data-toggle="modal" data-target="#matchModal" data-id="<?=$unMatch->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
 				<button class="btn btn-danger delete-match" data-id="<?=$unMatch->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
 			</td>
 		</tr><?php

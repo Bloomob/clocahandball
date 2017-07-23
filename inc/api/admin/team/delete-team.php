@@ -17,7 +17,7 @@
 		$equipe = new Equipe(array());
 		$equipe->setId(intval($_POST['id']));
 		$isDelete = $EquipeManager->supprimer($equipe);
-
+        
 		echo $isDelete;
         exit;
 	}

@@ -68,7 +68,7 @@ class MatchManager {
 		}
 		else {
 			var_dump($req->errorInfo());
-			return;
+			return false;
 		}
 	}
 
@@ -121,7 +121,13 @@ class MatchManager {
 		$req->bindValue(':arbitre', $match->getArbitre());
 		$req->bindValue(':classement', $match->getClassement(), PDO::PARAM_INT);
 		
-		return $req->execute();
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/*********************************

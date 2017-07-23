@@ -63,10 +63,10 @@ $i = 2; ?>
         else: ?>
             <p>Pas de match pr&eacute;vu pour le moment</p><?php
         endif; ?>
-        <ul class="link hidden clearfix">
+        <!--<ul class="link hidden clearfix">
             <li><a href="resultats_classements.php?onglet=resultats_week-end">R&eacute;sultats du week-end</a></li>
             <li class="bg_none"><a href="resultats_classements.php?onglet=calendrier">Calendrier complet</a></li>
-        </ul>
+        </ul>-->
 	</div>
     <nav>
         <a href="#" class="voir-plus">Voir plus<i class="fa fa-plus" aria-hidden="true"></i></a>

@@ -79,6 +79,13 @@ figure { margin: 0px; }
   }
 }
 
+.modal {
+    .modal-loader {
+        position: relative;
+        padding: 15px;
+        text-align: center;
+    }
+}
 
 .form-group {
     &.has-error {

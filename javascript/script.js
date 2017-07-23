@@ -1,50 +1,8 @@
 $(function(){
 
-	// Connexion
-	$('#btnConnexion').on('click touch', function(e) {
-	  e.preventDefault();
-	  $.post('../inc/connexion.php', function(data) {
-      console.log(data);
-	  });
-	};
-
 	// Logo
 	$("#logo").click( function() {
 		document.location.href = "index.php";
-	});
-
-	// Fonctions pour le calendrier dynamique
-
-	var maDate = new Date();
-  $('.month').hide();
-	var currentYear = maDate.getFullYear();
-	var activeYear = currentYear;
-	var currentMonth = parseInt(maDate.getMonth(), 10) + 1;
-	if(currentMonth < 7) {
-		currentYear--;
-	}
-	
-	$('#month'+currentMonth).show();
-	$('.year a#linkYear'+activeYear).addClass('active');
-	$('.months a#linkMonth'+currentMonth).addClass('active');
-	
-	$('.months a').click(function() {
-		var month = $(this).attr('id').replace('linkMonth','');
-		if(month != currentMonth) {
-			if(month < 7) var year = parseInt(currentYear, 10) + 1; else var year = currentYear;
-			$('#month'+currentMonth).slideUp();
-			$('#month'+month).slideDown();
-			$('.year a').removeClass('active');
-			$('.year a#linkYear'+year).addClass('active');
-			$('.months a').removeClass('active');
-			$('.months a#linkMonth'+month).addClass('active');
-			currentMonth = month;
-		}
-		return false;
-	});
-	
-	$('.year a').click(function() {
-		return false;
 	});
 
 	// Pour l'export des matchs à venir

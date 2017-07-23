@@ -1,8 +1,7 @@
 <?php 
 	session_start();
 	// On enregistre notre autoload.
-	function chargerClasse($classname)
-	{
+	function chargerClasse($classname) {
 		require_once('classes/'.$classname.'.class.php');
 	}
 	spl_autoload_register('chargerClasse');
@@ -310,8 +309,8 @@
 												</div>
 												<div class="months">
 													<ul><?php
-														foreach($mois_de_lannee as $id=>$m) {?>
-															<li><a href="#" id="linkMonth<?php echo $id+1; ?>"><?php echo substr($m, 0, 3); ?></a></li><?php
+														foreach($mois_de_lannee_min as $id=>$m) {?>
+															<li><a href="#" id="linkMonth<?php echo $id+1; ?>"><?=$m; ?></a></li><?php
 														}?>
 													</ul>
 												</div>

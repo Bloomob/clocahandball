@@ -26,7 +26,6 @@
 	include_once("inc/fonctions.php");
 	require_once("inc/date.php");
 	include_once("inc/constantes.php");
-	// include_once("inc/connexion.php");
 	
 	// Initialisation des managers
 	$ActualiteManager = new ActualiteManager($connexion);
@@ -444,8 +443,9 @@
 								<div class="contenu">
 									<h2><i class="fa fa-users" aria-hidden="true"></i><?=$titre?></h2>
 									<div class="wrapper"><?php
-										$options = array('where' => 'annee = '. $annee_actuelle, 'orderby' => 'niveau');
+										$options = array('where' => 'annee = '. $annee_actuelle, 'orderby' => 'niveau, championnat');
 										$listeEquipe = $EquipeManager->retourneListe($options);
+                                        // debug($listeEquipe);
 										if(!empty($listeEquipe)) {
 											$i = 0;
 											$niveau_actuel = '';
@@ -480,7 +480,7 @@
 													<div class="bloc <?=$laCategorie->getRaccourci();?>">
 														<h4><a href="?onglet=<?=$laCategorie->getRaccourci();?>"><?=$laCategorie->getCategorieAll();?></a></h4>
 														<div class="pad">
-															<p><strong>Championnat :</strong><?=$listeChampionnat[$uneEquipe->getChampionnat()];?></p>
+															<p><strong>Championnat : </strong><?=$listeChampionnat[$uneEquipe->getChampionnat()];?></p>
 															<p><strong>Série : </strong><?=$serie;?></p>
 															<p><strong>Bilan : </strong><?=$bilan;?></p>
 														</div>

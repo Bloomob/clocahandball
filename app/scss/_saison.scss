@@ -61,42 +61,132 @@
 	}
 
 }
+.periods  {
+    min-height: 625px;
+    width: 95%;
+    margin: auto;
+    
+    .year {
+        font-size: 48px;
+        color: #EF6417;
+        float: right;
+        
+        li {
+            float: left; 
+            display: block; 
+            padding-right: 10px;
+            
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+    .months { 
+        float: left; 
+        margin-left: 15px; 
+        
+        li { 
+            font-size: 24px; 
+            float: left;
+            display: block; 
+            padding-right: 10px;
+            
+            a {
+                text-decoration: none;
+            }
+            &:hover {
+                color: #EF6417;
+            }
+        }
+    }
+    .active {
+        color: #EF6417;
+    }
+    .month  {
+        margin-top: 20px;
+    }
+    table { 
+        width: 100%;
+        border-collapse: collapse; 
+        
+        td { 
+            width: 80px;
+            height: 80px; 
+            border: 1px solid #D9DDDF;
+            
+            &.week_end {
+                background: #eae7d4;
+            }
+            &.vacances .day { 
+                color: #F00; 
+            }
+            &.today { 
+                border: 2px solid #EF6417;
+            }
+            &:hover { 
+                background: rgb(200, 230, 230);
+            }
+            td[colspan] {
+                border: none; 
+                
+                &:hover { 
+                    background: none;
+                }
+            }
+            .day{ 
+                position: absolute; 
+                color: #8C8C8C;
+                bottom: -40px; 
+                right: 5px;
+                font-weight: bold;
+                font-size: 24.3pt;
+            }
+            .daylight { 
+                display: none; 
+            }
+            .events {
+                position: relative;
+                height: 0px; 
+                margin: -39px 1px 0px; 
+                padding: 0px;
+                width: 100%;
+                
+                span {
+                    color: $blanc;
+                    text-align: center;
+                    display: inline-block;
+                    width: 100%;
+                    cursor: pointer;
+                }
+                .matchs { 
+                    background: #3c763d;
+                }
+                .extra { 
+                    background: rgb(200, 120, 200);
+                }
+            }
+            .laDate {
+                display: none;
+            }
+        }
+    }
+    .relative  { 
+        position: relative;
+    }
+}
+
+.resultats_classement table tr td.categ { width: 50px; }
+.resultats_classement table tr td.categ .td0 { width: 100%; }
+.resultats_classement table tr td.categ .td0 span { transform: none; -webkit-transform: none; -moz-transform: none; position: relative; top: 7px; color: white; }
+
+.resultats_classement .legende { background: url(../images/icon/png_black/comment-exclamation.png) 100% 50% no-repeat rgb(255, 239, 221); -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; padding: 10px; text-align: center; }
+
+#export_cal { cursor: pointer; }
+
 /* .liste-matchs .cell1 td { background: #F3F3F3; }
 .liste-matchs .cell2 td { background: none; }
 .liste-matchs .score-team2 span { padding: 0px 5px; border-radius: 8px; color: white; }
 .liste-matchs .date  { width: 75px; color: white; padding: 5px 0; font-size: 14px; }
 .liste-matchs .date .jour { background: #AC6E21; font-size: 18px; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
 .liste-matchs .date .mois { background: #725807; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; }
-
-.resultats_classement table tr td.categ { width: 50px; }
-.resultats_classement table tr td.categ .td0 { width: 100%; }
-.resultats_classement table tr td.categ .td0 span { transform: none; -webkit-transform: none; -moz-transform: none; position: relative; top: 7px; color: white; }
-
-.periods  { min-height: 625px; width: 95%; margin: auto; }
-.year { font-size: 48px; color: #EF6417; float: right; }
-.year li { float: left; display: block; padding-right: 10px; }
-.months { float: left; margin-left: 15px; }
-.months li { font-size: 24px; float: left; display: block; padding-right: 10px;}
-.periods .active { color: #EF6417; }
-.months li a:hover { color: #EF6417; }
-.month  { margin-top: 20px; }
-.periods table { width: 100%; border-collapse: collapse; }
-.periods td { width: 80px; height: 80px; border: 1px solid #D9DDDF; }
-.periods td.week_end { background: #eae7d4; }
-.periods td.vacances .day{ color: #F00; }
-.periods td.today { border: 2px solid #EF6417; }
-.periods td:hover { background: rgb(200, 230, 230);}
-.periods td[colspan] { border: none; }
-.periods td[colspan]:hover { background: none; }
-.relative  { position: relative; }
-table td .day{ position: absolute; color: #8C8C8C; bottom: -40px; right: 5px; font-weight: bold; font-size: 24.3pt;}
-table td .daylight { display: none; }
-table td .events {position: relative; width: 79px; height: 0px; margin: -39px 1px 0px; padding: 0px;}
-table td .laDate {display: none;}
-table td .events span { color: #FFF;  text-align: center; display: block; cursor: pointer; }
-table td .events .matchs { background: rgb(110, 235, 110); }
-table td .events .extra { background: rgb(200, 120, 200); }
-
-.resultats_classement .legende { background: url(../images/icon/png_black/comment-exclamation.png) 100% 50% no-repeat rgb(255, 239, 221); -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; padding: 10px; text-align: center; }
-
-#export_cal { cursor: pointer; } */
+ */

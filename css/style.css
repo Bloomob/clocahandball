@@ -21,18 +21,6 @@
 
 
 /**
-/** Page staff
-**/
-
-#staff .fiche { position: relative; color: #FFF; }
-#staff .fiche h3 { background-color: #ef6417; padding: 5px 10px; text-align: right; margin: 0; position: relative; top: 20px; z-index: 0; }
-#staff .fiche h3:after { display: inline-block; content: ""; background: url(../images/icon_hr.png) center right no-repeat; background-size: 90px auto; width: 95px; height: 95px; position: absolute; top: 25px; right: 40px; opacity: 0.7; }
-#staff .fiche .cell { background-image: linear-gradient(bottom, #626DA7 0%, #282D4D 100%); background-image: -o-linear-gradient(bottom, #626DA7 0%, #282D4D 100%); background-image: -moz-linear-gradient(bottom, #626DA7 0%, #282D4D 100%); background-image: -webkit-linear-gradient(bottom, #626DA7 0%, #282D4D 100%); background-image: -ms-linear-gradient(bottom, #626DA7 0%, #282D4D 100%); background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #626DA7), color-stop(1, #282D4D)); }
-#staff .fiche .photo { padding: 6px; text-align: center; }
-#staff .fiche .photo img { border: 1px solid #D9DDDF; position: relative; }
-#staff .fiche .description a { color: #ef6417; }
-
-/**
 /** Page Evenements
 **/
 

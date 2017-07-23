@@ -32,6 +32,8 @@
                 color: $gris;
 
                 .row {
+                    margin-bottom: 10px;
+                    
                     .date {
                         color: $blanc;
                         text-align: center;
@@ -97,6 +99,9 @@
                             top: 50%;
                             @include transform-translate(-50%, -50%);
                         }
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
                     }
                 }
             }

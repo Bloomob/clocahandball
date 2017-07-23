@@ -14,9 +14,10 @@
 	$MatchManager = new MatchManager($connexion);
 
 	if(isset($_POST['id'])) {
-		$match = new Equipe(array());
+		$match = new Match(array());
 		$match->setId(intval($_POST['id']));
 		$isDelete = $MatchManager->supprimer($match);
+        var_dump($isDelete);
 
 		echo $isDelete;
         exit;

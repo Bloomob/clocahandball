@@ -45,7 +45,7 @@
 	$listeMatchs = $MatchManager->retourneListe($options);
 	$nbr_matchs = count($listeMatchs);
 
-    $options = array('where' => 'annee = '. $annee_actuelle, 'orderby' => 'niveau');
+    $options = array('where' => 'annee = '. $annee_actuelle, 'orderby' => 'niveau, championnat');
 	$listeEquipe = $EquipeManager->retourneListe($options);
 
 	$options = array('orderby' => 'raccourci');
@@ -221,7 +221,7 @@
                                 <div class="form-group">
                                     <label for="dates">Dates</label><br>
                                     <div class='input-group date' id='date'>
-                                        <input type='text' class="form-control" />
+                                        <input type='text' id="date-val" class="form-control" />
                                         <span class="input-group-addon">
                                             <i class="fa fa-calendar" aria-hidden="true"></i>
                                         </span>
@@ -229,7 +229,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-group lieu">
                                     <label for="lieu_dom">Lieu</label><br>
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default active">
@@ -270,14 +270,14 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-group joue">
                                     <label for="joue">Match joué ?</label><br>
                                     <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-default active">
-                                            <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1" checked> Oui
-                                        </label>
                                         <label class="btn btn-default">
-                                            <input type="radio" name="joue" id="joue_non" autocomplete="off" value="0"> Non
+                                            <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1"> Oui
+                                        </label>
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="joue" id="joue_non" autocomplete="off" value="0" checked> Non
                                         </label>
                                     </div>
                                 </div>
@@ -319,6 +319,10 @@
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="modal-loader hidden">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
