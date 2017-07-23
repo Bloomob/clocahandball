@@ -328,4 +328,21 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deleteMatchModal" tabindex="-1" role="dialog" aria-labelledby="deleteMatchLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteMatchLabel">Supprimer un match</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous vraiment supprimer ce match ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary delete-match">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

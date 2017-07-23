@@ -1,3 +1,4 @@
+
 <?php
 	$EquipeManager = new EquipeManager($connexion);
 	$UtilisateurManager = new UtilisateurManager($connexion);

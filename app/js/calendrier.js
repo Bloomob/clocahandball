@@ -212,10 +212,13 @@ $(function(){
             
             $('.rencontres .rencontre').addClass('hidden');
             $('.rencontres .rencontre .selectpicker').val(0).selectpicker('refresh');
+            $('.rencontres .rencontre .lieu .btn').removeClass('active').find('input').prop('checked', false);
+            $('.rencontres .rencontre:first-child .lieu .btn').addClass('active').find('input').prop('checked', true);
+            
             for(i in adversaires) {
                 var rencontre = $('.rencontres .rencontre').eq(i);
                 rencontre.removeClass('hidden');
-                if(matchData['lieu']['value'] === 0) {
+                if(matchData['lieu']['value'] == 0) {
                     rencontre.find('.lieu .btn-group').addClass('hidden');
                     rencontre.find('.equipe1 p').text('Achères');
                     rencontre.find('.equipe2 p').text($(selectedOptions[i]).data('nom'));
@@ -225,6 +228,11 @@ $(function(){
                     rencontre.find('.equipe2 p').text('Achères');
                 }
             }
+        });
+
+        $(matchModal).find('.lieu .btn').on('click', function(e){
+            $(matchModal).find('.lieu .btn').removeClass('active').find('input').prop('checked', false);
+            $(this).addClass('active').find('input').prop('checked', true);
         });
         
         /* Ajout de match */
@@ -280,14 +288,29 @@ $(function(){
                         }
                     }
                 } else if(ch == 'scores_dom' || ch == 'scores_ext') {
-                    var tab = [];
+                    var tabScores = [];
                     $(matchModal).find('.rencontre:not(.hidden) select.'+ ch).each(function(){
-                        tab.push($(this).val())
+                        tabScores.push($(this).val())
                     });
-                    matchData[ch]['value'] = tab.join();
+                    if(matchData['lieu']['value'] != 0) {
+                        var index = $(matchModal).find('.lieu .btn').index($(matchModal).find('.lieu .btn.active'));
+                        var el = tabScores.splice(index, 1);
+                        tabScores.splice(0, 0, el[0]);
+                    }
+                    matchData[ch]['value'] = tabScores.join();
                 } else {
                     if($(matchModal).find('#'+ ch).val() != '' && $(matchModal).find('#'+ ch).val() != null) {
-                        matchData[ch]['value'] = $(matchModal).find('#'+ ch).val();
+                        if(ch == 'adversaires') {
+                            var tabAdv = $(matchModal).find('#'+ ch).val();
+                            if(matchData['lieu']['value'] != 0) {
+                                var index = $(matchModal).find('.lieu .btn').index($(matchModal).find('.lieu .btn.active'));
+                                var el = tabAdv.splice(index, 1);
+                                tabAdv.splice(0, 0, el[0]);
+                            }
+                            matchData[ch]['value'] = tabAdv.join();
+                        } else {
+                            matchData[ch]['value'] = $(matchModal).find('#'+ ch).val();
+                        }
                         matchData[ch]['valid'] = true;
                     } else {
                         if((ch == 'tour' && !matchData['journee']['valid']) || (ch == 'journee' && !matchData['tour']['valid'])) {
@@ -309,10 +332,41 @@ $(function(){
             }
             console.log(matchData);
             console.log('formValid', formValid);
+
+            if (formValid) {
+                $.post(
+                    './inc/api/admin/calendar/add-match.php',
+                    {
+                      'data': matchData
+                    },
+                    function (data) {
+                        if(data)
+                            window.location.href = location.href;
+                        else
+                            console.log(data);
+                     }
+                );
+            }
         });
-        
-        function btnGroup() {
-            
-        }
+
+        // Suppression d'un utilisateur
+        calendrier.find('.delete-match').click(function(e){
+            e.preventDefault();
+            var supprId = $(this).data('id');
+
+            $.post(
+                './inc/api/admin/delete-match.php',
+                {
+                    'id': supprId
+                },
+                function (data) {
+                    if(data) {
+                        window.location.href = location.href;
+                    } else {
+                        console.log(data);
+                    }
+                }
+           );
+        });
     }
 });
