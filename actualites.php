@@ -239,7 +239,7 @@
                                 <?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
                             </article>
                             <article>
-                                <?php include_once('inc/partenaires.php'); ?>
+                                <?php include_once('inc/modules/partenaires.php'); ?>
                             </article>
                         </article>
                     </div>

@@ -1,11 +1,12 @@
 <script src="src/js/vendor.js"></script>
 <script src="src/js/app.js"></script>
 <script>require('js/script')</script>
+<script>require('js/actualites')</script>
+<script>require('js/calendrier')</script>
+<script>require('js/categories')</script>
+<script>require('js/equipes')</script>
 <script>require('js/menus')</script>
 <script>require('js/tarifs')</script>
-<script>require('js/categories')</script>
-<script>require('js/calendrier')</script>
-<script>require('js/equipes')</script>
 <script>require('js/utilisateurs')</script>
 
 <!--<script src="javascript/jquery-ui-1.11.1/external/jquery/jquery.js"></script>

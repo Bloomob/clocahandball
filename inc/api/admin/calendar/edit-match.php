@@ -11,8 +11,7 @@
 	include_once("../../../connexion_bdd_pdo.php");
 	include_once("../../../date.php");
 
-	$EquipeManager = new EquipeManager($connexion);
-	$HoraireManager = new HoraireManager($connexion);
+	$MatchManager = new MatchManager($connexion);
 
 	if(isset($_POST['data'])) {        
 		$match = new Match(array());
@@ -25,15 +24,15 @@
 				$match->$method(htmlspecialchars_decode(htmlentities($value['value'], ENT_QUOTES, "UTF-8")));
 			}
 		}
-		var_dump($match);
+		// var_dump($match);
         
-		/*$equipeId = $EquipeManager->modifier($equipe);
-		var_dump($equipeId);
+		$matchId = $MatchManager->modifier($match);
+		// var_dump($matchId);
         
-        if($equipeId) {
+        if($matchId) {
 			echo true;
 			exit;
-		}*/
+		}
         echo false;
         exit;
 	}

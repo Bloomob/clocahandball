@@ -24,6 +24,16 @@ if(!empty($listeMatchs)):
 				<?=$uneCategorie->getCategorieAll();?>
 			</td>
 			<td><?php
+				$lieu = $unMatch->getLieu();
+				if($lieu == 0):?>
+					<span>Dom</span><?php
+				elseif($lieu == 1):?>
+					<span>Ext</span><?php
+				else:?>
+					<span>Neu</span><?php
+				endif; ?>
+			</td>
+			<td><?php
 				$tab = explode(',', $unMatch->getAdversaires());
 				if(is_array($tab)):
 					foreach($tab as $club):

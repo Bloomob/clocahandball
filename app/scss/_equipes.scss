@@ -197,66 +197,66 @@
                 h4 {
                     background: $bleu-clair;
                 }
-            }
-        }
-    }
-    .calendrier {
-        table {
-            tr {
-                th, td {
-                    line-height: 20px;
-                    padding: 5px 0;
-                }
-                th {
-                    background: url(../images/box_bg.jpg) top repeat-x #62CFF8;
-                    color: $blanc;
-                    border-bottom: 2px solid #5ABDE4;
-                }
-                td {
-                    text-align: center;
+                ul {
+                    padding: 0 10px;
+                    list-style: none;
 
-                    &.laDate {
-                        .tr2 {
-                            height: 46px;
-                            width: 100%;
+                    li {
+                        padding: 4px 0px 5px;
+                        margin-bottom: 5px;
+                        text-align: left;
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                        a {
+                            display: inline-block;
+                            color: $gris-fonce;
+                            height: 23px;
+                            line-height: 23px;
+                            font-size: 13px;
                             overflow: hidden;
-                            display: table-row;
+                            -o-text-overflow: ellipsis;
+                            text-overflow: ellipsis;
+                            word-wrap: break-word;
+                            text-decoration: none;
 
-                            > div {
-                                display: table-cell;
-                                vertical-align: middle;
-                                text-align: center;
-                                height: 100%;
-                            }
-                            .td0 {
-                                width: 45px;
-                                color: $blanc;
-                                padding: 5px 0;
-                                font-size: 14px;
+                            &:hover {
+                                color: $gris;
 
-                                .jour {
-                                    background: #AC6E21;
-                                    width: 35px;
-                                    margin: 0 5px;
-                                    padding: 2px 0;
-                                    -webkit-border-top-left-radius: 5px;
-                                    -webkit-border-top-right-radius: 5px;
-                                    -moz-border-radius-topleft: 5px;
-                                    -moz-border-radius-topright: 5px;
-                                    border-top-left-radius: 5px;
-                                    border-top-right-radius: 5px;
+                                &.important {
+                                    color: darken($rouge, 10%);
                                 }
-                                .mois {
-                                    background: #725807;
-                                    width: 35px;
-                                    margin: 0 5px;
-                                    padding: 2px 0;
-                                    -webkit-border-bottom-right-radius: 5px;
-                                    -webkit-border-bottom-left-radius: 5px;
-                                    -moz-border-radius-bottomright: 5px;
-                                    -moz-border-radius-bottomleft: 5px;
-                                    border-bottom-right-radius: 5px;
-                                    border-bottom-left-radius: 5px;
+                                .date-info {
+                                    background-color: darken($orange, 10%);
+
+                                    &:after {
+                                        border-top-color: darken($orange, 10%);
+                                        border-left-color: darken($orange, 10%);
+                                    }
+                                }
+                            }
+                            &.important {
+                                color: $rouge;
+                            }
+                            .date-info {
+                                background-color: $orange;
+                                color: $blanc;
+                                font-size: 13px;
+                                padding: 5px;
+                                position: relative;
+                                margin-right: 15px;
+
+                                &:after {
+                                    content: "";
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 100%;
+                                    border-bottom: 0px solid transparent;
+                                    border-right: 10px solid transparent;
+                                    border-top: 25px solid $orange;
+                                    border-left: 0px solid $orange;
                                 }
                             }
                         }
@@ -264,23 +264,85 @@
                 }
             }
         }
-        
-        /*.blocs .cell { padding-top: 10px; vertical-align: top; color: #666; padding: 0 5px; }
-        .blocs .cell:first-child { padding: 0 5px 0 0; }
-        .blocs .cell:last-child { padding: 0 0 0 5px; }*/
+    }
+    .calendrier {
+        .row {
+            margin-bottom: 10px;
+            
+            .date {
+                color: $blanc;
+                text-align: center;
+
+                .jour {
+                    background: #AC6E21;
+                    font-size: 18px;
+                    padding: 2px 5px;
+                    @include border-radius(5px 5px 0 0);
+                }
+                .mois {
+                    background: #725807;
+                    padding: 2px 5px;
+                    @include border-radius(0 0 5px 5px);
+                }
+            }
+            .compet {
+                height: 45px;
+                color: $blanc;
+                font-size: 18px;
+                text-align: center;
+                position: relative;
+
+                span {
+                    position: absolute;
+                    top: 50%;
+                    @include transform-translate(-50%, -50%);
+                }
+            }
+            .dom, .ext {
+                text-align: left;
+                text-transform: uppercase;
+                line-height: 18px;
+                padding-left: 20px;
+
+                &.puce {
+                    padding-left: 0px;
+
+                    [class*="cat_"] {
+                        width: 15px;
+                        height: 15px;
+                        display: inline-block;
+                        border-radius: 8px;
+                        margin-right: 5px;
+                        position: relative;
+                        top: 3px;
+                    }
+                }
+            }
+            .heure {
+                height: 45px;
+                text-align: center;
+                position: relative;
+
+                span {
+                    display: inline-block;
+                    color: $blanc;
+                    background: $violet;
+                    padding: 5px;
+                    border-radius: 10px;
+                    font-size: 14px;
+                    position: absolute;
+                    top: 50%;
+                    @include transform-translate(-50%, -50%);
+                }
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 
 /*
-.blocs .bloc table { padding: 0 7px; width: 100%; }
-.blocs .bloc table td.home-team, .blocs .bloc table td.visitor-team { text-transform: uppercase; color: #000; }
-.blocs .bloc table td.home-team { width: 40%; text-align:left; vertical-align: top; }
-.blocs .bloc table td.home-team  span{ line-height: 22px; }
-.blocs .bloc table td.score-team, .blocs .bloc table td.heure-team { width: 20%; text-align:center; vertical-align: top; }
-.blocs .bloc table td.score-team strong { font-size: 16px; padding: 0px 5px; border-radius: 10px; color: white; }
-.blocs .bloc table td.score-team2 strong { padding: 0px 5px; border-radius: 10px; color: white; }
-.blocs .bloc table td.heure-team strong { font-size: 16px; padding: 0px 5px; border-radius: 10px; color: white; background: rgb(151, 21, 168); }
-.blocs .bloc table td.visitor-team { width: 40%; text-align:right; vertical-align: top; }
 .blocs .bloc .avant_match { text-align: right; }
 
 div.plan_acces { width: 580px; height: 450px; padding: 6px; border: 1px solid #D9DDDF; background: #fff; margin-top: 15px; }
@@ -291,36 +353,6 @@ div.plan_acces { width: 580px; height: 450px; padding: 6px; border: 1px solid #D
 .result2 { margin-left: 55px; padding-left: 10px; }
 
 table .competition div {   padding: 5px; color: #FFF; text-align: center; }
-
-#tab_cal_equipe .laDate { width: 4%; }
-#tab_cal_equipe .laDate .tr2 { height: 46px; width: 100%; overflow: hidden; display: table-row; }
-#tab_cal_equipe .laDate .tr2 > div { display: table-cell; vertical-align: middle; text-align: center; height: 100%; }
-#tab_cal_equipe .laDate .td0 { width: 45px; color: white; padding: 5px 0; font-size: 14px; }
-#tab_cal_equipe .laDate .td0 .jour { background: #AC6E21; width: 35px; margin: 0 5px; padding: 2px 0; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
-#tab_cal_equipe .laDate .td0 .mois { background: #725807; width: 35px; margin: 0 5px; padding: 2px 0; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; }
-#tab_cal_equipe .competition { width: 26%; text-align: left; font-size: 14px; padding-left: 10px; }
-#tab_cal_equipe .equipes { width: 40%; text-align: right; text-transform: uppercase; font-size: 14px; color: #525252; }
-#tab_cal_equipe .equipes > div:nth-child(-n+1), #tab_cal_equipe .score > div:nth-child(-n+1) { margin-bottom: 10px; }
-#tab_cal_equipe .score { width: 20%; }
-#tab_cal_equipe .score span, #tab_cal_equipe2 .score span { color: #FFF; background: rgb(151, 21, 168); padding: 3px 6px; display: inline-block; border-radius: 8px; font-size: 14px; }
-#tab_cal_equipe .score span.vert, #tab_cal_equipe2 .score span.vert { background: #27a736; }
-#tab_cal_equipe .score span.orange, #tab_cal_equipe2 .score span.orange { background: #EF6417; }
-#tab_cal_equipe .score span.rouge, #tab_cal_equipe2 .score span.rouge { background: #fd1712; }
-
-#tab_cal_equipe2 tr.cal_month { cursor: pointer; }
-#tab_cal_equipe2 .laDate { width: 7%; }
-#tab_cal_equipe2 .competition { width: 23%; text-align: left; }
-#tab_cal_equipe2 .competition div{ padding-left: 5px; }
-#tab_cal_equipe2 .equipe1 { width: 20%; text-align: right; }
-#tab_cal_equipe2 .equipe2 { width: 20%; text-align: left; }
-#tab_cal_equipe2 .score { width: 10%; }
-#tab_cal_equipe2 .convoc { width: 10%; }
-#tab_cal_equipe2 .convoc img:hover { cursor: pointer; }
-
-#tab_cal_equipe2 a { width: 20px; height: 20px; float: right; display: block; text-indent: -9999px; overflow: hidden; text-align: left; }
-#tab_cal_equipe2 a.convoc_match  { background: url(../images/icon/black/bullet-list.png) no-repeat center left; background-size: 20px; }
-#tab_cal_equipe2 a.suppr_match  { background: url(../images/icon/black/circle-remove.png) no-repeat top left; background-size: 20px; }
-#tab_cal_equipe2 a.modif_match  { background: url(../images/icon/black/hand-right.png) no-repeat top left; background-size: 20px; }
 
 #tab_joueur .ligne_joueur {position: relative; margin: 2px; float: left; width: 47%; border: 1px solid #D9DDDF; padding: 5px;}
 #tab_joueur .titre_poste {text-align: left; padding: 5px 5px 0 15px;  background: url(../images/box_bg.jpg) top repeat-x #62CFF8; color: #FFF; border-bottom: 2px solid #5ABDE4; line-height: 24px; font-size: 16px;}

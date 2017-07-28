@@ -110,47 +110,47 @@ $(function(){
         */
         
         function formInputRadio(ch) {
-            if($(matchModal).find('input[name="'+ ch +'"]:checked').val() != undefined) {
-                matchData[ch]['value'] = $(matchModal).find('input[name="'+ ch +'"]:checked').val();
+            if(matchModal.find('input[name="'+ ch +'"]:checked').val() != undefined) {
+                matchData[ch]['value'] = matchModal.find('input[name="'+ ch +'"]:checked').val();
                 matchData[ch]['valid'] = true;
             } else {
                 matchData[ch]['value'] = '';
                 matchData[ch]['valid'] = false;
             }
             if(!matchData[ch]['valid']) {
-                $(matchModal).find('input[name="'+ ch +'"]').closest('.form-group').addClass('has-error').removeClass('has-success');
+                matchModal.find('input[name="'+ ch +'"]').closest('.form-group').addClass('has-error').removeClass('has-success');
             } else {
-                $(matchModal).find('input[name="'+ ch +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
+                matchModal.find('input[name="'+ ch +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
             }
         }
         
         function formSelect(ch) {
-            if($(matchModal).find('#'+ ch).val() != '' && $(matchModal).find('#'+ ch).val() != null) {
-                matchData[ch]['value'] = $(matchModal).find('#'+ ch).val();
+            if(matchModal.find('#'+ ch).val() != '' && matchModal.find('#'+ ch).val() != null) {
+                matchData[ch]['value'] = matchModal.find('#'+ ch).val();
                 matchData[ch]['valid'] = true;
             } else {
                 matchData[ch]['value'] = '';
                 matchData[ch]['valid'] = false;
             }
             if(!matchData[ch]['valid']) {
-                $(matchModal).find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
+                matchModal.find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
             } else {
-                $(matchModal).find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
+                matchModal.find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
             }
         }
         
         /* OnChange */
-        $(matchModal).find('input[name="lieu"]').on('change', function(){
+        matchModal.find('input[name="lieu"]').on('change', function(){
             var oldVal = matchData['lieu']['value'];
             formInputRadio('lieu');
             var newVal = matchData['lieu']['value'];
             
             
             if( !(newVal == 1 && oldVal == 2) && !(newVal == 2 && oldVal == 1)) {
-                var adversaires = $(matchModal).find('#adversaires').val();
-                $(matchModal).find('.rencontres .rencontre .selectpicker').val(0).selectpicker('refresh');
+                var adversaires = matchModal.find('#adversaires').val();
+                matchModal.find('.rencontres .rencontre .selectpicker').val(0).selectpicker('refresh');
                 for(i in adversaires) {
-                    var rencontre = $(matchModal).find('.rencontres .rencontre').eq(i);
+                    var rencontre = matchModal.find('.rencontres .rencontre').eq(i);
                     rencontre.find('.lieu .btn-group').toggleClass('hidden');
                     var equipe1 = rencontre.find('.equipe1 p').text();
                     var equipe2 = rencontre.find('.equipe2 p').text();
@@ -164,31 +164,31 @@ $(function(){
             }
         });
         
-        $(matchModal).find('input[name="joue"]').on('change', function(){
+        matchModal.find('input[name="joue"]').on('change', function(){
             formInputRadio('joue');
         });
         
-        $(matchModal).find('#categorie').on('change', function(){
+        matchModal.find('#categorie').on('change', function(){
             formSelect('categorie');
         });
         
-        $(matchModal).find('#competition').on('change', function(){
+        matchModal.find('#competition').on('change', function(){
             formSelect('competition');
             if($(this).val() == 2 || $(this).val() == 3) {
-                $(matchModal).find('.form-group.journee').addClass('hidden');
-                $(matchModal).find('.form-group.tour').removeClass('hidden');
+                matchModal.find('.form-group.journee').addClass('hidden');
+                matchModal.find('.form-group.tour').removeClass('hidden');
             } else {
-                $(matchModal).find('.form-group.tour').addClass('hidden');
-                $(matchModal).find('.form-group.journee').removeClass('hidden');
+                matchModal.find('.form-group.tour').addClass('hidden');
+                matchModal.find('.form-group.journee').removeClass('hidden');
             }
         });
         
-        $(matchModal).find('#niveau').on('change', function(){
+        matchModal.find('#niveau').on('change', function(){
             formSelect('niveau');
         });
         
-        $(matchModal).find('#date').on("dp.change", function () {
-            var DateTimePicker = $(matchModal).find('#date').data("DateTimePicker").date();
+        matchModal.find('#date').on("dp.change", function () {
+            var DateTimePicker = matchModal.find('#date').data("DateTimePicker").date();
             if(DateTimePicker != '' && DateTimePicker != null) {
                 matchData['date']['value'] = moment(DateTimePicker).format('YYYYMMDD');
                 matchData['date']['valid'] = true;
@@ -201,17 +201,17 @@ $(function(){
                 matchData['heure']['valid'] = false;
             }
             if(!matchData['date']['valid']) {
-                $(matchModal).find('#date').closest('.form-group').addClass('has-error').removeClass('has-success');
+                matchModal.find('#date').closest('.form-group').addClass('has-error').removeClass('has-success');
             } else {
-                $(matchModal).find('#date').closest('.form-group').removeClass('has-error').addClass('has-success');
+                matchModal.find('#date').closest('.form-group').removeClass('has-error').addClass('has-success');
             }
         });
         
-        $(matchModal).find('#journee').on('change', function(){
+        matchModal.find('#journee').on('change', function(){
             formSelect('journee');
         });
         
-        $(matchModal).find('#adversaires').on('change', function(){
+        matchModal.find('#adversaires').on('change', function(){
             formSelect('adversaires');
             
             var adversaires = $(this).val();
@@ -237,8 +237,8 @@ $(function(){
             }
         });
 
-        /*$(matchModal).find('.lieu .btn').on('click', function(){
-            $(matchModal).find('.lieu .btn').removeClass('active').find('input').prop('checked', false);
+        /*matchModal.find('.lieu .btn').on('click', function(){
+            matchModal.find('.lieu .btn').removeClass('active').find('input').prop('checked', false);
             $(this).addClass('active').find('input').prop('checked', true);
         });*/
         
@@ -267,7 +267,7 @@ $(function(){
                             if(ch == 'id') {
                                 matchData[ch]['value'] = data[ch];
                             } else if(ch == 'lieu') {
-                                $(matchModal).find('.lieu .btn').removeClass('active').find('input').prop('checked', false);
+                                matchModal.find('.lieu .btn').removeClass('active').find('input').prop('checked', false);
                                 if(data[ch] == 0)
                                     $('#lieu_dom').parent().addClass('active').find('input').prop('checked', true);
                                 else if(data[ch] == 1)
@@ -275,7 +275,7 @@ $(function(){
                                 else
                                     $('#lieu_neu').parent().addClass('active').find('input').prop('checked', true);
                             } else if(ch == 'joue') {
-                                $(matchModal).find('.joue .btn').removeClass('active').find('input').prop('checked', false);
+                                matchModal.find('.joue .btn').removeClass('active').find('input').prop('checked', false);
                                 if(data[ch] == 0)
                                     $('#joue_non').parent().addClass('active').find('input').prop('checked', true);
                                 else
@@ -293,12 +293,25 @@ $(function(){
                                     var minute = data['heure'].toString().substr(-2,2);
                                 }
                                 
-                                $('#date-val').val(annee + '/' + mois + '/' + jour + ' ' + heure + ':' + minute);
+                                $('#date-val').val(jour + '/' + mois + '/' + annee + ' ' + heure + ':' + minute);
                             } else if(ch == 'adversaires') {
-                                if(data[ch].length > 0) {
-                                    for(i in data[ch]) {
-                                        $(matchModal).find('#'+ ch).selectpicker('val', data[ch][i]);
+                                var tabAdv = data[ch].split(',');
+                                if(tabAdv.length > 0) {
+                                    for(i in tabAdv) {
+                                        matchModal.find('#'+ ch).selectpicker('val', tabAdv[i]);
+                                        var selectedOptions = matchModal.find('#'+ ch +' option:selected');
+                                        var rencontre = matchModal.find('.rencontres .rencontre').eq(i);
+                                        rencontre.removeClass('hidden');
 
+                                        if(matchData['lieu']['value'] == 0) {
+                                            rencontre.find('.lieu .btn-group').addClass('hidden');
+                                            rencontre.find('.equipe1 p').text('Achères');
+                                            rencontre.find('.equipe2 p').text($(selectedOptions[i]).data('nom'));
+                                        } else {
+                                            rencontre.find('.lieu .btn-group').removeClass('hidden');
+                                            rencontre.find('.equipe1 p').text($(selectedOptions[i]).data('nom'));
+                                            rencontre.find('.equipe2 p').text('Achères');
+                                        }
                                         /*if(data[ch][i][ent] != 0) {
                                             $(teamModal).find('#'+ ent).closest('.row').find('.selectpicker').selectpicker('refresh');
                                         }*/
@@ -322,12 +335,12 @@ $(function(){
         matchModal.find('.add-match, .edit-match').on('click', function(e){
             e.preventDefault();
             var formValid = true;
-            var DateTimePicker = $(matchModal).find('#date').data("DateTimePicker").date();
+            var DateTimePicker = matchModal.find('#date').data("DateTimePicker").date();
             
             for(ch in matchData) {
                 if(ch == 'lieu' || ch == 'joue') {
-                    if($(matchModal).find('input[name="'+ ch +'"]:checked').val() != undefined) {
-                        matchData[ch]['value'] = $(matchModal).find('input[name="'+ ch +'"]:checked').val();
+                    if(matchModal.find('input[name="'+ ch +'"]:checked').val() != undefined) {
+                        matchData[ch]['value'] = matchModal.find('input[name="'+ ch +'"]:checked').val();
                         matchData[ch]['valid'] = true;
                     } else {
                         matchData[ch]['value'] = '';
@@ -337,9 +350,9 @@ $(function(){
                         if(formValid) {
                             formValid = false;
                         }
-                        $(matchModal).find('input[name="'+ ch +'"]').closest('.form-group').addClass('has-error').removeClass('has-success');
+                        matchModal.find('input[name="'+ ch +'"]').closest('.form-group').addClass('has-error').removeClass('has-success');
                     } else {
-                        $(matchModal).find('input[name="'+ ch +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
+                        matchModal.find('input[name="'+ ch +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
                     }
                 } else if(ch == 'date') {
                     if(DateTimePicker != '' && DateTimePicker != null) {
@@ -353,9 +366,9 @@ $(function(){
                         if(formValid) {
                             formValid = false;
                         }
-                        $(matchModal).find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
+                        matchModal.find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
                     } else {
-                        $(matchModal).find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
+                        matchModal.find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
                     }
                 } else if(ch == 'heure') {
                     if(DateTimePicker != '' && DateTimePicker != null) {
@@ -372,27 +385,27 @@ $(function(){
                     }
                 } else if(ch == 'scores_dom' || ch == 'scores_ext') {
                     var tabScores = [];
-                    $(matchModal).find('.rencontre:not(.hidden) select.'+ ch).each(function(){
+                    matchModal.find('.rencontre:not(.hidden) select.'+ ch).each(function(){
                         tabScores.push($(this).val())
                     });
                     if(matchData['lieu']['value'] != 0 && tabScores.length > 1) {
-                        var index = $(matchModal).find('.lieu .btn').index($(matchModal).find('.lieu .btn.active'));
+                        var index = matchModal.find('.lieu .btn').index(matchModal.find('.lieu .btn.active'));
                         var el = tabScores.splice(index, 1);
                         tabScores.splice(0, 0, el[0]);
                     }
                     matchData[ch]['value'] = tabScores.join();
                 } else if(ch != 'id') {
-                    if($(matchModal).find('#'+ ch).val() != '' && $(matchModal).find('#'+ ch).val() != null) {
+                    if(matchModal.find('#'+ ch).val() != '' && matchModal.find('#'+ ch).val() != null) {
                         if(ch == 'adversaires') {
-                            var tabAdv = $(matchModal).find('#'+ ch).val();
+                            var tabAdv = matchModal.find('#'+ ch).val();
                             if(matchData['lieu']['value'] != 0 && tabAdv.length > 1) {
-                                var index = $(matchModal).find('.lieu .btn').index($(matchModal).find('.lieu .btn.active'));
+                                var index = matchModal.find('.lieu .btn').index(matchModal.find('.lieu .btn.active'));
                                 var el = tabAdv.splice(index, 1);
                                 tabAdv.splice(0, 0, el[0]);
                             }
                             matchData[ch]['value'] = tabAdv.join();
                         } else {
-                            matchData[ch]['value'] = $(matchModal).find('#'+ ch).val();
+                            matchData[ch]['value'] = matchModal.find('#'+ ch).val();
                         }
                         matchData[ch]['valid'] = true;
                     } else {
@@ -407,9 +420,9 @@ $(function(){
                         if(formValid) {
                             formValid = false;
                         }
-                        $(matchModal).find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
+                        matchModal.find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
                     } else {
-                        $(matchModal).find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
+                        matchModal.find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
                     }
                 }
             }

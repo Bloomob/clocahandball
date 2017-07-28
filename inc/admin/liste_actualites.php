@@ -6,7 +6,7 @@ if(is_array($listeActualites)):
 			$unUtilisateur = $UtilManager->retourneById($uneActu->getId_auteur_crea()); ?>
 			<td><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></td>
 			<td><?php
-				if($uneActu->getDate_publication()== 0):?>
+				if($uneActu->getDate_publication() == 0):?>
 					<span class="statut bg-danger text-danger"><i class="fa fa-clock-o" aria-hidden="true"></i> Non publiée</span><?php
 				elseif($uneActu->getDate_publication()>date('Ymd') || ($uneActu->getDate_publication()==date('Ymd') && $uneActu->getHeure_publication()>date('Hm'))): ?>
 					<span class="statut bg-warning text-warning"><i class="fa fa-clock-o" aria-hidden="true"></i> <?= $uneActu->getJourP().'/'.$uneActu->getMoisP().' à '.remplace_heure($uneActu->getHeure_publication());?> </span><?php

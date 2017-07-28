@@ -80,6 +80,15 @@
                     }
                 }
             }
+            &.actualites {
+              .bootstrap-tagsinput {
+                width: 100%;
+
+                .label {
+                  font-size: 0.9em;
+                }
+              }
+            }
         }
     }
 }

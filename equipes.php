@@ -173,23 +173,25 @@
 														<div class="col-sm-6 dernieres_actus">
 															<div class="bloc">
 																<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Les dernières actus</h4>
-																<ul class="list1"><?php
-																	$tag = $laCategorie->getRaccourci();
-																	$options = array('where' => 'tags LIKE "%'.$tag.'%" AND date_publication > '.$annee_actuelle.'0701', 'limit' => '0, 5');
-																	$listeActu = $ActualiteManager->retourneListe($options);
-																	// debug($listeActu);
-																	if(is_array($listeActu)):
-																		foreach($listeActu as $uneActu) :?>
-																			<li <?php if($uneActu->getImportance()) echo 'class="news_importante"'; ?>>
-																				<a href="actualites.php?id=<?=$uneActu->getId();?>">
-																					<span class="news_date"><?=$uneActu->dateTypeNews();?></span> <?=$uneActu->getTitre();?>
-																				</a>
-																			</li><?php
-																		endforeach;
-																	else: ?>
-																		<li>Pas d'info pour le moment</li><?php
-																	endif; ?>
-																</ul>
+																<?php
+																$tag = $laCategorie->getRaccourci();
+																$options = array('where' => 'tags LIKE "%'.$tag.'%" AND date_publication > '.$annee_actuelle.'0701', 'limit' => '0, 5');
+																$listeActu = $ActualiteManager->retourneListe($options);
+																// debug($listeActu);
+																if(!empty($listeActu)):?>
+														            <ul><?php
+														                foreach($listeActu as $uneActu):?>
+														                    <li>
+														                        <a href="actualites.php?id=<?=$uneActu->getId();?>" class="puce<?=($uneActu->getImportance() == 1) ? ' important' : '';?>">
+														                            <span class="date-info"><?=$uneActu->dateTypePublicationNews();?></span><?=$uneActu->getTitre();?>
+														                        </a>
+														                    </li>
+														                    <?php
+														                endforeach;?>
+														            </ul><?php
+														        else: ?>
+														            <p>Pas d'actualité pour le moment</p><?php
+														        endif?>
 															</div>
 														</div>
 														<div class="col-sm-6 saison_passee">
@@ -218,142 +220,59 @@
 												// debug($listeMatchs);
 												if(!empty($listeMatchs)):?>
 													<div class="calendrier">
-														<div class="wrapper">
-															<table class="table"><?php
-																$k=2;
-																$mois = '';
-																foreach($listeMatchs as $unMatch): /*
-																	if(intval(substr($unMatch->getDate(),4,2))-1 != $mois) {?>
-																		<tr>
-																			<th colspan='6'><?=$mois_de_lannee[intval(substr($unMatch->getDate(),4,2))-1];?> <?=substr($unMatch->getDate(),0,4);?></th>
-																		</tr><?php
-																	}*/ ?>
-																	<tr>
-																		<td class="laDate">
-																			<div class="tr2">
-																				<div class="td0">
-																					<div class="jour"><?=intval(substr($unMatch->getDate(),6,2));?></div>
-																					<div class="mois"><?=$mois_de_lannee_min[intval(substr($unMatch->getDate(),4,2))-1];?></div>
-																				</div>
-																			</div>
-																		</td>
-																		<td class="competition">
-																			<div class="competition_<?=$unMatch->getCompetition();?>_<?=$unMatch->getNiveau();?>">
-																				<?=$listeCompetition[$unMatch->getCompetition()];?>
-																				<br/><?=($unMatch->getJournee()!=0)?'Journ&eacute;e '.$unMatch->getJournee():$unMatch->getTour();?>
-																			</div>
-																		</td><?php
-																		if($unMatch->getLieu()==0): ?>
-																			<td class="equipes"><?php
-																				$tab = explode(',', $unMatch->getAdversaires());
-																				if(is_array($tab)):
-																					foreach($tab as $club):
-																						$unClub = $ClubManager->retourne($club);
-																						echo '<div>';
-																						echo "<strong>Ach&egrave;res</strong><br/>";
-																						echo stripslashes($unClub->getRaccourci())." ".$unClub->getNumero().'<br/>';
-																						echo '</div>';
-																					endforeach;
-																				else:
-																					$unClub = $ClubManager->retourne($club);
-																					echo '<div>';
-																					echo "<strong>Ach&egrave;res</strong><br/>";
-																					echo stripslashes($unClub->getRaccourci())." ".$unClub->getNumero();
-																					echo '</div>';
-																				endif; ?>
-																			</td>
-																			<td class="score"><?php
-																				if($unMatch->getJoue()):
-																					$score_dom = explode(',', $unMatch->getScores_dom());
-																					$score_ext = explode(',', $unMatch->getScores_ext());
-																					if(is_array($score_dom) && is_array($score_ext)):
-																						for($i=0; $i<count($score_dom); $i++):
-																							if($score_dom[$i]>$score_ext[$i]):
-																								$color = "vert";
-																							elseif($score_dom[$i]<$score_ext[$i]):
-																								$color = "rouge";
-																							else:
-																								$color = "orange";
-																							endif;
-																							echo '<div>';
-																							echo "<span class=".$color.">".$score_dom[$i]."<br/>".$score_ext[$i].'</span>';
-																							echo '</div>';
-																						endfor;
-																					else:
-																						if($score_dom>$score_ext):
-																							$color = "vert";
-																						elseif($score_dom<$score_ext):
-																							$color = "rouge";
-																						else:
-																							$color = "orange";
-																						endif;  
-																						echo '<div>';
-																						echo "<span class=".$color.">".$score_dom."<br/>".$score_ext.'</span>';
-																						echo '</div>';
-																					endif;
-																				else:
-																					echo "<span>". $unMatch->remplace_heure() ."</span>";
-																				endif; ?>
-																			</td><?php
-																		else: ?>
-																			<td class="equipes"><?php
-																				$tab = explode(',', $unMatch->getAdversaires());
-																				if(is_array($tab)):
-																					foreach($tab as $club):
-																						$unClub = $ClubManager->retourne($club);
-																						echo '<div>';
-																						echo $unClub->getRaccourci()." ".$unClub->getNumero().'<br/>';
-																						echo "<strong>Ach&egrave;res</strong>";
-																						echo '</div>';
-																					endforeach;
-																				else:
-																					$unClub = $ClubManager->retourne($club);
-																					echo '<div>';
-																					echo $unClub->getRaccourci()." ".$unClub->getNumero();
-																					echo "<strong>Ach&egrave;res</strong>";
-																					echo '</div>';
-																				endif; ?>
-																			</td>
-																			<td class="score"><?php
-																				if($unMatch->getJoue()):
-																					$score_dom = explode(',', $unMatch->getScores_dom());
-																					$score_ext = explode(',', $unMatch->getScores_ext());
-																					if(is_array($score_dom) && is_array($score_ext)):
-																						for($i=0; $i<count($score_dom); $i++):
-																							if($score_dom[$i]<$score_ext[$i]):
-																								$color = "vert";
-																							elseif($score_dom[$i]>$score_ext[$i]):
-																								$color = "rouge";
-																							else:
-																								$color = "orange";
-																							endif;
-																							echo '<div>';
-																							echo "<span class=".$color.">".$score_dom[$i]."<br/>".$score_ext[$i].'</span><br/>';
-																							echo '</div>';
-																						endfor;
-																					else:
-																						if($score_dom<$score_ext):
-																							$color = "vert";
-																						elseif($score_dom>$score_ext):
-																							$color = "rouge";
-																						else:
-																							$color = "orange";
-																						endif;
-																						echo '<div>';
-																						echo "<span class=".$color.">".$score_dom."<br/>".$score_ext.'</span><br/>';
-																						echo '</div>';
-																					endif;
-																				else:
-																					echo "<span>". $unMatch->remplace_heure() ."</span>";
-																				endif; ?>
-																			</td><?php
-																		endif; ?>
-																	</tr><?php
-																	$k++;
-																	if($k==3) $k=1;
-																	$mois = intval(substr($unMatch->getDate(),4,2))-1;
-																endforeach;?>
-															</table>
+														<div class="wrapper"><?php
+															if(!empty($listeMatchs)):
+													            foreach($listeMatchs as $unMatch): ?>
+													                <div class="row">
+													                    <div class="col-sm-2 col-lg-2 date">
+													                        <div class="jour"><?=$unMatch->getJour();?></div>
+													                        <div class="mois"><?=$mois_de_lannee_min[$unMatch->getMois()-1];?></div>
+													                    </div>
+													                    <div class="col-sm-2">
+													                        <div class="compet competition_<?=$unMatch->getCompetition();?>_<?=$unMatch->getNiveau();?>">
+													                            <span><?=($unMatch->getJournee()!=0)?'J'.$unMatch->getJournee():$unMatch->getTour();?></span>
+													                        </div>
+													                    </div><?php
+													                    $options2 = array('where' => 'id = '. $unMatch->getCategorie());
+													                    $uneCategorie = $CategorieManager->retourne($options2);
+													                    if($unMatch->getLieu() == 0):?>
+													                        <div class="col-sm-6 col-lg-6">
+													                            <div class="dom puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
+													                            <div class="ext"><?php
+													                                $tab = explode(',', $unMatch->getAdversaires());
+													                                if(is_array($tab) ):
+													                                    foreach($tab as $key => $club):
+													                                        if($key > 0) { echo " - "; }
+													                                        $unClub = $ClubManager->retourne($club);
+													                                        echo stripslashes($unClub->getRaccourci())." ".$unClub->getNumero();
+													                                    endforeach;
+													                                endif; ?>
+													                            </div>
+													                        </div><?php
+													                    else: ?>
+													                        <div class="col-sm-6 col-lg-6">
+													                            <div class="dom"><?php
+													                                $tab = explode(',', $unMatch->getAdversaires());
+													                                if(is_array($tab)):
+													                                    foreach($tab as $key => $club):
+													                                        if($key > 0) { echo " - "; }
+													                                        $unClub = $ClubManager->retourne($club);
+													                                        echo stripslashes($unClub->getRaccourci())." ".$unClub->getNumero();
+													                                    endforeach;
+													                                endif; ?>
+													                            </div>
+													                            <div class="ext puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
+													                        </div><?php
+													                    endif; ?>
+													                    <div class="col-sm-2 heure"><span><?=$unMatch->remplace_heure()?></span></div>
+													                    <!-- <div class="col-sm-2">
+													                        <span><a href="#"><i class="fa fa-flag" aria-hidden="true"></i></a></span>
+													                    </div> -->
+													                </div><?php
+													            endforeach;
+													        else: ?>
+													            <p>Pas de match pr&eacute;vu pour le moment</p><?php
+													        endif; ?>
 														</div>
 													</div><?php
 												endif;?>
@@ -506,7 +425,7 @@
 								<?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
 							</article>
 							<article>
-								<?php include_once('inc/partenaires.php'); ?>
+								<?php include_once('inc/modules/partenaires.php'); ?>
 							</article>
 						</article>
 					</div>
