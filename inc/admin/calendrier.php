@@ -259,6 +259,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="form-group">
@@ -275,7 +276,8 @@
                                     <label for="joue">Match joué ?</label><br>
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default">
-                                            <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1"> Oui
+                                            <input type="radio" name="joue" id="joue_oui
+                                            " autocomplete="off" value="1"> Oui
                                         </label>
                                         <label class="btn btn-default active">
                                             <input type="radio" name="joue" id="joue_non" autocomplete="off" value="0" checked> Non
@@ -293,6 +295,7 @@
                                                 <label class="btn btn-default <?=($i==1)?'active':''?>">
                                                     <input type="radio" name="isDom" id="isDom_<?=$i?>" autocomplete="off" value="<?=$i?>" <?=($i==1)?'checked':''?>>Reçoit
                                                 </label>
+                
                                             </div>
                                         </div>
                                         <div class="col-sm-3 equipe1 text-right">
@@ -352,6 +355,7 @@
 		                                    $uneCategorie = $CategorieManager->retourneById($uneEquipe->getCategorie());?>
                                             <option value="<?=$uneCategorie->getId();?>"><?=$uneCategorie->getCategorieAll();?></option><?php
                                         endforeach;?>
+
                                     </select>
                                 </div>
                             </div>
@@ -378,32 +382,6 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class="form-group lieu">
-                                    <label for="lieu_dom">Lieu</label><br>
-                                    <div class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-default active">
-                                            <input type="radio" name="lieu" id="lieu_dom" autocomplete="off" value="0" checked> Domicile
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="lieu" id="lieu_ext" autocomplete="off" value="1"> Exterieur
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="lieu" id="lieu_neu" autocomplete="off" value="2"> Neutre
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="adversaires">Adversaire</label><br>
-                                    <select id="adversaires" class="form-control selectpicker" data-live-search="true" title="Choisissez un adversaire"><?php
-                                        foreach($listeClub as $unClub):?>
-                                            <option value="<?=$unClub->getId();?>" data-nom="<?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?>"><?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?></option><?php
-                                        endforeach;?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
                                 <div class="form-group aller_retour">
                                     <label for="aller_retour">Aller-Retour ?</label><br>
                                     <div class="btn-group" data-toggle="buttons">
@@ -417,73 +395,137 @@
                                 </div>
                             </div>
                         </div>
-                        <fieldset>
+                        <div class="rencontres">
                             <div class="row rencontre">
                                 <div class="col-sm-1">
-                                    <span>J1</span>
+                                    <div class="journee-aller form-group">
+                                        <label>Journée</label>
+                                        <span class="form-control">1</span>
+                                    </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <div class="form-group">
-                                        <label for="dates">Date aller</label><br>
-                                        <div class='input-group date' id='date'>
-                                            <input type='text' id="date-val" class="form-control" />
+                                    <div class="form-group lieu">
+                                        <label>Lieu du match aller</label><br>
+                                        <div class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-default active">
+                                                <input type="radio" name="lieu_0" id="lieu_dom_0" autocomplete="off" value="0" checked> Dom.
+                                            </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" name="lieu_0" id="lieu_ext_0" autocomplete="off" value="1"> Ext.
+                                            </label>
+                                            <label class="btn btn-default">
+                                                <input type="radio" name="lieu_0" id="lieu_neu_0" autocomplete="off" value="2"> Neu.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Scores</label>
+                                    <div class="row scores-aller">
+                                        <div class="col-sm-6 form-group">
+                                            <select id="score_dom_aller" class="form-control selectpicker scores_dom"><?php
+                                                for($j=0; $j <= 60; $j++):?>
+                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
+                                                endfor;?>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6 form-group">
+                                            <select id="score_ext_aller" class="form-control selectpicker scores_ext"><?php
+                                                for($j=0; $j <= 60; $j++):?>
+                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
+                                                endfor;?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group date-aller">
+                                        <label for="dates">Dates</label><br>
+                                        <div class='input-group date' id='date_aller'>
+                                            <input type='text' id="date-aller-val" class="form-control" placeholder="Date aller" />
                                             <span class="input-group-addon">
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    
-                                </div>
                                 <div class="col-sm-2">
-                                    <div class="form-group joue">
+                                    <div class="form-group joue-aller">
                                         <label for="joue">Match joué ?</label><br>
                                         <div class="btn-group" data-toggle="buttons">
                                             <label class="btn btn-default">
-                                                <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1"> Oui
+                                                <input type="radio" name="joue_aller_0" id="joue_aller_oui_0" autocomplete="off" value="1"> Oui
                                             </label>
                                             <label class="btn btn-default active">
-                                                <input type="radio" name="joue" id="joue_non" autocomplete="off" value="0" checked> Non
+                                                <input type="radio" name="joue_aller_0" id="joue_aller_non_0" autocomplete="off" value="0" checked> Non
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="form-group journee-retour hidden">
+                                        <span class="form-control"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <select id="adversaires" class="form-control selectpicker" data-live-search="true" title="Choisissez un adversaire"><?php
+                                            foreach($listeClub as $unClub):?>
+                                                <option value="<?=$unClub->getId();?>" data-nom="<?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?>"><?=$unClub->getRaccourci();?> <?=$unClub->getNumero();?></option><?php
+                                            endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="row scores-retour hidden">
+                                        <div class="col-sm-6 form-group">
+                                            <select id="score_dom_retour" class="form-control selectpicker scores_dom"><?php
+                                                for($j=0; $j <= 60; $j++):?>
+                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
+                                                endfor;?>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6 form-group">
+                                            <select id="score_ext_retour" class="form-control selectpicker scores_ext"><?php
+                                                for($j=0; $j <= 60; $j++):?>
+                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
+                                                endfor;?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group date-retour hidden">
+                                        <div class='input-group date' id='date_retour'>
+                                            <input type='text' id="date-retour-val" class="form-control" placeholder="Date retour" />
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group joue-retour hidden">
+                                        <div class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-default">
+                                                <input type="radio" name="joue_retour_0" id="joue_retour_oui_0" autocomplete="off" value="1"> Oui
+                                            </label>
+                                            <label class="btn btn-default active">
+                                                <input type="radio" name="joue_retour_0" id="joue_retour_non_0" autocomplete="off" value="0" checked> Non
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
-                        <div class="row">
-                            <div class="col-sm-8 rencontres"><?php
-                                for($i=1; $i<5; $i++):?>
-                                    <div class="row rencontre hidden">
-                                        <div class="col-sm-2 lieu">
-                                            <div class="btn-group" data-toggle="buttons">
-                                                <label class="btn btn-default <?=($i==1)?'active':''?>">
-                                                    <input type="radio" name="isDom" id="isDom_<?=$i?>" autocomplete="off" value="<?=$i?>" <?=($i==1)?'checked':''?>>Reçoit
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3 equipe1 text-right">
-                                            <p></p>
-                                        </div>
-                                        <div class="col-sm-2 text-right">
-                                            <select id="score_dom_<?=$i?>" class="form-control selectpicker scores_dom"><?php
-                                                for($j=0; $j <= 60; $j++):?>
-                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
-                                                endfor;?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <select id="score_ext_<?=$i?>" class="form-control selectpicker scores_ext"><?php
-                                                for($j=0; $j <= 60; $j++):?>
-                                                    <option value="<?=$j;?>"><?=$j;?></option><?php
-                                                endfor;?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3 equipe2">
-                                            <p></p>
-                                        </div>
-                                    </div><?php
-                                endfor;?>
+                        </div>
+                        <div class="ajout">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-success add-journee"><i class="fa fa-plus"></i> Ajouter</button>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-danger rm-journee hidden"><i class="fa fa-minus"></i> Supprimer</button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -494,8 +536,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn btn-success add-match">Ajouter</button>
-                    <button type="button" class="btn btn-warning edit-match hidden">Modifier</button>
+                    <button type="button" class="btn btn-success add-league">Ajouter</button>
                 </div>
             </div>
         </div>
@@ -518,3 +559,4 @@
         </div>
     </div>
 </div>
+

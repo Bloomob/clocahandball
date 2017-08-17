@@ -1,4 +1,5 @@
 
+
 $(function(){
 
     /*************************
@@ -12,6 +13,7 @@ $(function(){
         * VARIABLES
         */
         var matchModal = $('#matchModal');
+        var leagueModal = $('#leagueModal');
         var matchData = {
             id: {
                 value: 0,
@@ -66,6 +68,60 @@ $(function(){
                 valid: false
             }
         }
+        var leagueData = {
+            categorie: {
+                value: '',
+                valid: false
+            },
+            competition: {
+                value: '',
+                valid: false
+            },
+            niveau: {
+                value: '',
+                valid: false
+            },
+            aller_retour: {
+                value: 0,
+                valid: true
+            },
+            rencontres: [
+                {
+                    journee: {
+                        value: 1,
+                        valid: true
+                    },
+                    adversaires: {
+                        value: [],
+                        valid: false
+                    },
+                    scores_dom: {
+                        value: '',
+                        valid: false
+                    },
+                    scores_ext: {
+                        value: '',
+                        valid: false
+                    },
+                    lieu: {
+                        value: 0,
+                        valid: true
+                    },
+                    date: {
+                        value: '',
+                        valid: false
+                    },
+                    heure: {
+                        value: '',
+                        valid: false
+                    },
+                    joue: {
+                        value: '',
+                        valid: false
+                    }
+                }
+            ]
+        }
         
         /*
         * INIT
@@ -97,6 +153,15 @@ $(function(){
               down: "fa fa-arrow-down"
             }
         });
+
+        $('.date-aller .date, .date-retour .date').datetimepicker({
+            icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-arrow-up",
+              down: "fa fa-arrow-down"
+            }
+        });
         
         $("#date_debut").on("dp.change", function (e) {
             $('#date_fin').data("DateTimePicker").minDate(e.date);
@@ -109,7 +174,7 @@ $(function(){
         * FONCTIONS
         */
         
-        function formInputRadio(ch) {
+        function formMatchInputRadio(ch) {
             if(matchModal.find('input[name="'+ ch +'"]:checked').val() != undefined) {
                 matchData[ch]['value'] = matchModal.find('input[name="'+ ch +'"]:checked').val();
                 matchData[ch]['valid'] = true;
@@ -124,7 +189,7 @@ $(function(){
             }
         }
         
-        function formSelect(ch) {
+        function formMatchSelect(ch) {
             if(matchModal.find('#'+ ch).val() != '' && matchModal.find('#'+ ch).val() != null) {
                 matchData[ch]['value'] = matchModal.find('#'+ ch).val();
                 matchData[ch]['valid'] = true;
@@ -138,11 +203,47 @@ $(function(){
                 matchModal.find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
             }
         }
+
+        function formLeagueInputRadio(el, data, ch, val = '') {
+            if(val == '') {
+                val = ch;
+            }
+            if(el.find('input[name="'+ val +'"]:checked').val() != undefined) {
+                data[ch]['value'] = el.find('input[name="'+ ch +'"]:checked').val();
+                data[ch]['valid'] = true;
+            } else {
+                data[ch]['value'] = '';
+                data[ch]['valid'] = false;
+            }
+            if(!data[ch]['valid']) {
+                el.find('input[name="'+ val +'"]').closest('.form-group').addClass('has-error').removeClass('has-success');
+            } else {
+                el.find('input[name="'+ val +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
+            }
+        }
+        
+        function formLeagueSelect(el, data, ch, val = '') {
+            if(val == '') {
+                val = ch;
+            }
+            if(el.find('#'+ val).val() != '' && el.find('#'+ val).val() != null) {
+                data[ch]['value'] = el.find('#'+ val).val();
+                data[ch]['valid'] = true;
+            } else {
+                data[ch]['value'] = '';
+                data[ch]['valid'] = false;
+            }
+            if(!data[ch]['valid']) {
+                el.find('#'+ val).closest('.form-group').addClass('has-error').removeClass('has-success');
+            } else {
+                el.find('#'+ val).closest('.form-group').removeClass('has-error').addClass('has-success');
+            }
+        }
         
         /* OnChange */
         matchModal.find('input[name="lieu"]').on('change', function(){
             var oldVal = matchData['lieu']['value'];
-            formInputRadio('lieu');
+            formMatchInputRadio('lieu');
             var newVal = matchData['lieu']['value'];
             
             
@@ -165,15 +266,15 @@ $(function(){
         });
         
         matchModal.find('input[name="joue"]').on('change', function(){
-            formInputRadio('joue');
+            formMatchInputRadio('joue');
         });
         
         matchModal.find('#categorie').on('change', function(){
-            formSelect('categorie');
+            formMatchSelect('categorie');
         });
-        
+         
         matchModal.find('#competition').on('change', function(){
-            formSelect('competition');
+            formMatchSelect('competition');
             if($(this).val() == 2 || $(this).val() == 3) {
                 matchModal.find('.form-group.journee').addClass('hidden');
                 matchModal.find('.form-group.tour').removeClass('hidden');
@@ -184,7 +285,7 @@ $(function(){
         });
         
         matchModal.find('#niveau').on('change', function(){
-            formSelect('niveau');
+            formMatchSelect('niveau');
         });
         
         matchModal.find('#date').on("dp.change", function () {
@@ -195,6 +296,7 @@ $(function(){
                 matchData['heure']['value'] = moment(DateTimePicker).format('HHmm');
                 matchData['heure']['valid'] = true;
             } else {
+   
                 matchData['date']['value'] = '';
                 matchData['date']['valid'] = false;
                 matchData['heure']['value'] = '';
@@ -208,22 +310,22 @@ $(function(){
         });
         
         matchModal.find('#journee').on('change', function(){
-            formSelect('journee');
+            formMatchSelect('journee');
         });
         
         matchModal.find('#adversaires').on('change', function(){
-            formSelect('adversaires');
+            formMatchSelect('adversaires');
             
             var adversaires = $(this).val();
             var selectedOptions = $('#adversaires option:selected');
             
-            $('.rencontres .rencontre').addClass('hidden');
-            $('.rencontres .rencontre .selectpicker').val(0).selectpicker('refresh');
-            $('.rencontres .rencontre .lieu .btn').removeClass('active').find('input').prop('checked', false);
-            $('.rencontres .rencontre:first-child .lieu .btn').addClass('active').find('input').prop('checked', true);
+            matchModal.find('.rencontres .rencontre').addClass('hidden');
+            matchModal.find('.rencontres .rencontre .selectpicker').val(0).selectpicker('refresh');
+            matchModal.find('.rencontres .rencontre .lieu .btn').removeClass('active').find('input').prop('checked', false);
+            matchModal.find('.rencontres .rencontre:first-child .lieu .btn').addClass('active').find('input').prop('checked', true);
             
             for(i in adversaires) {
-                var rencontre = $('.rencontres .rencontre').eq(i);
+                var rencontre = matchModal.find('.rencontres .rencontre').eq(i);
                 rencontre.removeClass('hidden');
                 if(matchData['lieu']['value'] == 0) {
                     rencontre.find('.lieu .btn-group').addClass('hidden');
@@ -238,11 +340,13 @@ $(function(){
         });
 
         /*matchModal.find('.lieu .btn').on('click', function(){
+
             matchModal.find('.lieu .btn').removeClass('active').find('input').prop('checked', false);
             $(this).addClass('active').find('input').prop('checked', true);
         });*/
         
         /* Appel à la modal */
+   
         matchModal.on('show.bs.modal', function (e) {
             var button = $(e.relatedTarget);
             var id = button.data('id');
@@ -460,7 +564,200 @@ $(function(){
             }
         });
 
-        // Suppression d'un utilisateur
+        leagueModal.find('input[name="aller_retour"]').on('change', function(){
+            formLeagueInputRadio(leagueModal, leagueData, 'aller_retour');
+            
+            var rencontre = leagueModal.find('.rencontres .rencontre');
+            rencontre.each(function(index) {
+                if(leagueData['aller_retour']['value'] == 1) {
+                    $(this).find('.journee-retour, .scores-retour, .date-retour, .joue-retour').removeClass('hidden');
+                    var num_journee_retour = index + 1 + rencontre.length;
+                    $(this).find('.journee-retour .form-control').text(num_journee_retour);
+                } else {
+                    $(this).find('.journee-retour, .scores-retour, .date-retour, .joue-retour').addClass('hidden');
+                }
+            });
+        });
+
+        leagueModal.find('.ajout .add-journee').on('click', function(e) {
+            e.preventDefault();
+
+            leagueModal.find('.rm-journee').removeClass('hidden');
+            var rencontre = leagueModal.find('.rencontres .rencontre');
+            var clone = rencontre.eq(0).clone();
+            var nbr = rencontre.length;
+
+            clone.find('.bootstrap-select').replaceWith(function() {
+                return $('select', this);
+            });
+            clone.find('.lieu input').each( function() {
+                var name_lieu = $(this).attr('name');
+                var id_lieu = $(this).attr('id');
+                $(this).attr('name', name_lieu.substr(0, name_lieu.length-1) + nbr);
+                $(this).attr('id', id_lieu.substr(0, id_lieu.length-1) + nbr);
+            });
+            
+            clone.find('.joue-aller input').each( function() {
+                var name_joue_aller = $(this).attr('name');
+                var id_joue_aller = $(this).attr('id');
+                $(this).attr('name', name_joue_aller.substr(0, name_joue_aller.length-1) + nbr);
+                $(this).attr('id', id_joue_aller.substr(0, id_joue_aller.length-1) + nbr);
+            });
+            
+            clone.find('.joue-retour input').each( function() {
+                var name_joue_retour = $(this).attr('name');
+                var id_joue_retour = $(this).attr('id');
+                $(this).attr('name', name_joue_retour.substr(0, name_joue_retour.length-1) + nbr);
+                $(this).attr('id', id_joue_retour.substr(0, id_joue_retour.length-1) + nbr);
+            });
+
+            clone.find('.selectpicker').selectpicker();
+            clone.find('.lieu .btn, .joue-aller .btn, .joue-retour .btn').removeClass('active').find('input').prop('checked', false);
+            clone.find('#lieu_dom_'+ nbr +', #joue_aller_non_'+ nbr +', #joue_retour_non_'+ nbr).parent().addClass('active').find('input').prop('checked', true);
+            clone.find('#date-aller-val, #date-retour-val').val('');
+            clone.find('.date-aller .date, .date-retour .date').datetimepicker({
+                icons: {
+                  time: "fa fa-clock-o",
+                  date: "fa fa-calendar",
+                  up: "fa fa-arrow-up",
+                  down: "fa fa-arrow-down"
+                }
+            });
+            leagueModal.find('.rencontres').append(clone);
+
+            rencontre = leagueModal.find('.rencontres .rencontre');
+            rencontre.each(function(index) {
+                $(this).find('.journee-aller .form-control').text(index + 1);
+                $(this).find('.journee-retour .form-control').text(index + 1 + rencontre.length);
+            });
+        });
+
+        leagueModal.find('.ajout .rm-journee').on('click', function(e) {
+            e.preventDefault();
+            leagueModal.find('.rencontres .rencontre').last().remove();
+
+            var rencontre = leagueModal.find('.rencontres .rencontre');
+            rencontre.each(function(index) {
+                $(this).find('.journee-aller .form-control').text(index + 1);
+                $(this).find('.journee-retour .form-control').text(index + 1 + rencontre.length);
+            });
+            if(rencontre.length == 1) {
+                leagueModal.find('.rm-journee').addClass('hidden');
+            }
+
+        });
+        
+        /* Ajout de championnat */
+        leagueModal.find('.add-league').on('click', function(e){
+            e.preventDefault();
+            var formValid = true;
+
+            for(ch in leagueData) {
+                if(ch == 'rencontres') {
+                    var rencontreData = leagueData.rencontres[0];
+                    leagueData.rencontres = [];
+                    leagueModal.find('.rencontres .rencontre').each(function(index) {
+                        var num = index + 1;
+                        var dataAller = jQuery.extend(true, {}, rencontreData);
+                        dataAller.journee.value = num;
+                            
+                        for(i in dataAller) {
+                            if(i == 'adversaires') {
+                                formLeagueSelect($(this), dataAller, i);
+                            } else if(i == 'lieu') {
+                                console.log('lieu_'+ index);
+                                formLeagueInputRadio($(this), dataAller, i, 'lieu_'+ index);
+                            }  else if(i == 'joue') {
+                                console.log('joue_aller_'+ index);
+                                formLeagueInputRadio($(this), dataAller, i, 'joue_aller_'+ index);
+                            } else if(i == 'scores_dom') {
+                                formLeagueSelect($(this), dataAller, i, 'score_dom_aller');
+                            } else if(i == 'scores_ext') {
+                                formLeagueSelect($(this), dataAller, i, 'score_ext_aller');
+                            } else if(i == 'date') {
+                                var dateAller = $(this).find('#date_aller').data("DateTimePicker").date();
+                                
+                                if(dateAller != '' && dateAller != null) {
+                                    dataAller.date = { value: moment(dateAller).format('YYYYMMDD'), valid: true };
+                                    dataAller.heure = { value: moment(dateAller).format('HHmm'), valid: true };
+                                } else {
+                                    dataAller.date = { value: '', valid: false };
+                                    dataAller.heure = { value: '', valid: false };
+                                }
+                                if(!dataAller.date.valid) {
+                                    if(formValid) {
+                                        formValid = false;
+                                    }
+                                    $(this).find('#date_aller').closest('.form-group').addClass('has-error').removeClass('has-success');
+                                } else {
+                                    $(this).find('#date_aller').closest('.form-group').removeClass('has-error').addClass('has-success');
+                                }
+                            }
+                        }
+                        leagueData.rencontres.push(dataAller);
+
+                        if(leagueData.aller_retour.value) {
+                            var nbrRencontre = leagueModal.find('.rencontres .rencontre').length;
+                            var dataRetour = jQuery.extend(true, {}, rencontreData);
+                            dataRetour.journee.value = index + 1 + nbrRencontre;
+                            dataRetour.adversaires.value = dataAller.adversaires.value;
+                            dataRetour.lieu.value = dataAller.lieu.value;
+                            
+                            for(i in dataRetour) {
+                                if(i == 'joue') {
+                                    console.log('joue_retour_'+ index);
+                                    formLeagueInputRadio($(this), dataRetour, i, 'joue_retour_'+ index);
+                                } else if(i == 'scores_dom') {
+                                    formLeagueSelect($(this), dataRetour, i, 'score_dom_retour');
+                                } else if(i == 'scores_ext') {
+                                    formLeagueSelect($(this), dataRetour, i, 'score_ext_retour');
+                                } else if(i == 'date') {
+                                    var dateRetour = $(this).find('#date_retour').data("DateTimePicker").date();
+                            
+                                    if(dateRetour != '' && dateAller != null) {
+                                        dataRetour.date = { value: moment(dateRetour).format('YYYYMMDD'), valid: true };
+                                        dataRetour.heure = { value: moment(dateRetour).format('HHmm'), valid: true };
+                                    } else {
+                                        dataRetour.date = { value: '', valid: false };
+                                        dataRetour.heure = { value: '', valid: false };
+                                    }
+                                    if(!dataRetour.date.valid) {
+                                        if(formValid) {
+                                            formValid = false;
+                                        }
+                                        $(this).find('#date_retour').closest('.form-group').addClass('has-error').removeClass('has-success');
+                                    } else {
+                                        $(this).find('#date_retour').closest('.form-group').removeClass('has-error').addClass('has-success');
+                                    }
+                                }
+                            }
+                            leagueData.rencontres.push(dataRetour);
+                        }
+                    });
+
+                    /*for(var i = 0; i < nbr; i++) {
+                        var lieu = 
+                        var adversaires = rencontre.get(i).find('#adversaires').val();
+                        
+                        for(ch2 in leagueData[ch]) {
+                            if(ch2 == 'lieu') {
+
+                            }
+                        }
+                        if(leagueData['aller_retour']['value'] == 1) {
+
+                        }
+                    }*/
+                } else if(ch == 'aller_retour') {
+                    formLeagueInputRadio(leagueModal, leagueData, ch);
+                } else {
+                    formLeagueSelect(leagueModal, leagueData, ch);
+                }
+            }
+            console.log(leagueData);
+        });
+
+        // Suppression d'un match
         calendrier.find('.delete-match').on('click', function(e){
             e.preventDefault();
             var supprId = $(this).data('id');

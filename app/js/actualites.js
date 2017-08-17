@@ -29,6 +29,10 @@ $(function(){
                 value: '',
                 valid: false
             },
+            image: {
+                value: '',
+                valid: true
+            },
             theme: {
                 value: '',
                 valid: false
@@ -111,6 +115,23 @@ $(function(){
         }
         
         /* OnChange */
+
+        $(actuModal).find('#image').on('change', function(){
+            // console.log($(this));
+            $(actuModal).find('.image label.btn').addClass('btn-warning').removeClass('btn-success').text("Changer d'image");
+            $(actuModal).find('.image .img_details').removeClass('hidden').text($(this).val());
+            $(actuModal).find('.image .img_remove').removeClass('hidden');
+            actuData['image']['value'] = $(this).val();
+        });
+
+        $(actuModal).find('.img_remove').on('click', function(e){
+            e.preventDefault();
+            $(actuModal).find('.image label.btn').removeClass('btn-warning').addClass('btn-success').text("Ajouter une image");
+            $(actuModal).find('.image .img_details').addClass('hidden').text('');
+            $(actuModal).find('.image .img_remove').addClass('hidden');
+            actuData['image']['value'] = '';
+        });
+
         $(actuModal).find('input[name="publication"]').on('change', function(){
             formInputRadio('publication');
             if(actuData['publication']['value'] == 1)

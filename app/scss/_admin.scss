@@ -71,13 +71,24 @@
             }
             &.calendrier {
                 .rencontres {
-                    p {
-                        font-size: 14px;
-                        line-height: 34px;
+                  p {
+                      font-size: 14px;
+                      line-height: 34px;
+                  }
+                  .bootstrap-select {
+                      width: 100%;
+                  }
+                  .rencontre {
+                    + .rencontre {
+                      &:before {
+                        border-top: 1px solid $gris-clair2;
+                        padding-top: 15px;
+                        margin-left: 15px;
+                        display: inline-block;
+                        width: calc(100% - 30px);
+                      }
                     }
-                    .bootstrap-select {
-                        width: auto;
-                    }
+                  }
                 }
             }
             &.actualites {
@@ -86,6 +97,11 @@
 
                 .label {
                   font-size: 0.9em;
+                }
+              }
+              .image {
+                .img_details, .img_remove{
+                  margin-top: 19px;
                 }
               }
             }

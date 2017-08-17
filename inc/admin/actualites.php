@@ -26,7 +26,7 @@
 			</table>
 		</div>
 	</div>
-	<div class="modal fade" id="actuModal" tabindex="-1" role="dialog" aria-labelledby="matchLabel">
+	<div class="modal fade" id="actuModal" tabindex="-1" role="dialog" aria-labelledby="actuLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -55,6 +55,26 @@
                                 <div class="form-group">
                                     <label for="contenu">Contenu <span class="text-danger">*</span></label><br>
                                     <textarea name="contenu" id="contenu" class="form-control" placeholder="Entrez un contenu"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row image">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Image</label><br>
+                                    <label for="image" class="btn btn-success">Ajouter une image</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <input id="image" name="image" type="file" class="hidden">
+                                    <span class="img_loader hidden"></span>
+                                    <div class="img_details form-control hidden"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <button class="btn btn-danger img_remove hidden"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
