@@ -10,7 +10,7 @@
 	
 	$jours = array(0 => "-", 1 => "Lundi", 2 => "Mardi", 3 => "Mercredi", 4 => "Jeudi", 5 => "Vendredi", 6 => "Samedi", 7 => "Dimanche");
 
-	$gymnases = array(0 => "-", "PdC" => "Pierre de Coubertin", "PA" => "Petite Arche", "C" => "COSEC", "A" => "Autre");
+	$gymnases = array(0 => "-", "PdC" => "Pierre de Coubertin", "PA" => "Petite Arche", "C" => "COSEC", "HdS" => "Halle des sports", "LF" => "Laura Flessel", "A" => "Autre");
 
 	$rang = array('Membre', 'Admin', 'R&eacute;dacteur', 'Entraineur');
 
@@ -26,6 +26,6 @@
 	$tabImportance = array('3' => 'Basse', '2' => 'Moyenne', '1' => 'Haute');
 
 	$listeCompetition = array(1 => 'Championnat', 2 => 'Coupe des Yvelines', 3 => 'Coupe de France', 4 => 'D&eacute;layages', 5 => 'Amical');
-	$listeChampionnat = array(1 => 'Prénat', 2 => 'Pré-région', 3 => 'Excellence', 4 => 'Honneur', 5 => '1ère division', 6 => '2ème division', 7 => '3ème division', 8 => '4ème division');
+	$listeChampionnat = array(0 => 'Délayages', 1 => 'Prénat', 2 => 'Pré-région', 3 => 'Excellence', 4 => 'Honneur', 5 => '1ère division', 6 => '2ème division', 7 => '3ème division', 8 => '4ème division');
 	$listeNiveau = array(1 => 'National', 2 => 'R&eacute;gionnal', 3 => 'D&eacute;partemental');
 ?>

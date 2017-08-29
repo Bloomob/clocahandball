@@ -35,7 +35,7 @@
                     <h4 class="modal-title hidden" id="editActuLabel">Modifier une actualité</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="formActu" action="" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -59,18 +59,24 @@
                             </div>
                         </div>
                         <div class="row image">
-                            <div class="col-sm-4">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Image</label><br>
-                                    <label for="image" class="btn btn-success">Ajouter une image</label>
+                                    <label for="image" class="btn btn-success">Uploader une nouvelle image</label> ou 
+                                    <button class="nav_album btn btn-warning" data-chemin="">Utiliser une image existante</button>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-8">
                                 <div class="form-group">
                                     <input id="image" name="image" type="file" class="hidden">
-                                    <span class="img_loader hidden"></span>
-                                    <div class="img_details form-control hidden"></div>
+                                    <span class="img_loader hidden">
+                                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                        <span class="sr-only">Loading...</span>
+                                    </span>
+                                    <div class="img_details hidden"><img src="" alt=""/></div>
+                                    <div class="img_errors alert alert-danger hidden"></div>
                                 </div>
+                                <div class="navigation_albums hidden"></div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">

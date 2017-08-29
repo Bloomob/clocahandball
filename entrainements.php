@@ -129,6 +129,8 @@
                                             <p>PA = Petite Arche</p>
                                             <p>PdC = Pierre de Coubertin</p>
                                             <p>C = COSEC (Poissy)</p>
+                                            <p>HdS = Halle des sports (Poissy)</p>
+                                            <p>LF = Laura Flessel (Chanteloup-les-vignes)</p>
                                         </fieldset>
                                         <?php
                                         $PH = $HoraireManager->planningHoraires($annee_actuelle);
@@ -235,7 +237,7 @@
                                 <?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
                             </article>
                             <article>
-                                <?php include_once('inc/partenaires.php'); ?>
+                                <?php include_once('inc//modules/partenaires.php'); ?>
                             </article>
                         </article>
                     </div>
@@ -244,7 +246,6 @@
 			<footer>
 				<?php include_once('inc/footer.php'); ?>
 			</footer>
-			<div id="fond" class="fond_transparent"></div>
 		</div>
 		<?php include_once('inc/script.php'); ?>
 	</body>

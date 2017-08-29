@@ -46,7 +46,14 @@ class CategorieManager {
 		$req->bindValue(':ordre', $categorie->getOrdre(), PDO::PARAM_INT);
 		$req->bindValue(':actif', $categorie->getActif(), PDO::PARAM_INT);
 
-		return $req->execute();
+		
+		if($req->execute()){
+			return $this->_db->lastInsertID();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/**********************************
@@ -63,8 +70,9 @@ class CategorieManager {
 			UPDATE
 				categories 
 			SET 
-				nom = :nom,
-				parent = :parent,
+				categorie = :categorie,
+				genre = :genre,
+				numero = :numero,
 				raccourci = :raccourci,
 				ordre = :ordre,
 				actif = :actif
@@ -79,7 +87,14 @@ class CategorieManager {
 		$req->bindValue(':ordre', $categorie->getOrdre(), PDO::PARAM_INT);
 		$req->bindValue(':actif', $categorie->getActif(), PDO::PARAM_INT);
 		
-		return $req->execute();
+		
+		if($req->execute()){
+			return $categorie->getId();
+		}
+		else {
+			var_dump($req->errorInfo());
+			return false;
+		}
 	}
 
 	/*********************************

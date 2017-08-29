@@ -23,7 +23,6 @@ body, h1, h2, h3, h4, h5, ul, p, input, select, textarea, button {
 
 body {
     background: url(../img/background.png) center 120px no-repeat $bleu;
-    background-size: cover;
     font: 12px Trebuchet MS, Arial, Helvetica, sans-serif;
     position: relative;
     margin: 0px;
@@ -114,7 +113,8 @@ figure { margin: 0px; }
 .cat_sg3 { background: $vert3; }
 .cat_sf1 { background: $rouge; }
 .cat_m20g1 { background: $bleu-clair3; }
-.cat_m17g1, .cat_m17g2 { background: $bleu-clair4; }
+.cat_m18g1 { background: $bleu-clair4; }
+.cat_m17g1, .cat_m17g2 { background: $bleu-clair5; }
 .cat_m17f1, .cat_m17f2 { background: $fushia; }
 .cat_m15g1, .cat_m15g2{ background: #3366ff; }
 .cat_m15f1, .cat_m15f2 { background: #ff99cc; }

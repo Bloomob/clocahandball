@@ -66,7 +66,7 @@ $(function(){
         });
 
         $(addUserModal).find('#confirm_mot_de_passe').keyup(function(){
-            if (addUserData['mot_de_passe']['value'] !== $(this).val()) {
+            if ($(addUserModal).find('#mot_de_passe').val() !== $(this).val()) {
                 $(this).popover('show');
                 $(this).closest('.form-group').addClass('has-error').removeClass('has-success');
                 addUserData['confirm_mot_de_passe']['valid'] = false;
@@ -93,7 +93,7 @@ $(function(){
                     $(addUserModal).find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
                 }
             }
-            console.log(addUserData, formValid);
+            // console.log(addUserData, formValid);
             
             if (formValid) {
                 $.post(

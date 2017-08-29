@@ -90,7 +90,7 @@ switch($onglet) {
 										<ol>
 											<li>La fiche d'inscription "joueur" completée et signée.</li>
 											<li>Pour tout joueur mineur, l'autorisation parentale completée et signée.</li>
-											<li>Le certificat médical fourni par nos soins, completé et signé.</li>
+											<li>L’attestation/questionnaire de santé (ou le certificat médical fourni par nos soins), completé et signé (tampon + signature du médecin)</li>
 											<li>Le montant total de la cotisation à l'ordre du C.L.O.C.A. Handball<span class="red">*</span> (si paiement en 4 fois, prière d'inscrire au dos les mois d'encaissement - avant fin Décembre).</li>
 											<li>Un chèque de caution de 100€ (pour le prêt de materiel - maillots, chasuble, ballons ... ).</li>
 											<li>Pour tout adhérent, une photocopie de la carte d'identité ou du livret de famille.</li>
@@ -103,17 +103,17 @@ switch($onglet) {
 												<li>Cliquez ensuite sur "Complèter le formulaire"</li>
 												<li>Scanner ou photographier avec votre smartphone :
 													<ul>
-														<li>Le certificat médical</li>
+														<li>L’attestation/questionnaire de santé ou certificat médical</li>
 														<li>La photo d'identité</li>
 														<li>La carte d'identité ou livret de famille</li>
 														<li>L'autorisation parentale</li>
 													</ul>
 												</li>
-												<li>Enregistrer</li>
-												<li>Le club recoit votre inscription et la valide</li>
-												<li>Si tout est bon, vous êtes inscrit !</li>
+												<li>Enregistrer et finaliser</li>
+												<li>Le club recoit votre inscription, vérifie si votre dossier est conforme et valide l’inscription</li>
+												<li>Vous recevrez alors un mail de qualification de votre licence vous permettant de jouer</li>
 											</ol>
-											<p>Une question ? Le club vous accompagne dans vos démarches.</p>
+											<p><i class="fa fa-question-circle" aria-hidden="true"></i>Une question ? Le club vous accompagne dans vos démarches.</p>
 										</div>
 									</div><?php
 								elseif($onglet=="tarifs_cotisation"):
@@ -225,20 +225,33 @@ switch($onglet) {
 								else:?>
 									<div id="documents_a_venir">
 										<h3>Documents à télécharger <?=$annee_actuelle;?>/<?=$annee_suiv;?> :</h3>
-										<table>
-											<tr>
-												<td><a href="upload/fiche_inscription_joueur_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf"><img src="upload/fiche_inscription_joueur_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Fiche d'inscription joueur <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/></a></td>
-												<td><a href="upload/certificat_medical_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf"><img src="upload/certificat_medical_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Certificat médical <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/></a></td>
-											</tr>
-											<tr>
-												<td><a href="upload/plaquette_recto_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg"><img src="upload/plaquette_recto_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/><br/>Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?></a></td>
-												<td><a href="upload/plaquette_verso_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg"><img src="upload/plaquette_verso_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette verso <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/><br/>Plaquette verso <?=$annee_actuelle;?>-<?=$annee_suiv;?></a></td>
-											</tr>
-											<tr>
-												<td><a href="upload/autorisation_parentale_fede_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf" data-lightbox="docs"><img src="upload/autorisation_parentale_fede_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Autorisation Parentale <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/></a></td>
-												<td></td>
-											</tr>
-										</table>
+										<div class="row">
+                                            <div class="col-sm-6">
+								                <a href="upload/fiche_inscription_joueur_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf">
+                                                    <img src="upload/fiche_inscription_joueur_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Fiche d'inscription joueur <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+												<a href="upload/certificat_medical_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf">
+                                                    <img src="upload/certificat_medical_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Certificat médical <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a href="upload/plaquette_recto_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg">
+                                                    <img src="upload/plaquette_recto_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/><br/>Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a href="upload/plaquette_verso_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg">
+                                                    <img src="upload/plaquette_verso_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette verso <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/><br/>Plaquette verso <?=$annee_actuelle;?>-<?=$annee_suiv;?>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <a href="upload/autorisation_parentale_fede_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf" data-lightbox="docs">
+                                                    <img src="upload/autorisation_parentale_fede_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Autorisation Parentale <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/>
+                                                </a>
+                                            </div>
+                                        </div>
 									</div><?php
 								endif;?>
 							</div>
@@ -252,7 +265,7 @@ switch($onglet) {
 							<?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
 						</article>
 						<article>
-							<?php include_once('inc/partenaires.php'); ?>
+							<?php include_once('inc/modules/partenaires.php'); ?>
 						</article>
 					</article>
 				</div>

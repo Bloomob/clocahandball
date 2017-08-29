@@ -4,17 +4,18 @@
 
 #staff .fiche {
     position: relative;
-    color: #FFF; 
-    margin: 10px 20px;
+    margin: 10px 5px;
     
     h3 {
         background-color: $orange2;
+        color: $blanc;
         padding: 5px 10px;
         text-align: right;
         margin: 0; 
         position: relative;
         top: 0px;
         z-index: 0;
+        font-size: 18px;
         
         &:after { 
             display: inline-block;
@@ -31,12 +32,6 @@
     }
     .membre {
         padding: 10px;
-        background-image: linear-gradient(bottom, #626DA7 0%, #282D4D 100%); 
-        background-image: -o-linear-gradient(bottom, #626DA7 0%, #282D4D 100%); 
-        background-image: -moz-linear-gradient(bottom, #626DA7 0%, #282D4D 100%); 
-        background-image: -webkit-linear-gradient(bottom, #626DA7 0%, #282D4D 100%); 
-        background-image: -ms-linear-gradient(bottom, #626DA7 0%, #282D4D 100%);
-        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #626DA7), color-stop(1, #282D4D));
     }
     .photo { 
         text-align: center;

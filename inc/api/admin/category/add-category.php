@@ -13,7 +13,7 @@
 
 	$CategorieManager = new CategorieManager($connexion);
 
-	if(isset($_POST['data'])) {
+	if(isset($_POST['data'])):
 
 		$categorie = new Categorie(array());
 
@@ -24,25 +24,30 @@
 				$categorie->$method(htmlspecialchars_decode(htmlentities($value['value'], ENT_QUOTES, "UTF-8")));
 			}
 		}
-		$raccourci = 'm' . substr($categorie->getCategorie(),1,2) . substr(($categorie->getGenre() == 'masculin') ? 'g' : $categorie->getGenre(),0,1) . $categorie->getNumero();
-		$categorie->setRaccourci(htmlspecialchars_decode(htmlentities($raccourci, ENT_QUOTES, "UTF-8")));
+        if($categorie->getCategorie() != 'S&eacute;niors') {
+            $raccourci = 'm' . substr($categorie->getCategorie(),1,2) . substr(($categorie->getGenre() == 'masculin') ? 'g' : $categorie->getGenre(),0,1) . $categorie->getNumero();
+            $categorie->setRaccourci(htmlspecialchars_decode(htmlentities($raccourci, ENT_QUOTES, "UTF-8")));
+        } else {
+            $raccourci = 's' . substr(($categorie->getGenre() == 'masculin') ? 'g' : $categorie->getGenre(),0,1) . $categorie->getNumero();
+            $categorie->setRaccourci(htmlspecialchars_decode(htmlentities($raccourci, ENT_QUOTES, "UTF-8")));
+        }
 
 		// var_dump($categorie);
-
 		
 		$categorieId = $CategorieManager->ajouter($categorie);
         
-        if($categorieId) {
-			$options = array('where' => 'ordre >= ' . $categorie->getOrdre());
+        if($categorieId):
+			$options = array('where' => 'id != ' .$categorieId. ' AND ordre >= ' . $categorie->getOrdre());
 			$liste = $CategorieManager->retourneListe($options);
-			foreach ($liste as $key => $cat) {
+			foreach($liste as $key => $cat):
 				$cat->setOrdre($cat->getOrdre() + 5);
-			}
+                $CategorieManager->modifier($cat);
+			endforeach;
 			// var_dump($liste);
 			echo true;
 			exit;
-		}
+		endif;
         echo false;
         exit;
-	}
+	endif;
 ?>

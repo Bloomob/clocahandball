@@ -5,6 +5,7 @@
 <script>require('js/calendrier')</script>
 <script>require('js/categories')</script>
 <script>require('js/equipes')</script>
+<script>require('js/fonctions')</script>
 <script>require('js/menus')</script>
 <script>require('js/tarifs')</script>
 <script>require('js/utilisateurs')</script>

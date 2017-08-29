@@ -383,7 +383,6 @@
 												}*/
 
 												$serie = $MatchManager->cinq_derniers_matchs($laCategorie->getId());
-												// $serie = cinq_dernier_match($laCategorie->getRaccourci(), $annee_actuelle);
 
 												if($uneEquipe->getNiveau() != $niveau_actuel):
 													if($i>0):?>

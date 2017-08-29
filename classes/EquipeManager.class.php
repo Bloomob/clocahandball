@@ -94,7 +94,7 @@ class EquipeManager {
 		$req->bindValue(':actif', $equipe->getActif(), PDO::PARAM_INT);
         
 		if($req->execute()){
-			return $this->_db->lastInsertID();
+			return $categorie->getId();
 		}
 		else {
 			var_dump($req->errorInfo());

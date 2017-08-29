@@ -5,9 +5,14 @@
 .liste_equipe, .details_equipe {
     .wrapper {
         padding: 10px;
+        margin-bottom: 30px;
         
         h3 {
             margin-bottom: 20px;
+            
+            ~ h3 {
+                margin-top: 20px;
+            }
         }
         .nav-tabs {
             li {
@@ -99,11 +104,18 @@
                     background: #00ccff;
                 }
             }
-            &.m17g1, &.m17g2  {
-                border: 1px solid #99ccff;
+            &.m18g1  {
+                border: 1px solid $bleu-clair4;
                 
                 h4 {
-                    background: #99ccff;
+                    background: $bleu-clair4;
+                }
+            }
+            &.m17g1, &.m17g2  {
+                border: 1px solid $bleu-clair5;
+                
+                h4 {
+                    background: $bleu-clair5;
                 }
             }
             &.m15g1, &.m15g2 {

@@ -105,5 +105,34 @@
         img { 
             width: 100%;
         }
+        .navigation {
+            margin: 20px 0;
+            
+            a {
+                display: inline-block;
+                text-decoration: none;
+                
+                .contenu {
+                    display: inline-block;
+                    
+                    &.gauche {
+                        .fa {
+                            margin-right: 10px;
+                        }
+                    }
+                    &.droite {
+                        .fa {
+                            margin-left: 10px;
+                        }
+                    }
+                    span {
+                        color: $bleu-marine;
+                    }
+                    h4 {
+                        color: $orange2;
+                    }
+                }
+            }
+        }
     }
 }

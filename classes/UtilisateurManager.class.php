@@ -39,6 +39,7 @@ class UtilisateurManager {
 				tel_port = :tel_port,
 				src_photo = :src_photo,
 				num_licence = :num_licence,
+				liste_equipes_favorites = :liste_equipes_favorites,
 				actif = :actif
 		');
 		$req->bindValue(':nom', $util->getNom());
@@ -49,6 +50,7 @@ class UtilisateurManager {
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
 		$req->bindValue(':src_photo', $util->getSrc_photo());
 		$req->bindValue(':num_licence', $util->getNum_licence());
+		$req->bindValue(':liste_equipes_favorites', $util->getListe_equipes_favorites());
 		$req->bindValue(':actif', $util->getActif(), PDO::PARAM_INT);
 
 		if($req->execute()){
@@ -82,6 +84,7 @@ class UtilisateurManager {
 				tel_port = :tel_port,
 				src_photo = :src_photo,
 				num_licence = :num_licence,
+				liste_equipes_favorites = :liste_equipes_favorites,
 				actif = :actif
 			WHERE
 				id = :id
@@ -95,10 +98,11 @@ class UtilisateurManager {
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
 		$req->bindValue(':src_photo', $util->getSrc_photo());
 		$req->bindValue(':num_licence', $util->getNum_licence());
+		$req->bindValue(':liste_equipes_favorites', $util->getListe_equipes_favorites());
 		$req->bindValue(':actif', $util->getActif(), PDO::PARAM_INT);
         
 		if($req->execute()){
-			return $this->_db->lastInsertID();
+			return $categorie->getId();
 		}
 		else {
 			var_dump($req->errorInfo());

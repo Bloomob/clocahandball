@@ -57,13 +57,13 @@
 		break;
 		case 'arb':
 			$titre = 'Les arbitres du club';
-		break;
+		break;/*
 		case 'devenir_entraineur':
 			$titre = 'Comment devenir entraineur ?';
 		break;
 		case 'devenir_arbitre':
 			$titre = 'Comment devenir arbitre ?';
-		break;
+		break;*/
 		case 'bur':
 		default:
 			$titre = 'Les membres du bureau';
@@ -88,50 +88,54 @@
                         <article id="staff" class="col-sm-8"> 
                             <div class="contenu">
 								<h2><i class="fa fa-users" aria-hidden="true"></i><?=$titre?></h2>
-                                <?php
-                                switch($onglet) {
-                                    case 'bur':
-                                    case 'entr':
-                                    case 'arb':
-                                        $options = array('where' => 'raccourci LIKE "'. $onglet .'"');
-                                        $unRole = $RoleManager->retourne($options);
-                                        // echo "<pre>"; var_dump($unRole); echo "</pre>";
+                                <div class="row"><?php
+                                    switch($onglet):
+                                        case 'bur':
+                                        case 'entr':
+                                        case 'arb':
+                                            $options = array('where' => 'raccourci LIKE "'. $onglet .'"');
+                                            $unRole = $RoleManager->retourne($options);
+                                            // echo "<pre>"; var_dump($unRole); echo "</pre>";
 
-                                        $options = array('where' => 'annee_fin = 0 AND type = '. $unRole->getId(), 'orderby' => 'role');
-                                        $listeStaff = $FonctionManager->retourneListe($options);
-                                        // echo "<pre>"; var_dump($listeStaff); echo "</pre>";
+                                            $options = array('where' => 'annee_fin = 0 AND type = '. $unRole->getId(), 'orderby' => 'role');
+                                            $listeStaff = $FonctionManager->retourneListe($options);
+                                            // echo "<pre>"; var_dump($listeStaff); echo "</pre>";
 
-                                        foreach($listeStaff as $unMembre) { 
-                                            if($unMembre->getType() == 4):
-                                                $options = array('where' => 'id = '. $unMembre->getRole());
-                                                $uneCategorie = $CategorieManager->retourne($options);
-                                                $fonction = $uneCategorie->getCategorieAll();
-                                            else:
-                                                $options = array('where' => 'id = '. $unMembre->getRole());
-                                                $roleMembre = $RoleManager->retourne($options);
-                                                $fonction = $roleMembre->getNom();
-                                            endif; ?>
-                                            <div class="fiche">
-                                                <h3><?=$fonction;?></h3>
-                                                <div class="membre">
-                                                    <div class="row">
-                                                        <div class="col-sm-3 photo"><img src="images/inconnu.gif" alt="Lambda" width="100px" /></div>
-                                                        <div class="col-sm-9"><?php
-                                                            $options = array('where' => 'id = '. $unMembre->getId_utilisateur());
-                                                            $unUtilisateur = $UtilisateurManager->retourne($options); ?>
-                                                            <div class="description"><strong><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></strong></div>
-                                                            <div class="description"><strong>Depuis</strong> : <?=$unMembre->getAnnee_debut();?></div>
-                                                            <div class="description"><strong>Email</strong> : <a href="mailto:<?=$unUtilisateur->getMail();?>"><?=$unUtilisateur->getMail();?></a></div>
+                                            echo '';
+                                            foreach($listeStaff as $unMembre):
+                                                if($unMembre->getType() == 4):
+                                                    $options = array('where' => 'id = '. $unMembre->getRole());
+                                                    $uneCategorie = $CategorieManager->retourne($options);
+                                                    $fonction = $uneCategorie->getCategorieAll();
+                                                else:
+                                                    $options = array('where' => 'id = '. $unMembre->getRole());
+                                                    $roleMembre = $RoleManager->retourne($options);
+                                                    $fonction = $roleMembre->getNom();
+                                                endif; ?>
+                                                <div class="col-sm-6">
+                                                    <div class="fiche">
+                                                        <h3><?=$fonction;?></h3>
+                                                        <div class="membre">
+                                                            <div class="row">
+                                                                <div class="col-sm-4 photo"><img src="images/inconnu.gif" alt="Lambda" width="100px" /></div>
+                                                                <div class="col-sm-8"><?php
+                                                                    $options = array('where' => 'id = '. $unMembre->getId_utilisateur());
+                                                                    $unUtilisateur = $UtilisateurManager->retourne($options); ?>
+                                                                    <div class="description"><strong><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></strong></div>
+                                                                    <div class="description"><strong>Depuis</strong> : <?=$unMembre->getAnnee_debut();?></div>
+                                                                    <div class="description"><strong>Email</strong> : <a href="mailto:<?=$unUtilisateur->getMail();?>"><?=$unUtilisateur->getMail();?></a></div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div><?php
-                                        }
-                                    break;
-                                    default:
-                                        echo "<div>Pas de données disponibles pour le moment.</div>";
-                                    break;
-                                } ?>
+                                                </div><?php
+                                            endforeach;
+                                        break;
+                                        default:
+                                            echo "<div>Pas de données disponibles pour le moment.</div>";
+                                        break;
+                                    endswitch;?>
+                                </div>
                             </div>
                         </article>
                         <article class="col-sm-4 modules">
@@ -142,7 +146,7 @@
 								<?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
 							</article>
 							<article>
-								<?php include_once('inc/partenaires.php'); ?>
+								<?php include_once('inc/modules/partenaires.php'); ?>
 							</article>
 						</article>
                     </div>

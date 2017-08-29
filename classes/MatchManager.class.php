@@ -122,7 +122,7 @@ class MatchManager {
 		$req->bindValue(':classement', $match->getClassement(), PDO::PARAM_INT);
 		
 		if($req->execute()){
-			return $this->_db->lastInsertID();
+			return $categorie->getId();
 		}
 		else {
 			var_dump($req->errorInfo());
@@ -409,7 +409,7 @@ class MatchManager {
 			return $retour;
 		}
 		else {
-			return false;
+			return 'Aucune';
 		}
 	}
 

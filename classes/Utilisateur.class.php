@@ -9,6 +9,7 @@ class Utilisateur {
 			$_tel_port,
 			$_src_photo,
 			$_num_licence,
+			$_liste_equipes_favorites,
 			$_actif;
 
 
@@ -106,6 +107,10 @@ class Utilisateur {
 	public function setNum_licence($num_licence) {
 		$this->_num_licence = $num_licence;
 	}
+    
+	public function setListe_equipes_favorites($liste_equipes_favorites) {
+		$this->_liste_equipes_favorites = $liste_equipes_favorites;
+	}
 
 	public function setActif($actif) {
 		$this->_actif = $actif;
@@ -151,6 +156,10 @@ class Utilisateur {
     
 	public function getNum_licence() {
 		return $this->_num_licence;
+	}
+    
+	public function getListe_equipes_favorites() {
+		return $this->_liste_equipes_favorites;
 	}
 
 	public function getActif() {

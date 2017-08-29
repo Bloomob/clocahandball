@@ -71,7 +71,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="genre">Prix <span class="text-danger">*</span></label><br>
+                                    <label for="genre">Genre <span class="text-danger">*</span></label><br>
                                     <select id="genre" class="form-control selectpicker" title="Choisissez un genre">
                                     	<option value="masculin">Masculin</option>
                                     	<option value="feminin">Féminin</option>
