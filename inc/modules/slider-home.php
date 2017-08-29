@@ -1,6 +1,6 @@
 <?php
 $ActuManager = new ActualiteManager($connexion);
-$options = array('where' => '(date_publication < '. date('Ymd') .' OR date_publication = '. date('Ymd') .' AND heure_publication = '. date('Hi') .') AND slider = 1', 'orderby' => 'date_publication desc, heure_publication desc', 'limit' => '0, 3');
+$options = array('where' => '(date_publication < '. date('Ymd') .' OR date_publication = '. date('Ymd') .' AND heure_publication < '. date('Hi') .') AND slider = 1 AND date_publication > 20170701', 'orderby' => 'date_publication desc, heure_publication desc', 'limit' => '0, 3');
 $listeActualites = $ActuManager->retourneListe($options);
 
 if(is_array($listeActualites)): ?>

@@ -142,11 +142,14 @@ $(function(){
                         $(actuModal).find('.image .img_remove').removeClass('hidden');
                         actuData['image']['value'] = data.path;
                         actuData['image']['valid'] = true;
-                        console.log(data.path);
                     } else {
                         $(actuModal).find('.image .img_errors').removeClass('hidden').text(data.message);
                         actuData['image']['value'] = "";
                         actuData['image']['valid'] = false;
+                        
+                        setTimeout(function() {
+                            $(actuModal).find('.image .img_errors').addClass('hidden').text('');
+                        }, 3000);
                     }
                 }
             });
@@ -157,32 +160,45 @@ $(function(){
             var chemin = $(this).data('chemin');
             $.ajax( {
                 type: "POST",
-                url: "inc/ajax/changer_album.php",
+                url: "inc/api/nav_img.php",
                 data: { 
                     dossier: chemin,
                     format: 'min'
                 },
                 success: function(data) {
-                    $( ".navigation_albums" ).removeClass("hidden").html( data );
-                    /*$( '.picture_file' ).remove();
-
-                    $(".liste a:not(.nav)").on('click', function(){
-                        $( ".tab_container > .galerie .albums" ).find('.selection').remove();
-                        $(this).append($("<div/>").addClass('selection').css({
-                            'width': $(this).width()-6,
-                            'height': $(this).height()-6,
-                        }).append($('<img/>').attr('src', '../images/true.png')));
-                        $('#image').val($(this).attr('href'));
-                        return false;
-                    });*/
+                    $(actuModal).find('.image .img_details').addClass('hidden');
+                    $(actuModal).find( ".navigation_albums" ).removeClass("hidden").html( data );
                 }
             });
+        });
+        $(actuModal).find('.navigation_albums').on('click', '.liste a.nav', function(e){
+            e.preventDefault();
+            var chemin = $(this).data('chemin');
+            $.ajax( {
+                type: "POST",
+                url: "inc/api/nav_img.php",
+                data: { 
+                    dossier: chemin,
+                    format: 'min'
+                },
+                success: function(data) {
+                    $(actuModal).find( ".navigation_albums" ).html( data );
+                }
+            });
+        }).on('click', '.liste a.file_img', function(e){
+            e.preventDefault();
+            $( ".navigation_albums" ).addClass("hidden");
+            var path = 'images/albums' + $(this).data('chemin');
+            $(actuModal).find('.image .img_details').removeClass('hidden').find('img').attr('src', path).attr('alt', path);
+            $(actuModal).find('.image .img_remove').removeClass('hidden');
+            actuData['image']['value'] = path;
+            actuData['image']['valid'] = true;
         });
 
         $(actuModal).find('.img_remove').on('click', function(e){
             e.preventDefault();
-            $(actuModal).find('.image label.btn').removeClass('btn-warning').addClass('btn-success').text("Ajouter une image");
-            $(actuModal).find('.image .img_details').addClass('hidden').find('span').text('');
+            $(actuModal).find('.image label.btn').removeClass('btn-warning').addClass('btn-success').text("Uploader une nouvelle image");
+            $(actuModal).find('.image .img_details').addClass('hidden').find('img').attr('src', '').attr('alt', '');
             $(actuModal).find('.image .img_remove').addClass('hidden');
             actuData['image']['value'] = '';
             actuData['image']['valid'] = false;
@@ -335,10 +351,10 @@ $(function(){
                 }
             }
 
-            console.log("=================");
+            /*console.log("=================");
             console.log(actuData);
             console.log('formValid', formValid);
-            console.log("=================");
+            console.log("=================");*/
 
             if (formValid) {
                 if($(this).hasClass('add-actu')) {
@@ -382,9 +398,9 @@ $(function(){
                     'id': supprId
                 },
                 function (data) {
-                    /*if(data)
+                    if(data)
                         window.location.href = location.href;
-                    else*/
+                    else
                         console.log(data);
                 }
            );

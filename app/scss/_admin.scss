@@ -104,53 +104,61 @@
                       font-size: 0.9em;
                     }
                 }
+                #contenu {
+                    height: 150px;
+                    resize: none;
+                }
                 .image {
+                    label + span {
+                        padding: 0 10px;
+                    }
                     .img_details, .img_remove{
                       margin-top: 19px;
                     }
                     .img_details {
-                        span {
-                            display: block;
-                            overflow: hidden;
+                        height: 200px;
+                        width: 100%;
+                        overflow: hidden;
+                        text-align: center;
+                        
+                        img {
+                            height: 100%;
+                            width: auto;
                         }
                     }
+                    .navigation_albums .liste {
+                        margin: 15px 0;
+                        
+                        a {
+                            width: 100px;
+                            height: 100px;
+                            float: left;
+                            display: block;
+                            overflow: hidden;
+                            text-align: center;
+                            border: 1px solid $gris-clair2;
+                            border-radius: 10px;
+                            margin-right: 8px;
+                            margin-bottom: 8px;
+                            color: $noir;
+                            
+                            img {
+                                width: auto;
+                                height: 100px;
+                                float: left;
+                                display: block;
+                            }
+                            &.file_img {
+                                width: auto;
+                                border-radius: 0;
+                            }
+                            &.nav {
+                                padding-top: 10px;
+                            }
+                        }
+                    }
+                    
                 }
-                .navigation_albums .liste { margin: 5px 0; }
-                .navigation_albums .liste a { width: 100px; height: 100px; float: left; display: block; overflow: hidden; text-align: center; border: 1px solid #ccc; border-radius: 10px; margin-right: 8px; margin-bottom: 8px; color: black; }
-                .navigation_albums .liste a img { width: 100px; height: 100px; float: left; display: block; overflow: hidden; text-align: center; border: 1px solid #ccc; border-radius: 10px; margin-right: 8px; margin-bottom: 8px; color: black; }
-                .navigation_albums .liste a.nav { background: url(../images/icon/png_black/folder@2x.png) no-repeat 50% 25px transparent; width: 100px; height: 30px; padding-top: 105px; }
-                .navigation_albums .liste a.retour { background: url(../images/icon/png_black/previous@2x.png) no-repeat 50% 25px transparent; }
-                .navigation_albums .liste a.dir_plus { background: url(../images/icon/png_black/folder-open@2x.png) no-repeat 50% 25px transparent; }
-                .navigation_albums .liste a.dir_upload { background: url(../images/icon/png_black/folder-plus@2x.png) no-repeat 50% 25px transparent; }
-                .navigation_albums .liste a.picture_plus { background: url(../images/icon/png_black/picture@2x.png) no-repeat 50% 25px transparent; }
-                .navigation_albums .liste a.picture_upload { background: url(../images/icon/png_black/circle-up2@2x.png) no-repeat 50% 25px transparent; }
-                .navigation_albums .liste a.picture_upload .picture_ajout { 
-                  background: #3498db;
-                  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-                  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-                  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-                  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-                  background-image: linear-gradient(to bottom, #3498db, #2980b9);
-                  border: none;
-                  -webkit-border-radius: 5;
-                  -moz-border-radius: 5;
-                  border-radius: 5px;
-                  font-family: Arial;
-                  color: #ffffff;
-                  font-size: 12px;
-                  padding: 5px;
-                  text-decoration: none;
-                }
-                .navigation_albums .liste a.picture_upload .picture_ajout:hover { 
-                  background: #3cb0fd;
-                  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-                  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-                  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-                  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-                  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-                  text-decoration: none;
-                }
-
                 #content .galerie.choix .albums .liste a { width: 80px; height: 69px; float: left; display: block; overflow: hidden; text-align: center; background-position: 50% 5px; background-size: 50%; }
                 #content .galerie.choix .albums .liste a.nav { height: 45px; padding-top: 45px; }
                 #content .galerie.choix .albums .liste a img { width: 79px; height: 68px; float: left; display: block; overflow: hidden; text-align: center; border-radius: 10px; margin-right: 8px; margin-bottom: 8px; color: black; }

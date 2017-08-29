@@ -1,2 +1,3 @@
 node_modules
 src
+/inc/connexion_bdd_pdo.php

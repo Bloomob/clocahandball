@@ -11,7 +11,6 @@
 	$nb_fichier = 0;
 	if($dossier = opendir('../../images/albums'.$getDossier.'/')){
 		while(false !== ($fichier = readdir($dossier))){
-            var_dump($fichier);
 			if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
 				$nb_fichier++; // On incrémente le compteur de 1
 				$table_fichier[] = $fichier;
@@ -23,22 +22,20 @@
 	else
 	     echo 'Le dossier n\' a pas pu être ouvert';
 ?>
-<div class="liste">
-	<input type='hidden' class='dir_courant' value='<?=$getDossier;?>' />
-	<input type="hidden" id="image" value="" /><?php
+<div class="liste"><?php
 	if(!empty($retourDossier)) {?>
-		<a href="<?=$retourDossier;?>" class="nav retour">Remonter d'un dossier</a><?php
+		<a href="#" data-chemin="<?=$retourDossier;?>" class="nav retour"><i class="fa fa-undo fa-4x" aria-hidden="true"></i><br>Remonter d'un dossier</a><?php
 	}
 	else if(empty($retourDossier) && !empty($getDossier)) {?>
-		<a href="#" class="nav retour">Remonter d'un dossier</a><?php
+		<a href="#" data-chemin="<?=$retourDossier;?>" class="nav retour"><i class="fa fa-undo fa-4x" aria-hidden="true"></i><br>Remonter d'un dossier</a><?php
 	}
 
 	foreach ($table_fichier as $key => $value) {
 		if(preg_match("#(.jpg|.png|.gif)$#", $value)) {?>
-			<a href="images/albums<?=$getDossier.'/'.$value;?>"><img src="images/albums<?=$getDossier.'/'.$value;?>" alt="<?=$value;?>" /></a><?php
+			<a class="file_img" href="#" data-chemin="<?=$getDossier.'/'.$value;?>"><img src="images/albums<?=$getDossier.'/'.$value;?>" alt="<?=$value;?>" /></a><?php
 		}
-		else{?>
-			<a class="nav" href="<?=$getDossier.'/'.$value;?>"><?=$value;?></a><?php
+		else {?>
+			<a class="nav" href="#" data-chemin="<?=$getDossier.'/'.$value;?>"><i class="fa fa-folder-o fa-5x" aria-hidden="true"></i><br><?=$value;?></a><?php
 		}
 	}
 	if(!isset($_POST['format']) || $_POST['format'] != 'min'):?>

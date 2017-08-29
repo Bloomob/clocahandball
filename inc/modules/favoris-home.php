@@ -1,12 +1,13 @@
 <?php
-if(isset($_SESSION)):
+if(isset($_SESSION['id']) && !empty($_SESSION['id'])):
     $ClubManager = new ClubManager($connexion);
     $UtilisateurManager = new UtilisateurManager($connexion);
 
     $options = array('where' => 'id = '. $_SESSION['id']);
     $unUtilisateur = $UtilisateurManager->retourne($options);
+    $listeFav = $unUtilisateur->getListe_equipes_favorites();
 
-    $options = array('where' => 'date >= '. $now .' AND date < '. date_plus_7J($now) .' AND joue = 0 AND categorie IN ('. $unUtilisateur->getListe_equipes_favorites() .')', 'orderby' => 'date, heure');
+    $options = array('where' => 'date >= '. $now .' AND date < '. date_plus_7J($now) .' AND joue = 0 AND categorie IN ('. $listeFav .')', 'orderby' => 'date, heure');
     $listeMatchs = $MatchManager->retourneListe($options);
     // debug($listeMatchs);
     $i = 2; ?>
@@ -15,7 +16,7 @@ if(isset($_SESSION)):
         <h3><i class="fa fa-star" aria-hidden="true"></i>Favoris</h3>
         <div class="contenu tableau-bord"><?php
             // var_dump($listeMatchs);
-            if(empty($unUtilisateur->getListe_equipes_favorites())):?>
+            if(empty($listeFav)):?>
                 <p>Pas d'équipe favorite pour le moment, cliquez <a href="mon_profil.php#fav">ici</a> pour en ajouter une</p><?php
             elseif(!empty($listeMatchs)):
                 foreach($listeMatchs as $unMatch): ?>

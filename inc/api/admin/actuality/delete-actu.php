@@ -11,12 +11,12 @@
 	include_once("../../../connexion_bdd_pdo.php");
 	include_once("../../../date.php");
 
-	$MatchManager = new MatchManager($connexion);
+	$ActualiteManager = new ActualiteManager($connexion);
 
 	if(isset($_POST['id'])) {
-		$match = new Match(array());
-		$match->setId(intval($_POST['id']));
-		$isDelete = $MatchManager->supprimer($match);
+		$actu = new Actualite(array());
+		$actu->setId(intval($_POST['id']));
+		$isDelete = $ActualiteManager->supprimer($actu);
         // var_dump($isDelete);
 
 		echo $isDelete;

@@ -20,7 +20,7 @@
                         <li><a href='mon_profil.php' id="profil"><!-- <i class="fa fa-user" aria-hidden="true"></i>  -->Mon profil</a></li><?php
                     } else { ?>
                         <li><a href='#' data-toggle="modal" data-target="#connexionModal"><!-- <i class="fa fa-sign-in" aria-hidden="true"></i>  -->Se connecter</a></li>
-                        <li><a href='#' data-toggle="modal" data-target="#inscriptionModal">S'inscrire</a></li><?php
+                        <!--<li><a href='#' data-toggle="modal" data-target="#inscriptionModal">S'inscrire</a></li>--><?php
                     }
                     if(isset($_SESSION['rang']) && $_SESSION['rang']) {?>
                         <li><a href='admin.php'>Admin</a></li><?php

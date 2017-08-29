@@ -62,11 +62,11 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label>Image</label><br>
-                                    <label for="image" class="btn btn-success">Uploader une nouvelle image</label> ou 
+                                    <label for="image" class="btn btn-success">Uploader une nouvelle image</label><span>ou</span> 
                                     <button class="nav_album btn btn-warning" data-chemin="">Utiliser une image existante</button>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-10">
                                 <div class="form-group">
                                     <input id="image" name="image" type="file" class="hidden">
                                     <span class="img_loader hidden">
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="navigation_albums hidden"></div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <button class="btn btn-danger img_remove hidden"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                 </div>
