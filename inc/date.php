@@ -1,6 +1,4 @@
-<?php
-	include_once("connexion_bdd.php");
-	
+<?php	
 	$jour_de_la_semaine = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche");
 	$mois_de_lannee = array(6 => "Juillet", 7 => "Août", 8 => "Septembre", 9 => "Octobre", 10 => "Novembre", 11 => "Décembre", 0 => "Janvier", 1 => "Fevrier", 2 => "Mars", 3 => "Avril", 4 => "Mai", 5 => "Juin");
 	
@@ -27,7 +25,7 @@
 			return false;
 		endif;
 
-		if(mysql_num_rows($q)>0) {
+		/*if(mysql_num_rows($q)>0) {
 			while($d = mysql_fetch_array($q)) {
 				if(!empty($d['numero'])) $d['type'] .= ' '.$d['numero'];
 				if(!empty($d['type'])) $d['cat'] = $d['categorie'].' '.$d['type'];
@@ -36,7 +34,7 @@
 			return $liste;
 		}
 		else
-			return false;
+			return false;*/
 	}
 	
 	function getAll($year) {

@@ -1,6 +1,6 @@
 <?php
 	$MenuManager = new MenuManager($connexion);
-	$MenuManagerManager = new Menu_ManagerManager($connexion);
+	$MenuManagerManager = new Menu_managerManager($connexion);
 	$EquipeManager = new EquipeManager($connexion);
 	$CategorieManager = new CategorieManager($connexion);
 ?>

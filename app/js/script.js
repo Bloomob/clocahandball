@@ -6,19 +6,21 @@ $(function(){
         var mail = $('#mail').val();
         var password = $('#password').val();
         // console.log(login, password);
-        $.post(
-            './inc/api/connexion.php',
-            {
-                'mail': mail,
-                'mot_de_passe': password
-            },
-            function (data) {
-                if(!data)
-                    $('#connexionModal .alert-danger').removeClass('hidden');
-                else
-                    window.location.href = 'index.php';
-            }
-        );
+        if(mail != "" && password != "") {
+            $.post(
+                './inc/api/connexion.php',
+                {
+                    'mail': mail,
+                    'mot_de_passe': password
+                },
+                function (data) {
+                    if(!data)
+                        $('#connexionModal .alert-danger').removeClass('hidden');
+                    else
+                        window.location.href = 'index.php';
+                }
+            );
+        }
     });
     
     /* Inscription */

@@ -120,6 +120,5 @@
 			</footer>
 		</div>
 		<?php include('inc/script.php'); ?>
-		<script src="javascript/admin2.js"></script>
 	</body>
 </html>

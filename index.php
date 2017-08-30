@@ -13,11 +13,9 @@
 
 	// On inclue la page de connexion à la BDD
 	require_once("inc/connexion_bdd_pdo.php");
-	// require_once("inc/connexion_bdd.php");
 	require_once("inc/fonctions.php");
 	require_once("inc/date.php");
 	require_once("inc/constantes.php");
-	// require_once("inc/connexion.php");
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +47,7 @@
 				<div class="modules">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-6 col-lg-8">
+                            <div class="col-sm-6 col-md-8">
                                 <?php include_once('inc/modules/favoris-home.php'); ?>
                                 <?php include_once('inc/modules/tableau-bord-home.php'); ?>
                                 <div class="row">
@@ -61,7 +59,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-4">
+                            <div class="col-sm-6 col-md-4">
                                 <?php include_once('inc/modules/infos-home.php'); ?>
                                 <?php include_once('inc/modules/facebook-home.php'); ?>
                                 <?php include_once('inc/modules/liens-utiles-home.php'); ?>
@@ -73,7 +71,6 @@
 			<footer>
 				<?php include_once('inc/footer.php'); ?>
 			</footer>
-			<div id="fond" class="fond_transparent"></div>
 		</div>
 		<?php include_once('inc/script.php'); ?>
 	</body>
