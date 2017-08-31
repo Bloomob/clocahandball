@@ -140,7 +140,7 @@ class MatchManager {
 	*********************************/
 
 	public function supprimer(Match $match) {
-		$this->_db->exec('DELETE FROM matchs WHERE id = '.$match->getId());
+		return $this->_db->exec('DELETE FROM matchs WHERE id = '.$match->getId());
 	}
 
 	/**********************************

@@ -209,7 +209,7 @@ $(function(){
                 val = ch;
             }
             if(el.find('input[name="'+ val +'"]:checked').val() != undefined) {
-                data[ch]['value'] = el.find('input[name="'+ ch +'"]:checked').val();
+                data[ch]['value'] = el.find('input[name="'+ val +'"]:checked').val();
                 data[ch]['valid'] = true;
             } else {
                 data[ch]['value'] = '';
@@ -648,7 +648,7 @@ $(function(){
         });
         
         /* Ajout de championnat */
-        leagueModal.find('.add-league').on('click', function(e){
+        leagueModal.find('.add-league').on('click', function(e) {
             e.preventDefault();
             var formValid = true;
 
@@ -665,10 +665,8 @@ $(function(){
                             if(i == 'adversaires') {
                                 formLeagueSelect($(this), dataAller, i);
                             } else if(i == 'lieu') {
-                                console.log('lieu_'+ index);
                                 formLeagueInputRadio($(this), dataAller, i, 'lieu_'+ index);
                             }  else if(i == 'joue') {
-                                console.log('joue_aller_'+ index);
                                 formLeagueInputRadio($(this), dataAller, i, 'joue_aller_'+ index);
                             } else if(i == 'scores_dom') {
                                 formLeagueSelect($(this), dataAller, i, 'score_dom_aller');
@@ -701,11 +699,10 @@ $(function(){
                             var dataRetour = jQuery.extend(true, {}, rencontreData);
                             dataRetour.journee.value = index + 1 + nbrRencontre;
                             dataRetour.adversaires.value = dataAller.adversaires.value;
-                            dataRetour.lieu.value = dataAller.lieu.value;
+                            dataRetour.lieu.value = (dataAller.lieu.value == "1") ? "0" : "1";
                             
                             for(i in dataRetour) {
                                 if(i == 'joue') {
-                                    console.log('joue_retour_'+ index);
                                     formLeagueInputRadio($(this), dataRetour, i, 'joue_retour_'+ index);
                                 } else if(i == 'scores_dom') {
                                     formLeagueSelect($(this), dataRetour, i, 'score_dom_retour');
@@ -754,7 +751,37 @@ $(function(){
                     formLeagueSelect(leagueModal, leagueData, ch);
                 }
             }
-            console.log(leagueData);
+            console.log(leagueData, formValid);
+            
+            if (formValid) {
+                if($(this).hasClass('add-league')) {
+                    $.post(
+                        './inc/api/admin/calendar/add-league.php',
+                        {
+                          'data': leagueData
+                        },
+                        function (data) {
+                            if(data)
+                                window.location.href = location.href;
+                            else
+                                console.log(data);
+                         }
+                    );
+                } else {
+                    $.post(
+                        './inc/api/admin/calendar/edit-league.php',
+                        {
+                          'data': matchData
+                        },
+                        function (data) {
+                            /*if(data)
+                                window.location.href = location.href;
+                            else*/
+                                console.log(data);
+                         }
+                    );
+                }
+            }
         });
 
         // Suppression d'un match
@@ -768,9 +795,9 @@ $(function(){
                     'id': supprId
                 },
                 function (data) {
-                    /*if(data)
+                    if(data)
                         window.location.href = location.href;
-                    else*/
+                    else
                         console.log(data);
                 }
            );

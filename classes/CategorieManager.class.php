@@ -107,7 +107,7 @@ class CategorieManager {
 	*********************************/
 
 	public function supprimer(Categorie $categorie) {
-		$this->_db->exec('DELETE FROM categories WHERE id = '.$categorie->getId());
+		return $this->_db->exec('DELETE FROM categories WHERE id = '.$categorie->getId());
 	}
 
 	/**********************************

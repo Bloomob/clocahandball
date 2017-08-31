@@ -117,7 +117,7 @@ class TarifManager {
 	*********************************/
 
 	public function supprimer(Tarif $tarif) {
-		$this->_db->exec('DELETE FROM tarifs WHERE id = '.$tarif->getId());
+		return $this->_db->exec('DELETE FROM tarifs WHERE id = '.$tarif->getId());
 	}
 
 

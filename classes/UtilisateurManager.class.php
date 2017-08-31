@@ -120,7 +120,7 @@ class UtilisateurManager {
 	*********************************/
 
 	public function supprimer(Utilisateur $util) {
-		$this->_db->exec('DELETE FROM utilisateurs WHERE id = '.$util->getId());
+		return $this->_db->exec('DELETE FROM utilisateurs WHERE id = '.$util->getId());
 	}
 
 	/**********************************
