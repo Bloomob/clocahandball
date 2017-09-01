@@ -47,11 +47,9 @@
 
 	// On inclue la page de connexion à la BDD
 	include_once("inc/connexion_bdd_pdo.php");
-	require_once("inc/connexion_bdd.php");
 	include_once("inc/fonctions.php");
 	require_once("inc/date.php");
 	include_once("inc/constantes.php");
-	// include_once("inc/connexion.php");
 	
 	// Initialisation des managers
 	$CategorieManager = new CategorieManager($connexion);
@@ -106,7 +104,7 @@
 						<article class="col-sm-8">
 							<div class="contenu">
 								<h2><i class="fa fa-calendar" aria-hidden="true"></i><?=$titre?></h2>
-								<div class="resultats_classement">
+								<div class="wrapper">
 									<?php
 									switch($onglet) {
 										case 'matchs_a_venir':
@@ -114,7 +112,7 @@
 											$listeMatchs = $MatchManager->retourneListe($options);
 											// echo '<pre>'; var_dump($listeMatchs); echo '</pre>';?>
 											<div class="legende">
-												La liste des matchs prévus dans les 7 jours à venir
+												<i class="fa fa-info-circle" aria-hidden="true"></i>La liste des matchs prévus dans les 7 jours à venir
 											</div><?php
 											if(isset($_SESSION['rang'])):
 												if($_SESSION['rang']==1):?>
@@ -173,7 +171,7 @@
 											$options = array('where' => 'date <= '. $now .' AND date > '. date_moins_7J($now) .' AND joue = 1', 'orderby' => 'date, heure');
 											$listeMatchs = $MatchManager->retourneListe($options);
 											// echo '<pre>'; var_dump($listeMatchs); echo '</pre>';?>
-											<div class="legende">La liste des matchs qui se sont déroulés lors des 7 derniers jours.</div>
+											<div class="legende"><i class="fa fa-info-circle" aria-hidden="true"></i>La liste des matchs qui se sont déroulés lors des 7 derniers jours.</div>
 											<table id="tab_result"><?php
 												if(!empty($listeMatchs)):
 													$i=2;
@@ -274,14 +272,14 @@
 											</table><?php
 										break;
 										case 'classements':?>
-											<div class="legende">La liste des classements de toutes nos équipes engagées.</div>
-											<div class="wrapper pad_bot1"><?php
-												$lesClassements = retourne_tous_classements($annee);
-												if(!is_array($lesClassements)) {?>
-													Pas de classement pour le moment.<?php
-												}
-												else {
-													foreach($lesClassements as $unClassement) {?>
+											<div class="legende"><i class="fa fa-info-circle" aria-hidden="true"></i>La liste des classements de toutes nos équipes engagées.</div>
+											<div class=""><?php
+												// $lesClassements = retourne_tous_classements($annee);
+												$lesClassements = array();
+												if(empty($lesClassements)):?>
+													<p>Pas de classement pour le moment.</p><?php
+												else:
+													foreach($lesClassements as $unClassement):?>
 														<div class="unClassement">
 															<div class="table">
 																<div class="row">
@@ -291,8 +289,8 @@
 																</div>
 															</div>
 														</div><?php
-													}
-												}?>
+													endforeach;
+												endif;?>
 											</div>
 											<?php
 										break;
@@ -371,7 +369,7 @@
 										case 'coupe_yvelines':
 											$options = array('where' => 'date >= '. $annee_actuelle .'0701 AND date < '. $annee_suiv .'0701 AND competition = 2', 'orderby' => 'categorie');
 											$listeMatchs = $MatchManager->retourneListe($options);?>
-											<div class="legende">Les résultats en coupe des Yvelines de nos équipes.</div>
+											<div class="legende"><i class="fa fa-info-circle" aria-hidden="true"></i>Les résultats en coupe des Yvelines de nos équipes.</div>
 											<table id="tab_result"><?php
 												if(is_array($listeMatchs)) {
 													$i=2;
@@ -410,7 +408,7 @@
 										case 'coupe_france':
 											$options = array('where' => 'date >= '. $annee_actuelle .'0701 AND date < '. $annee_suiv .'0701 AND competition = 3', 'orderby' => 'categorie');
 											$listeMatchs = $MatchManager->retourneListe($options);?>
-											<div class="legende">Les résultats en coupe des Yvelines de nos équipes.</div>
+											<div class="legende"><i class="fa fa-info-circle" aria-hidden="true"></i>Les résultats en coupe des Yvelines de nos équipes.</div>
 											<table id="tab_result"><?php
 												if(is_array($listeMatchs)) {
 													$i=2;
@@ -447,7 +445,7 @@
 											<?php
 										break;
 										default:
-											echo "<div>Pas de données disponibles pour le moment.</div>";
+											echo "<p>Pas de données disponibles pour le moment.</p>";
 										break;
 									} ?>
 								</div>

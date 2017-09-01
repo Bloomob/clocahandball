@@ -2,184 +2,204 @@
 /**
 /** Page saison
 **/
+.resultats_classements {
+    .contenu {
+        .wrapper {
+            padding: 30px;
+            margin-bottom: 30px;
 
-.liste-matchs {
-	tr {
-		th, td {
-			line-height: 20px;
-			padding: 5px 0;
-		}
-		th {
-			background-color: #A8C1D5;
-            font-size: 16px;
-			color: #FFF;
-			text-align: center;
-		}
-		td {
-			height: 26px;
-            padding: 10px 15px;
-            vertical-align: middle;
-            text-align: center;
-            font-size: 14px;
-            border-bottom: 1px solid #ddd;
-            
-            &.score-team2 span {
-                padding: 5px 10px;
-                border-radius: 8px;
-                color: $blanc;
-            }
-            &.competition {
-                width: 15%;
-                color: $blanc;
-            }
-            &.commentaire {
-                width: 25%;
-            }
-            &.statut {
-                display: inline-block;
-                line-height: 18px;
-                padding: 6px 12px;
-                -moz-border-radius: 5px;
-                -webkit-border-radius: 5px;
-                border-radius: 5px;
-            }
-			&.puce {
-				padding-left: 20px;
-				text-align: left;
-				
-				[class*="cat_"] {
-                    width: 15px;
-                    height: 15px;
-                    display: inline-block;
-                    border-radius: 8px;
-                    margin-right: 5px;
-                    position: relative;
-                    top: 3px;
-                }
-			}
-		}
-	}
+            .legende {
+                background-color: $bleu-clair;
+                -webkit-border-radius: 10px;
+                -khtml-border-radius: 10px;
+                -moz-border-radius: 10px;
+                border-radius: 10px;
+                padding: 10px;
+                text-align: center;
+                margin-bottom: 10px;
+                line-height: 20px;
 
-}
-.periods  {
-    min-height: 625px;
-    width: 95%;
-    margin: auto;
-    
-    .year {
-        font-size: 48px;
-        color: #EF6417;
-        float: right;
-        
-        li {
-            float: left; 
-            display: block; 
-            padding-right: 10px;
-            
-            a {
-                text-decoration: none;
-            }
-        }
-    }
-    .months { 
-        float: left; 
-        margin-left: 15px; 
-        
-        li { 
-            font-size: 24px; 
-            float: left;
-            display: block; 
-            padding-right: 10px;
-            
-            a {
-                text-decoration: none;
-            }
-            &:hover {
-                color: #EF6417;
-            }
-        }
-    }
-    .active {
-        color: #EF6417;
-    }
-    .month  {
-        margin-top: 20px;
-    }
-    table { 
-        width: 100%;
-        border-collapse: collapse; 
-        
-        td { 
-            width: 80px;
-            height: 80px; 
-            border: 1px solid #D9DDDF;
-            
-            &.week_end {
-                background: #eae7d4;
-            }
-            &.vacances .day { 
-                color: #F00; 
-            }
-            &.today { 
-                border: 2px solid #EF6417;
-            }
-            &:hover { 
-                background: rgb(200, 230, 230);
-            }
-            td[colspan] {
-                border: none; 
-                
-                &:hover { 
-                    background: none;
+                .fa {
+                    margin-right: 10px;
+                    font-size: 20px;
                 }
             }
-            .day{ 
-                position: absolute; 
-                color: #8C8C8C;
-                bottom: -40px; 
-                right: 5px;
-                font-weight: bold;
-                font-size: 24.3pt;
+            .liste-matchs {
+            	tr {
+            		th, td {
+            			line-height: 20px;
+            			padding: 5px 0;
+            		}
+            		th {
+            			background-color: #A8C1D5;
+                        font-size: 16px;
+            			color: #FFF;
+            			text-align: center;
+            		}
+            		td {
+            			height: 26px;
+                        padding: 10px 15px;
+                        vertical-align: middle;
+                        text-align: center;
+                        font-size: 14px;
+                        border-bottom: 1px solid #ddd;
+                        
+                        &.score-team2 span {
+                            padding: 5px 10px;
+                            border-radius: 8px;
+                            color: $blanc;
+                        }
+                        &.competition {
+                            width: 15%;
+                            color: $blanc;
+                        }
+                        &.commentaire {
+                            width: 25%;
+                        }
+                        &.statut {
+                            display: inline-block;
+                            line-height: 18px;
+                            padding: 6px 12px;
+                            -moz-border-radius: 5px;
+                            -webkit-border-radius: 5px;
+                            border-radius: 5px;
+                        }
+            			&.puce {
+            				padding-left: 20px;
+            				text-align: left;
+            				
+            				[class*="cat_"] {
+                                width: 15px;
+                                height: 15px;
+                                display: inline-block;
+                                border-radius: 8px;
+                                margin-right: 5px;
+                                position: relative;
+                                top: 3px;
+                            }
+            			}
+            		}
+            	}
+
             }
-            .daylight { 
-                display: none; 
-            }
-            .events {
-                position: relative;
-                height: 0px; 
-                margin: -39px 1px 0px; 
-                padding: 0px;
-                width: 100%;
+            .periods  {
+                min-height: 625px;
                 
-                span {
-                    color: $blanc;
-                    text-align: center;
-                    display: inline-block;
+                .year {
+                    font-size: 48px;
+                    color: #EF6417;
+                    float: right;
+                    
+                    li {
+                        float: left; 
+                        display: block; 
+                        padding-right: 10px;
+                        
+                        a {
+                            text-decoration: none;
+                        }
+                    }
+                }
+                .months { 
+                    float: left; 
+                    margin-left: 15px; 
+                    
+                    li { 
+                        font-size: 24px; 
+                        float: left;
+                        display: block; 
+                        padding-right: 10px;
+                        
+                        a {
+                            text-decoration: none;
+                        }
+                        &:hover {
+                            color: #EF6417;
+                        }
+                    }
+                }
+                .active {
+                    color: #EF6417;
+                }
+                .month  {
+                    margin-top: 20px;
+                }
+                table { 
                     width: 100%;
-                    cursor: pointer;
+                    border-collapse: collapse; 
+                    
+                    td { 
+                        width: 80px;
+                        height: 80px; 
+                        border: 1px solid #D9DDDF;
+                        
+                        &.week_end {
+                            background: #eae7d4;
+                        }
+                        &.vacances .day { 
+                            color: #F00; 
+                        }
+                        &.today { 
+                            border: 2px solid #EF6417;
+                        }
+                        &:hover { 
+                            background: rgb(200, 230, 230);
+                        }
+                        td[colspan] {
+                            border: none; 
+                            
+                            &:hover { 
+                                background: none;
+                            }
+                        }
+                        .day{ 
+                            position: absolute; 
+                            color: #8C8C8C;
+                            bottom: -40px; 
+                            right: 5px;
+                            font-weight: bold;
+                            font-size: 24.3pt;
+                        }
+                        .daylight { 
+                            display: none; 
+                        }
+                        .events {
+                            position: relative;
+                            height: 0px; 
+                            margin: -39px 1px 0px; 
+                            padding: 0px;
+                            width: 100%;
+                            
+                            span {
+                                color: $blanc;
+                                text-align: center;
+                                display: inline-block;
+                                width: 100%;
+                                cursor: pointer;
+                            }
+                            .matchs { 
+                                background: #3c763d;
+                            }
+                            .extra { 
+                                background: rgb(200, 120, 200);
+                            }
+                        }
+                        .laDate {
+                            display: none;
+                        }
+                    }
                 }
-                .matchs { 
-                    background: #3c763d;
+                .relative  { 
+                    position: relative;
                 }
-                .extra { 
-                    background: rgb(200, 120, 200);
-                }
-            }
-            .laDate {
-                display: none;
             }
         }
-    }
-    .relative  { 
-        position: relative;
     }
 }
 
 .resultats_classement table tr td.categ { width: 50px; }
 .resultats_classement table tr td.categ .td0 { width: 100%; }
 .resultats_classement table tr td.categ .td0 span { transform: none; -webkit-transform: none; -moz-transform: none; position: relative; top: 7px; color: white; }
-
-.resultats_classement .legende { background: url(../images/icon/png_black/comment-exclamation.png) 100% 50% no-repeat rgb(255, 239, 221); -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; padding: 10px; text-align: center; }
 
 #export_cal { cursor: pointer; }
 

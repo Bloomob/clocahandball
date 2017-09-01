@@ -37,7 +37,6 @@
 
 	// On inclue la page de connexion à la BDD
 	include_once("inc/connexion_bdd_pdo.php");
-	require_once("inc/connexion_bdd.php");
 	include_once("inc/fonctions.php");
 	require_once("inc/date.php");
 	include_once("inc/constantes.php");

@@ -11,15 +11,21 @@
 
 	// Initialisation des variables
 	$page = 'contact';
+	$titre = 'Nous contacter';
 	$titre_page = 'contact';
-	$filAriane = array('home', $titre_page);
+	$filAriane = array(
+		'home',
+		array(
+			'url' => $page,
+			'libelle' => $titre_page
+		)
+	);
 	
 	// On inclue la page de connexion à la BDD
 	include_once("inc/connexion_bdd_pdo.php");
-	require_once("inc/connexion_bdd.php");
 	include_once("inc/constantes.php");
 	include_once("inc/fonctions.php");
-	include_once("inc/connexion.php");
+	include_once("inc/date.php");
 ?>
 
 <!DOCTYPE html>
@@ -27,37 +33,35 @@
 	<head>
 		<?php include_once('inc/head.php'); ?>
 	</head>
-	<body id="page1">
-		<header>
+	<body>
+		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>
 		<div id='main'>
 			<section id="content" class="<?=$page;?>">
 				<?php include_once('inc/fil_ariane.php'); ?>
-				<div class="bg1 pad">
-					<article class="col2 marg-right1 minheight2">
-						<h2>Nous contacter</h2>
-						<div>
-							<fieldset>
-								<p>Pour toute question relative au club : <a href="mailto:contact@clocahandball.fr">contact@clocahandball.fr</a></p>
-								<p>Pour toute question relative au site internet : <a href="mailto:contact@clocahandball.fr">contact@clocahandball.fr</a></p>
-							</fieldset>
-						</div>
-					</article>
-					<article class="col1">
-						<article>
-							<?php include_once('inc/infoflash.php'); ?>
+				<div class="container">
+					<div class="row">
+						<article class="col-sm-8">
+							<div class="contenu">
+								<h2><i class="fa fa-pencil" aria-hidden="true"></i><?=$titre?></h2>
+								<div class="wrapper">
+									<fieldset>
+										<p>Pour toute question relative au club : <a href="mailto:clocahandball@gmail.fr">clocahandball@gmail.fr</a></p>
+										<p>Pour toute question relative au site internet : <a href="mailto:clocahandball@gmail.fr">clocahandball@gmail.fr</a></p>
+									</fieldset>
+								</div>
+							</div>
 						</article>
-						<article class="marginT">
-							<?php include_once('inc/infos.php'); ?>
+						<article class="col-sm-4 modules">
+							<article>
+								<?php include_once('inc/modules/infos-home.php'); ?>
+							</article>
+							<article>
+								<?php include_once('inc/modules/partenaires.php'); ?>
+							</article>
 						</article>
-						<article class="marginT">
-							<?php include_once('inc/who_online.php'); ?>
-						</article>
-						<article class="marginT">
-							<?php include_once('inc/partenaires.php'); ?>
-						</article>
-					</article>
+					</div>
 				</div>
 			</section>
 			<footer>
