@@ -27,5 +27,5 @@
 
 	$listeCompetition = array(1 => 'Championnat', 2 => 'Coupe des Yvelines', 3 => 'Coupe de France', 4 => 'D&eacute;layages', 5 => 'Amical');
 	$listeChampionnat = array(0 => 'Délayages', 1 => 'Prénat', 2 => 'Pré-région', 3 => 'Excellence', 4 => 'Honneur', 5 => '1ère division', 6 => '2ème division', 7 => '3ème division', 8 => '4ème division');
-	$listeNiveau = array(1 => 'National', 2 => 'R&eacute;gionnal', 3 => 'D&eacute;partemental');
+	$listeNiveau = array(1 => 'National', 2 => 'R&eacute;gional', 3 => 'D&eacute;partemental');
 ?>

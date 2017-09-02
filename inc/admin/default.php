@@ -23,6 +23,15 @@
                     </div><?php
                 }
             ?>
+            <div class="bloc-admin">
+                <h3>Application adhérent</h3>
+                <div class="ligne-admin">
+                    <a href='admin.php?page=afficher_tenue' id="afficher_tenue"><i class="fa fa-eye" aria-hidden="true"></i>Liste tenues</a>
+                    <a href='admin.php?page=ajout_tenue' id="ajout_tenue"><i class="fa fa-plus" aria-hidden="true"></i>Ajout tenue</a>
+                    <a href='admin.php?page=afficher_adherents' id="afficher_adherents"><i class="fa fa-eye" aria-hidden="true"></i>Liste adhérents</a>
+                    <a href='admin.php?page=ajout_adherent' id="ajout_adherent"><i class="fa fa-plus" aria-hidden="true"></i>Ajout Adhérent</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

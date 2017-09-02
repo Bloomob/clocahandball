@@ -30,6 +30,9 @@
         else
             $utilisateur->setActif(0);
         
+        $utilisateur->setListe_equipes_favorites(0);
+        
+        
         // var_dump($utilisateur);
 		$userId = $UtilisateurManager->ajouter($utilisateur);
         

@@ -11,7 +11,7 @@
 	include_once("../../../connexion_bdd_pdo.php");
 	include_once("../../../date.php");
 
-	$UtilisateurManager = new $UtilisateurManager($connexion);
+	$UtilisateurManager = new UtilisateurManager($connexion);
 
 	if(isset($_POST['id'])) {
 		$utilisateur = new Utilisateur(array());
