@@ -102,7 +102,7 @@ $(function(){
                       'data': addUserData
                     },
                     function (data) {
-                        console.log(data);
+                        // console.log(data);
                         if(!data)
                             addUserModal.find('.form-errors').removeClass('hidden');
                         else
@@ -125,7 +125,7 @@ $(function(){
                     'id': supprId
                 },
                 function (data) {
-                    console.log(data);
+                    // console.log(data);
                     if(data) {
                         window.location.href = location.href;
                     }

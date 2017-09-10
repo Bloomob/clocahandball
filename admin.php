@@ -97,18 +97,19 @@
                         <div class="contenu">
                             <h2><i class="fa fa-bank" aria-hidden="true"></i><?=$titre?></h2><?php
                             $liens = array();
+                            $liens2 = array('afficher_tenue', 'ajout_tenue', 'modifier_tenue', 'afficher_adherents', 'ajout_adherent', 'modifier_adherent');
                             $options = array('where' => 'actif = 1 && parent > 0');
                             $listeTousMenuManager = $MenuManagerManager->retourneListe($options);
 
-                            foreach ($listeTousMenuManager as $unMenuManager) {
+                            foreach ($listeTousMenuManager as $unMenuManager):
                                 if($unMenuManager->getLien() != "")
                                     $liens[] = $unMenuManager->getLien();
-                            }
-                            if(in_array($tab, $liens))
+                            endforeach;
+                            if(in_array($tab, $liens) || in_array($tab, $liens2))
                                 include_once('inc/admin/'.$tab.'.php');
-                            else {
+                            else
                                 include_once('inc/admin/default.php');
-                            }?>
+                            ?>
                         </div>
 					</article>
 				</div>

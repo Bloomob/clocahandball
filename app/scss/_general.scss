@@ -165,15 +165,15 @@ figure { margin: 0px; }
 /* ************************ Style des checkboxs  **************************** */
 
 /* on cache la case Ã  cocher */  
-[type="checkbox"]:not(.checked),  
-[type="checkbox"].checked {  
+[type="checkbox"]:not(:checked),  
+[type="checkbox"]:checked {  
   position: absolute;  
   left: -9999px;  
 }  
    
 /* on prÃ©pare le label */  
-[type="checkbox"]:not(.checked) + label,  
-[type="checkbox"].checked + label {  
+[type="checkbox"]:not(:checked) + label,  
+[type="checkbox"]:checked + label {  
   position: relative; /* permet de positionner les pseudo-Ã©lÃ©ments */  
   padding-left: 30px; /* fait un peu d'espace pour notre case Ã  venir */  
   cursor: pointer;    /* affiche un curseur adaptÃ© */  
@@ -181,8 +181,8 @@ figure { margin: 0px; }
 
 /* Aspect des checkboxes */  
 /* :before sert Ã  crÃ©er la case Ã  cocher */  
-[type="checkbox"]:not(.checked) + label:before,  
-[type="checkbox"].checked + label:before {  
+[type="checkbox"]:not(:checked) + label:before,  
+[type="checkbox"]:checked + label:before {  
   content: '';  
   position: absolute;  
   left:0; top: 0px;  
@@ -194,36 +194,37 @@ figure { margin: 0px; }
 }  
    
 /* Aspect gÃ©nÃ©ral de la coche */  
-[type="checkbox"]:not(.checked) + label:after,  
-[type="checkbox"].checked + label:after {  
+[type="checkbox"]:not(:checked) + label:after,  
+[type="checkbox"]:checked + label:after {  
   content: 'x'; 
   position: absolute;  
-  top: -10px; left: 2px;  
-  font-size: 24px; 
-  font-family: Papyrus, fantasy; 
+  top: -4px;
+    left: 3px;  
+  font-size: 20px; 
+font-family: Arial, fantasy; 
   color: #000;  
   transition: all .2s; /* on prÃ©voit une animation */  
 }  
 /* Aspect si "pas cochÃ©e" */  
-[type="checkbox"]:not(.checked) + label:after {  
+[type="checkbox"]:not(:checked) + label:after {  
   opacity: 0; /* coche invisible */  
   transform: scale(0); /* mise Ã  l'Ã©chelle Ã  0 */  
 }  
 /* Aspect si "cochÃ©e" */  
-[type="checkbox"].checked + label:after {  
+[type="checkbox"]:checked + label:after {  
   opacity: 1; /* coche opaque */  
   transform: scale(1); /* mise Ã  l'Ã©chelle 1:1 */  
 }
 
 /* aspect dÃ©sactivÃ©e */  
-[type="checkbox"]:disabled:not(.checked) + label:before,  
-[type="checkbox"]:disabled.checked + label:before {  
+[type="checkbox"]:disabled:not(:checked) + label:before,  
+[type="checkbox"]:disabled:checked + label:before {  
   box-shadow: none;  
   border-color: #bbb;  
   background-color: #ddd;  
 }  
 /* styles de la coche (si cochÃ©e/dÃ©sactivÃ©e) */  
-[type="checkbox"]:disabled.checked + label:after {  
+[type="checkbox"]:disabled:checked + label:after {  
   color: #999;  
 }  
 /* on style aussi le label quand dÃ©sactivÃ© */  

@@ -45,7 +45,7 @@ class UtilisateurManager {
 		$req->bindValue(':nom', $util->getNom());
 		$req->bindValue(':prenom', $util->getPrenom());
 		$req->bindValue(':mail', $util->getMail());
-		$req->bindValue(':mot_de_passe', $util->getMot_de_passe());
+		$req->bindValue(':mot_de_passe', md5($util->getMot_de_passe()));
 		$req->bindValue(':rang', $util->getRang(), PDO::PARAM_INT);
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
 		$req->bindValue(':src_photo', $util->getSrc_photo());
@@ -93,7 +93,7 @@ class UtilisateurManager {
 		$req->bindValue(':nom', $util->getNom());
 		$req->bindValue(':prenom', $util->getPrenom());
 		$req->bindValue(':mail', $util->getMail());
-		$req->bindValue(':mot_de_passe', $util->getMot_de_passe());
+		$req->bindValue(':mot_de_passe', md5($util->getMot_de_passe()));
 		$req->bindValue(':rang', $util->getRang(), PDO::PARAM_INT);
 		$req->bindValue(':tel_port', $util->getTel_port(), PDO::PARAM_INT);
 		$req->bindValue(':src_photo', $util->getSrc_photo());
