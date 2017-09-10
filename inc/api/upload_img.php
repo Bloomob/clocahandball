@@ -27,6 +27,8 @@
                 else:
                     $sourcePath = $_FILES['image']['tmp_name']; // Storing source path of the file in a variable
                     $targetPath = $pathFile ."/".$_FILES['image']['name']; // Target path where file is to be stored
+                    if(!is_dir($pathFile))
+                        mkdir($pathFile, 0777);
                     move_uploaded_file($sourcePath, $targetPath) ; // Moving Uploaded file
 
                     $retour['success'] = true;

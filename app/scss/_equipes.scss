@@ -337,6 +337,7 @@
 
                 span {
                     display: inline-block;
+                    width: 100%;
                     color: $blanc;
                     background: $violet;
                     padding: 5px;
@@ -347,8 +348,68 @@
                     @include transform-translate(-50%, -50%);
                 }
             }
+            .scores {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                height: 45px;
+                width: 100%;
+                text-align: center;
+
+                span {
+                    display: inline-block;
+                    width: 100%;
+                    font-size: 15px;
+                    padding: 5px 10px;
+                    border-radius: 8px;
+                    color: $blanc;
+                    position: absolute;
+                    top: 50%;
+                    @include transform-translate(-50%, -50%);
+                }
+            }
+            a.info {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                height: 45px;
+                text-align: center;
+
+                span {
+                    font-size: 20px;
+                    color: $orange2;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    @include transform-translate(0%, -50%);
+                }
+            }
             &:last-child {
                 margin-bottom: 0;
+            }
+        }
+    }
+    #tab_equipe .jqplot-target .jqplot-title { font-size: 1.5em; }
+    #tab_equipe .jqplot-target .jqplot-donut-series { font-size: 2em; color: #000; }
+    #statistiques {
+        .stats_buts {
+            h4 { margin: 10px 0; font-size: 1.5em; }
+            > div { margin-top: 20px; }
+            .buts_pour {
+                .total_buts_pour { float: left; width: 50%; color: green; font-size: 2.5em; }
+                strong{ color: green; }
+            }
+            .buts_contre {
+                .total_buts_contre { float: left; width: 50%; color: red; font-size: 2.5em; }
+                strong { color: red; }
+            }
+            .buts_diff_pos {
+                .total_buts_diff { float: left; width: 50%; color: green; font-size: 2.5em; }
+                strong { color: green; }
+            }
+            .buts_diff_neg {
+                .total_buts_diff { float: left; width: 50%; color: red; font-size: 2.5em; }
+                strong { color: red; }
             }
         }
     }
@@ -393,18 +454,4 @@ table.stats_equipe tr td { font-size: 18px; }
 .liste_equipe .cadre .description { margin: 5px; }
 .liste_equipe .cadre .description > strong { color: #5c5895; }
 .liste_equipe .cadre .description > span { padding: 2px; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; color: rgb(255, 255, 255); }
-
-#tab_equipe .jqplot-target .jqplot-title { font-size: 1.5em; }
-#tab_equipe .jqplot-target .jqplot-donut-series { font-size: 2em; color: #000; }
-
-.stats_buts h4 { margin: 10px 0; font-size: 1.5em; }
-.stats_buts > div { margin-top: 20px; }
-.stats_buts .buts_pour .total_buts_pour { float: left; width: 50%; color: green; font-size: 2.5em; }
-.stats_buts .buts_pour strong{ color: green; }
-.stats_buts .buts_contre .total_buts_contre { float: left; width: 50%; color: red; font-size: 2.5em; }
-.stats_buts .buts_contre strong { color: red; }
-.stats_buts .buts_diff_pos .total_buts_diff { float: left; width: 50%; color: green; font-size: 2.5em; }
-.stats_buts .buts_diff_neg .total_buts_diff { float: left; width: 50%; color: red; font-size: 2.5em; }
-.stats_buts .buts_diff_pos strong { color: green; }
-.stats_buts .buts_diff_neg strong { color: red; }
 */

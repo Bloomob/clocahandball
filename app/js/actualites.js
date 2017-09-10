@@ -39,7 +39,7 @@ $(function(){
             },
             tags: {
                 value: '',
-                valid: false
+                valid: true
             },
             publication: {
                 value: '0',
@@ -240,7 +240,7 @@ $(function(){
                 actuModal.find('.modal-loader').removeClass('hidden');
                 
                 $.getJSON(
-                    './inc/api/admin/calendar/get-match.php',
+                    './inc/api/admin/actuality/get-actu.php',
                     {
                         id: id
                     },

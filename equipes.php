@@ -193,7 +193,7 @@
 														        endif?>
 															</div>
 														</div>
-														<div class="col-sm-6 saison_passee">
+														<div class="col-sm-6 saison_passee hidden">
 															<div class="bloc">
 																<h4><i class="fa fa-line-chart" aria-hidden="true"></i>La saison passee</h4><?php
 																$liste_stats = $MatchManager->liste_stats($laCategorie->getId(), $annee_actuelle-1);
@@ -235,7 +235,7 @@
 													                    $options2 = array('where' => 'id = '. $unMatch->getCategorie());
 													                    $uneCategorie = $CategorieManager->retourne($options2);
 													                    if($unMatch->getLieu() == 0):?>
-													                        <div class="col-sm-6 col-lg-6">
+													                        <div class="col-sm-4">
 													                            <div class="dom puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
 													                            <div class="ext"><?php
 													                                $tab = explode(',', $unMatch->getAdversaires());
@@ -249,7 +249,7 @@
 													                            </div>
 													                        </div><?php
 													                    else: ?>
-													                        <div class="col-sm-6 col-lg-6">
+													                        <div class="col-sm-4">
 													                            <div class="dom"><?php
 													                                $tab = explode(',', $unMatch->getAdversaires());
 													                                if(is_array($tab)):
@@ -262,11 +262,65 @@
 													                            </div>
 													                            <div class="ext puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
 													                        </div><?php
-													                    endif; ?>
-													                    <div class="col-sm-2 heure"><span><?=$unMatch->remplace_heure()?></span></div>
-													                    <!-- <div class="col-sm-2">
-													                        <span><a href="#"><i class="fa fa-flag" aria-hidden="true"></i></a></span>
-													                    </div> -->
+													                    endif;?>
+													                    <div class="col-sm-2"><?php
+														                    if(!$unMatch->getJoue()):?>
+															                    <div class="heure"><span><?=$unMatch->remplace_heure()?></span></div><?php
+															                else:?>
+															                	<div class="scores"><?php
+																					$score_dom = explode(',', $unMatch->getScores_dom());
+																					$score_ext = explode(',', $unMatch->getScores_ext());
+																					if($unMatch->getLieu()==0):
+																						if(is_array($score_dom) && is_array($score_ext)):
+																							for($i=0; $i<count($score_dom); $i++):
+																								if($score_dom[$i]>$score_ext[$i]):
+																									$color = "vert";
+																								elseif($score_dom[$i]<$score_ext[$i]):
+																									$color = "rouge";
+																								else:
+																									$color = "orange";
+																								endif;
+																								echo "<span class=".$color.">".$score_dom[$i]." - ".$score_ext[$i].'</span><br/>';
+																							endfor;
+																						else:
+																							if($score_dom>$score_ext):
+																								$color = "vert";
+																							elseif($score_dom<$score_ext):
+																								$color = "rouge";
+																							else:
+																								$color = "orange";
+																							endif;	
+																							echo "<span class=".$color.">".$score_dom." - ".$score_ext.'</span><br/>';
+																						endif;
+																					else:
+																						if(is_array($score_dom) && is_array($score_ext)):
+																							for($i=0; $i<count($score_dom); $i++):
+																								if($score_dom[$i]<$score_ext[$i]):
+																									$color = "vert";
+																								elseif($score_dom[$i]>$score_ext[$i]):
+																									$color = "rouge";
+																								else:
+																									$color = "orange";
+																								endif;
+																								echo "<span class=".$color.">".$score_dom[$i]." - ".$score_ext[$i].'</span><br/>';
+																							endfor;
+																						else:
+																							if($score_dom<$score_ext):
+																								$color = "vert";
+																							elseif($score_dom>$score_ext):
+																								$color = "rouge";
+																							else:
+																								$color = "orange";
+																							endif;
+																							echo "<span class=".$color.">".$score_dom." - ".$score_ext.'</span><br/>';
+																						endif;
+																					endif;?>
+																				</div><?php
+														                    endif;?>
+													                    </div>
+													                    <div class="col-sm-2">
+													                        <a href="#" class="info"><span><i class="fa fa-info-circle" aria-hidden="true"></i></span></a>
+													                    </div>
 													                </div><?php
 													            endforeach;
 													        else: ?>
@@ -324,7 +378,7 @@
 													<div class="marginT">
 														<div class="row">
 															<div class="col-sm-6 bilan_matchs">
-																<div id="chartdiv1"></div>
+																<div id="chart"></div>
 															</div>
 															<div class="col-sm-6 stats_buts"><?php
 																$liste_stats = $MatchManager->liste_stats($laCategorie->getId(), $annee_actuelle);
@@ -420,9 +474,6 @@
 								<?php include_once('inc/modules/infos-home.php'); ?>
 							</article>
 							<article>
-								<?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
-							</article>
-							<article>
 								<?php include_once('inc/modules/partenaires.php'); ?>
 							</article>
 						</article>
@@ -434,5 +485,46 @@
 			</footer>
 		</div>
 		<?php include_once('inc/script.php'); ?>
+		<script type="text/javascript">
+			$(function() {<?php
+				$liste_stats = $MatchManager->liste_stats($laCategorie->getId(), $annee_actuelle);
+
+		    if(!empty($liste_stats) && false) { ?>
+				$.jqplot.config.enablePlugins = true;
+		        var data = [
+		        	['Victoires', <?=$liste_stats['nb_vic'];?>],
+		        	['Nuls', <?=$liste_stats['nb_nul'];?>],
+		        	['Défaites', <?=$liste_stats['nb_def'];?>]
+		        ];
+		        var nbr_match = <?=$liste_stats['nb_vic'] + $liste_stats['nb_nul']+ $liste_stats['nb_def'];?>;
+		        
+		        var plot = $.jqplot('chart', [data], {
+		            seriesColors:['#009933', '#FFA319', '#FF3333'],
+		            seriesDefaults: {
+		                // Make this a donut chart.
+		                renderer: $.jqplot.DonutRenderer, 
+		                rendererOptions: {
+		                    showDataLabels: true,
+		                    startAngle: -90,
+		                    dataLabels: 'value',
+		                    //dataLabelFormatString: "%d",
+		                }
+		            },
+		            grid: {
+		                backgroundColor: 'transparent',
+		                borderWidth: 0,
+		                shadow:false,
+		            },
+		            legend: { 
+		                show: true,
+		                location: 'e',
+		                fontSize: '12px',
+		                border: 'none',
+		            },
+		            // title: "<span>" + nbr_match + "</span> matchs disput&eacute;s",
+		        });<?php
+		    } ?>
+		   });
+		</script>
 	</body>
 </html>

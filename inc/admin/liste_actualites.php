@@ -15,7 +15,7 @@ if(is_array($listeActualites)):
 				endif; ?>
 			</td>
 			<td>
-				<button class="btn btn-warning edit-actu" data-id="<?=$uneActu->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
+				<button class="btn btn-warning edit-actu" data-id="<?=$uneActu->getId();?>" data-toggle="modal" data-target="#actuModal"><i class="fa fa-edit" aria-hidden="true"></i></button>
 				<button class="btn btn-danger delete-actu" data-id="<?=$uneActu->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
 			</td>
 		</tr><?php

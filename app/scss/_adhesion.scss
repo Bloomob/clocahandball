@@ -3,6 +3,7 @@
         .wrapper {
             padding: 10px;
 			font-size: 14px;
+			margin-bottom: 30px;
 
 			#comment_sinscrire { 
 				.sous_titre { 
@@ -49,6 +50,13 @@
 				}
 				h4 + p, h3 + p {
 					margin-top: 5px;
+				}
+			}
+			#documents_a_venir {
+				.row {
+					.col-sm-6 {
+						margin-bottom: 15px;
+					}
 				}
 			}
         }

@@ -1,3 +1,5 @@
+
+
 <script src="src/js/vendor.js"></script>
 <script src="src/js/app.js"></script>
 <script>require('js/script')</script>
@@ -10,19 +12,18 @@
 <script>require('js/tarifs')</script>
 <script>require('js/utilisateurs')</script>
 
-<?php /*
-<script src="javascript/jquery-ui-1.11.1/external/jquery/jquery.js"></script>
-<script src="javascript/jquery-ui-1.11.1/jquery-ui.min.js"></script>
-<script src="tinymce/tinymce.min.js"></script>
-<script src="javascript/script.js"></script>
-<script src="lightbox/js/lightbox-2.6.min.js"></script>
-<script src="jqplot/jquery.jqplot.min.js"></script>
+<!-- <script src="jqplot/jquery.jqplot.min.js"></script>
 <script src="jqplot/plugins/jqplot.donutRenderer.min.js"></script>
 <script src="jqplot/plugins/jqplot.pointLabels.min.js"></script>
 <script src="jqplot/plugins/jqplot.dateAxisRenderer.min.js"></script>
 <script src="jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
 <script src="jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
-<script src="jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script src="jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script> -->
+
+<?php /*
+<script src="javascript/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+<script src="tinymce/tinymce.min.js"></script>
+<script src="lightbox/js/lightbox-2.6.min.js"></script>
 */
 ?>
 <!-- Google Analytics -->

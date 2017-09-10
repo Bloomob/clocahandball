@@ -25,7 +25,7 @@ $i = 2; ?>
                     $options2 = array('where' => 'id = '. $unMatch->getCategorie());
                     $uneCategorie = $CategorieManager->retourne($options2);
                     if($unMatch->getLieu() == 0):?>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-4">
                             <div class="dom puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
                             <div class="ext"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
@@ -39,7 +39,7 @@ $i = 2; ?>
                             </div>
                         </div><?php
                     else: ?>
-                        <div class="col-sm-6 col-lg-6">
+                        <div class="col-sm-4">
                             <div class="dom"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
                                 if(is_array($tab)):
@@ -54,9 +54,9 @@ $i = 2; ?>
                         </div><?php
                     endif; ?>
                     <div class="col-sm-2 heure"><span><?=$unMatch->remplace_heure()?></span></div>
-                    <!-- <div class="col-sm-2">
-                        <span><a href="#"><i class="fa fa-flag" aria-hidden="true"></i></a></span>
-                    </div> -->
+                    <div class="col-sm-2">
+                        <a href="#" class="info"><span><i class="fa fa-info-circle" aria-hidden="true"></i></span></a>
+                    </div>
                 </div><?php
                 $i++;
             endforeach;

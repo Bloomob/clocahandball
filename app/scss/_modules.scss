@@ -101,6 +101,22 @@
                             @include transform-translate(-50%, -50%);
                         }
                     }
+                    a.info {
+                        display: inline-block;
+                        vertical-align: top;
+                        position: relative;
+                        height: 45px;
+                        text-align: center;
+
+                        span {
+                            font-size: 20px;
+                            color: $orange2;
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            @include transform-translate(0%, -50%);
+                        }
+                    }
                     &:last-child {
                         margin-bottom: 0;
                     }

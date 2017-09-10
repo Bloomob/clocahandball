@@ -6,5 +6,5 @@
 <link rel="stylesheet" href="src/css/app.css" type="text/css" media="all">
 <?php /*
 <link href="lightbox/css/lightbox.css" rel="stylesheet" />
-<link href="jqplot/jquery.jqplot.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="jqplot/jquery.jqplot.min.css" type="text/css" media="all"/>
 */ ?>

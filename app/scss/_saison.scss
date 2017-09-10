@@ -10,6 +10,7 @@
 
             .legende {
                 background-color: $bleu-clair;
+                color: $blanc;
                 -webkit-border-radius: 10px;
                 -khtml-border-radius: 10px;
                 -moz-border-radius: 10px;
@@ -25,50 +26,48 @@
                 }
             }
             .liste-matchs {
-            	tr {
-            		th, td {
-            			line-height: 20px;
-            			padding: 5px 0;
-            		}
-            		th {
-            			background-color: #A8C1D5;
-                        font-size: 16px;
-            			color: #FFF;
-            			text-align: center;
-            		}
-            		td {
-            			height: 26px;
-                        padding: 10px 15px;
-                        vertical-align: middle;
+                .row {
+                    margin-bottom: 10px;
+                    
+                    .date {
+                        color: $blanc;
                         text-align: center;
+
+                        .jour {
+                            background: #AC6E21;
+                            font-size: 18px;
+                            padding: 2px 5px;
+                            @include border-radius(5px 5px 0 0);
+                        }
+                        .mois {
+                            background: #725807;
+                            padding: 2px 5px;
+                            @include border-radius(0 0 5px 5px);
+                        }
+                    }
+                    .compet {
+                        height: 45px;
+                        color: $blanc;
                         font-size: 14px;
-                        border-bottom: 1px solid #ddd;
-                        
-                        &.score-team2 span {
-                            padding: 5px 10px;
-                            border-radius: 8px;
-                            color: $blanc;
+                        text-align: center;
+                        position: relative;
+
+                        span {
+                            position: absolute;
+                            top: 50%;
+                            @include transform-translate(-50%, -50%);
                         }
-                        &.competition {
-                            width: 15%;
-                            color: $blanc;
-                        }
-                        &.commentaire {
-                            width: 25%;
-                        }
-                        &.statut {
-                            display: inline-block;
-                            line-height: 18px;
-                            padding: 6px 12px;
-                            -moz-border-radius: 5px;
-                            -webkit-border-radius: 5px;
-                            border-radius: 5px;
-                        }
-            			&.puce {
-            				padding-left: 20px;
-            				text-align: left;
-            				
-            				[class*="cat_"] {
+                    }
+                    .dom, .ext {
+                        text-align: left;
+                        text-transform: uppercase;
+                        line-height: 18px;
+                        padding-left: 20px;
+
+                        &.puce {
+                            padding-left: 0px;
+
+                            [class*="cat_"] {
                                 width: 15px;
                                 height: 15px;
                                 display: inline-block;
@@ -77,10 +76,65 @@
                                 position: relative;
                                 top: 3px;
                             }
-            			}
-            		}
-            	}
+                        }
+                    }
+                    .heure {
+                        height: 45px;
+                        text-align: center;
+                        position: relative;
 
+                        span {
+                            display: inline-block;
+                            color: $blanc;
+                            background: $violet;
+                            padding: 5px;
+                            border-radius: 10px;
+                            font-size: 14px;
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            @include transform-translate(0%, -50%);
+                        }
+                    }
+                    .scores {
+                        display: inline-block;
+                        vertical-align: top;
+                        position: relative;
+                        height: 45px;
+                        width: 100%;
+                        text-align: center;
+
+                        span {
+                            font-size: 15px;
+                            padding: 5px 10px;
+                            border-radius: 8px;
+                            color: $blanc;
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            @include transform-translate(0%, -50%);
+                        }
+                    }
+                    a.info {
+                        display: inline-block;
+                        vertical-align: top;
+                        position: relative;
+                        height: 45px;
+                        text-align: center;
+
+                        span {
+                            font-size: 20px;
+                            color: $orange2;
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            @include transform-translate(0%, -50%);
+                        }
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
             }
             .periods  {
                 min-height: 625px;
@@ -196,17 +250,4 @@
         }
     }
 }
-
-.resultats_classement table tr td.categ { width: 50px; }
-.resultats_classement table tr td.categ .td0 { width: 100%; }
-.resultats_classement table tr td.categ .td0 span { transform: none; -webkit-transform: none; -moz-transform: none; position: relative; top: 7px; color: white; }
-
 #export_cal { cursor: pointer; }
-
-/* .liste-matchs .cell1 td { background: #F3F3F3; }
-.liste-matchs .cell2 td { background: none; }
-.liste-matchs .score-team2 span { padding: 0px 5px; border-radius: 8px; color: white; }
-.liste-matchs .date  { width: 75px; color: white; padding: 5px 0; font-size: 14px; }
-.liste-matchs .date .jour { background: #AC6E21; font-size: 18px; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-top-left-radius: 5px; -webkit-border-top-right-radius: 5px; -moz-border-radius-topleft: 5px; -moz-border-radius-topright: 5px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
-.liste-matchs .date .mois { background: #725807; width: 25px; margin: 0 25px; padding: 2px 5px; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; }
- */

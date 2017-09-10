@@ -224,11 +224,15 @@ switch($onglet) {
 									</div><?php
 								else:?>
 									<div id="documents_a_venir">
-										<h3>Documents à télécharger <?=$annee_actuelle;?>/<?=$annee_suiv;?> :</h3>
 										<div class="row">
                                             <div class="col-sm-6">
 								                <a href="upload/fiche_inscription_joueur_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf">
                                                     <img src="upload/fiche_inscription_joueur_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Fiche d'inscription joueur <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6">
+												<a href="upload/attestation_de_sante_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.pdf">
+                                                    <img src="upload/attestation_de_sante_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Certificat médical <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/>
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
@@ -237,13 +241,13 @@ switch($onglet) {
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href="upload/plaquette_recto_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg">
-                                                    <img src="upload/plaquette_recto_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/><br/>Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?>
+                                                <a href="upload/plaquette_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg">
+                                                    <img src="upload/plaquette_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/>
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
-                                                <a href="upload/plaquette_verso_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg">
-                                                    <img src="upload/plaquette_verso_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette verso <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/><br/>Plaquette verso <?=$annee_actuelle;?>-<?=$annee_suiv;?>
+                                                <a href="upload/charte_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg">
+                                                    <img src="upload/charte_<?=$annee_actuelle;?>_<?=$annee_suiv;?>.jpg" alt="Plaquette recto <?=$annee_actuelle;?>-<?=$annee_suiv;?>"/>
                                                 </a>
                                             </div>
                                             <div class="col-sm-6">
