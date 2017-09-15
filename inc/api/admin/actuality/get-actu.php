@@ -11,16 +11,16 @@
 	include_once("../../../connexion_bdd_pdo.php");
 	include_once("../../../date.php");
 
-	$ActuManager = new $ActuManager($connexion);
+	$ActuManager = new ActualiteManager($connexion);
 
 	if(isset($_GET['id'])) {
-        $actu = $ActuManager->retourne($_GET['id']);
-        
+        $actu = $ActuManager->retourneById($_GET['id']);
+
         $retour = array(
             'id' => $actu->getId(),
-            'titre' => $actu->getTitre(),
-            'sous_titre' => $actu->getSous_titre(),
-            'contenu' => $actu->getContenu(),
+            'titre' => html_entity_decode($actu->getTitre(), ENT_QUOTES),
+            'sous_titre' => html_entity_decode($actu->getSous_titre(), ENT_QUOTES),
+            'contenu' => html_entity_decode($actu->getContenu(), ENT_QUOTES),
             'theme' => $actu->getTheme(),
             'tags' => $actu->getTags(),
             'id_auteur_crea' => $actu->getId_auteur_crea(),
@@ -29,14 +29,13 @@
             'date_creation' => $actu->getDate_creation(),
             'heure_creation' => $actu->getHeure_creation(),
             'date_modification' => $actu->getDate_modification(),
-            
-        $req->bindValue(':heure_modification', $actu->getHeure_modification(), PDO::PARAM_INT);
-        $req->bindValue(':date_publication', $actu->getDate_publication(), PDO::PARAM_INT);
-        $req->bindValue(':heure_publication', $actu->getHeure_publication(), PDO::PARAM_INT);
-        $req->bindValue(':image', $actu->getImage());
-        $req->bindValue(':slider', $actu->getSlider(), PDO::PARAM_INT);
-        $req->bindValue(':importance', $actu->getImportance(), PDO::PARAM_INT);
-        $req->bindValue(':publie', $actu->getPublie(), PDO::PARAM_INT);
+            'heure_modification' => $actu->getHeure_modification(),
+            'date_publication' => $actu->getDate_publication(),
+            'heure_publication' => $actu->getHeure_publication(),
+            'image' => $actu->getImage(),
+            'slider' => $actu->getSlider(),
+            'importance' => $actu->getImportance(),
+            'publie' => $actu->getPublie()
         );
         
         echo json_encode($retour);

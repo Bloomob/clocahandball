@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <label>Image</label><br>
                                     <label for="image" class="btn btn-success">Uploader une nouvelle image</label><span>ou</span> 
-                                    <button class="nav_album btn btn-warning" data-chemin="">Utiliser une image existante</button>
+                                    <button class="btn btn-warning nav_album" data-chemin="">Utiliser une image existante</button>
                                 </div>
                             </div>
                             <div class="col-sm-10">
@@ -98,7 +98,7 @@
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label for="tags">Tags</label><br>
-                                    <input type='text' id="tags" class="form-control" data-role="tagsinput"/>
+                                    <input type='text' id="tags" class="form-control" data-role="tagsinput" />
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group date hidden">
-                                    <label for="date">Date</label><br>
+                                    <label for="date">Date de publication</label><br>
                                     <div class='input-group date' id='date'>
                                         <input type='text' id="date-val" class="form-control" />
                                         <span class="input-group-addon">
