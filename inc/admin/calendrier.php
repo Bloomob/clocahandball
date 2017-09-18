@@ -13,14 +13,22 @@
 	$limite_end = $nbr_par_page;
 
     /* Filtres */
-    if(isset($_POST['filtre_cat'])):
-        $categorie = $CategorieManager->retourneById($_POST['filtre_cat']);
+    if(isset($_POST['categorie'])):
+        $categorie = $CategorieManager->retourneById($_POST['categorie']);
         if($categorie->getId()):
             $filtres['categorie'] = 'categorie = '. $categorie->getId();
         endif;
     endif;
 
-    if(isset($_POST['filtre_joue'])):
+    if(isset($_POST['competition'])):
+        if($_POST['filtre_joue'] === 0):
+            $filtres['joue'] = 'joue = 0';
+        elseif($_POST['filtre_joue'] === 1):
+            $filtres['joue'] = 'joue = 1';
+        endif;
+    endif;
+
+    if(isset($_POST['competition'])):
         if($_POST['filtre_joue'] === 0):
             $filtres['joue'] = 'joue = 0';
         elseif($_POST['filtre_joue'] === 1):
@@ -57,7 +65,7 @@
             <h3>Calendrier <?=$annee_actuelle;?>-<?=$annee_suiv;?></h3>
         </div>
         <div class="col-xs-12 text-right marginB">
-           <button class="btn btn-primary" data-toggle="modal" data-target="#filterMatchModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
+           <button class="btn btn-primary" data-toggle="modal" data-target="#filterModal"><i class="fa fa-filter" aria-hidden="true"></i> Filtrer</button>
            <button class="btn btn-success" data-toggle="modal" data-target="#matchModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un match</button>
            <button class="btn btn-success" data-toggle="modal" data-target="#leagueModal"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un championnat</button>
         </div>
@@ -90,15 +98,15 @@
 		</div>
 		<!-- <input type="hidden" id="liste_filtres" value="<?=$input_filtres?>"/> -->
 	</div>
-    <div class="modal fade" id="filterMatchModal" tabindex="-1" role="dialog" aria-labelledby="filterMatchLabel">
+    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="filterMatchLabel">Filtrer les matchs</h4>
+                    <h4 class="modal-title" id="filterLabel">Filtrer les matchs</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST" id="formFilter">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -150,7 +158,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-group joue">
                                     <label for="joue">Match joué ?</label><br>
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default">

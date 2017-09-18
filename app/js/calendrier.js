@@ -12,8 +12,31 @@ $(function(){
         /*
         * VARIABLES
         */
+        var filtreModal = $('#filterModal');
         var matchModal = $('#matchModal');
         var leagueModal = $('#leagueModal');
+        var filtreData = {
+            categorie: {
+                value: '',
+                valid: true
+            },
+            competition: {
+                value: '',
+                valid: true
+            },
+            date_debut: {
+                value: 0,
+                valid: true
+            },
+            date_fin: {
+                value: 0,
+                valid: true
+            },
+            joue: {
+                value: 0,
+                valid: true
+            }
+        };
         var matchData = {
             id: {
                 value: 0,
@@ -345,8 +368,59 @@ $(function(){
             $(this).addClass('active').find('input').prop('checked', true);
         });*/
         
+        /* Filtrer */
+        filtreModal.find('.filter-match').on('click', function(e) {
+            e.preventDefault();
+            var formValid = true;
+
+            for(ch in filtreData) {
+                if(ch == "categorie" || ch == "competition") {
+                    if(filtreModal.find('#'+ ch).val() != '' && filtreModal.find('#'+ ch).val() != null) {
+                        filtreData[ch]['value'] = filtreModal.find('#'+ ch).val();
+                    }
+                    if(!filtreData[ch]['valid']) {
+                        if(formValid) {
+                            formValid = false;
+                        }
+                        filtreModal.find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
+                    } else {
+                        filtreModal.find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    }
+                } else if(ch == "joue") {
+                    if(filtreModal.find('input[name="'+ ch +'"]:checked').val() != undefined) {
+                        filtreData[ch]['value'] = filtreModal.find('input[name="'+ ch +'"]:checked').val();
+                    }
+                    if(!filtreData[ch]['valid']) {
+                        if(formValid) {
+                            formValid = false;
+                        }
+                        filtreModal.find('input[name="'+ ch +'"]').closest('.form-group').addClass('has-error').removeClass('has-success');
+                    } else {
+                        filtreModal.find('input[name="'+ ch +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
+                    }
+                } else {
+                    console.log(ch);
+                    var DateTimePicker = filtreModal.find('#' + ch).data("DateTimePicker").date();
+                    
+                    if(DateTimePicker != '' && DateTimePicker != null) {
+                        filtreData[ch]['value'] = moment(DateTimePicker).format('YYYYMMDD');
+                    }
+                    if(!filtreData[ch]['valid']) {
+                        if(formValid) {
+                            formValid = false;
+                        }
+                        filtreModal.find('#'+ ch).closest('.form-group').addClass('has-error').removeClass('has-success');
+                    } else {
+                        filtreModal.find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
+                    }
+                }
+            }
+            
+            // console.log(filtreData);
+            $('#formFilter').submit();
+        });
+        
         /* Appel à la modal */
-   
         matchModal.on('show.bs.modal', function (e) {
             var button = $(e.relatedTarget);
             var id = button.data('id');

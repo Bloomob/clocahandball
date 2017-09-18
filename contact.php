@@ -67,20 +67,7 @@
 			<footer>
 				<?php include_once('inc/footer.php'); ?>
 			</footer>
-			<div id="fond" class="fond_transparent"></div>
 		</div>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="javascript/script.js"></script>
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		  ga('create', 'UA-43491471-1', 'clocahandball.fr');
-		  ga('send', 'pageview');
-
-		</script>
+	   <?php include('inc/script.php'); ?>
 	</body>
 </html>

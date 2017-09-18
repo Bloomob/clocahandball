@@ -189,7 +189,7 @@
 												else: ?>
 													<p class="text-center">Pas de matchs à venir prochainement</p><?php
 												endif;?>
-											</table><?php
+											</div><?php
 										break;
 										case 'resultats_week-end':
 											// $listeMatchs = liste_resultats_semaine($now);
