@@ -399,7 +399,6 @@ $(function(){
                         filtreModal.find('input[name="'+ ch +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
                     }
                 } else {
-                    console.log(ch);
                     var DateTimePicker = filtreModal.find('#' + ch).data("DateTimePicker").date();
                     
                     if(DateTimePicker != '' && DateTimePicker != null) {

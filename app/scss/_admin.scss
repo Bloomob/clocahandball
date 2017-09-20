@@ -94,6 +94,38 @@
                       }
                     }
                   }
+                  .compet {
+                        height: 45px;
+                        color: $blanc;
+                        font-size: 14px;
+                        text-align: center;
+                        position: relative;
+
+                        span {
+                            position: absolute;
+                            top: 50%;
+                            @include transform-translate(-50%, -50%);
+                        }
+                    }
+                    .scores {
+                        display: inline-block;
+                        vertical-align: top;
+                        position: relative;
+                        height: 45px;
+                        width: 100%;
+                        text-align: center;
+
+                        span {
+                            font-size: 15px;
+                            padding: 5px 10px;
+                            border-radius: 8px;
+                            color: $blanc;
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            @include transform-translate(0%, -50%);
+                        }
+                    }
                 }
             }
             &.actualites {

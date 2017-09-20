@@ -12,27 +12,30 @@
 	$limite_start =  ($num_page-1) * $nbr_par_page;
 	$limite_end = $nbr_par_page;
 
-    /* Filtres */
-    if(isset($_POST['categorie'])):
-        $categorie = $CategorieManager->retourneById($_POST['categorie']);
-        if($categorie->getId()):
-            $filtres['categorie'] = 'categorie = '. $categorie->getId();
+    /* Filtres */    
+    if(isset($_POST)):
+        if(isset($_POST['categorie'])):
+            $filtres['categorie'] = 'categorie IN ('. $_POST['categorie'] .')';
         endif;
-    endif;
-
-    if(isset($_POST['competition'])):
-        if($_POST['filtre_joue'] === 0):
-            $filtres['joue'] = 'joue = 0';
-        elseif($_POST['filtre_joue'] === 1):
-            $filtres['joue'] = 'joue = 1';
+        if(isset($_POST['competition'])):
+            $filtres['competition'] = 'competition IN ('. $_POST['competition'] .')';
         endif;
-    endif;
-
-    if(isset($_POST['competition'])):
-        if($_POST['filtre_joue'] === 0):
-            $filtres['joue'] = 'joue = 0';
-        elseif($_POST['filtre_joue'] === 1):
-            $filtres['joue'] = 'joue = 1';
+        if(isset($_POST['date_debut'])):
+            $filtres['date_debut'] = 'date > ' . $_POST['date_debut'];
+        else:
+            $filtres['date_debut'] = 'date > '. $annee_actuelle .'0701';
+        endif;
+        if(isset($_POST['date_fin'])):
+            $filtres['date_fin'] = 'date < ' . $_POST['date_fin'];
+        else:
+            $filtres['date_fin'] = 'date < '. $annee_suiv .'0630';
+        endif;
+        if(isset($_POST['joue'])):
+            if($_POST['joue'] == 0):
+                $filtres['joue'] = 'joue = 0';
+            elseif($_POST['joue'] == 1):
+                $filtres['joue'] = 'joue = 1';
+            endif;
         endif;
     endif;
 
@@ -41,10 +44,11 @@
         foreach ($filtres as $key => $filtre):
             $where .= $filtre . ' AND ';
         endforeach;
-        $where = substr($where, -5);
+        $where = substr($where, 0, -5);
     else:
         $where = 'joue = 0 AND date > '. $annee_actuelle .'0701 AND date < '. $annee_suiv .'0630';
     endif;
+
 	$options = array(
         'where' => $where,
         'orderby' => 'date, heure',

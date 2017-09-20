@@ -261,9 +261,9 @@
 																		if($unMatch->getLieu()==0):
 																			if(is_array($score_dom) && is_array($score_ext)):
 																				for($i=0; $i<count($score_dom); $i++):
-																					if($score_dom[$i]>$score_ext[$i]):
+																					if($score_dom[$i] > $score_ext[$i]):
 																						$color = "vert";
-																					elseif($score_dom[$i]<$score_ext[$i]):
+																					elseif($score_dom[$i] < $score_ext[$i]):
 																						$color = "rouge";
 																					else:
 																						$color = "orange";
@@ -271,9 +271,9 @@
 																					echo "<span class=".$color.">".$score_dom[$i]." - ".$score_ext[$i].'</span><br/>';
 																				endfor;
 																			else:
-																				if($score_dom>$score_ext):
+																				if($score_dom > $score_ext):
 																					$color = "vert";
-																				elseif($score_dom<$score_ext):
+																				elseif($score_dom < $score_ext):
 																					$color = "rouge";
 																				else:
 																					$color = "orange";
@@ -283,9 +283,9 @@
 																		else:
 																			if(is_array($score_dom) && is_array($score_ext)):
 																				for($i=0; $i<count($score_dom); $i++):
-																					if($score_dom[$i]<$score_ext[$i]):
+																					if($score_dom[$i] < $score_ext[$i]):
 																						$color = "vert";
-																					elseif($score_dom[$i]>$score_ext[$i]):
+																					elseif($score_dom[$i] > $score_ext[$i]):
 																						$color = "rouge";
 																					else:
 																						$color = "orange";
@@ -293,9 +293,9 @@
 																					echo "<span class=".$color.">".$score_dom[$i]." - ".$score_ext[$i].'</span><br/>';
 																				endfor;
 																			else:
-																				if($score_dom<$score_ext):
+																				if($score_dom < $score_ext):
 																					$color = "vert";
-																				elseif($score_dom>$score_ext):
+																				elseif($score_dom > $score_ext):
 																					$color = "rouge";
 																				else:
 																					$color = "orange";
