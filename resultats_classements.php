@@ -195,7 +195,7 @@
 											// $listeMatchs = liste_resultats_semaine($now);
 											$options = array('where' => 'date <= '. $now .' AND date > '. date_moins_7J($now) .' AND joue = 1', 'orderby' => 'date, heure');
 											$listeMatchs = $MatchManager->retourneListe($options);
-											// echo '<pre>'; var_dump($listeMatchs); echo '</pre>';?>
+											debug($listeMatchs);?>
 											<div class="legende"><i class="fa fa-info-circle" aria-hidden="true"></i>La liste des matchs qui se sont déroulés lors des 7 derniers jours.</div>
 											<div class="liste-matchs"><?php
 												if(!empty($listeMatchs)):

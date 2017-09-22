@@ -469,10 +469,13 @@ $(function(){
                                     var heure = data['heure'].toString().substr(-4,2);
                                     var minute = data['heure'].toString().substr(-2,2);
                                 }
-                                
-                                $('#date-val').val(jour + '/' + mois + '/' + annee + ' ' + heure + ':' + minute);
+                                matchModal.find('#date-val').val(jour +'/'+ mois +'/'+ annee +' '+ heure +':'+ minute);
+                                matchData['date'] = { value: annee + mois + jour, valid: true };
+                                matchData['heure'] = { value: heure + minute, valid: true };
                             } else if(ch == 'adversaires') {
                                 var tabAdv = data[ch].split(',');
+                                var tabScoresDom = data['scores_dom'].split(',');
+                                var tabScoresExt = data['scores_ext'].split(',');
                                 if(tabAdv.length > 0) {
                                     for(i in tabAdv) {
                                         matchModal.find('#'+ ch).selectpicker('val', tabAdv[i]);
@@ -480,7 +483,7 @@ $(function(){
                                         var rencontre = matchModal.find('.rencontres .rencontre').eq(i);
                                         rencontre.removeClass('hidden');
 
-                                        if(matchData['lieu']['value'] == 0) {
+                                        if(data['lieu']['value'] == 0) {
                                             rencontre.find('.lieu .btn-group').addClass('hidden');
                                             rencontre.find('.equipe1 p').text('Achères');
                                             rencontre.find('.equipe2 p').text($(selectedOptions[i]).data('nom'));
@@ -489,16 +492,14 @@ $(function(){
                                             rencontre.find('.equipe1 p').text($(selectedOptions[i]).data('nom'));
                                             rencontre.find('.equipe2 p').text('Achères');
                                         }
-                                        /*if(data[ch][i][ent] != 0) {
-                                            $(teamModal).find('#'+ ent).closest('.row').find('.selectpicker').selectpicker('refresh');
-                                        }*/
+                                        rencontre.find('#score_dom_' + parseInt(i + 1)).selectpicker('val', tabScoresDom[i]);
+                                        rencontre.find('#score_ext_' + parseInt(i + 1)).selectpicker('val', tabScoresExt[i]);
                                     }
                                 }
                             } else {
                                 matchModal.find('#'+ ch).selectpicker('val', data[ch]);
                             }
                         }
-                        
                         matchModal.find('.modal-loader').addClass('hidden');
                         matchModal.find('.modal-body').removeClass('hidden');
                     }
@@ -532,9 +533,11 @@ $(function(){
                         matchModal.find('input[name="'+ ch +'"]').closest('.form-group').removeClass('has-error').addClass('has-success');
                     }
                 } else if(ch == 'date') {
-                    if(DateTimePicker != '' && DateTimePicker != null) {
-                        matchData[ch]['value'] = moment(DateTimePicker).format('YYYYMMDD');
-                        matchData[ch]['valid'] = true;
+                    if(matchData['id']['value'] != 0) {
+                        if(DateTimePicker != '' && DateTimePicker != null) {
+                            matchData[ch]['value'] = moment(DateTimePicker).format('YYYYMMDD');
+                            matchData[ch]['valid'] = true;
+                        }
                     } else {
                         matchData[ch]['value'] = '';
                         matchData[ch]['valid'] = false;
@@ -548,9 +551,11 @@ $(function(){
                         matchModal.find('#'+ ch).closest('.form-group').removeClass('has-error').addClass('has-success');
                     }
                 } else if(ch == 'heure') {
-                    if(DateTimePicker != '' && DateTimePicker != null) {
-                        matchData[ch]['value'] = moment(DateTimePicker).format('HHmm');
-                        matchData[ch]['valid'] = true;
+                    if(matchData['id']['value'] != 0) {
+                        if(DateTimePicker != '' && DateTimePicker != null) {
+                            matchData[ch]['value'] = moment(DateTimePicker).format('HHmm');
+                            matchData[ch]['valid'] = true;
+                        }
                     } else {
                         matchData[ch]['value'] = '';
                         matchData[ch]['valid'] = false;

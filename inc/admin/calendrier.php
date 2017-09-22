@@ -12,8 +12,8 @@
 	$limite_start =  ($num_page-1) * $nbr_par_page;
 	$limite_end = $nbr_par_page;
 
-    /* Filtres */    
-    if(isset($_POST)):
+    /* Filtres */
+    if(isset($_POST) && !empty($_POST)):
         if(isset($_POST['categorie'])):
             $filtres['categorie'] = 'categorie IN ('. $_POST['categorie'] .')';
         endif;
@@ -271,7 +271,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="form-group">
@@ -288,8 +287,7 @@
                                     <label for="joue">Match joué ?</label><br>
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default">
-                                            <input type="radio" name="joue" id="joue_oui
-                                            " autocomplete="off" value="1"> Oui
+                                            <input type="radio" name="joue" id="joue_oui" autocomplete="off" value="1"> Oui
                                         </label>
                                         <label class="btn btn-default active">
                                             <input type="radio" name="joue" id="joue_non" autocomplete="off" value="0" checked> Non
