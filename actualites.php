@@ -135,12 +135,12 @@
                                                 } ?>
                                             </div>
                                         </div>
-                                        <form class="commentaires"><?php
+                                        <form class="commentaires hidden"><?php
                                             if(isset($_SESSION)):?>
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
                                                         <div class="publier-commentaire">
-                                                            <h3>Réagissez à cette article</h3>
+                                                            <h3>Réagissez à cet article</h3>
                                                             <div class="form-group">
                                                                 <label for="commentaire">Votre commentaire (500 caractères restants)</label>
                                                                 <textarea id="commentaire" class="form-control" placeholder="Entrer votre commentaire"></textarea>
