@@ -70,4 +70,81 @@
 			</div>
 		</div>
 	</div>
+    <div class="modal fade" id="clubModal" tabindex="-1" role="dialog" aria-labelledby="clubLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addClubLabel">Ajouter une club</h4>
+                    <h4 class="modal-title hidden" id="editClubLabel">Modifier un club</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="formClub" action="" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="nom">Nom du club <span class="text-danger">*</span></label><br>
+                                    <input type="text" name="nom" id="nom" class="form-control" placeholder="Entrez un nom">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="raccourci">Raccourci <span class="text-danger">*</span></label><br>
+                                    <input type="text" name="raccourci" id="raccourci" class="form-control" placeholder="Entrez un raccourci">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="numero">Numéro <span class="text-danger">*</span></label><br>
+                                    <select id="numero" class="form-control selectpicker" title="Choisissez un numéro"><?php
+                                        for($i=1; $i<5; $i++):?>
+                                            <option value="<?=$i;?>"><?=$i;?></option><?php
+                                        endfor;?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="ville">Ville <span class="text-danger">*</span></label><br>
+                                    <input type="text" name="ville" id="ville" class="form-control" placeholder="Entrez une ville"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="code_postal">Code postal</label><br>
+                                    <input type="number" name="code_postal" id="code_postal" class="form-control"placeholder="Entrez un code postal" min="1" max="99999" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group actif">
+                                    <label for="actif">Actif ? <span class="text-danger">*</span></label><br>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default active">
+                                            <input type="radio" name="actif" id="actif_non" autocomplete="off" value="0" checked> Non
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="actif" id="actif_oui" autocomplete="off" value="1"> Oui
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-loader hidden">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-success add-club">Ajouter</button>
+                    <button type="button" class="btn btn-warning edit-club hidden">Modifier</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
