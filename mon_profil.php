@@ -88,7 +88,7 @@
                                     <fieldset>
                                         <legend><i class="fa fa-info" aria-hidden="true"></i>Informations générales</legend>
                                         <form>
-                                            <div class="row">
+                                            <div class="row infos">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="prenom">Prénom <span class="text-danger">*</span></label><br>
@@ -103,7 +103,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="email">Email</label><br>
+                                                        <label for="email">Email <span class="text-danger">*</span></label><br>
                                                         <input type="email" id="email" class="form-control" value="<?=$unUtilisateur->getMail();?>" placeholder="Entrer votre email"/>
                                                     </div>
                                                 </div>
@@ -122,7 +122,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-12 text-center">
-                                                    <button type="submit" class="btn btn-success">Valider vos informations</button>
+                                                    <button type="submit" class="btn btn-success edit-profil" data-profil="infos">Valider vos informations</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -154,7 +154,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-12 text-center">
-                                                    <button type="submit" class="btn btn-success">Valider votre nouveau mot de passe</button>
+                                                    <button type="submit" class="btn btn-success edit-profil" data-profil="password">Valider votre nouveau mot de passe</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -177,7 +177,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-sm-12 text-center">
-                                                    <button type="submit" class="btn btn-success">Valider vos équipes favorites</button>
+                                                    <button type="submit" class="btn btn-success edit-profil" data-profil="fav-team">Valider vos équipes favorites</button>
                                                 </div>
                                             </div>
                                         </form>
