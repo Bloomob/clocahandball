@@ -8,6 +8,9 @@ section.home {
             .carousel-inner {
                 height: 540px;
                 
+                @media (max-width: 767px) {
+                    height: auto;
+                }
                 .item {
                     height: 100%;
                     
@@ -52,11 +55,19 @@ section.home {
                             font-size: 20px;
                             margin: 0 auto 5px;
                             width: 60%;
+                            
+                            @media (max-width: 767px) {
+                                width: 90%;
+                            }
                         }
                         .sous_titre {
                             font-size: 16px;
                             margin: 0 auto;
                             width: 60%;
+                            
+                            @media (max-width: 767px) {
+                                width: 90%;
+                            }
                         }
                     }
                 }

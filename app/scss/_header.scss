@@ -18,18 +18,29 @@ header#entete {
 			width: 350px;
 		}
 	}
-    h1 {
+    .navbar {
         padding-top: 10px;
+        margin-bottom: 0;
         
+        @media (max-width: 767px) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
         .logo {
             background: url(../img/logo.png) no-repeat;
             background-size: cover;
             display: block;
-            float:left;
+            float: left;
             width: 65px;
             height: 64px;
             text-indent: -5000px;
 
+            @media (max-width: 767px) {
+                display: inline-block;
+                float: none;
+                width: 50px;
+                height: 50px;
+            }
             img {
                 display: none;
                 float: left;
@@ -39,13 +50,49 @@ header#entete {
                 cursor: pointer;
             }
         }
-        .slogan {
+        h1.slogan {
             padding-top: 20px;
             padding-left: 95px;
             color: $blanc;
             font-size: 24px;
             font-weight: bold;
-            display: block;
+            margin: 0;
+            
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
+        .navbar-toggle {
+            margin-right: 0;
+            border-color: $blanc;
+            
+            span {
+                background-color: $blanc;
+            }
+        }
+        .navbar-collapse {
+            box-shadow: none;
+            
+            @media (min-width: 767px) {
+                display: none !important;
+            }
+            .navbar-nav {
+                margin: 0 -15px;
+                
+                li {
+                    a {
+                        font-size: 16px;
+                        color: $blanc;
+                        
+                        .fa {
+                            padding-right: 10px;
+                        }
+                        &:focus, &:hover {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
         }
     }
     #top_nav {
@@ -53,6 +100,9 @@ header#entete {
         padding: 19px 19px 0 0;
         margin: 0;
         
+        @media (max-width: 767px) {
+            display: none;
+        }
         li {
             float: left;
             padding-left: 16px;
@@ -71,6 +121,9 @@ header#entete {
         @include background-degrade2($bleu-fonce, $bleu-clair);
     }
 	nav#navbar {
+        @media (max-width: 767px) {
+            display: none;
+        }
         .menu {
             overflow: hidden;
             padding: 0;
@@ -216,8 +269,11 @@ header#entete {
 /* Fil Ariane */
 nav.fil-ariane {
     overflow: hidden;
-    margin: 20px 0 10px;
+    padding: 20px 0 10px;
     
+    @media (max-width: 767px) {
+        padding: 10px 0;
+    }
     li {
         float: left;
         color: $orange3;

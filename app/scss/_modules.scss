@@ -1,4 +1,7 @@
 .modules {
+    @media (max-width: 768px) {
+        margin-top: 20px;
+    }
     .wrapper {
         position: relative;
         background-color: $blanc;

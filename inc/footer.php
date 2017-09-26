@@ -67,7 +67,7 @@
         <p class="col-sm-12 padding10 text-center">
             &copy; <a href="mailto:contact@clocahandball.fr">C.L.O.C.A. Handball</a> - <?=date('Y');?>
             &nbsp;&nbsp;Tous droits réservés
-            &nbsp;&nbsp;<a href="#">Version <?// =derniereVersion(); ?></a>
+            &nbsp;&nbsp;<!--<a href="#">Version <?// =derniereVersion(); ?></a>-->
         </p>
     </div>
 </div>

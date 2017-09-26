@@ -3,13 +3,22 @@ footer {
     background: rgb(22, 37, 60);
     color: white;
     
+    @media (max-width: 767px) {
+        padding-top: 10px;
+    }
     nav {
         float: left;
         width: 25%;
         
+        @media (max-width: 767px) {
+            width: 50%;
+        }
         ul {
             margin: 0 10px 10px 10px;
             
+            @media (max-width: 767px) {
+                margin: 0 10px;
+            }
             li {
                 // background: url(../images/footer_line.gif) right 4px no-repeat;
                 
@@ -18,8 +27,16 @@ footer {
                     text-transform: uppercase;
                     margin: 10px 0;
                     
+                    @media (max-width: 767px) {
+                        margin: 0 0 10px;
+                    }
                     a {
                         color: rgb(221, 221, 255);
+                    }
+                }
+                > a {
+                    @media (max-width: 767px) {
+                        display: none;
                     }
                 }
             }
