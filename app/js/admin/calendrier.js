@@ -336,6 +336,10 @@ $(function(){
             formMatchSelect('journee');
         });
         
+        matchModal.find('#tour').on('change', function(){
+            formMatchSelect('tour');
+        });
+        
         matchModal.find('#adversaires').on('change', function(){
             formMatchSelect('adversaires');
             
@@ -439,7 +443,7 @@ $(function(){
                     {
                         id: id
                     },
-                    function (data) {                        
+                    function (data) {
                         for(ch in data) {
                             if(ch == 'id') {
                                 matchData[ch]['value'] = data[ch];
@@ -483,7 +487,7 @@ $(function(){
                                         var rencontre = matchModal.find('.rencontres .rencontre').eq(i);
                                         rencontre.removeClass('hidden');
 
-                                        if(data['lieu']['value'] == 0) {
+                                        if(data['lieu'] == 0) {
                                             rencontre.find('.lieu .btn-group').addClass('hidden');
                                             rencontre.find('.equipe1 p').text('Achères');
                                             rencontre.find('.equipe2 p').text($(selectedOptions[i]).data('nom'));
@@ -495,6 +499,16 @@ $(function(){
                                         rencontre.find('#score_dom_' + parseInt(i + 1)).selectpicker('val', tabScoresDom[i]);
                                         rencontre.find('#score_ext_' + parseInt(i + 1)).selectpicker('val', tabScoresExt[i]);
                                     }
+                                }
+                            } else if(ch == 'competition') {
+                                matchModal.find('#'+ ch).selectpicker('val', data[ch]);
+                                
+                                if(data['competition'] == 2 || data['competition'] == 3) {
+                                    matchData['journee'] = { value: '', valid: true };
+                                    matchData['tour'] = { value: data['tour'], valid: true };
+                                } else {
+                                    matchData['journee'] = { value: data['journee'], valid: true };
+                                    matchData['tour'] = { value: '', valid: true };
                                 }
                             } else {
                                 matchModal.find('#'+ ch).selectpicker('val', data[ch]);
@@ -539,8 +553,13 @@ $(function(){
                             matchData[ch]['valid'] = true;
                         }
                     } else {
-                        matchData[ch]['value'] = '';
-                        matchData[ch]['valid'] = false;
+                        if(DateTimePicker != '' && DateTimePicker != null) {
+                            matchData[ch]['value'] = moment(DateTimePicker).format('YYYYMMDD');
+                            matchData[ch]['valid'] = true;
+                        } else {
+                            matchData[ch]['value'] = '';
+                            matchData[ch]['valid'] = false;
+                        }
                     }
                     if(!matchData[ch]['valid']) {
                         if(formValid) {
@@ -557,8 +576,13 @@ $(function(){
                             matchData[ch]['valid'] = true;
                         }
                     } else {
-                        matchData[ch]['value'] = '';
-                        matchData[ch]['valid'] = false;
+                        if(DateTimePicker != '' && DateTimePicker != null) {
+                            matchData[ch]['value'] = moment(DateTimePicker).format('HHmm');
+                            matchData[ch]['valid'] = true;
+                        } else {
+                            matchData[ch]['value'] = '';
+                            matchData[ch]['valid'] = false;
+                        }
                     }
                     if(!matchData[ch]['valid']) {
                         if(formValid) {
@@ -576,26 +600,38 @@ $(function(){
                         tabScores.splice(0, 0, el[0]);
                     }
                     matchData[ch]['value'] = tabScores.join();
-                } else if(ch != 'id') {
-                    if(matchModal.find('#'+ ch).val() != '' && matchModal.find('#'+ ch).val() != null) {
-                        if(ch == 'adversaires') {
+                } else if(ch != 'id' && ch != 'tour' && ch != 'journee') {
+                    if(ch == 'adversaires') {
+                        if(matchModal.find('#'+ ch).val() != '' && matchModal.find('#'+ ch).val() != null) {
                             var tabAdv = matchModal.find('#'+ ch).val();
                             if(matchData['lieu']['value'] != 0 && tabAdv.length > 1) {
                                 var index = matchModal.find('.lieu .btn').index(matchModal.find('.lieu .btn.active'));
                                 var el = tabAdv.splice(index, 1);
                                 tabAdv.splice(0, 0, el[0]);
                             }
-                            matchData[ch]['value'] = tabAdv.join();
+                            matchData[ch] = { value: tabAdv.join(), valid: true };
                         } else {
-                            matchData[ch]['value'] = matchModal.find('#'+ ch).val();
+                            matchData[ch] = { value: '', valid: false };
                         }
-                        matchData[ch]['valid'] = true;
-                    } else {
-                        if((ch == 'tour' && !matchData['journee']['valid']) || (ch == 'journee' && !matchData['tour']['valid'])) {
-                            matchData[ch]['value'] = '';
-                            matchData[ch]['valid'] = false;
+                    } else if(ch == 'competition') {
+                        if(matchModal.find('#'+ ch).val() != '' && matchModal.find('#'+ ch).val() != null) {
+                            matchData[ch] = { value: matchModal.find('#'+ ch).val(), valid: true };
+                            
+                            if(matchModal.find('#'+ ch).val() == 2 || matchModal.find('#'+ ch).val() == 3) {
+                                matchData['journee'] = { value: '', valid: true };
+                                matchData['tour'] = { value: matchModal.find('#tour').val(), valid: true };
+                            } else {
+                                matchData['journee'] = { value: matchModal.find('#journee').val(), valid: true };
+                                matchData['tour'] = { value: '', valid: true };
+                            }
                         } else {
-                            matchData[ch]['valid'] = true;
+                            matchData[ch] = { value: '', valid: false };
+                        }
+                    } else {
+                        if(matchModal.find('#'+ ch).val() != '' && matchModal.find('#'+ ch).val() != null) {
+                            matchData[ch] = { value: matchModal.find('#'+ ch).val(), valid: true };
+                        } else {
+                            matchData[ch] = { value: '', valid: false };
                         }
                     }
                     if(!matchData[ch]['valid']) {

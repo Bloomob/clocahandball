@@ -6,24 +6,24 @@ if(!empty($listeMatchs)):
 		$uneCategorie = $CategorieManager->retourne($options); ?>
 
 		<tr class="cat_<?=$unMatch->getCategorie();?>">
-			<td><?php
+			<td class="date"><?php
 				if($unMatch->getJoue()):?>
 					<span class="btn btn-success"><i class="fa fa-play" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></span><?php
 				else:?>
 					<span class="btn btn-danger"><i class="fa fa-pause" aria-hidden="true"></i> <?=$unMatch->remplace_date(1);?></span><?php 
 				endif;?>
 			</td>
-			<td>
+			<td class="competition">
 				<div class="compet competition_<?=$unMatch->getCompetition();?>_<?=$unMatch->getNiveau();?>">
 					<span><?=$listeCompetition[$unMatch->getCompetition()];?> 
 					<br/><?=($unMatch->getJournee()!=0)?'Journ&eacute;e '.$unMatch->getJournee():$unMatch->getTour();?></span>
 				</div>
 			</td>
-			<td class="puce">
+			<td class="categorie puce">
 				<div class="cat_<?=$uneCategorie->getRaccourci();?>"></div>
 				<?=$uneCategorie->getCategorieAll();?>
 			</td>
-			<td><?php
+			<td class="lieu"><?php
 				$lieu = $unMatch->getLieu();
 				if($lieu == 0):?>
 					<span>Dom</span><?php
@@ -33,7 +33,7 @@ if(!empty($listeMatchs)):
 					<span>Neu</span><?php
 				endif; ?>
 			</td>
-			<td><?php
+			<td class="adversaire"><?php
 				$tab = explode(',', $unMatch->getAdversaires());
 				if(is_array($tab)):
 					foreach($tab as $club):
@@ -99,7 +99,7 @@ if(!empty($listeMatchs)):
 					<span class='violet'><?=$unMatch->remplace_heure();?></span><?php
 				endif; ?>
 			</td>
-			<td>
+			<td class="boutons">
 				<button class="btn btn-warning edit-match" data-toggle="modal" data-target="#matchModal" data-id="<?=$unMatch->getId();?>"><i class="fa fa-edit" aria-hidden="true"></i></button>
 				<button class="btn btn-danger delete-match" data-id="<?=$unMatch->getId();?>"><i class="fa fa-trash" aria-hidden="true"></i></button>
 			</td>

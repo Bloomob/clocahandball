@@ -3,14 +3,15 @@
 <script src="src/js/vendor.js"></script>
 <script src="src/js/app.js"></script>
 <script>require('js/script')</script>
-<script>require('js/actualites')</script>
-<script>require('js/calendrier')</script>
-<script>require('js/categories')</script>
-<script>require('js/equipes')</script>
-<script>require('js/fonctions')</script>
-<script>require('js/menus')</script>
-<script>require('js/tarifs')</script>
-<script>require('js/utilisateurs')</script>
+<script>require('js/admin/actualites')</script>
+<script>require('js/admin/calendrier')</script>
+<script>require('js/admin/categories')</script>
+<script>require('js/admin/equipes')</script>
+<script>require('js/admin/fonctions')</script>
+<script>require('js/admin/menus')</script>
+<script>require('js/admin/tarifs')</script>
+<script>require('js/admin/utilisateurs')</script>
+<script>require('js/admin/clubs')</script>
 
 <!-- <script src="jqplot/jquery.jqplot.min.js"></script>
 <script src="jqplot/plugins/jqplot.donutRenderer.min.js"></script>

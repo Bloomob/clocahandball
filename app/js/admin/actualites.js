@@ -362,8 +362,13 @@ $(function(){
 								actuData[ch]['valid'] = true;
 							}
 						} else {
-							actuData[ch]['value'] = '';
-							actuData[ch]['valid'] = true;
+                            if(DateTimePicker != '' && DateTimePicker != null) {
+								actuData[ch]['value'] = moment(DateTimePicker).format('YYYYMMDD');
+								actuData[ch]['valid'] = true;
+							} else {
+                                actuData[ch]['value'] = '';
+                                actuData[ch]['valid'] = true;
+                            }
 						}
 					}
 					if(!actuData[ch]['valid']) {
@@ -391,8 +396,13 @@ $(function(){
 								actuData[ch]['valid'] = true;
 							}
 						} else {
-							actuData[ch]['value'] = '';
-							actuData[ch]['valid'] = true;
+                            if(DateTimePicker != '' && DateTimePicker != null) {
+								actuData[ch]['value'] = moment(DateTimePicker).format('HHmm');
+								actuData[ch]['valid'] = true;
+							} else {
+                                actuData[ch]['value'] = '';
+                                actuData[ch]['valid'] = true;
+                            }
 						}
 					}
 					if(!actuData[ch]['valid']) {

@@ -96,27 +96,52 @@
                   }
                 }
                 .liste-matchs {
-                    .compet {
-                        height: 45px;
-                        color: $blanc;
-                        font-size: 14px;
-                        text-align: center;
-                        position: relative;
+                    .date {
+                        min-width: 62px;
+                    }
+                    .competition {
+                        min-width: 160px;
+                        
+                        .compet {
+                            height: 45px;
+                            color: $blanc;
+                            font-size: 14px;
+                            text-align: center;
+                            position: relative;
 
-                        span {
-                            position: absolute;
-                            top: 50%;
-                            @include transform-translate(-50%, -50%);
+                            span {
+                                position: absolute;
+                                top: 50%;
+                                @include transform-translate(-50%, -50%);
+                                width: 100%;
+                                display: inline-block;
+                            }
                         }
                     }
-                    .scores {
-                        display: inline-block;
-                        vertical-align: top;
-                        position: relative;
-                        height: 45px;
-                        width: 100%;
-                        text-align: center;
+                    .categorie {
+                        min-width: 150px;
+                        padding-left: 0px;
 
+                        [class*="cat_"] {
+                            width: 15px;
+                            height: 15px;
+                            display: inline-block;
+                            border-radius: 8px;
+                            margin-right: 5px;
+                            position: relative;
+                            top: 3px;
+                        }
+                    }
+                    .lieu {
+                        min-width: 50px;
+                    }
+                    .adversaire {
+                        min-width: 250px;
+                    }
+                    .scores {
+                        position: relative;
+                        min-width: 100px;
+                        
                         span {
                             font-size: 15px;
                             padding: 5px 10px;

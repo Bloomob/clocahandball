@@ -108,18 +108,16 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="ville">Ville <span class="text-danger">*</span></label><br>
-                                    <input type="text" name="ville" id="ville" class="form-control" placeholder="Entrez une ville"></textarea>
+                                    <input type="text" name="ville" id="ville" class="form-control" placeholder="Entrez une ville">
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="code_postal">Code postal</label><br>
                                     <input type="number" name="code_postal" id="code_postal" class="form-control"placeholder="Entrez un code postal" min="1" max="99999" />
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group actif">
                                     <label for="actif">Actif ? <span class="text-danger">*</span></label><br>
                                     <div class="btn-group" data-toggle="buttons">
