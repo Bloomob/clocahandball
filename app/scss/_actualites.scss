@@ -81,23 +81,30 @@
     .wrapper {
         padding: 10px;
         
-        .auteur_date {
-            margin-bottom: 10px;
-            font-size: 14px;
-            
-            a {
-                color: $bleu-marine;
+        .actu-content {
+            p, li {
+                margin-bottom: 10px;
             }
-        }
-        p { 
-            margin-bottom: 10px;
-            
-            &.sous-titre {
+            .auteur_date {
+                margin-bottom: 20px;
+                font-size: 14px;
+
+                a {
+                    color: $bleu-marine;
+                }
+            }
+            .sous-titre {
                 font-weight: bold;
+                margin-bottom: 20px;
             }
-        }
-        img { 
-            width: 100%;
+            .image {
+                margin-bottom: 20px;
+                text-align: center;
+                
+                img { 
+                    width: 100%;
+                }
+            }
         }
         .navigation {
             margin: 20px 0;

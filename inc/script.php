@@ -12,6 +12,7 @@
 <script>require('js/admin/tarifs')</script>
 <script>require('js/admin/utilisateurs')</script>
 <script>require('js/admin/clubs')</script>
+<script src="plugins/tinymce/tinymce.min.js"></script>
 
 <!-- <script src="jqplot/jquery.jqplot.min.js"></script>
 <script src="jqplot/plugins/jqplot.donutRenderer.min.js"></script>
@@ -23,7 +24,6 @@
 
 <?php /*
 <script src="javascript/jquery-ui-1.11.1/jquery-ui.min.js"></script>
-<script src="tinymce/tinymce.min.js"></script>
 <script src="lightbox/js/lightbox-2.6.min.js"></script>
 */
 ?>

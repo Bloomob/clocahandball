@@ -86,17 +86,17 @@
                                     <div class="wrapper"><?php
                                         $options = array('where' => 'id = '. $listeActualites->getId_auteur_crea());
                                         $unUtilisateur = $UtilisateurManager->retourne($options); ?>
-                                        <p class="auteur_date">Rédigé par <a href="utilisateur.php?id=<?=$unUtilisateur->getId();?>"><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></a>, le <?=$listeActualites->getJourC();?> <?=$mois_de_lannee[$listeActualites->getMoisC()-1];?> <?=$listeActualites->getAnneeC();?></p>
-                                        <div class="contenu">
+                                        <div class="actu-content">
+                                            <p class="auteur_date">Rédigé par <a href="utilisateur.php?id=<?=$unUtilisateur->getId();?>"><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></a>, le <?=$listeActualites->getJourC();?> <?=$mois_de_lannee[$listeActualites->getMoisC()-1];?> <?=$listeActualites->getAnneeC();?></p>
                                             <p class="sous-titre"><?php echo html_entity_decode(stripslashes($listeActualites->getSous_titre()));?></p><?php
                                             if($listeActualites->getImage() != ''){
                                                 if(preg_match('/^images\//', $listeActualites->getImage())){?>
-                                                    <div class="align_center"><img src="<?=$listeActualites->getImage();?>" alt/></div><?php
+                                                    <div class="image"><img src="<?=$listeActualites->getImage();?>" alt/></div><?php
                                                 } else { ?>
-                                                    <div class="align_center"><img src="images/<?=$listeActualites->getImage();?>.png" alt/></div><?php
+                                                    <div class="image"><img src="images/<?=$listeActualites->getImage();?>.png" alt/></div><?php
                                                 }
                                             } ?>
-                                            <p><?= html_entity_decode(stripslashes($listeActualites->getContenu()));?></p>
+                                            <?= html_entity_decode(stripslashes($listeActualites->getContenu()));?>
                                         </div>
                                         <div class="navigation row">
                                             <div class="col-sm-6"><?php

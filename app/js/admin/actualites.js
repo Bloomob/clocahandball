@@ -79,6 +79,8 @@ $(function(){
 			}
 			, minDate: moment()
 		});
+        
+        tinymce.init({ selector:'textarea' });
 		
 		/*
 		* FONCTIONS
@@ -315,6 +317,7 @@ $(function(){
 						}
 						actuModal.find('.modal-loader').addClass('hidden');
 						actuModal.find('.modal-body').removeClass('hidden');
+                        tinymce.activeEditor.execCommand('mceInsertContent', false, data.contenu);
 					}
 				);
 			} else {
