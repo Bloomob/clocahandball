@@ -18,7 +18,7 @@
         $temporary = explode(".", $_FILES["image"]["name"]);
         $file_extension = end($temporary);
         if ((($_FILES["image"]["type"] == "image/png") || ($_FILES["image"]["type"] == "image/jpg") || ($_FILES["image"]["type"] == "image/jpeg")
-        ) && ($_FILES["image"]["size"] < 1000000) && in_array($file_extension, $validextensions)):
+        ) && ($_FILES["image"]["size"] < 5000000) && in_array($file_extension, $validextensions)):
             if ($_FILES["image"]["error"] > 0):
                 $retour['message'] = "Code retour : ". $_FILES["file"]["error"];
             else:
@@ -42,7 +42,14 @@
                 endif;
             endif;
         else:
-            $retour['message'] = "Taille ou type invalide";
+            if ((($_FILES["image"]["type"] == "image/png") || ($_FILES["image"]["type"] == "image/jpg") || ($_FILES["image"]["type"] == "image/jpeg")
+        ) && in_array($file_extension, $validextensions)):
+                $retour['message'] = "Type invalide (doit être de type png/jpg/jpeg)";
+            elseif ($_FILES["image"]["size"] < 5000000):
+                $retour['message'] = "Taille invalide (doit être inférieur à 5Mo))";
+            else
+                $retour['message'] = "Une erreur est survenue durant l'upload";
+            endif;
         endif;
 
         echo json_encode($retour);

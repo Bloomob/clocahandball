@@ -13,11 +13,11 @@ $i = 2; ?>
         if(!empty($listeMatchs)):
             foreach($listeMatchs as $unMatch): ?>
                 <div class="row">
-                    <div class="col-sm-2 col-lg-2 date">
+                    <div class="col-xs-3 col-sm-2 col-lg-2 date">
                         <div class="jour"><?=$unMatch->getJour();?></div>
                         <div class="mois"><?=$mois_de_lannee_min[$unMatch->getMois()-1];?></div>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-xs-2 col-sm-2 competition">
                         <div class="compet competition_<?=$unMatch->getCompetition();?>_<?=$unMatch->getNiveau();?>">
                             <span><?=($unMatch->getJournee()!=0)?'J'.$unMatch->getJournee():$unMatch->getTour();?></span>
                         </div>
@@ -25,7 +25,7 @@ $i = 2; ?>
                     $options2 = array('where' => 'id = '. $unMatch->getCategorie());
                     $uneCategorie = $CategorieManager->retourne($options2);
                     if($unMatch->getLieu() == 0):?>
-                        <div class="col-sm-4">
+                        <div class="col-xs-5 col-sm-4 match">
                             <div class="dom puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
                             <div class="ext"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
@@ -39,7 +39,7 @@ $i = 2; ?>
                             </div>
                         </div><?php
                     else: ?>
-                        <div class="col-sm-4">
+                        <div class="col-xs-5 col-sm-4 match">
                             <div class="dom"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
                                 if(is_array($tab)):
@@ -53,8 +53,8 @@ $i = 2; ?>
                             <div class="ext puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
                         </div><?php
                     endif; ?>
-                    <div class="col-sm-2 heure"><span><?=$unMatch->remplace_heure()?></span></div>
-                    <div class="col-sm-2">
+                    <div class="col-xs-2 col-sm-2 heure"><span><?=$unMatch->remplace_heure()?></span></div>
+                    <div class="hidden-xs col-sm-2">
                         <a href="#" class="info"><span><i class="fa fa-info-circle" aria-hidden="true"></i></span></a>
                     </div>
                 </div><?php

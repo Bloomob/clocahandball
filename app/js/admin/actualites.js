@@ -279,7 +279,14 @@ $(function(){
 								actuModal.find('.publication').addClass('hidden');
 								actuModal.find('.date').removeClass('hidden');
 								
-								actuModal.find('#date-val').val(jour +'/'+ mois +'/'+ annee +' '+ heure +':'+ minute);
+                                if(data['date_publication'] != 0) {
+                                    if(data['heure_publication'] != 0) {
+                                        actuModal.find('#date-val').val(jour +'/'+ mois +'/'+ annee +' '+ heure +':'+ minute);
+                                    } else {
+                                        actuModal.find('#date-val').val(jour +'/'+ mois +'/'+ annee);
+                                    }
+                                }
+                                
 								actuData['date'] = { value: annee + mois + jour, valid: true };
 								actuData['heure'] = { value: heure + minute, valid: true };
 							} else if(ch == 'slider') {
@@ -317,7 +324,7 @@ $(function(){
 						}
 						actuModal.find('.modal-loader').addClass('hidden');
 						actuModal.find('.modal-body').removeClass('hidden');
-                        tinymce.activeEditor.execCommand('mceInsertContent', false, data.contenu);
+                        tinymce.activeEditor.setContent(data.contenu);
 					}
 				);
 			} else {
@@ -414,14 +421,17 @@ $(function(){
 						}
 					}
 				} else if(ch == 'image') {
-					// On teste si c'est une programmation programmée
-					if(actuData[ch]['value'] == '')
-						actuData[ch]['valid'] = false;
 					if(!actuData[ch]['valid']) {
 						if(formValid) {
 							formValid = false;
 						}
 					}
+				} else if(ch == 'contenu') {
+					if(tinymce.activeEditor.getContent() !== '') {
+                        actuData[ch] = { value: tinymce.activeEditor.getContent(), valid: true };
+                    } else {
+                        actuData[ch] = { value: '', valid: false };
+                    }
 				} else if(ch != 'id') {
 					if($(actuModal).find('#'+ ch).val() != '' && $(actuModal).find('#'+ ch).val() != null) {
 						actuData[ch]['value'] = $(actuModal).find('#'+ ch).val();

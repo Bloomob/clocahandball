@@ -1,5 +1,5 @@
 .modules {
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         margin-top: 20px;
     }
     .wrapper {
@@ -34,7 +34,10 @@
 
             &.tableau-bord {
                 color: $gris;
-
+                
+                @media (max-width: 767px) {
+                    padding: 15px;
+                }
                 .row {
                     margin-bottom: 10px;
                     
@@ -54,36 +57,51 @@
                             @include border-radius(0 0 5px 5px);
                         }
                     }
-                    .compet {
-                        height: 45px;
-                        color: $blanc;
-                        font-size: 18px;
-                        text-align: center;
-                        position: relative;
+                    .competition {
+                        @media (max-width: 767px) {
+                            padding-left: 0;
+                        }
+                        .compet {
+                            height: 45px;
+                            color: $blanc;
+                            font-size: 18px;
+                            text-align: center;
+                            position: relative;
 
-                        span {
-                            position: absolute;
-                            top: 50%;
-                            @include transform-translate(-50%, -50%);
+                            span {
+                                position: absolute;
+                                top: 50%;
+                                @include transform-translate(-50%, -50%);
+                            }
                         }
                     }
-                    .dom, .ext {
-                        text-align: left;
-                        text-transform: uppercase;
-                        line-height: 18px;
-                        padding-left: 20px;
+                    .match {
+                        @media (max-width: 767px) {
+                            padding-left: 0;
+                        }
+                        .dom, .ext {
+                            text-align: left;
+                            text-transform: uppercase;
+                            line-height: 18px;
+                            padding-left: 20px;
+                            
+                            @media (max-width: 767px) {
+                                padding-left: 0px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                            }
+                            &.puce {
+                                padding-left: 0px;
 
-                        &.puce {
-                            padding-left: 0px;
-
-                            [class*="cat_"] {
-                                width: 15px;
-                                height: 15px;
-                                display: inline-block;
-                                border-radius: 8px;
-                                margin-right: 5px;
-                                position: relative;
-                                top: 3px;
+                                [class*="cat_"] {
+                                    width: 15px;
+                                    height: 15px;
+                                    display: inline-block;
+                                    border-radius: 8px;
+                                    margin-right: 5px;
+                                    position: relative;
+                                    top: 3px;
+                                }
                             }
                         }
                     }
@@ -92,6 +110,9 @@
                         text-align: center;
                         position: relative;
 
+                        @media (max-width: 767px) {
+                            padding-left: 0;
+                        }
                         span {
                             display: inline-block;
                             color: $blanc;
