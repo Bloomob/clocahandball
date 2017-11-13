@@ -6,38 +6,46 @@
 	$nbr_par_page = 25;
 	$num_page = 1;
 
-	if(isset($_GET['num_page']))
-		$num_page = $_GET['num_page'];
-
-	$limite_start =  ($num_page-1) * $nbr_par_page;
-	$limite_end = $nbr_par_page;
-
     /* Filtres */
-    if(isset($_POST) && !empty($_POST)):
-        if(isset($_POST['categorie'])):
-            $filtres['categorie'] = 'categorie IN ('. $_POST['categorie'] .')';
+    if(isset($_GET) && !empty($_GET)):
+        if(isset($_GET['num_page'])):
+		  $num_page = $_GET['num_page'];
         endif;
-        if(isset($_POST['competition'])):
-            $filtres['competition'] = 'competition IN ('. $_POST['competition'] .')';
+        if(isset($_GET['categorie'])):
+            $filtres['categorie'] = 'categorie IN ('. $_GET['categorie'] .')';
+            $f['categorie'] = $_GET['categorie'];
         endif;
-        if(isset($_POST['date_debut'])):
-            $filtres['date_debut'] = 'date > ' . $_POST['date_debut'];
+        if(isset($_GET['competition'])):
+            $filtres['competition'] = 'competition IN ('. $_GET['competition'] .')';
+            $f['competition'] = $_GET['competition'];
+        endif;
+        if(isset($_GET['date_debut'])):
+            $filtres['date_debut'] = 'date > ' . $_GET['date_debut'];
+            $f['date_debut'] = $_GET['date_debut'];
         else:
             $filtres['date_debut'] = 'date > '. $annee_actuelle .'0701';
+            $f['date_debut'] = $annee_actuelle .'0701';
         endif;
-        if(isset($_POST['date_fin'])):
-            $filtres['date_fin'] = 'date < ' . $_POST['date_fin'];
+        if(isset($_GET['date_fin'])):
+            $filtres['date_fin'] = 'date < ' . $_GET['date_fin'];
+            $f['date_fin'] = $_GET['date_fin'];
         else:
             $filtres['date_fin'] = 'date < '. $annee_suiv .'0630';
+            $f['date_fin'] = $annee_suiv .'0630';
         endif;
-        if(isset($_POST['joue'])):
-            if($_POST['joue'] == 0):
+        if(isset($_GET['joue'])):
+            if($_GET['joue'] == 0):
                 $filtres['joue'] = 'joue = 0';
-            elseif($_POST['joue'] == 1):
+                $f['joue'] = 0;
+            elseif($_GET['joue'] == 1):
                 $filtres['joue'] = 'joue = 1';
+                $f['joue'] = 1;
             endif;
         endif;
     endif;
+
+	$limite_start =  ($num_page-1) * $nbr_par_page;
+	$limite_end = $nbr_par_page;
 
     $where = '';
     if(isset($filtres) && !empty($filtres)):
@@ -49,13 +57,14 @@
         $where = 'joue = 0 AND date > '. $annee_actuelle .'0701 AND date < '. $annee_suiv .'0630';
     endif;
 
+	$nbr_matchs = count($MatchManager->retourneListe(array('where' => $where)));
+
 	$options = array(
         'where' => $where,
         'orderby' => 'date, heure',
         'limit' => $limite_start .', '. $limite_end
     );
 	$listeMatchs = $MatchManager->retourneListe($options);
-	$nbr_matchs = count($listeMatchs);
 
     $options = array('where' => 'annee = '. $annee_actuelle, 'orderby' => 'niveau, championnat');
 	$listeEquipe = $EquipeManager->retourneListe($options);
@@ -94,13 +103,17 @@
 						if($num_page == $i):?>
 							<li class="active"><a href="#"><?=$i;?></a><?php
 						else:?>
-							<li><a href="admin.php?page=calendrier&amp;num_page=<?=$i;?>"><?=$i;?></a></li><?php
+						    <?php
+                            $str_filtre = '';
+                            foreach($f as $key => $val):
+                                $str_filtres .= '&' . $key . '=' . $val;
+                            endforeach;?>
+							<li><a href="admin.php?page=calendrier&amp;num_page=<?=$i;?><?=$str_filtres;?>"><?=$i;?></a></li><?php
 						endif;
 					endfor;?>
 				</ul>
 			</div>
 		</div>
-		<!-- <input type="hidden" id="liste_filtres" value="<?=$input_filtres?>"/> -->
 	</div>
     <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterLabel">
         <div class="modal-dialog modal-lg" role="document">

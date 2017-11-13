@@ -47,7 +47,7 @@
                 $retour['message'] = "Type invalide (doit être de type png/jpg/jpeg)";
             elseif ($_FILES["image"]["size"] < 5000000):
                 $retour['message'] = "Taille invalide (doit être inférieur à 5Mo))";
-            else
+            else:
                 $retour['message'] = "Une erreur est survenue durant l'upload";
             endif;
         endif;

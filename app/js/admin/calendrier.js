@@ -189,6 +189,7 @@ $(function(){
         $("#date_debut").on("dp.change", function (e) {
             $('#date_fin').data("DateTimePicker").minDate(e.date);
         });
+        
         $("#date_fin").on("dp.change", function (e) {
             $('#date_debut').data("DateTimePicker").maxDate(e.date);
         });
