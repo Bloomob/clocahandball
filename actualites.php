@@ -1,12 +1,10 @@
 <?php 
-	session_start();
-
-	// On enregistre notre autoload.
-	function chargerClasse($classname)
-	{
-		require_once('classes/'.$classname.'.class.php');
-	}
-	spl_autoload_register('chargerClasse');
+	// On inclue la page de connexion à la BDD
+	include_once("inc/init_session.php");
+	include_once("inc/connexion_bdd_pdo.php");
+	include_once("inc/fonctions.php");
+	require_once("inc/date.php");
+	include_once("inc/constantes.php");
 
 	// Initialisation des variables
 	$page = 'actualites';
@@ -21,12 +19,6 @@
             'libelle' => $titre_page
         )
     );
-	
-	// On inclue la page de connexion à la BDD
-	include_once("inc/connexion_bdd_pdo.php");
-	include_once("inc/fonctions.php");
-	require_once("inc/date.php");
-	include_once("inc/constantes.php");
 	
 	// Initialisation des managers
 	$ActuManager = new ActualiteManager($connexion);
@@ -74,197 +66,34 @@
 		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>
-		<div id='main'>
-			<section id="content" class="<?=$page;?>">
+		<main class="<?=$page;?>">
+			<section id="content">
 				<?php include_once('inc/fil_ariane.php'); ?>
 				<div class="container">
                     <div class="row">
                         <article class="col-sm-8"><?php
-                            if(is_object($listeActualites) && $listeActualites->getId() != 0 && $theme == ''):?>
-                                <div class="uneActu contenu">
-                                    <h2><i class="fa fa-file-text" aria-hidden="true"></i><?=html_entity_decode(stripslashes($listeActualites->getTitre()));?></h2>
-                                    <div class="wrapper"><?php
-                                        $options = array('where' => 'id = '. $listeActualites->getId_auteur_crea());
-                                        $unUtilisateur = $UtilisateurManager->retourne($options); ?>
-                                        <div class="actu-content">
-                                            <p class="auteur_date">Rédigé par <a href="utilisateur.php?id=<?=$unUtilisateur->getId();?>"><?=$unUtilisateur->getPrenom();?> <?=$unUtilisateur->getNom();?></a>, le <?=$listeActualites->getJourC();?> <?=$mois_de_lannee[$listeActualites->getMoisC()-1];?> <?=$listeActualites->getAnneeC();?></p>
-                                            <p class="sous-titre"><?php echo html_entity_decode(stripslashes($listeActualites->getSous_titre()));?></p><?php
-                                            if($listeActualites->getImage() != ''){
-                                                if(preg_match('/^images\//', $listeActualites->getImage())){?>
-                                                    <div class="image"><img src="<?=$listeActualites->getImage();?>" alt/></div><?php
-                                                } else { ?>
-                                                    <div class="image"><img src="images/<?=$listeActualites->getImage();?>.png" alt/></div><?php
-                                                }
-                                            } ?>
-                                            <?= html_entity_decode(stripslashes($listeActualites->getContenu()));?>
-                                        </div>
-                                        <div class="navigation row">
-                                            <div class="col-sm-6"><?php
-                                                // Pour retourner l'actualité précédente
-                                                $options = array('where' => 'id != '. $listeActualites->getId() .' AND (date_publication < '. $listeActualites->getDate_publication() .' OR date_publication = '. $listeActualites->getDate_publication() .' AND heure_publication <= '. $listeActualites->getHeure_publication() .')', 'orderby' => 'date_publication desc, heure_publication desc');
-                                                $actuPrec = $ActuManager->retourne($options);
-                                                // echo '<pre>'; var_dump($options, $actuPrec); echo '</pre>'; exit;
-                                                if(is_object($actuPrec) && $actuPrec->getId()!=0) { ?>
-                                                    <a href="actualites.php?id=<?=$actuPrec->getId();?>">
-                                                        <div class="contenu gauche">
-                                                            <span><i class="fa fa-arrow-left" aria-hidden="true"></i>Actualit&eacute; pr&eacute;c&eacute;dente</span>
-                                                            <h4>
-                                                                <?=substr($actuPrec->getTitre(), 0, 35);?>
-                                                                <?=(substr($actuPrec->getTitre(), 36,100)=="") ? '' : '...';?>
-                                                            </h4>
-                                                        </div>
-                                                    </a><?php
-                                                } ?>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <?php
-                                                // Pour retourner l'actualité suivante
-                                                $options = array('where' => 'id != '. $listeActualites->getId() .' AND (date_publication > '. $listeActualites->getDate_publication() .' OR date_publication = '. $listeActualites->getDate_publication() .' AND heure_publication >= '. $listeActualites->getHeure_publication() .')', 'orderby' => 'date_publication desc, heure_publication desc');
-                                                $actuSuiv = $ActuManager->retourne($options);
-                                                // echo '<pre>'; var_dump($options, $actuSuiv); echo '</pre>'; exit;
-                                                if(is_object($actuSuiv) && $actuSuiv->getId()!=0) { ?>
-                                                    <a href="actualites.php?id=<?=$actuSuiv->getId();?>">
-                                                        <div class="contenu droite">
-                                                            <span>Actualit&eacute; suivante<i class="fa fa-arrow-right" aria-hidden="true"></i></span>
-                                                            <h4>
-                                                                <?=substr($actuSuiv->getTitre(), 0, 35);?>
-                                                                <?=(substr($actuSuiv->getTitre(), 36,100)=="") ? '' : '...';?>
-                                                            </h4>
-                                                        </div>
-                                                    </a><?php
-                                                } ?>
-                                            </div>
-                                        </div>
-                                        <form class="commentaires hidden"><?php
-                                            if(isset($_SESSION)):?>
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-sm-offset-3">
-                                                        <div class="publier-commentaire">
-                                                            <h3>Réagissez à cet article</h3>
-                                                            <div class="form-group">
-                                                                <label for="commentaire">Votre commentaire (500 caractères restants)</label>
-                                                                <textarea id="commentaire" class="form-control" placeholder="Entrer votre commentaire"></textarea>
-                                                            </div>
-                                                            <div class="text-right">
-                                                                <button class="btn btn-success">Publier</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><?php
-                                            endif; ?>
-                                        </form>
-                                    </div>
-                                </div><?php
-                            elseif(!$listeActualites ||is_array($listeActualites)):?>
-                                <div class="contenu ">
-                                    <h2><i class="fa fa-file-text" aria-hidden="true"></i><?=$titre?></h2>
-                                    <div class="wrapper listeActus"><?php
-                                        if(!empty($listeActualites)):
-                                            foreach($listeActualites as $key => $uneActu):?>
-                                                <!-- <div class="auteur_date"><span><?=$uneActu->getTags();?></span></div> --><?php
-                                                if($uneActu->getImage() != ''):
-                                                    if($uneActu->getImportance() == 1):?>
-                                                        <div class="row importance1">
-                                                            <div class="col-sm-12">
-                                                                <div class="image"><?php
-                                                                    if(preg_match('/^images\//', $uneActu->getImage())):?>
-                                                                        <img src="<?=$uneActu->getImage();?>" alt /><?php
-                                                                    else: ?>
-                                                                        <img src="images/<?=$uneActu->getImage();?>.png" alt /><?php
-                                                                    endif;?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12">
-                                                                <h3><a href="?theme=<?=$uneActu->getTheme();?>" class="theme_actualite <?=$uneActu->getTheme();?>"><?=$uneActu->getTheme();?></a><?=html_entity_decode(stripslashes($uneActu->getTitre()));?></h3>
-                                                                <div class="contenu">
-                                                                    <p><?=html_entity_decode(stripslashes($uneActu->getSous_titre()));?></p>
-                                                                    <p class="text-right"><a href="?id=<?=$uneActu->getId();?>" class="voir-plus">Lire plus<i class="fa fa-plus" aria-hidden="true"></i></a></p>
-                                                                </div>
-                                                            </div>
-                                                        </div><?php
-                                                    elseif($uneActu->getImportance() == 2):?>
-                                                        <div class="row importance2">
-                                                            <div class="col-sm-6">
-                                                                <div class="image"><?php
-                                                                    if(preg_match('/^images\//', $uneActu->getImage())):?>
-                                                                        <img src="<?=$uneActu->getImage();?>" alt /><?php
-                                                                    else: ?>
-                                                                        <img src="images/<?=$uneActu->getImage();?>.png" alt /><?php
-                                                                    endif;?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <h3><a href="?theme=<?=$uneActu->getTheme();?>" class="theme_actualite <?=$uneActu->getTheme();?>"><?=$uneActu->getTheme();?></a><?=html_entity_decode(stripslashes($uneActu->getTitre()));?></h3>
-                                                                <div class="contenu">
-                                                                    <p><?=html_entity_decode(stripslashes($uneActu->getSous_titre()));?></p>
-                                                                    <p class="text-right"><a href="?id=<?=$uneActu->getId();?>" class="voir-plus">Lire plus<i class="fa fa-plus" aria-hidden="true"></i></a></p>
-                                                                </div>
-                                                            </div>
-                                                        </div><?php
-                                                    else:?>
-                                                        <div class="row importance3">
-                                                            <div class="col-sm-4">
-                                                                <div class="image"><?php
-                                                                    if(preg_match('/^images\//', $uneActu->getImage())):?>
-                                                                        <img src="<?=$uneActu->getImage();?>" alt /><?php
-                                                                    else: ?>
-                                                                        <img src="images/<?=$uneActu->getImage();?>.png" alt /><?php
-                                                                    endif;?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-8">
-                                                                <h3><a href="?theme=<?=$uneActu->getTheme();?>" class="theme_actualite <?=$uneActu->getTheme();?>"><?=$uneActu->getTheme();?></a><?=html_entity_decode(stripslashes($uneActu->getTitre()));?></h3>
-                                                                <div class="contenu">
-                                                                    <p><?=html_entity_decode(stripslashes($uneActu->getSous_titre()));?></p>
-                                                                    <p class="text-right"><a href="?id=<?=$uneActu->getId();?>" class="voir-plus">Lire plus<i class="fa fa-plus" aria-hidden="true"></i></a></p>
-                                                                </div>
-                                                            </div>
-                                                        </div><?php
-                                                    endif;
-                                                else: ?>
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <h3><a href="?theme=<?=$uneActu->getTheme();?>" class="theme_actualite <?=$uneActu->getTheme();?>"><?=$uneActu->getTheme();?></a><?=html_entity_decode(stripslashes($uneActu->getTitre()));?></h3>
-                                                            <div class="contenu">
-                                                                <p><?=html_entity_decode(stripslashes($uneActu->getSous_titre()));?></p>
-                                                                <p class="text-right"><a href="?id=<?=$uneActu->getId();?>" class="voir-plus">Lire plus<i class="fa fa-plus" aria-hidden="true"></i></a></p>
-                                                            </div>
-                                                        </div>
-                                                    </div><?php 
-                                                endif;
-                                            endforeach;
-                                        else:?>
-                                            <p>Aucune actualité pour le moment</p><?php
-                                        endif;?>
-                                    </div>
-                                </div><?php
+                            if(is_object($listeActualites) && $listeActualites->getId() != 0 && $theme == ''):
+                                include_once("inc/parts/actualites/details.php");
+                            elseif(!$listeActualites ||is_array($listeActualites)):
+                                include_once("inc/parts/actualites/liste.php");
                             else: ?>
                                 <div>
-                                    <p>
-                                        Cette actualité n'existe pas.<br/>
-                                        Pour la liste des actualités : <a href="actualites.php">Cliquez-ici</a>
-                                    </p>
+                                    <p>Cette actualité n'existe pas.<br/>Pour la liste des actualités : <a href="actualites.php">Cliquez-ici</a></p>
                                 </div><?php
                             endif; ?>
                         </article>
                         <article class="col-sm-4 modules">
-                            <!--<article>
-                                <?php include_once('inc/modules/infos-home.php'); ?>
-                            </article>-->
-                            <article>
-                                <?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
-                            </article>
-                            <article>
-                                <?php include_once('inc/modules/partenaires.php'); ?>
-                            </article>
+                            <?php include_once('inc/modules/partenaires.php'); ?>
+                            <?php include_once('inc/modules/facebook-home.php'); ?>
+                            <?php include_once('inc/modules/liens-utiles-home.php'); ?>
                         </article>
                     </div>
                 </div>
 			</section>
-			<footer>
-				<?php include_once('inc/footer.php'); ?>
-			</footer>
-		</div>
+		</main>
+        <footer>
+            <?php include_once('inc/footer.php'); ?>
+        </footer>
 		<?php include_once('inc/script.php'); ?>
 	</body>
 </html>

@@ -4,7 +4,7 @@
     }
     .wrapper {
         position: relative;
-        background-color: $blanc;
+        background-color: $blanc2;
         min-height: 200px;
         margin-bottom: 30px;
 
@@ -55,6 +55,7 @@
                             background: #725807;
                             padding: 2px 5px;
                             @include border-radius(0 0 5px 5px);
+                            text-transform: uppercase;
                         }
                     }
                     .competition {
@@ -125,20 +126,24 @@
                             @include transform-translate(-50%, -50%);
                         }
                     }
-                    a.info {
-                        display: inline-block;
-                        vertical-align: top;
-                        position: relative;
+                    .infos_match {
                         height: 45px;
                         text-align: center;
+                        
+                        a {
+                            display: inline-block;
+                            vertical-align: top;
+                            position: relative;
+                            height: 45px;
 
-                        span {
-                            font-size: 20px;
-                            color: $orange2;
-                            position: absolute;
-                            top: 50%;
-                            left: 0;
-                            @include transform-translate(0%, -50%);
+                            span {
+                                font-size: 20px;
+                                color: $orange2;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                @include transform-translate(-50%, -50%);
+                            }
                         }
                     }
                     &:last-child {

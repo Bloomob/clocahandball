@@ -177,7 +177,7 @@
             
             .bloc {
                 border: 1px solid $bleu-clair;
-                background-color: rgba($bleu-clair, .5);
+                // background-color: rgba($bleu-clair, .5);
                 
                 h4 {
                     background: $bleu-clair;
@@ -186,11 +186,11 @@
                     text-align: right;
                     text-transform: uppercase;
                     padding: 8px 15px;
-                    color: $bleu-fonce;
+                    color: $orange;
                 }
                 .col-sm-8 {
                     padding: 8px 15px;
-                    color: $bleu-fonce;
+                    color: $bleu-clair;
                     
                     span {
                         display: inline-block;
@@ -204,7 +204,7 @@
         .dernieres_actus, .saison_passee {
             .bloc {
                 border: 1px solid $bleu-clair;
-                background-color: rgba($bleu-clair, .5);
+                // background-color: rgba($bleu-clair, .5);
                 
                 h4 {
                     background: $bleu-clair;
@@ -389,8 +389,24 @@
             }
         }
     }
-    #tab_equipe .jqplot-target .jqplot-title { font-size: 1.5em; }
-    #tab_equipe .jqplot-target .jqplot-donut-series { font-size: 2em; color: #000; }
+    #statistiques .jqplot-target {
+        width: 100% !important;
+        height: 350px !important;
+        
+        .jqplot-title {
+            font-size: 1.5em;
+        }
+        .jqplot-donut-series {
+            font-size: 2em; color: #000;
+        }
+        .jqplot-table-legend {
+            background-color: transparent;
+            
+            + .jqplot-table-legend {
+                padding-left: 10px;
+            }
+        }
+    }
     #statistiques {
         .stats_buts {
             h4 { margin: 10px 0; font-size: 1.5em; }

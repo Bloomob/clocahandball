@@ -1,12 +1,10 @@
 <?php 
-	session_start();
-
-	// On enregistre notre autoload.
-	function chargerClasse($classname)
-	{
-		require_once('classes/'.$classname.'.class.php');
-	}
-	spl_autoload_register('chargerClasse');
+	// On inclue la page de connexion à la BDD
+    include_once("inc/init_session.php");
+    include_once("inc/connexion_bdd_pdo.php");
+    include_once("inc/fonctions.php");
+    require_once("inc/date.php");
+    include_once("inc/constantes.php");
 
 	// On définit les variables
 	$page = 'admin';
@@ -19,13 +17,6 @@
             'libelle' => $titre_page
         )
     );
-
-	// On inclue la page de connexion à la BDD
-	include_once("inc/connexion_bdd_pdo.php");
-	include_once("inc/fonctions.php");
-	require_once("inc/date.php");
-	include_once("inc/constantes.php");
-
 	$annee = retourne_annee();
 
 	if(!isset($_SESSION['rang']) OR !accesAutorise($_SESSION['rang'])) {
@@ -89,8 +80,8 @@
 		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>
-		<div id='main'>
-			<section id="content" class="<?=$page;?>">
+		<main class="<?=$page;?>">
+			<section id="content">
 				<?php include_once('inc/fil_ariane.php'); ?>
 				<div class="container">
 					<article class="admin-panel">
@@ -114,10 +105,10 @@
 					</article>
 				</div>
 			</section>
-			<footer>
-				<?php include_once('inc/footer.php'); ?>
-			</footer>
-		</div>
+		</main>
+        <footer>
+            <?php include_once('inc/footer.php'); ?>
+        </footer>
 		<?php include('inc/script.php'); ?>
 	</body>
 </html>

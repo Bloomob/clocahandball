@@ -110,8 +110,11 @@ figure { margin: 0px; }
     }
 }
 
-.competition_5_4 { background-color: $violet; }
+[class*="competition_"] { background-color: $gris; }
+.competition_6_2 { background-color: $rose; }
+.competition_6_3 { background-color: $rose; }
 .competition_5_3 { background-color: $violet; }
+.competition_5_4 { background-color: $violet; }
 .competition_4_4 { background-color: $jaune; }
 .competition_4_3 { background-color: $orange; }
 .competition_4_2 { background-color: $orange2; }

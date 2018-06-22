@@ -4,7 +4,7 @@ $ActuManager = new ActualiteManager($connexion);
 $options = array(
     'where' => 'date_publication >= "'. $annee_actuelle .'0701" AND (date_publication < '. date('Ymd') .' OR date_publication = '. date('Ymd') .' AND heure_publication < '. date('Hi') .') AND slider = 0 AND publie = 1',
     'orderby' => 'date_publication desc, heure_publication desc',
-    'limit' => '0, 10'
+    'limit' => '0, 6'
 );
 $listeActu = $ActuManager->retourneListe($options);?>
 <div class="wrapper plus">
@@ -26,6 +26,6 @@ $listeActu = $ActuManager->retourneListe($options);?>
         endif?>
     </div>
     <nav>
-        <a href="#" class="voir-plus">Voir plus<i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a href="actualites.php" class="voir-plus">Voir toutes les actualités<i class="fa fa-plus" aria-hidden="true"></i></a>
     </nav>
 </div>

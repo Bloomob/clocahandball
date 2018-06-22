@@ -1,17 +1,15 @@
-<?php 
-	session_start();
+<?php
+    // On initialise et on charge les fonctions
+	require_once("inc/init_session.php");
+	include_once("inc/connexion_bdd_pdo.php");
+	include_once("inc/fonctions.php");
+	require_once("inc/date.php");
+	include_once("inc/constantes.php");
 
-	if(!isset($_SESSION['id'])) {
+    if(!isset($_SESSION['id'])) {
 		header("Location: index.php");
 		exit;
 	}
-
-	// On enregistre notre autoload.
-	function chargerClasse($classname)
-	{
-		require_once('classes/'.$classname.'.class.php');
-	}
-	spl_autoload_register('chargerClasse');
 
     // Initialisation des variables
 	$page = 'mon_profil';
@@ -22,24 +20,18 @@
         array(
             'url' => $page,
             'libelle' => $titre_page
-        )/*,
+        ),
         array(
             array(
                 'url' => 'infos',
                 'libelle' => 'Mes infos'
-            ),
+            )/*,
             array(
                 'url' => 'equipes',
                 'libelle' => 'Mes équipes'
-            )
-        )*/
+            )*/
+        )
     );
-
-	// On inclue la page de connexion à la BDD
-	include_once("inc/connexion_bdd_pdo.php");
-	include_once("inc/fonctions.php");
-	require_once("inc/date.php");
-	include_once("inc/constantes.php");
 	
 	$annee = retourne_annee();
 
@@ -76,112 +68,17 @@
 		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>
-		<div id='main'>
-			<section id="content" class="<?=$page;?>">
+		<main class="<?=$page;?>">
+			<section id="content">
 				<?php include_once('inc/fil_ariane.php'); ?>
 				<div class="container">
                     <div class="row">
-                        <article class="col-sm-8">
+                        <article class="col-md-8">
                             <div class="profil contenu">
                                 <h2><i class="fa fa-user-o" aria-hidden="true"></i><?=$titre?></h2>
                                 <div class="wrapper">
-                                    <fieldset>
-                                        <legend><i class="fa fa-info" aria-hidden="true"></i>Informations générales</legend>
-                                        <form>
-                                            <div class="row infos">
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="prenom">Prénom <span class="text-danger">*</span></label><br>
-                                                        <input type="text" id="prenom" class="form-control" value="<?=$unUtilisateur->getPrenom();?>" placeholder="Entrer votre prénom"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="nom">Nom <span class="text-danger">*</span></label><br>
-                                                        <input type="text" id="nom" class="form-control" value="<?=$unUtilisateur->getNom();?>" placeholder="Entrer votre nom"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="email">Email <span class="text-danger">*</span></label><br>
-                                                        <input type="email" id="email" class="form-control" value="<?=$unUtilisateur->getMail();?>" placeholder="Entrer votre email"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="num_licence">Numéro de licence</label><br>
-                                                        <input type="text" id="num_licence" class="form-control" value="<?=$unUtilisateur->getNum_licence();?>" placeholder="Entrer votre numéro de licence"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="tel">Téléphone</label><br>
-                                                        <input type="text" id="tel" class="form-control" value="<?=$unUtilisateur->getTel_port();?>" placeholder="Entrer votre numéro de téléphone"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12 text-center">
-                                                    <button type="submit" class="btn btn-success edit-profil" data-profil="infos">Valider vos informations</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </fieldset>
-                                    <fieldset>
-                                        <legend><i class="fa fa-key" aria-hidden="true"></i>Changer de mot de passe</legend>
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="password_old">Mot de passe actuelle <span class="text-danger">*</span></label><br>
-                                                        <input type="password" id="password_old" class="form-control" placeholder="Entrer votre ancien mot de passe"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="password_new">Nouveau mot de passe <span class="text-danger">*</span></label><br>
-                                                        <input type="password" id="password_new" class="form-control" placeholder="Entrer votre nouveau mot de passe"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="password_new_confirm">Confirmer le nouveau mot de passe <span class="text-danger">*</span></label><br>
-                                                        <input type="password" id="password_new_confirm" class="form-control" placeholder="Confirmer votre nouveau mot de passe"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12 text-center">
-                                                    <button type="submit" class="btn btn-success edit-profil" data-profil="password">Valider votre nouveau mot de passe</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </fieldset>
-                                    <fieldset>
-                                        <legend id="fav"><i class="fa fa-heart" aria-hidden="true"></i>Mes équipes favorites</legend>
-                                        <form>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="form-group">
-                                                        <label for="equipe">Vos équipes favorites</label><br>
-                                                        <select id="equipe" class="form-control selectpicker" multiple data-live-search="true" data-actions-box="true" title="Choisisser les équipes à suivre"><?php
-                                                            $liste_fav = explode(',', $unUtilisateur->getListe_equipes_favorites());
-                                                            foreach($listeCategories as $uneCategorie):?>
-                                                                <option value="<?=$uneCategorie->getId();?>" <?=(in_array($uneCategorie->getId(), $liste_fav)) ? 'selected' : '';?>><?=$uneCategorie->getCategorieAll();?></option><?php
-                                                            endforeach;?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12 text-center">
-                                                    <button type="submit" class="btn btn-success edit-profil" data-profil="fav-team">Valider vos équipes favorites</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </fieldset><?php
+                                    <?php include_once('inc/parts/mon_profil/infos.php'); ?>
+                                    <?php
                                     /*
                                     $options = array('where' => 'type = 4 AND id_utilisateur = '.$_SESSION['id'].' AND annee_fin = 0');
                                     $listeFonctions = $FonctionManager->retourneListe($options);
@@ -637,21 +534,14 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="col-sm-4 modules">
-                            <article>
-                                <?php include_once('inc/modules/infos-home.php'); ?>
-                            </article>
-                            <article>
-                                <?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
-                            </article>
-                            <article>
-                                <?php include_once('inc//modules/partenaires.php'); ?>
-                            </article>
+                        <article class="col-md-4 modules">
+                            <?php include_once('inc/modules/infos-home.php'); ?>
+                            <?php include_once('inc//modules/partenaires.php'); ?>
                         </article>
                     </div>
 				</div>
 			</section>
-		</div>
+		</main>
         <footer>
             <?php include_once('inc/footer.php'); ?>
         </footer>

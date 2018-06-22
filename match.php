@@ -1,16 +1,40 @@
 <?php 
-	session_start();
-	include_once("inc/fonctions.php");
-	include_once("inc/date.php");
-	include_once("inc/connexion.php");
+	// On initialise et on charge les fonctions
+	require_once("inc/init_session.php");
+	require_once("inc/connexion_bdd_pdo.php");
+	require_once("inc/fonctions.php");
+	require_once("inc/date.php");
+	require_once("inc/constantes.php");
 	
+	// On définit les variables
 	$page = 'match';
-	$titre_page = 'Infos Match';
+	$titre_page = 'D&eacute;tails d\'un match';
+	$titre = 'D&eacute;tails d\'un match';
+	$filAriane = array(
+        'home', 
+        array(
+            'url' => $page,
+            'libelle' => $titre_page
+        )/*,
+        array(
+            array(
+                'url' => 'infos',
+                'libelle' => 'Mes infos'
+            ),
+            array(
+                'url' => 'equipes',
+                'libelle' => 'Mes équipes'
+            )
+        )*/
+    );
 	$id = 0;
 	
-	if(isset($_GET['id'])) {
+	if(isset($_GET['id'])):
 		$id = $_GET['id'];
-	}
+    else:
+        header("Location: index.php");
+		exit;
+	endif;
 ?>
 
 <!DOCTYPE html>
@@ -18,73 +42,50 @@
 	<head>
 		<?php include_once('inc/head.php'); ?>
 	</head>
-	<body id="page1">
-		<header>
+	<body>
+		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>
-		<div id='main'>
+		<main class="<?=$page;?>">
 			<section id="content">
-				<nav>
-					<ul>
-						<li class="nav navtit2"><span><?=$titre_page?></span></li>
-					</ul>
-				</nav>
-				<div class="bg1 pad">
-					<article class="col2 marg-right1">
-						<h2><?=$titre_page?></h2>
-						<div><?php
-							if($id != 0) {
-								$infosMatch = retourneUnMatch($id);
-								// echo '<pre>';
-								// var_dump($infosMatch);
-								// echo '</pre>'; ?>
-								<div class="infos_match">
-									<div class="infos_rencontre"><?php
-										if($infosMatch['lieu']==0) { ?>
-											<div class="home">Ach&egrave;res</div><div class="score-time"><?=$infosMatch['score'];?></div><div class="away"><?=$infosMatch['adversaire'];?></div><?php
-										} else { ?>
-											<div class="home"><?=$infosMatch['adversaire'];?></div><div class="score-time"><?=$infosMatch['score'];?></div><div class="away">Ach&egrave;res</div><?php
-										} ?>
-									</div>
-									<div class="infos_horaire">
-										<span><?=$infosMatch['laDate'];?> à <?=$infosMatch['lHeure'];?></span>
-									</div>
-								</div><?php
-							} ?>
-						</div>
-					</article>
-					<article class="col1">
-						<article>
-							<?php include_once('inc/infoflash.php'); ?>
-						</article>
-						<article class="marginT">
-							<?php include_once('inc/infos.php'); ?>
-						</article>
-						<article class="marginT">
-							<?php include_once('inc/who_online.php'); ?>
-						</article>
-						<article class="marginT">
-							<?php include_once('inc/partenaires.php'); ?>
-						</article>
-					</article>
+				<?php include_once('inc/fil_ariane.php'); ?>
+				<div class="container">
+                    <div class="row">
+                        <article class="col-md-8">
+							<div class="contenu">
+								<h2><i class="fa fa-calendar" aria-hidden="true"></i><?=$titre?></h2>
+								<div class="wrapper">
+                                    <?php
+                                    if($id != 0):
+                                        $infosMatch = retourneUnMatch($id);
+                                        // degug($infosMatch);?>
+                                        <div class="infos_match">
+                                            <div class="infos_rencontre"><?php
+                                                if($infosMatch['lieu']==0): ?>
+                                                    <div class="home">Ach&egrave;res</div><div class="score-time"><?=$infosMatch['score'];?></div><div class="away"><?=$infosMatch['adversaire'];?></div><?php
+                                                else: ?>
+                                                    <div class="home"><?=$infosMatch['adversaire'];?></div><div class="score-time"><?=$infosMatch['score'];?></div><div class="away">Ach&egrave;res</div><?php
+                                                endif; ?>
+                                            </div>
+                                            <div class="infos_horaire">
+                                                <span><?=$infosMatch['laDate'];?> à <?=$infosMatch['lHeure'];?></span>
+                                            </div>
+                                        </div><?php
+                                    endif; ?>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="col-md-4 modules">
+                            <?php include_once('inc/modules/infos-home.php'); ?>
+                            <?php include_once('inc/modules/partenaires.php'); ?>
+                        </article>
+                    </div>
 				</div>
 			</section>
-			<footer>
-				<?php include_once('inc/footer.php'); ?>
-			</footer>
-			<div id="fond" class="fond_transparent"></div>
-		</div>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-		<script type="text/javascript" src="javascript/script.js"></script>
-		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		  ga('create', 'UA-43491471-1', 'clocahandball.fr');
-		  ga('send', 'pageview');
-
-		</script>
+        </main>
+        <footer>
+            <?php include_once('inc/footer.php'); ?>
+        </footer>
+		<?php include('inc/script.php'); ?>
 	</body>
 </html>

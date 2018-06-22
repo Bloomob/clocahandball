@@ -47,8 +47,8 @@
 								<h2><i class="fa fa-pencil" aria-hidden="true"></i><?=$titre?></h2>
 								<div class="wrapper">
 									<fieldset>
-										<p>Pour toute question relative au club : <a href="mailto:clocahandball@gmail.fr">clocahandball@gmail.fr</a></p>
-										<p>Pour toute question relative au site internet : <a href="mailto:clocahandball@gmail.fr">clocahandball@gmail.fr</a></p>
+										<p>Pour toute question relative au club : <a href="mailto:clocahandball@gmail.com">clocahandball@gmail.com</a></p>
+										<p>Pour toute question relative au site internet : <a href="mailto:clocahandball@gmail.com">clocahandball@gmail.com</a></p>
 									</fieldset>
 								</div>
 							</div>

@@ -77,7 +77,7 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id'])):
             </ul>-->
         </div>
         <nav>
-            <a href="#" class="voir-plus">Voir plus<i class="fa fa-plus" aria-hidden="true"></i></a>
+            <a href="resultats_classements.php?onglet=matchs_a_venir" class="voir-plus">Voir tous les matchs à venir<i class="fa fa-plus" aria-hidden="true"></i></a>
         </nav>
     </div><?php
 endif; ?>

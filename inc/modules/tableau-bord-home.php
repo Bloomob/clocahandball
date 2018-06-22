@@ -25,7 +25,7 @@ $i = 2; ?>
                     $options2 = array('where' => 'id = '. $unMatch->getCategorie());
                     $uneCategorie = $CategorieManager->retourne($options2);
                     if($unMatch->getLieu() == 0):?>
-                        <div class="col-xs-5 col-sm-4 match">
+                        <div class="col-xs-5 col-sm-5 match">
                             <div class="dom puce"><div class="cat_<?=$uneCategorie->getRaccourci();?>"></div><a href="equipes.php?onglet=<?=$uneCategorie->getRaccourci();?>"><strong><?=$uneCategorie->getCategorie();?> <?=substr($uneCategorie->getGenre(),0,1);?><?=$uneCategorie->getNumero();?></strong></a></div>
                             <div class="ext"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
@@ -39,7 +39,7 @@ $i = 2; ?>
                             </div>
                         </div><?php
                     else: ?>
-                        <div class="col-xs-5 col-sm-4 match">
+                        <div class="col-xs-5 col-sm-5 match">
                             <div class="dom"><?php
                                 $tab = explode(',', $unMatch->getAdversaires());
                                 if(is_array($tab)):
@@ -54,8 +54,8 @@ $i = 2; ?>
                         </div><?php
                     endif; ?>
                     <div class="col-xs-2 col-sm-2 heure"><span><?=$unMatch->remplace_heure()?></span></div>
-                    <div class="hidden-xs col-sm-2">
-                        <a href="#" class="info"><span><i class="fa fa-info-circle" aria-hidden="true"></i></span></a>
+                    <div class="hidden-xs col-sm-1 infos_match">
+                        <a href="match.php?id="><span><i class="fa fa-info-circle" aria-hidden="true"></i></span></a>
                     </div>
                 </div><?php
                 $i++;
@@ -69,6 +69,6 @@ $i = 2; ?>
         </ul>-->
 	</div>
     <nav>
-        <a href="#" class="voir-plus">Voir plus<i class="fa fa-plus" aria-hidden="true"></i></a>
+        <a href="resultats_classements.php?onglet=matchs_a_venir" class="voir-plus">Voir tous les matchs<i class="fa fa-plus" aria-hidden="true"></i></a>
     </nav>
 </div>

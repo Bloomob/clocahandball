@@ -1,11 +1,10 @@
 <?php 
-	session_start();
-	// On enregistre notre autoload.
-	function chargerClasse($classname)
-	{
-		require_once('classes/'.$classname.'.class.php');
-	}
-	spl_autoload_register('chargerClasse');
+    // On inclue la page de connexion à la BDD
+	include_once("inc/init_session.php");
+	include_once("inc/connexion_bdd_pdo.php");
+	include_once("inc/fonctions.php");
+	require_once("inc/date.php");
+	include_once("inc/constantes.php");
 
 	// initialisation des variables	
 	$page = 'staff';
@@ -32,12 +31,6 @@
             )
         )
 	);
-
-	// On inclue la page de connexion à la BDD
-	include_once("inc/connexion_bdd_pdo.php");
-	include_once("inc/fonctions.php");
-	require_once("inc/date.php");
-	include_once("inc/constantes.php");
 	
 	// Initialisation des managers
 	$RoleManager = new RoleManager($connexion);
@@ -79,7 +72,7 @@
 		<header id="entete">
 			<?php include_once('inc/header.php'); ?>
 		</header>
-		<div id='main'>
+		<main class="<?=$page;?>">
 			<section id="content">
 				<?php include_once('inc/fil_ariane.php'); ?>
 				<div class="container">
@@ -88,19 +81,14 @@
                             <div class="contenu">
 								<h2><i class="fa fa-users" aria-hidden="true"></i><?=$titre?></h2>
                                 <div class="row"><?php
-                                    switch($onglet):
-                                        case 'bur':
-                                        case 'entr':
-                                        case 'arb':
-                                            $options = array('where' => 'raccourci LIKE "'. $onglet .'"');
-                                            $unRole = $RoleManager->retourne($options);
-                                            // echo "<pre>"; var_dump($unRole); echo "</pre>";
-
-                                            $options = array('where' => 'annee_fin = 0 AND type = '. $unRole->getId(), 'orderby' => 'role');
-                                            $listeStaff = $FonctionManager->retourneListe($options);
-                                            // echo "<pre>"; var_dump($listeStaff); echo "</pre>";
-
-                                            echo '';
+                                    $options = array('where' => 'raccourci LIKE "'. $onglet .'"');
+                                    $unRole = $RoleManager->retourne($options);
+                                    // debug($unRole);
+                                    if($unRole->getId()):
+                                        $options = array('where' => 'annee_fin = 0 AND type = '. $unRole->getId(), 'orderby' => 'role');
+                                        $listeStaff = $FonctionManager->retourneListe($options);
+                                        // debug($listeStaff);
+                                        if(!empty($listeStaff)):
                                             foreach($listeStaff as $unMembre):
                                                 if($unMembre->getType() == 4):
                                                     $options = array('where' => 'id = '. $unMembre->getRole());
@@ -129,33 +117,26 @@
                                                     </div>
                                                 </div><?php
                                             endforeach;
-                                        break;
-                                        default:
+                                        else:
                                             echo "<div>Pas de données disponibles pour le moment.</div>";
-                                        break;
-                                    endswitch;?>
+                                        endif;
+                                    else:
+                                        echo "<div>Pas de données disponibles pour le moment.</div>";
+                                    endif;?>
                                 </div>
                             </div>
                         </article>
                         <article class="col-sm-4 modules">
-							<article>
-								<?php include_once('inc/modules/infos-home.php'); ?>
-							</article>
-							<article>
-								<?php // include_once('inc/modules/qui-en-ligne-home.php'); ?>
-							</article>
-							<article>
-								<?php include_once('inc/modules/partenaires.php'); ?>
-							</article>
+                            <?php include_once('inc/modules/infos-home.php'); ?>
+                            <?php include_once('inc/modules/partenaires.php'); ?>
 						</article>
                     </div>
 				</div>
 			</section>
-			<footer>
-				<?php include_once('inc/footer.php'); ?>
-			</footer>
-			<div id="fond" class="fond_transparent"></div>
-		</div>
+		</main>
+        <footer>
+            <?php include_once('inc/footer.php'); ?>
+        </footer>
 		<?php include_once('inc/script.php'); ?>
 	</body>
 </html>

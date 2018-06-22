@@ -4,7 +4,7 @@
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <link rel="stylesheet" href="src/css/vendor.css" type="text/css" media="all">
 <link rel="stylesheet" href="src/css/app.css" type="text/css" media="all">
+<link rel="stylesheet" href="plugins/jqplot/jquery.jqplot.min.css" type="text/css" media="all"/>
 <?php /*
 <link href="lightbox/css/lightbox.css" rel="stylesheet" />
-<link rel="stylesheet" href="jqplot/jquery.jqplot.min.css" type="text/css" media="all"/>
 */ ?>
